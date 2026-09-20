@@ -117,7 +117,7 @@ export const Gallery: React.FC = () => {
                     {project.specifications}
                   </span>
                   <a
-                    href={generateWhatsAppUrl(`Hello Abdul Sattar ji, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
+                    href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2"

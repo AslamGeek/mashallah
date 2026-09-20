@@ -49,7 +49,7 @@ export const ContactSection: React.FC = () => {
             Get in Touch with Mashallah Welding Works
           </h2>
           <p className="text-base sm:text-lg text-stone-400 leading-relaxed">
-            Speak directly with proprietor Abdul Sattar for immediate quotes, on-site measurements, or welding repair assistance.
+            Get in touch directly for immediate quotes, on-site measurements, or welding repair assistance.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export const ContactSection: React.FC = () => {
                     >
                       {BUSINESS_INFO.phoneFormatted}
                     </a>
-                    <span className="text-xs text-stone-500 block">Direct Line: 9553217643</span>
+                    <span className="text-xs text-stone-500 block">Calls & WhatsApp welcome</span>
                   </div>
                 </div>
 
@@ -192,7 +192,7 @@ export const ContactSection: React.FC = () => {
                   Tell Us What You Need
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-400 mt-1">
-                  Fill this quick form to generate an instant enquiry message directly to Abdul Sattar on WhatsApp.
+                  Fill this quick form to generate an instant enquiry message on WhatsApp.
                 </p>
               </div>
 
@@ -284,7 +284,7 @@ export const ContactSection: React.FC = () => {
                 </button>
 
                 <p className="text-center text-xs text-stone-400">
-                  Direct message to Abdul Sattar (+91 95532 17643). No registration needed.
+                  Opens directly in WhatsApp. Fast response guaranteed.
                 </p>
               </form>
             </div>

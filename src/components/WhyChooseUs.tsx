@@ -12,7 +12,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: Ruler,
       title: 'Precision On-Site Measurements',
-      desc: 'Abdul Sattar personally takes or verifies exact site measurements, ensuring zero gaps, seamless gate swings, and flush grill anchorings.',
+      desc: 'We personally take and verify exact on-site measurements, ensuring zero gaps, seamless gate swings, and flush grill anchorings.',
     },
     {
       icon: Clock,
@@ -48,7 +48,7 @@ export const WhyChooseUs: React.FC = () => {
             Built for Strength, Security & Longevity
           </h2>
           <p className="text-base sm:text-lg text-stone-400 leading-relaxed">
-            Local property owners trust Abdul Sattar for dependable metal fabrication that stands firm against time, weather, and wear.
+            Local property owners trust our workshop for dependable metal fabrication that stands firm against time, weather, and wear.
           </p>
         </div>
 

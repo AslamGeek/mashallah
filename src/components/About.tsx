@@ -31,8 +31,7 @@ export const About: React.FC = () => {
               At <strong className="text-stone-900 font-semibold">Mashallah Welding Works</strong>, we understand that iron structures are not just functional fittings—they are the primary shield for your family, property, and business investments.
             </p>
             <p>
-              Under the experienced guidance of proprietor and master craftsman{' '}
-              <strong className="text-stone-900 font-semibold">{BUSINESS_INFO.proprietor}</strong>, our workshop specializes in converting high-grade raw mild steel and iron into made-to-requirement gates, grills, railings, and heavy stands.
+              Backed by decades of hands-on fabrication experience, our workshop specializes in converting high-grade raw mild steel and iron into made-to-requirement gates, grills, railings, and heavy stands.
             </p>
             <p className="bg-amber-50/80 border-l-4 border-amber-500 p-4 rounded-r-lg text-stone-800 text-sm">
               <strong>Both New Fabrication & Repair Services:</strong> Whether you are constructing a new home and need complete custom iron fittings, or have an existing sagging gate or broken hinge that needs fast on-site repair, our workshop delivers prompt, honest, and high-quality workmanship.
@@ -94,10 +93,10 @@ export const About: React.FC = () => {
                   className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-sm font-semibold transition-colors"
                 >
                   <Phone className="w-4 h-4 mr-2 text-amber-400" />
-                  Call Abdul Sattar: {BUSINESS_INFO.phone}
+                  Call Directly
                 </a>
                 <a
-                  href={generateWhatsAppUrl('Hello Abdul Sattar ji, I would like to discuss an iron fabrication requirement.')}
+                  href={generateWhatsAppUrl('Hello, I would like to discuss an iron fabrication requirement.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"

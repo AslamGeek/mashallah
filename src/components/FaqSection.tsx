@@ -167,7 +167,7 @@ export const FaqSection: React.FC = () => {
             <HelpCircle className="w-10 h-10 text-stone-400 mx-auto mb-3" />
             <p className="text-base font-bold text-stone-800">No matching questions found</p>
             <p className="text-sm text-stone-500 mt-1 mb-4">
-              Try searching with different words or reach out to Abdul Sattar directly.
+              Try searching with different words or reach out to us directly.
             </p>
             <button
               type="button"
@@ -240,7 +240,7 @@ export const FaqSection: React.FC = () => {
                         </span>
 
                         <a
-                          href={generateWhatsAppUrl(`Hi Abdul Sattar, regarding FAQ: "${faq.question}", I'd like to ask more details.`)}
+                          href={generateWhatsAppUrl(`Hello, regarding this question: "${faq.question}", I'd like to know more.`)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-md transition-colors"
@@ -268,7 +268,7 @@ export const FaqSection: React.FC = () => {
               Have a Question We Haven&apos;t Answered?
             </h3>
             <p className="text-stone-300 text-sm">
-              Speak directly with proprietor Abdul Sattar for immediate answers, quotation advice, or workshop directions.
+              Get in touch directly with our team for quick answers, quotation advice, or workshop directions.
             </p>
           </div>
 
@@ -279,7 +279,7 @@ export const FaqSection: React.FC = () => {
               className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-sm transition-all shadow-md active:scale-95"
             >
               <Phone className="w-4 h-4 mr-2" />
-              <span>Call 9553217643</span>
+              <span>Call Us</span>
             </a>
             <a
               id="faq-whatsapp-cta"

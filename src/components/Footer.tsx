@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
                 className="px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-800/60 text-xs font-semibold flex items-center transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                <span>WhatsApp: 9553217643</span>
+                <span>Chat on WhatsApp</span>
               </a>
               <a
                 href={BUSINESS_INFO.instagramUrl}
@@ -161,9 +161,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
-          <p>© {currentYear} Mashallah Welding Works. All rights reserved. Proprietor: Abdul Sattar.</p>
+          <p>© {currentYear} Mashallah Welding Works. All rights reserved.</p>
           <p className="text-center sm:text-right">
-            Auto Nagar, Proddatur, Andhra Pradesh 516360 • Mobile: 9553217643
+            Auto Nagar, Proddatur, Andhra Pradesh 516360
           </p>
         </div>
       </div>

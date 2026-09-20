@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
 
             {/* Value Proposition Description */}
             <p className="text-base sm:text-lg text-stone-300/90 max-w-2xl leading-relaxed">
-              Led by proprietor <strong className="text-white font-semibold">{BUSINESS_INFO.proprietor}</strong>, we build heavy-duty, made-to-requirement iron gates, window safety grills, staircase railings, metal doors, and durable industrial structures. Built with high-gauge iron and precision welding.
+              We build heavy-duty, made-to-requirement iron gates, window safety grills, staircase railings, metal doors, and durable industrial structures with high-gauge steel and precision arc welding.
             </p>
 
             {/* 3 Prominent Primary Action Buttons as specifically requested in requirements */}
@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-extrabold text-base tracking-wide transition-all duration-150 shadow-lg shadow-amber-500/20 active:scale-[0.98]"
               >
                 <Phone className="w-5 h-5 mr-2 stroke-[2.5]" />
-                Call Now: {BUSINESS_INFO.phone}
+                Call Now
               </a>
 
               {/* WhatsApp Us */}

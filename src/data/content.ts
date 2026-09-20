@@ -272,7 +272,7 @@ export const FAQS_LIST: FaqItem[] = [
     id: 'faq-2',
     question: 'Can you fabricate custom designs from Pinterest, photos, or architectural drawings?',
     answer:
-      'Yes, absolutely! Many of our clients share photos from Pinterest, Instagram, or architectural blueprints. You can send any design photo directly to Abdul Sattar on WhatsApp (9553217643). We will evaluate the structural requirements, recommend appropriate steel bar gauges, and fabricate it to your exact measurements.',
+      'Yes, absolutely! Many of our clients share photos from Pinterest, Instagram, or architectural blueprints. You can share any design photo directly with us on WhatsApp. We will evaluate the structural requirements, recommend appropriate steel bar gauges, and fabricate it to your exact measurements.',
     category: 'custom',
   },
   {
@@ -314,7 +314,7 @@ export const FAQS_LIST: FaqItem[] = [
     id: 'faq-8',
     question: 'How can I get started or request a quotation?',
     answer:
-      'Simply call Abdul Sattar directly at 9553217643 or message us on WhatsApp with your requirements or design pictures. We will provide prompt guidance on pricing, material choices, and turnaround time.',
+      'Simply give us a call or message us on WhatsApp with your requirements or design pictures. We will provide prompt guidance on pricing, material choices, and turnaround time.',
     category: 'custom',
   },
 ];
