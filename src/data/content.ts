@@ -1,4 +1,4 @@
-import { ServiceItem, GalleryProject, BusinessHoursState } from '../types';
+import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem } from '../types';
 
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',
@@ -259,3 +259,62 @@ export function generateWhatsAppUrl(customMessage?: string): string {
   const text = encodeURIComponent(customMessage || BUSINESS_INFO.whatsappDefaultMsg);
   return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${text}`;
 }
+
+export const FAQS_LIST: FaqItem[] = [
+  {
+    id: 'faq-1',
+    question: 'What types of iron fabrication and welding works do you undertake?',
+    answer:
+      'We undertake complete residential, commercial, and small industrial ironworks. Our primary specializations include custom main entrance gates (swing and sliding), window safety grills, staircase and balcony railings, sheet metal doors, heavy water tank and AC stands, shed structural trusses, and on-site welding repairs.',
+    category: 'general',
+  },
+  {
+    id: 'faq-2',
+    question: 'Can you fabricate custom designs from Pinterest, photos, or architectural drawings?',
+    answer:
+      'Yes, absolutely! Many of our clients share photos from Pinterest, Instagram, or architectural blueprints. You can send any design photo directly to Abdul Sattar on WhatsApp (9553217643). We will evaluate the structural requirements, recommend appropriate steel bar gauges, and fabricate it to your exact measurements.',
+    category: 'custom',
+  },
+  {
+    id: 'faq-3',
+    question: 'Do you provide on-site measurement visits and cost estimates?',
+    answer:
+      'Yes, we provide on-site inspection and measurements across Kottapalle, Auto Nagar, and surrounding localities in the YSR Kadapa district. We take exact measurements of your site openings and give you a clear, honest quotation before commencing fabrication.',
+    category: 'custom',
+  },
+  {
+    id: 'faq-4',
+    question: 'Do you offer on-site mobile welding and repair services?',
+    answer:
+      'Yes! We have portable arc welding equipment and tools to perform on-site repairs at your home or business. We regularly handle broken gate hinges, re-align sagging gates, replace worn sliding rollers, fix loose railings, and secure window grills.',
+    category: 'repairs',
+  },
+  {
+    id: 'faq-5',
+    question: 'What materials and anti-rust coatings do you use?',
+    answer:
+      'We use high-quality Mild Steel (MS) square bars, rectangular hollow pipes, heavy L-angles, and steel plates. All welded joints are de-slagged and buffed smooth, followed by thorough coating with zinc chromate / red oxide anti-rust primer to prevent corrosion in outdoor conditions.',
+    category: 'materials',
+  },
+  {
+    id: 'faq-6',
+    question: 'How long does it take to complete an order?',
+    answer:
+      'Standard jobs like window grills, water tank stands, safety doors, or simple repairs are typically completed in 2 to 4 working days. Custom decorative main gates or complete home railing projects typically take 5 to 10 working days depending on design intricacy.',
+    category: 'general',
+  },
+  {
+    id: 'faq-7',
+    question: 'What are your workshop working hours and where can I visit you?',
+    answer:
+      'We are located at 11/276, MG, Lakshmi Nagar, Auto Nagar, Kottapalle, Andhra Pradesh 516360. Our workshop is open Monday through Saturday from 9:00 AM to 8:00 PM, and on Sundays from 9:00 AM to 2:00 PM. You are always welcome to stop by and discuss your requirements in person.',
+    category: 'general',
+  },
+  {
+    id: 'faq-8',
+    question: 'How can I get started or request a quotation?',
+    answer:
+      'Simply call Abdul Sattar directly at 9553217643 or message us on WhatsApp with your requirements or design pictures. We will provide prompt guidance on pricing, material choices, and turnaround time.',
+    category: 'custom',
+  },
+];

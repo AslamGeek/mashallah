@@ -23,3 +23,10 @@ export interface BusinessHoursState {
   nextEvent: string;
   todayHours: string;
 }
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'general' | 'custom' | 'repairs' | 'materials';
+}

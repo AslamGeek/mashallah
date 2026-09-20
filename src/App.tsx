@@ -6,6 +6,7 @@ import { Services } from './components/Services';
 import { Gallery } from './components/Gallery';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { SocialShowcase } from './components/SocialShowcase';
+import { FaqSection } from './components/FaqSection';
 import { LocationHours } from './components/LocationHours';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -38,10 +39,13 @@ export default function App() {
         {/* 6. Pinterest / Social Work Showcase */}
         <SocialShowcase />
 
-        {/* 7. Location & Timings / Google Maps (just above Contact section) */}
+        {/* 7. FAQs Section */}
+        <FaqSection />
+
+        {/* 8. Location & Timings / Google Maps (just above Contact section) */}
         <LocationHours />
 
-        {/* 8. Contact Section */}
+        {/* 9. Contact Section */}
         <ContactSection />
       </main>
 

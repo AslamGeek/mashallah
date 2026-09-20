@@ -105,6 +105,11 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
+                <a href="#faq" onClick={(e) => handleScroll(e, '#faq')} className="hover:text-amber-400 transition-colors">
+                  FAQ & Questions
+                </a>
+              </li>
+              <li>
                 <a href="#location" onClick={(e) => handleScroll(e, '#location')} className="hover:text-amber-400 transition-colors">
                   Location & Hours
                 </a>

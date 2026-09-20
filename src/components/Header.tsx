@@ -30,6 +30,7 @@ export const Header: React.FC = () => {
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Highlights', href: '#highlights' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Hours & Location', href: '#location' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -95,39 +96,8 @@ export const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Action CTAs */}
-          <div className="hidden sm:flex items-center space-x-3">
-            <a
-              id="header-call-btn"
-              href={BUSINESS_INFO.phoneTel}
-              className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg border border-stone-700 bg-stone-800 text-stone-200 text-sm font-semibold hover:bg-stone-700 hover:text-white transition-all shadow-sm"
-              title="Call 9553217643"
-            >
-              <Phone className="w-4 h-4 mr-1.5 text-amber-400" />
-              <span>Call Now</span>
-            </a>
-            <a
-              id="header-whatsapp-btn"
-              href={generateWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-all shadow-md hover:shadow-emerald-600/30"
-              title="WhatsApp enquiry"
-            >
-              <WhatsAppIcon className="w-4 h-4 mr-1.5" />
-              <span>WhatsApp</span>
-            </a>
-          </div>
-
           {/* Mobile menu button */}
-          <div className="flex lg:hidden items-center space-x-2">
-            <a
-              href={BUSINESS_INFO.phoneTel}
-              className="sm:hidden p-2 rounded-lg bg-stone-800 text-amber-400 hover:bg-stone-700 transition-colors"
-              aria-label="Call Now"
-            >
-              <Phone className="w-5 h-5" />
-            </a>
+          <div className="flex lg:hidden items-center">
             <button
               id="mobile-menu-toggle-btn"
               type="button"
