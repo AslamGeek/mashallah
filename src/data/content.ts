@@ -10,7 +10,13 @@ export const BUSINESS_INFO = {
   whatsappNumber: '919553217643',
   whatsappDefaultMsg: 'Hello Mashallah Welding Works, I would like to enquire about iron fabrication/welding work.',
   address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360',
+  // Canonical Google Maps place: Mashallah Welding Works
+  // Coordinates: 14.7410663, 78.5710838
   mapsUrl: 'https://maps.app.goo.gl/jNsuWLiv61PiG28G8',
+  coordinates: {
+    latitude: 14.7410663,
+    longitude: 78.5710838,
+  },
   pinterestUrl: 'https://in.pinterest.com/skarimulla2018',
   instagramUrl: 'https://www.instagram.com/karimulla955',
   hours: {
@@ -155,7 +161,7 @@ export const GALLERY_ITEMS: GalleryProject[] = [
     categoryLabel: 'Stands',
     imageUrl: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
     description: 'Four-leg cross-braced structural iron stand built to support 1000L rooftop water tanks and commercial outdoor AC chiller units.',
-    specifications: '40x40x5mm Heavy Angle Iron • Cross-Tie Gusset Plates • Load Tested',
+    specifications: '40x40x5mm Heavy Angle Iron • Cross-Tie Gusset Plates • Reinforced Structural Bracing',
   },
   {
     id: 'proj-6',
@@ -182,7 +188,7 @@ export const GALLERY_ITEMS: GalleryProject[] = [
     categoryLabel: 'Repair Works',
     imageUrl: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop',
     description: 'On-site rehabilitation of sagging commercial gate: installed reinforced pivot pins, replaced rusted bottom channel, and re-welded rollers.',
-    specifications: 'Completed in 3 Hours On-Site • 100% Structural Stability Restored',
+    specifications: 'Completed On-Site • Realigned Sagging Frame & Reinforced Weld Joints',
   },
   {
     id: 'proj-9',
@@ -217,17 +223,33 @@ export const PINTEREST_BOARDS = [
 ];
 
 /**
- * Calculates current business open/closed status based on local time
+ * Calculates current business open/closed status explicitly in Asia/Kolkata timezone.
  * Mon-Sat: 9:00 AM - 8:00 PM (09:00 - 20:00)
  * Sun: 9:00 AM - 2:00 PM (09:00 - 14:00)
  */
 export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursState {
-  const day = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const currentTimeInMinutes = hours * 60 + minutes;
+  // Use native Intl.DateTimeFormat to evaluate the time in the workshop's local timezone (Asia/Kolkata)
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    weekday: 'short',
+    hour: 'numeric',
+    minute: 'numeric',
+    hourCycle: 'h23',
+  });
 
-  const isSunday = day === 0;
+  const parts = formatter.formatToParts(date);
+  let weekday = '';
+  let hours = 0;
+  let minutes = 0;
+
+  for (const part of parts) {
+    if (part.type === 'weekday') weekday = part.value;
+    if (part.type === 'hour') hours = parseInt(part.value, 10);
+    if (part.type === 'minute') minutes = parseInt(part.value, 10);
+  }
+
+  const isSunday = weekday === 'Sun';
+  const currentTimeInMinutes = hours * 60 + minutes;
   const openTimeMinutes = 9 * 60; // 9:00 AM
   const closeTimeMinutes = isSunday ? 14 * 60 : 20 * 60; // 2:00 PM on Sunday, 8:00 PM Mon-Sat
 

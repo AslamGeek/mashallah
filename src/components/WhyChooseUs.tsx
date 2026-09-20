@@ -7,7 +7,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: ShieldCheck,
       title: 'Heavy-Gauge Raw Iron',
-      desc: 'We never compromise on metal thickness. We use structural mild steel, solid bars, and certified angle irons engineered for lifetime resilience.',
+      desc: 'We never compromise on metal thickness. We use structural mild steel, solid bars, and quality angle iron sections built for long-term durability.',
     },
     {
       icon: Ruler,
@@ -31,8 +31,8 @@ export const WhyChooseUs: React.FC = () => {
     },
     {
       icon: ThumbsUp,
-      title: 'Experienced Master Welder',
-      desc: 'Decades of metal joinery expertise with smooth grinding, clean seam welds, and structural strength that easily withstands heavy daily usage.',
+      title: 'Experienced Welder',
+      desc: 'Hands-on metal fabrication experience with smooth grinding, clean seam welds, and structural strength built to withstand daily usage.',
     },
   ];
 

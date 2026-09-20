@@ -3,9 +3,12 @@ import { MapPin, Navigation, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/content';
 
 export const WorkshopMap: React.FC = () => {
-  // Google Maps embed URL centered on the workshop address in Auto Nagar, Proddatur
+  // Canonical Google Maps place: Mashallah Welding Works (Coordinates: 14.7410663, 78.5710838)
+  // Shared canonical URL: BUSINESS_INFO.mapsUrl ('https://maps.app.goo.gl/jNsuWLiv61PiG28G8')
+  // Address: 11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360
+  // TODO: The business owner can optionally supply a dedicated Google Maps Embed API key or place ID if custom styled embedding is desired.
   const mapEmbedUrl =
-    'https://maps.google.com/maps?q=Auto+Nagar,+Proddatur,+Andhra+Pradesh+516360&t=&z=15&ie=UTF8&iwloc=&output=embed';
+    'https://maps.google.com/maps?q=Mashallah+Welding+Works,+Auto+Nagar,+Proddatur,+Andhra+Pradesh+516360&t=&z=16&ie=UTF8&iwloc=&output=embed';
 
   return (
     <div

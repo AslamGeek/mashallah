@@ -285,7 +285,7 @@ export const ContactSection: React.FC = () => {
                 </button>
 
                 <p className="text-center text-xs text-stone-400">
-                  Opens directly in WhatsApp. Fast response guaranteed.
+                  Opens directly in WhatsApp. Contact us for a quick response.
                 </p>
               </form>
             </div>

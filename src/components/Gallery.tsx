@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Maximize2, X, ExternalLink, Tag } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Maximize2, X, Tag } from 'lucide-react';
 import { GALLERY_ITEMS, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -7,6 +7,11 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 export const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
+  const modalContainerRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const categories = [
     { id: 'all', label: 'All Projects' },
@@ -25,14 +30,74 @@ export const Gallery: React.FC = () => {
   });
 
   const openLightbox = (project: GalleryProject) => {
+    lastTriggerRef.current = (document.activeElement as HTMLElement) || triggerRefs.current[project.id] || null;
     setActiveModalProject(project);
     document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setActiveModalProject(null);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
+    // Restore focus to the gallery item button that opened the modal
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus();
+    }
   };
+
+  // Move focus into the modal once opened
+  useEffect(() => {
+    if (activeModalProject) {
+      const timer = requestAnimationFrame(() => {
+        closeButtonRef.current?.focus();
+      });
+      return () => cancelAnimationFrame(timer);
+    }
+  }, [activeModalProject]);
+
+  // Handle Escape key and focus trapping inside the modal dialog
+  useEffect(() => {
+    if (!activeModalProject) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+        return;
+      }
+
+      if (e.key === 'Tab' && modalContainerRef.current) {
+        const focusable = modalContainerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+
+        const firstElement = focusable[0];
+        const lastElement = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModalProject]);
+
+  // Reset body overflow if component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
     <section id="gallery" className="py-20 bg-stone-100 text-stone-900 border-b border-stone-200">
@@ -70,48 +135,58 @@ export const Gallery: React.FC = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map((project: GalleryProject) => (
-            <div
+            <article
               key={project.id}
               id={`gallery-card-${project.id}`}
               className="bg-white rounded-2xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col group"
             >
-              {/* Image Container with Hover Overlay */}
-              <div
-                className="relative aspect-[4/3] bg-stone-950 overflow-hidden cursor-pointer"
+              {/* Keyboard-accessible trigger button wrapping the preview */}
+              <button
+                type="button"
+                id={`gallery-item-${project.id}`}
+                ref={(el) => {
+                  triggerRefs.current[project.id] = el;
+                }}
                 onClick={() => openLightbox(project)}
+                className="w-full text-left flex flex-col flex-grow cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 rounded-t-2xl"
+                aria-haspopup="dialog"
+                aria-label={`View enlarged photo and specifications for ${project.title}`}
               >
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-stone-900/90 text-amber-400 font-semibold text-xs backdrop-blur-sm border border-stone-700 shadow-md">
-                    <Maximize2 className="w-4 h-4 mr-1.5" />
-                    Enlarge Photo
-                  </span>
+                {/* Image Container with Hover Overlay */}
+                <div className="relative aspect-[4/3] bg-stone-950 overflow-hidden w-full">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-stone-900/90 text-amber-400 font-semibold text-xs backdrop-blur-sm border border-stone-700 shadow-md">
+                      <Maximize2 className="w-4 h-4 mr-1.5" />
+                      Enlarge Photo
+                    </span>
+                  </div>
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-stone-900/80 backdrop-blur-sm text-stone-200 text-xs font-semibold border border-stone-700/60">
+                      <Tag className="w-3 h-3 mr-1 text-amber-400" />
+                      {project.categoryLabel}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute top-3 left-3">
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-stone-900/80 backdrop-blur-sm text-stone-200 text-xs font-semibold border border-stone-700/60">
-                    <Tag className="w-3 h-3 mr-1 text-amber-400" />
-                    {project.categoryLabel}
-                  </span>
+
+                {/* Card Meta Content */}
+                <div className="p-5 pb-2 flex flex-col flex-grow w-full">
+                  <h3 className="font-bold text-stone-900 text-lg mb-2 group-hover:text-amber-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2 flex-grow">
+                    {project.description}
+                  </p>
                 </div>
-              </div>
+              </button>
 
-              {/* Card Meta Content */}
-              <div className="p-5 flex flex-col flex-grow">
-                <h3
-                  onClick={() => openLightbox(project)}
-                  className="font-bold text-stone-900 text-lg mb-2 group-hover:text-amber-600 transition-colors cursor-pointer"
-                >
-                  {project.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-4 flex-grow">
-                  {project.description}
-                </p>
-
+              {/* Card Footer with Technical Specifications and WhatsApp Enquire Link */}
+              <div className="px-5 pb-5 pt-2 flex flex-col justify-end">
                 <div className="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
                   <span className="text-stone-500 font-medium truncate max-w-[170px] sm:max-w-[200px]">
                     {project.specifications}
@@ -120,14 +195,14 @@ export const Gallery: React.FC = () => {
                     href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2"
+                    className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
                   >
                     <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
                     Enquire
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -139,14 +214,20 @@ export const Gallery: React.FC = () => {
             onClick={closeLightbox}
           >
             <div
-              className="bg-stone-900 text-stone-100 rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-stone-800 shadow-2xl relative"
+              ref={modalContainerRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="gallery-modal-title"
+              tabIndex={-1}
+              className="bg-stone-900 text-stone-100 rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-stone-800 shadow-2xl relative focus:outline-none"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-stone-800/90 text-stone-300 hover:text-white hover:bg-stone-700 transition-colors focus:outline-none"
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-stone-800/90 text-stone-300 hover:text-white hover:bg-stone-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
                 aria-label="Close project view"
               >
                 <X className="w-5 h-5" />
@@ -168,7 +249,7 @@ export const Gallery: React.FC = () => {
                     <span className="inline-block px-3 py-1 rounded-md bg-stone-800 text-amber-400 font-semibold text-xs uppercase tracking-wider">
                       {activeModalProject.categoryLabel}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                    <h3 id="gallery-modal-title" className="text-xl sm:text-2xl font-extrabold text-white">
                       {activeModalProject.title}
                     </h3>
                     <p className="text-sm text-stone-300 leading-relaxed">
@@ -197,7 +278,7 @@ export const Gallery: React.FC = () => {
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors"
+                      className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                     >
                       <WhatsAppIcon className="w-4 h-4 mr-2" />
                       Enquire for This Design on WhatsApp
@@ -205,7 +286,7 @@ export const Gallery: React.FC = () => {
                     <button
                       type="button"
                       onClick={closeLightbox}
-                      className="w-full py-2.5 text-center text-xs font-semibold text-stone-400 hover:text-white transition-colors"
+                      className="w-full py-2.5 text-center text-xs font-semibold text-stone-400 hover:text-white transition-colors focus:outline-none focus-visible:underline"
                     >
                       Close Preview
                     </button>

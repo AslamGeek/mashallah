@@ -31,7 +31,7 @@ export const About: React.FC = () => {
               At <strong className="text-stone-900 font-semibold">Mashallah Welding Works</strong>, we understand that iron structures are not just functional fittings—they are the primary shield for your family, property, and business investments.
             </p>
             <p>
-              Backed by decades of hands-on fabrication experience, our workshop specializes in converting high-grade raw mild steel and iron into made-to-requirement gates, grills, railings, and heavy stands.
+              Backed by hands-on fabrication experience, our workshop specializes in converting solid mild steel and iron into made-to-requirement gates, grills, railings, and heavy stands.
             </p>
             <p className="bg-amber-50/80 border-l-4 border-amber-500 p-4 rounded-r-lg text-stone-800 text-sm">
               <strong>Both New Fabrication & Repair Services:</strong> Whether you are constructing a new home and need complete custom iron fittings, or have an existing sagging gate or broken hinge that needs fast on-site repair, our workshop delivers prompt, honest, and high-quality workmanship.
@@ -42,7 +42,7 @@ export const About: React.FC = () => {
                 <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span>Heavy-gauge, certified iron materials</span>
+                <span>Heavy-gauge structural iron materials</span>
               </div>
               <div className="flex items-start space-x-2.5">
                 <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
@@ -74,7 +74,7 @@ export const About: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-amber-600 block">
-                    Proprietor & Master Welder
+                    Proprietor & Fabricator
                   </span>
                   <h4 className="text-xl font-bold text-stone-900">{BUSINESS_INFO.proprietor}</h4>
                   <span className="text-xs text-stone-500 block">
@@ -84,7 +84,7 @@ export const About: React.FC = () => {
               </div>
 
               <blockquote className="text-stone-600 text-sm italic border-l-2 border-amber-400 pl-3.5 py-1 mb-6">
-                “Every gate and grill that leaves our Auto Nagar workshop is welded with pride and structural discipline. We stand by our work so that you and your property stay safe for decades.”
+                “Every gate and grill that leaves our Auto Nagar workshop is welded with pride and structural discipline. We stand by our work to ensure dependable, long-term durability for your property.”
               </blockquote>
 
               <div className="space-y-2.5 pt-3 border-t border-stone-100">

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Hammer } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
+import { scrollToSection } from '../utils/scrollToSection';
 
 export const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -9,6 +10,17 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoursStatus, setHoursStatus] = useState<BusinessHoursState>(getBusinessHoursStatus());
   const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,21 +81,12 @@ export const Header: React.FC = () => {
     e.preventDefault();
     setMobileMenuOpen(false);
     setIsVisible(true);
-    const element = document.querySelector(href);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
+    scrollToSection(href);
   };
 
   return (
     <header
-      id="main-header"
+      id="site-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       } ${
@@ -116,7 +119,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium" aria-label="Desktop navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -135,8 +138,10 @@ export const Header: React.FC = () => {
               id="mobile-menu-toggle-btn"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-stone-800 text-stone-300 hover:text-white hover:bg-stone-700 focus:outline-none"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 rounded-lg bg-stone-800 text-stone-300 hover:text-white hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -146,8 +151,9 @@ export const Header: React.FC = () => {
 
       {/* Mobile dropdown menu */}
       {mobileMenuOpen && (
-        <div
-          id="mobile-nav-panel"
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
           className="lg:hidden bg-stone-900 border-b border-stone-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2"
         >
           <div className="flex items-center justify-between py-2 px-3 bg-stone-800/80 rounded-lg text-xs">
@@ -174,7 +180,7 @@ export const Header: React.FC = () => {
               </a>
             ))}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

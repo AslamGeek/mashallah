@@ -103,8 +103,8 @@ export const Hero: React.FC = () => {
               {/* Stat Chips below photo */}
               <div className="mt-3 grid grid-cols-3 gap-2 text-center py-2 px-1">
                 <div className="p-2 rounded-lg bg-stone-900/60 border border-stone-700/50">
-                  <span className="block text-lg font-black text-amber-400">100%</span>
-                  <span className="block text-[11px] text-stone-400 font-medium">Custom Fit</span>
+                  <span className="block text-lg font-black text-amber-400">Custom</span>
+                  <span className="block text-[11px] text-stone-400 font-medium">Made to Size</span>
                 </div>
                 <div className="p-2 rounded-lg bg-stone-900/60 border border-stone-700/50">
                   <span className="block text-lg font-black text-amber-400">Electric Arc</span>
