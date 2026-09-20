@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-stone-400 text-xs leading-relaxed">
-              Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Kottapalle, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
+              Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Proddatur, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
             </p>
 
             <div className="pt-1 text-xs text-stone-300">
@@ -163,7 +163,7 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
           <p>© {currentYear} Mashallah Welding Works. All rights reserved. Proprietor: Abdul Sattar.</p>
           <p className="text-center sm:text-right">
-            Auto Nagar, Kottapalle, Andhra Pradesh 516360 • Mobile: 9553217643
+            Auto Nagar, Proddatur, Andhra Pradesh 516360 • Mobile: 9553217643
           </p>
         </div>
       </div>

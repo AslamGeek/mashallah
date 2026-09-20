@@ -14,7 +14,7 @@ export const About: React.FC = () => {
             <span>About Us</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900">
-            Dedicated Metal Craftsmen in Auto Nagar, Kottapalle
+            Dedicated Metal Craftsmen in Auto Nagar, Proddatur
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
             Reliable, durable, and practical iron fabrication tailored to your exact architectural and structural specifications.
@@ -79,7 +79,7 @@ export const About: React.FC = () => {
                   </span>
                   <h4 className="text-xl font-bold text-stone-900">{BUSINESS_INFO.proprietor}</h4>
                   <span className="text-xs text-stone-500 block">
-                    Mashallah Welding Works, Kottapalle
+                    Mashallah Welding Works, Proddatur
                   </span>
                 </div>
               </div>

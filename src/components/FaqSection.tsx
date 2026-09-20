@@ -79,7 +79,7 @@ export const FaqSection: React.FC = () => {
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-stone-600 leading-relaxed">
-            Clear, honest answers about our custom welding processes, pricing estimates, on-site measurements, material standards, and repair services in Kottapalle.
+            Clear, honest answers about our custom welding processes, pricing estimates, on-site measurements, material standards, and repair services in Proddatur.
           </p>
         </div>
 

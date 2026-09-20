@@ -253,7 +253,7 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Auto Nagar / Kottapalle / Nearby"
+                      placeholder="e.g. Auto Nagar / Proddatur / Nearby"
                       value={workLocation}
                       onChange={(e) => setWorkLocation(e.target.value)}
                       className="w-full bg-stone-900 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-stone-500 focus:outline-none focus:border-amber-500"

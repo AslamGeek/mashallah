@@ -76,7 +76,7 @@ export const Services: React.FC = () => {
             Our Iron Fabrication & Welding Services
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-            From precision architectural iron gates and window safety grills to heavy machine stands and emergency welding repairs in Kottapalle.
+            From precision architectural iron gates and window safety grills to heavy machine stands and emergency welding repairs in Proddatur.
           </p>
         </div>
 
@@ -161,7 +161,7 @@ export const Services: React.FC = () => {
               Have a Custom Metal Blueprint or Unique Measurement?
             </h4>
             <p className="text-stone-300 text-sm max-w-2xl">
-              We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Kottapalle.
+              We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Proddatur.
             </p>
           </div>
           <a

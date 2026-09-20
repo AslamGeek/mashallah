@@ -185,7 +185,7 @@ export const Gallery: React.FC = () => {
                     </div>
 
                     <div className="text-xs text-stone-400 space-y-1">
-                      <p>• Workshop: Auto Nagar, Kottapalle, AP</p>
+                      <p>• Workshop: Auto Nagar, Proddatur, AP</p>
                       <p>• Custom sizing & on-site installation provided</p>
                     </div>
                   </div>

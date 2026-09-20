@@ -17,7 +17,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: Clock,
       title: 'Fast Turnaround on Repairs',
-      desc: 'Broken hinges, misaligned gates, or detached grills receive rapid on-site repair visits across Auto Nagar and Kottapalle so your security is never at risk.',
+      desc: 'Broken hinges, misaligned gates, or detached grills receive rapid on-site repair visits across Auto Nagar and Proddatur so your security is never at risk.',
     },
     {
       icon: Coins,

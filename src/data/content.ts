@@ -9,7 +9,7 @@ export const BUSINESS_INFO = {
   phoneTel: 'tel:9553217643',
   whatsappNumber: '919553217643',
   whatsappDefaultMsg: 'Hello Mashallah Welding Works, I would like to enquire about iron fabrication/welding work.',
-  address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Kottapalle, Andhra Pradesh 516360',
+  address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360',
   mapsUrl: 'https://maps.app.goo.gl/jNsuWLiv61PiG28G8',
   pinterestUrl: 'https://in.pinterest.com/skarimulla2018',
   instagramUrl: 'https://www.instagram.com/karimulla955',
@@ -17,7 +17,7 @@ export const BUSINESS_INFO = {
     monSat: '9:00 AM – 8:00 PM',
     sunday: '9:00 AM – 2:00 PM',
   },
-  establishedText: 'Serving Kottapalle & Auto Nagar with pride',
+  establishedText: 'Serving Proddatur & Auto Nagar with pride',
 };
 
 export const SERVICES_LIST: ServiceItem[] = [
@@ -279,7 +279,7 @@ export const FAQS_LIST: FaqItem[] = [
     id: 'faq-3',
     question: 'Do you provide on-site measurement visits and cost estimates?',
     answer:
-      'Yes, we provide on-site inspection and measurements across Kottapalle, Auto Nagar, and surrounding localities in the YSR Kadapa district. We take exact measurements of your site openings and give you a clear, honest quotation before commencing fabrication.',
+      'Yes, we provide on-site inspection and measurements across Proddatur, Auto Nagar, and surrounding localities in the YSR Kadapa district. We take exact measurements of your site openings and give you a clear, honest quotation before commencing fabrication.',
     category: 'custom',
   },
   {
@@ -307,7 +307,7 @@ export const FAQS_LIST: FaqItem[] = [
     id: 'faq-7',
     question: 'What are your workshop working hours and where can I visit you?',
     answer:
-      'We are located at 11/276, MG, Lakshmi Nagar, Auto Nagar, Kottapalle, Andhra Pradesh 516360. Our workshop is open Monday through Saturday from 9:00 AM to 8:00 PM, and on Sundays from 9:00 AM to 2:00 PM. You are always welcome to stop by and discuss your requirements in person.',
+      'We are located at 11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360. Our workshop is open Monday through Saturday from 9:00 AM to 8:00 PM, and on Sundays from 9:00 AM to 2:00 PM. You are always welcome to stop by and discuss your requirements in person.',
     category: 'general',
   },
   {

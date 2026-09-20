@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Navigation, ShieldCheck, Wrench, CheckCircle2 } from 'lucide-react';
+import { Phone, Navigation, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -98,28 +98,6 @@ export const Hero: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/30 to-transparent" />
-
-                {/* Overlaid Badge Details */}
-                <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-stone-900/85 backdrop-blur-md border border-stone-700/80 flex items-center justify-between text-left">
-                  <div>
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-amber-400">
-                      Workshop & Site Service
-                    </span>
-                    <span className="block text-sm font-bold text-white">
-                      Abdul Sattar — Master Fabricator
-                    </span>
-                    <span className="block text-xs text-stone-400">
-                      11/276, MG, Lakshmi Nagar, Auto Nagar
-                    </span>
-                  </div>
-                  <a
-                    href="#gallery"
-                    className="shrink-0 px-3 py-1.5 rounded-md bg-stone-800 hover:bg-stone-700 border border-stone-600 text-xs font-semibold text-amber-300 transition-colors"
-                  >
-                    View Work
-                  </a>
-                </div>
               </div>
 
               {/* Stat Chips below photo */}
