@@ -13,7 +13,7 @@ import { MobileStickyBar } from './components/MobileStickyBar';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 selection:bg-amber-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-dark-bg text-dark-text selection:bg-copper selection:text-white">
       {/* Top Fixed Header with Business Identity and Navigation */}
       <Header />
 

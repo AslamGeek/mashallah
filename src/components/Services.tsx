@@ -65,17 +65,17 @@ export const Services: React.FC = () => {
   });
 
   return (
-    <section id="services" className="py-20 bg-stone-50 text-stone-900 border-b border-stone-200">
+    <section id="services" className="py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title & Description */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
             <span>What We Do</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             Our Iron Fabrication & Welding Services
           </h2>
-          <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-text leading-relaxed">
             From precision architectural iron gates and window safety grills to heavy machine stands and emergency welding repairs in Proddatur.
           </p>
         </div>
@@ -88,8 +88,8 @@ export const Services: React.FC = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 ${
                 activeCategory === cat.id
-                  ? 'bg-stone-900 text-white shadow-md'
-                  : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+                  ? 'bg-copper text-white shadow-xs'
+                  : 'bg-gunmetal text-muted-text hover:text-white hover:bg-steel border border-dark-border'
               }`}
             >
               {cat.label}
@@ -108,31 +108,31 @@ export const Services: React.FC = () => {
               <div
                 key={service.id}
                 id={`service-${service.id}`}
-                className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:shadow-md hover:border-amber-400 transition-all flex flex-col group"
+                className="bg-gunmetal rounded-2xl p-6 border border-dark-border shadow-xs hover:shadow-md hover:border-copper/70 transition-all flex flex-col group"
               >
                 {/* Header Icon + Title */}
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-stone-950 transition-colors shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
                     <IconComponent className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-600 bg-stone-100 px-2.5 py-1 rounded-md">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-text bg-steel px-2.5 py-1 rounded-md border border-dark-border/60">
                     {service.category}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-600 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-copper transition-colors">
                   {service.title}
                 </h3>
 
-                <p className="text-stone-600 text-sm leading-relaxed mb-5 flex-grow">
+                <p className="text-muted-text text-sm leading-relaxed mb-5 flex-grow">
                   {service.description}
                 </p>
 
                 {/* Features checklist */}
-                <div className="space-y-1.5 pt-3 border-t border-stone-100 mb-5">
+                <div className="space-y-1.5 pt-3 border-t border-dark-border mb-5">
                   {service.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center text-xs text-stone-600">
-                      <CheckCircle className="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0" />
+                    <div key={idx} className="flex items-center text-xs text-stone-300">
+                      <CheckCircle className="w-3.5 h-3.5 text-copper mr-2 shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -143,9 +143,9 @@ export const Services: React.FC = () => {
                   href={serviceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-emerald-600 text-stone-800 hover:text-white border border-stone-200 hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-sm"
+                  className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-steel hover:bg-emerald-600 text-stone-200 hover:text-white border border-dark-border hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-xs"
                 >
-                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-600 group-hover:text-white" />
+                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-400 group-hover:text-white" />
                   <span>Enquire for {service.title}</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-60 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -155,12 +155,12 @@ export const Services: React.FC = () => {
         </div>
 
         {/* Custom Requirements Callout Banner */}
-        <div className="mt-12 bg-stone-900 rounded-2xl p-6 sm:p-8 text-stone-100 shadow-xl border border-stone-800 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-12 bg-gunmetal rounded-2xl p-6 sm:p-8 text-stone-100 shadow-xl border border-dark-border flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h4 className="text-xl sm:text-2xl font-extrabold text-white">
               Have a Custom Metal Blueprint or Unique Measurement?
             </h4>
-            <p className="text-stone-300 text-sm max-w-2xl">
+            <p className="text-muted-text text-sm max-w-2xl">
               We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Proddatur.
             </p>
           </div>
@@ -168,7 +168,7 @@ export const Services: React.FC = () => {
             href={generateWhatsAppUrl('Hello Mashallah Welding Works, I have a custom design/drawing I would like an estimate for.')}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-sm tracking-wide shadow-md transition-all active:scale-[0.98]"
+            className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98]"
           >
             <WhatsAppIcon className="w-4 h-4 mr-2" />
             Send Your Design on WhatsApp

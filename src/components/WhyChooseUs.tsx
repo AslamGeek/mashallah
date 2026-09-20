@@ -37,17 +37,17 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section id="highlights" className="py-20 bg-stone-900 text-stone-100 border-b border-stone-800">
+    <section id="highlights" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-amber-400 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
             <span>Why Mashallah Welding Works</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Built for Strength, Security & Longevity
           </h2>
-          <p className="text-base sm:text-lg text-stone-400 leading-relaxed">
+          <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
             Local property owners trust our workshop for dependable metal fabrication that stands firm against time, weather, and wear.
           </p>
         </div>
@@ -59,15 +59,15 @@ export const WhyChooseUs: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-stone-800/80 rounded-2xl p-6 border border-stone-700/80 hover:border-amber-500/80 transition-all flex flex-col group shadow-md"
+                className="bg-white rounded-2xl p-6 border border-light-border hover:border-copper/70 transition-all flex flex-col group shadow-xs hover:shadow-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-stone-950 transition-colors shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-light-bg text-copper border border-light-border flex items-center justify-center mb-4 group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
                   <Icon className="w-6 h-6 stroke-[2]" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                <h3 className="text-lg font-bold text-dark-text mb-2 group-hover:text-copper transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-stone-300 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </div>

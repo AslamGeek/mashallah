@@ -39,17 +39,17 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-stone-900 text-stone-100 border-b border-stone-800">
+    <section id="contact" className="py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-800 border border-stone-700 text-amber-400 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
             <span>Contact & Enquiries</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             Get in Touch with Mashallah Welding Works
           </h2>
-          <p className="text-base sm:text-lg text-stone-400 leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-text leading-relaxed">
             Get in touch directly for immediate quotes, on-site measurements, or welding repair assistance.
           </p>
         </div>
@@ -57,16 +57,16 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Official Contact Card with all Required Fields */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="bg-stone-800/90 rounded-2xl p-6 sm:p-8 border border-stone-700 shadow-xl space-y-6">
+            <div className="bg-gunmetal rounded-2xl p-6 sm:p-8 border border-dark-border shadow-xs space-y-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-copper block mb-1">
                   Fabrication Workshop
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
                   {BUSINESS_INFO.name}
                 </h3>
                 <div className="mt-2 flex items-center text-stone-300 text-sm">
-                  <User className="w-4 h-4 text-amber-500 mr-2 shrink-0" />
+                  <User className="w-4 h-4 text-copper mr-2 shrink-0" />
                   <span>
                     Proprietor:{' '}
                     <strong className="text-white font-semibold">{BUSINESS_INFO.proprietor}</strong>
@@ -74,31 +74,31 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-stone-700/80 text-sm">
+              <div className="space-y-4 pt-4 border-t border-dark-border text-sm">
                 {/* Phone */}
                 <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-stone-400 block">Phone / WhatsApp</span>
+                    <span className="text-xs text-muted-text block">Phone / WhatsApp</span>
                     <a
                       href={BUSINESS_INFO.phoneTel}
-                      className="text-base font-bold text-white hover:text-amber-400 transition-colors"
+                      className="text-base font-bold text-white hover:text-copper transition-colors"
                     >
                       {BUSINESS_INFO.phoneFormatted}
                     </a>
-                    <span className="text-xs text-stone-500 block">Calls & WhatsApp welcome</span>
+                    <span className="text-xs text-muted-text/80 block">Calls & WhatsApp welcome</span>
                   </div>
                 </div>
 
                 {/* Address */}
                 <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-stone-400 block">Workshop Address</span>
+                    <span className="text-xs text-muted-text block">Workshop Address</span>
                     <p className="text-stone-300 font-medium leading-relaxed">
                       {BUSINESS_INFO.address}
                     </p>
@@ -107,11 +107,11 @@ export const ContactSection: React.FC = () => {
 
                 {/* Business Hours */}
                 <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-stone-400 block">Business Hours</span>
+                    <span className="text-xs text-muted-text block">Business Hours</span>
                     <p className="text-stone-300 font-medium">
                       Monday – Saturday: <strong className="text-white">9:00 AM – 8:00 PM</strong>
                     </p>
@@ -123,8 +123,8 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* 5 Prominent Contact Action Buttons as requested in Section 14 */}
-              <div className="pt-4 border-t border-stone-700/80 space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-stone-400 block">
+              <div className="pt-4 border-t border-dark-border space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-text block">
                   Quick Actions
                 </span>
 
@@ -133,7 +133,7 @@ export const ContactSection: React.FC = () => {
                   <a
                     id="contact-call-btn"
                     href={BUSINESS_INFO.phoneTel}
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs sm:text-sm shadow-md transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
                   >
                     <Phone className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>Call Now</span>
@@ -145,7 +145,7 @@ export const ContactSection: React.FC = () => {
                     href={generateWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>WhatsApp</span>
@@ -157,9 +157,9 @@ export const ContactSection: React.FC = () => {
                     href={BUSINESS_INFO.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-stone-700 hover:bg-stone-600 text-stone-200 font-semibold text-xs sm:text-sm border border-stone-600 transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 font-semibold text-xs sm:text-sm border border-dark-border transition-colors"
                   >
-                    <Navigation className="w-4 h-4 mr-1.5 text-amber-400 shrink-0" />
+                    <Navigation className="w-4 h-4 mr-1.5 text-copper shrink-0" />
                     <span>Directions</span>
                   </a>
                 </div>
@@ -171,11 +171,11 @@ export const ContactSection: React.FC = () => {
                     href={BUSINESS_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-950 text-stone-300 hover:text-white border border-stone-700 text-xs font-semibold transition-colors group"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-dark-bg hover:bg-steel/50 text-stone-300 hover:text-white border border-dark-border text-xs font-semibold transition-colors group"
                   >
                     <Instagram className="w-4 h-4 mr-2 text-rose-400 group-hover:scale-110 transition-transform" />
                     <span>Instagram: @karimulla955</span>
-                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-stone-500 group-hover:text-stone-300" />
+                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-muted-text group-hover:text-stone-300" />
                   </a>
                 </div>
               </div>
@@ -184,7 +184,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: Quick WhatsApp Enquiry & Quotation Builder */}
           <div className="lg:col-span-6">
-            <div className="bg-stone-800/90 rounded-2xl p-6 sm:p-8 border border-stone-700 shadow-xl space-y-5 text-left">
+            <div className="bg-gunmetal rounded-2xl p-6 sm:p-8 border border-dark-border shadow-xs space-y-5 text-left">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-1">
                   Fast WhatsApp Quote
@@ -192,7 +192,7 @@ export const ContactSection: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-bold text-white">
                   Tell Us What You Need
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-400 mt-1">
+                <p className="text-xs sm:text-sm text-muted-text mt-1">
                   Fill this quick form to generate an instant enquiry message on WhatsApp.
                 </p>
               </div>
@@ -206,7 +206,7 @@ export const ContactSection: React.FC = () => {
                     id="enquiry-service-select"
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
-                    className="w-full bg-stone-900 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full bg-dark-bg border border-dark-border rounded-xl px-3.5 py-2.5 text-stone-100 text-sm focus:outline-none focus:border-copper transition-colors"
                   >
                     <option value="Iron Gates">Iron Gates (Main Gate, Sliding & Swing)</option>
                     <option value="Iron Grills">Iron Grills (Window Safety & Balcony)</option>
@@ -230,7 +230,7 @@ export const ContactSection: React.FC = () => {
                       placeholder="e.g. Spiral staircase, shed truss, rolling shutter..."
                       value={customService}
                       onChange={(e) => setCustomService(e.target.value)}
-                      className="w-full bg-stone-900 border border-amber-500/70 rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-stone-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-dark-bg border border-copper rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-muted-text focus:outline-none focus:border-copper-hover"
                     />
                   </div>
                 )}
@@ -238,14 +238,14 @@ export const ContactSection: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-semibold text-stone-300 mb-1.5">
-                      Your Name <span className="text-stone-500 font-normal">(Optional)</span>
+                      Your Name <span className="text-muted-text font-normal">(Optional)</span>
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Ramesh / Mohammed"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-stone-500 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-dark-bg border border-dark-border rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-muted-text focus:outline-none focus:border-copper"
                     />
                   </div>
                   <div>
@@ -257,7 +257,7 @@ export const ContactSection: React.FC = () => {
                       placeholder="e.g. Auto Nagar / Proddatur / Nearby"
                       value={workLocation}
                       onChange={(e) => setWorkLocation(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-stone-500 focus:outline-none focus:border-amber-500"
+                      className="w-full bg-dark-bg border border-dark-border rounded-xl px-3.5 py-2.5 text-stone-100 text-sm placeholder:text-muted-text focus:outline-none focus:border-copper"
                     />
                   </div>
                 </div>
@@ -271,20 +271,20 @@ export const ContactSection: React.FC = () => {
                     placeholder="e.g. 10x6 ft sliding main gate with geometric bars, or 4 window safety grills..."
                     value={projectNote}
                     onChange={(e) => setProjectNote(e.target.value)}
-                    className="w-full bg-stone-900 border border-stone-700 rounded-xl p-3 text-stone-100 text-sm placeholder:text-stone-500 focus:outline-none focus:border-amber-500 resize-none"
+                    className="w-full bg-dark-bg border border-dark-border rounded-xl p-3 text-stone-100 text-sm placeholder:text-muted-text focus:outline-none focus:border-copper resize-none"
                   />
                 </div>
 
                 <button
                   id="submit-whatsapp-enquiry-btn"
                   type="submit"
-                  className="w-full inline-flex items-center justify-center py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-md transition-all active:scale-[0.99] whitespace-nowrap cursor-pointer"
+                  className="w-full inline-flex items-center justify-center py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-xs transition-all active:scale-[0.99] whitespace-nowrap cursor-pointer"
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
                   <span>Send Quote Request</span>
                 </button>
 
-                <p className="text-center text-xs text-stone-400">
+                <p className="text-center text-xs text-muted-text">
                   Opens directly in WhatsApp. Contact us for a quick response.
                 </p>
               </form>

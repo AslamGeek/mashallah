@@ -13,13 +13,13 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-stone-950 text-stone-400 text-sm border-t border-stone-800/80 pt-16 pb-24 sm:pb-16">
+    <footer className="bg-[#131517] text-muted-text text-sm border-t border-dark-border pt-16 pb-24 sm:pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-dark-border">
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center font-bold">
+              <div className="w-9 h-9 rounded-lg bg-copper text-white flex items-center justify-center font-bold">
                 <Hammer className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="font-extrabold text-lg tracking-tight text-white">
@@ -27,13 +27,13 @@ export const Footer: React.FC = () => {
               </span>
             </div>
 
-            <p className="text-stone-400 text-xs leading-relaxed">
+            <p className="text-muted-text text-xs leading-relaxed">
               Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Proddatur, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
             </p>
 
             <div className="pt-1 text-xs text-stone-300">
               <span>Proprietor: </span>
-              <strong className="text-amber-400 font-semibold">{BUSINESS_INFO.proprietor}</strong>
+              <strong className="text-copper font-semibold">{BUSINESS_INFO.proprietor}</strong>
             </div>
 
             {/* Social Links */}
@@ -51,11 +51,11 @@ export const Footer: React.FC = () => {
                 href={BUSINESS_INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800/60 text-xs font-semibold flex items-center transition-colors"
+                className="px-3 py-1.5 rounded-lg bg-gunmetal hover:bg-steel text-stone-300 border border-dark-border text-xs font-semibold flex items-center transition-colors"
               >
-                <Instagram className="w-3.5 h-3.5 mr-1.5" />
+                <Instagram className="w-3.5 h-3.5 mr-1.5 text-rose-400" />
                 <span>Instagram: @karimulla955</span>
-                <ExternalLink className="w-3 h-3 ml-1.5" />
+                <ExternalLink className="w-3 h-3 ml-1.5 text-muted-text" />
               </a>
             </div>
           </div>
@@ -67,37 +67,37 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#home" onClick={(e) => handleScroll(e, '#home')} className="hover:text-amber-400 transition-colors">
+                <a href="#home" onClick={(e) => handleScroll(e, '#home')} className="text-muted-text hover:text-copper transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#gallery" onClick={(e) => handleScroll(e, '#gallery')} className="hover:text-amber-400 transition-colors">
+                <a href="#gallery" onClick={(e) => handleScroll(e, '#gallery')} className="text-muted-text hover:text-copper transition-colors">
                   Work Gallery
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={(e) => handleScroll(e, '#about')} className="hover:text-amber-400 transition-colors">
+                <a href="#about" onClick={(e) => handleScroll(e, '#about')} className="text-muted-text hover:text-copper transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="hover:text-amber-400 transition-colors">
+                <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="text-muted-text hover:text-copper transition-colors">
                   Services (11)
                 </a>
               </li>
               <li>
-                <a href="#highlights" onClick={(e) => handleScroll(e, '#highlights')} className="hover:text-amber-400 transition-colors">
+                <a href="#highlights" onClick={(e) => handleScroll(e, '#highlights')} className="text-muted-text hover:text-copper transition-colors">
                   Why Choose Us
                 </a>
               </li>
               <li>
-                <a href="#faq" onClick={(e) => handleScroll(e, '#faq')} className="hover:text-amber-400 transition-colors">
+                <a href="#faq" onClick={(e) => handleScroll(e, '#faq')} className="text-muted-text hover:text-copper transition-colors">
                   FAQ & Questions
                 </a>
               </li>
               <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="hover:text-amber-400 transition-colors">
+                <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="text-muted-text hover:text-copper transition-colors">
                   Contact
                 </a>
               </li>
@@ -109,7 +109,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-bold text-xs uppercase tracking-wider">
               Fabrication Services
             </h4>
-            <ul className="space-y-1.5 text-xs text-stone-400">
+            <ul className="space-y-1.5 text-xs text-muted-text">
               <li>• Iron Gates (Sliding & Swing)</li>
               <li>• Window Safety Grills</li>
               <li>• Staircase & Balcony Railings</li>
@@ -127,17 +127,17 @@ export const Footer: React.FC = () => {
               Workshop Contact
             </h4>
             <p className="flex items-start text-stone-300">
-              <MapPin className="w-4 h-4 text-amber-500 mr-2 shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-copper mr-2 shrink-0 mt-0.5" />
               <span>{BUSINESS_INFO.address}</span>
             </p>
             <p className="flex items-center text-stone-300">
-              <Phone className="w-4 h-4 text-amber-500 mr-2 shrink-0" />
-              <a href={BUSINESS_INFO.phoneTel} className="hover:text-white font-semibold">
+              <Phone className="w-4 h-4 text-copper mr-2 shrink-0" />
+              <a href={BUSINESS_INFO.phoneTel} className="text-white hover:text-copper font-semibold transition-colors">
                 {BUSINESS_INFO.phoneFormatted}
               </a>
             </p>
             <p className="flex items-center text-stone-300">
-              <Clock className="w-4 h-4 text-amber-500 mr-2 shrink-0" />
+              <Clock className="w-4 h-4 text-copper mr-2 shrink-0" />
               <span>Mon-Sat: 9am-8pm | Sun: 9am-2pm</span>
             </p>
 
@@ -146,9 +146,9 @@ export const Footer: React.FC = () => {
                 href={BUSINESS_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-medium transition-colors"
+                className="inline-flex items-center px-3 py-1.5 rounded-lg bg-gunmetal hover:bg-steel text-stone-300 border border-dark-border text-xs font-medium transition-colors"
               >
-                <Navigation className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
+                <Navigation className="w-3.5 h-3.5 mr-1.5 text-copper" />
                 Open in Google Maps
               </a>
             </div>

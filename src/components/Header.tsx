@@ -91,8 +91,8 @@ export const Header: React.FC = () => {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       } ${
         isScrolled
-          ? 'bg-stone-900/95 backdrop-blur-md text-stone-100 shadow-lg border-b border-stone-800'
-          : 'bg-stone-900 text-stone-100 border-b border-stone-800'
+          ? 'bg-dark-bg/95 backdrop-blur-md text-[#F5F3EE] shadow-md border-b border-dark-border'
+          : 'bg-dark-bg text-[#F5F3EE] border-b border-dark-border'
       }`}
     >
       {/* Main navigation row */}
@@ -105,14 +105,14 @@ export const Header: React.FC = () => {
             className="flex items-center space-x-3 group text-left"
             id="brand-logo-link"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center font-bold shadow-md group-hover:bg-amber-400 transition-colors">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-copper text-white flex items-center justify-center font-bold shadow-xs group-hover:bg-copper-hover transition-colors">
               <Hammer className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <span className="block font-extrabold text-lg sm:text-xl tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              <span className="block font-extrabold text-lg sm:text-xl tracking-tight text-white group-hover:text-copper-hover transition-colors">
                 MASHALLAH
               </span>
-              <span className="block text-[11px] sm:text-xs tracking-wider uppercase text-amber-400/90 font-medium">
+              <span className="block text-[11px] sm:text-xs tracking-wider uppercase text-copper font-medium">
                 Welding & Fabrication Works
               </span>
             </div>
@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-2 rounded-md text-stone-300 hover:text-white hover:bg-stone-800/80 transition-colors"
+                className="px-3 py-2 rounded-md text-muted-text hover:text-white hover:bg-steel/60 transition-colors"
               >
                 {link.name}
               </a>
@@ -138,7 +138,7 @@ export const Header: React.FC = () => {
               id="mobile-menu-toggle-btn"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-stone-800 text-stone-300 hover:text-white hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+              className="p-2 rounded-lg bg-steel text-stone-300 hover:text-white hover:bg-dark-border focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
@@ -154,14 +154,14 @@ export const Header: React.FC = () => {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="lg:hidden bg-stone-900 border-b border-stone-800 px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2"
+          className="lg:hidden bg-gunmetal border-b border-dark-border px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2"
         >
-          <div className="flex items-center justify-between py-2 px-3 bg-stone-800/80 rounded-lg text-xs">
+          <div className="flex items-center justify-between py-2 px-3 bg-steel border border-dark-border rounded-lg text-xs">
             <span className="text-stone-300">Workshop Status:</span>
-            <span className={`font-semibold flex items-center ${hoursStatus.isOpen ? 'text-emerald-400' : 'text-amber-400'}`}>
+            <span className={`font-semibold flex items-center ${hoursStatus.isOpen ? 'text-emerald-400' : 'text-copper'}`}>
               <span
                 className={`inline-block w-2 h-2 rounded-full mr-1.5 ${
-                  hoursStatus.isOpen ? 'bg-emerald-500' : 'bg-amber-500'
+                  hoursStatus.isOpen ? 'bg-emerald-500' : 'bg-copper'
                 }`}
               />
               {hoursStatus.statusText} ({hoursStatus.todayHours})
@@ -174,7 +174,7 @@ export const Header: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="block px-3 py-2.5 rounded-lg text-stone-200 hover:bg-stone-800 font-medium text-sm transition-colors"
+                className="block px-3 py-2.5 rounded-lg text-stone-200 hover:bg-steel font-medium text-sm transition-colors"
               >
                 {link.name}
               </a>
