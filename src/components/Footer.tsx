@@ -85,6 +85,11 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
+                <a href="#gallery" onClick={(e) => handleScroll(e, '#gallery')} className="hover:text-amber-400 transition-colors">
+                  Work Gallery
+                </a>
+              </li>
+              <li>
                 <a href="#about" onClick={(e) => handleScroll(e, '#about')} className="hover:text-amber-400 transition-colors">
                   About Us
                 </a>
@@ -92,11 +97,6 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="hover:text-amber-400 transition-colors">
                   Services (11)
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" onClick={(e) => handleScroll(e, '#gallery')} className="hover:text-amber-400 transition-colors">
-                  Work Gallery
                 </a>
               </li>
               <li>

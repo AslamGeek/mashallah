@@ -20,8 +20,11 @@ export default function App() {
 
       {/* Main Page Flow following Section 20 */}
       <main className="flex-grow">
-        {/* 2. Hero Section */}
+        {/* 1. Hero Section */}
         <Hero />
+
+        {/* 2. Portfolio / Gallery Section (kept just below Hero) */}
+        <Gallery />
 
         {/* 3. About Mashallah Welding Works */}
         <About />
@@ -29,19 +32,16 @@ export default function App() {
         {/* 4. Services */}
         <Services />
 
-        {/* 5. Our Work / Gallery */}
-        <Gallery />
-
-        {/* 6. Why Choose Us / Business Highlights */}
+        {/* 5. Why Choose Us / Business Highlights */}
         <WhyChooseUs />
 
-        {/* 7. Pinterest / Social Work Showcase */}
+        {/* 6. Pinterest / Social Work Showcase */}
         <SocialShowcase />
 
-        {/* 8 & 9. Business Hours & Location / Google Maps */}
+        {/* 7. Location & Timings / Google Maps (just above Contact section) */}
         <LocationHours />
 
-        {/* 10. Contact Section */}
+        {/* 8. Contact Section */}
         <ContactSection />
       </main>
 
