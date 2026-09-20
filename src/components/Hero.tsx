@@ -1,11 +1,9 @@
 import React from 'react';
-import { Phone, Navigation, ShieldCheck, Wrench, CheckCircle2, Clock, Sparkles } from 'lucide-react';
-import { BUSINESS_INFO, generateWhatsAppUrl, getBusinessHoursStatus } from '../data/content';
+import { Phone, Navigation, ShieldCheck, Wrench, CheckCircle2 } from 'lucide-react';
+import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Hero: React.FC = () => {
-  const hours = getBusinessHoursStatus();
-
   return (
     <section
       id="home"
@@ -21,18 +19,6 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Main Copy & Hero CTA Column */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Trust badge */}
-            <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-stone-800/90 border border-stone-700/80 text-xs text-stone-300">
-              <span className="flex items-center text-amber-400 font-semibold">
-                <Sparkles className="w-3.5 h-3.5 mr-1 text-amber-400" />
-                Trusted Metal Craftsmen
-              </span>
-              <span className="text-stone-500">•</span>
-              <span className={`font-medium ${hours.isOpen ? 'text-emerald-400' : 'text-amber-400'}`}>
-                {hours.statusText}
-              </span>
-            </div>
-
             {/* Primary Business Name Heading */}
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
