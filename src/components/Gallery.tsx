@@ -135,7 +135,7 @@ export const Gallery: React.FC = () => {
         {activeModalProject && (
           <div
             id="gallery-lightbox-modal"
-            className="fixed inset-0 z-50 bg-stone-950/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150"
+            className="fixed inset-0 z-60 bg-stone-950/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150"
             onClick={closeLightbox}
           >
             <div

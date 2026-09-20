@@ -52,7 +52,7 @@ export const Header: React.FC = () => {
   return (
     <header
       id="main-header"
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
           ? 'bg-stone-900/95 backdrop-blur-md text-stone-100 shadow-lg border-b border-stone-800'
           : 'bg-stone-900 text-stone-100 border-b border-stone-800'
