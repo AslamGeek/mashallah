@@ -1,0 +1,261 @@
+import { ServiceItem, GalleryProject, BusinessHoursState } from '../types';
+
+export const BUSINESS_INFO = {
+  name: 'Mashallah Welding Works',
+  tagline: 'Custom Iron Fabrication, Welding & Repair Works',
+  proprietor: 'Abdul Sattar',
+  phone: '9553217643',
+  phoneFormatted: '+91 95532 17643',
+  phoneTel: 'tel:9553217643',
+  whatsappNumber: '919553217643',
+  whatsappDefaultMsg: 'Hello Mashallah Welding Works, I would like to enquire about iron fabrication/welding work.',
+  address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Kottapalle, Andhra Pradesh 516360',
+  mapsUrl: 'https://maps.app.goo.gl/jNsuWLiv61PiG28G8',
+  pinterestUrl: 'https://in.pinterest.com/skarimulla2018',
+  instagramUrl: '', // Pending configuration as specified in prompt
+  hours: {
+    monSat: '9:00 AM – 8:00 PM',
+    sunday: '9:00 AM – 2:00 PM',
+  },
+  establishedText: 'Serving Kottapalle & Auto Nagar with pride',
+};
+
+export const SERVICES_LIST: ServiceItem[] = [
+  {
+    id: 'iron-gates',
+    title: 'Iron Gates',
+    category: 'residential',
+    description: 'Heavy-duty decorative main entrance gates, sliding gates, double-swing gates, and boundary gates tailored to your property.',
+    features: ['Custom height & width', 'Anti-rust primer coating', 'Heavy-gauge steel & hinges', 'Smooth ball-bearing sliding rollers'],
+    iconName: 'Shield',
+  },
+  {
+    id: 'iron-grills',
+    title: 'Iron Grills',
+    category: 'residential',
+    description: 'Aesthetic and high-strength window safety grills, balcony guard grills, and ventilation security frames.',
+    features: ['Square bar & flat iron options', 'Modern geometric & floral patterns', 'Burglar-proof anchor welding', 'Long-lasting paint finish'],
+    iconName: 'Grid',
+  },
+  {
+    id: 'railings',
+    title: 'Railings',
+    category: 'residential',
+    description: 'Sturdy staircase handrails, terrace safety railings, and modern architectural balcony balustrades.',
+    features: ['Ergonomic handrails', 'Staircase bend fabrication', 'Corrosion-resistant metal', 'Safe child-gap spacing'],
+    iconName: 'Layers',
+  },
+  {
+    id: 'metal-doors',
+    title: 'Metal Doors',
+    category: 'commercial',
+    description: 'Durable sheet metal doors, safety iron mesh doors, collapsible security gates, and shop entrance doors.',
+    features: ['Heavy-duty locking points', 'Sturdy sheet thickness', 'Reinforced frame borders', 'Precision fit with no gaps'],
+    iconName: 'DoorClosed',
+  },
+  {
+    id: 'iron-stands',
+    title: 'Iron Stands',
+    category: 'fabrication',
+    description: 'Custom-built load-bearing stands for rooftop water tanks, outdoor AC units, generators, heavy machinery, and flower pots.',
+    features: ['Engineered weight-bearing capacity', 'Heavy L-angle & channel bars', 'Cross-braced structural stability', 'Weather-resistant treatment'],
+    iconName: 'Box',
+  },
+  {
+    id: 'welding-works',
+    title: 'Welding Works',
+    category: 'fabrication',
+    description: 'Precision electric arc welding, gas welding, spot welding, and joinery with deep penetration and clean slag removal.',
+    features: ['Uniform weld bead quality', 'Heavy joint stress tolerance', 'On-site mobile welding service', 'All iron & mild steel grades'],
+    iconName: 'Flame',
+  },
+  {
+    id: 'iron-repair-works',
+    title: 'Iron Repair Works',
+    category: 'repair',
+    description: 'Quick on-site and in-workshop repair services for broken gates, rusted hinges, damaged grills, loose railings, and cracked joints.',
+    features: ['Hinge & latch replacement', 'Rust removal & reinforcement', 'Gate re-alignment & leveling', 'Prompt service visits'],
+    iconName: 'Wrench',
+  },
+  {
+    id: 'custom-iron-fabrication',
+    title: 'Custom Iron Fabrication',
+    category: 'fabrication',
+    description: 'Bespoke metal structures engineered to your exact blueprints, sketch drawings, or Pinterest photos.',
+    features: ['Custom dimensions & layout', 'Tailored metal thickness', 'Prototype & one-off builds', 'Strict quality inspection'],
+    iconName: 'Compass',
+  },
+  {
+    id: 'residential-iron-works',
+    title: 'Residential Iron Works',
+    category: 'residential',
+    description: 'Complete ironwork solutions for independent homes, villas, and apartments—from entry gates to safety window boxes.',
+    features: ['Enhances home security', 'Matches architectural theme', 'Clean ground finishing', 'Personalized consultations'],
+    iconName: 'Home',
+  },
+  {
+    id: 'commercial-iron-works',
+    title: 'Commercial Iron Works',
+    category: 'commercial',
+    description: 'Heavy fabrication for retail shops, offices, commercial complexes, godowns, display stands, and entrance awnings.',
+    features: ['High-traffic durability', 'Shopfront rolling frames & doors', 'Display shelving & storage', 'Compliant with safety rules'],
+    iconName: 'Briefcase',
+  },
+  {
+    id: 'small-industrial-fabrication',
+    title: 'Small Industrial Fabrication Works',
+    category: 'industrial',
+    description: 'Sturdy structural frames, shed trusses, machine support fixtures, and custom metal fittings for workshops and small factories.',
+    features: ['Heavy I-beam & channel steel', 'High load factor welding', 'Shed framework & supports', 'Industrial-grade durability'],
+    iconName: 'Factory',
+  },
+];
+
+export const GALLERY_ITEMS: GalleryProject[] = [
+  {
+    id: 'proj-1',
+    title: 'Modern Geometric Main Entrance Gate',
+    category: 'gates',
+    categoryLabel: 'Gates',
+    imageUrl: 'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1200&auto=format&fit=crop',
+    description: 'Heavy-gauge mild steel entrance gate with clean geometric pattern, integrated pedestrian access door, and high-gloss anti-rust coating.',
+    specifications: '14ft x 7ft • Heavy L-Angle Frame • 16-Gauge MS Sheet • Heavy Bearings',
+  },
+  {
+    id: 'proj-2',
+    title: 'Ornamental Window Safety Grills',
+    category: 'grills',
+    categoryLabel: 'Grills',
+    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop',
+    description: 'Solid square bar safety grills with decorative scrollwork designed for home ventilation, maximum light, and burglar deterrence.',
+    specifications: '12mm Solid MS Square Bar • Zinc Chromate Primer • Deep Anchors',
+  },
+  {
+    id: 'proj-3',
+    title: 'Architectural Staircase & Balcony Railings',
+    category: 'railings',
+    categoryLabel: 'Railings',
+    imageUrl: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1200&auto=format&fit=crop',
+    description: 'Ergonomically designed internal and external staircase handrails crafted for strong grip, smooth curves, and seamless welds.',
+    specifications: 'Tubular Handrail • Vertical Spindle Bar Guard • Heavy Base Plate Fasteners',
+  },
+  {
+    id: 'proj-4',
+    title: 'Heavy Metal Security & Grill Door',
+    category: 'doors',
+    categoryLabel: 'Doors',
+    imageUrl: 'https://images.unsplash.com/photo-1582037928769-181f2644ecb7?q=80&w=1200&auto=format&fit=crop',
+    description: 'Secondary safety door with double lock reinforcement, high-strength expanded metal mesh, and heavy-duty greaseable hinges.',
+    specifications: '3.5ft x 7ft • Box Frame Structure • Multi-Point Godrej Lock Mount',
+  },
+  {
+    id: 'proj-5',
+    title: 'Heavy-Duty Water Tank & AC Stand',
+    category: 'stands',
+    categoryLabel: 'Stands',
+    imageUrl: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
+    description: 'Four-leg cross-braced structural iron stand built to support 1000L rooftop water tanks and commercial outdoor AC chiller units.',
+    specifications: '40x40x5mm Heavy Angle Iron • Cross-Tie Gusset Plates • Load Tested',
+  },
+  {
+    id: 'proj-6',
+    title: 'Precision Arc & Structural Welding',
+    category: 'custom',
+    categoryLabel: 'Custom Fabrication',
+    imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop',
+    description: 'Continuous seam welding on structural framework for small industrial sheds with spotless slag cleaning and joint stress relief.',
+    specifications: 'Shielded Metal Arc Welding (SMAW) • E6013 / E7018 Electrodes • Full Penetration',
+  },
+  {
+    id: 'proj-7',
+    title: 'Compound Wall Security Grills & Spikes',
+    category: 'grills',
+    categoryLabel: 'Grills',
+    imageUrl: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?q=80&w=1200&auto=format&fit=crop',
+    description: 'Boundary wall perimeter grill extensions fitted with sharp spearhead tops to secure residential complexes and godowns.',
+    specifications: 'Modular 10ft Sections • Wall Expansion Bolts • Dual Primer Protection',
+  },
+  {
+    id: 'proj-8',
+    title: 'Gate Re-alignment & Welding Repair',
+    category: 'repairs',
+    categoryLabel: 'Repair Works',
+    imageUrl: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop',
+    description: 'On-site rehabilitation of sagging commercial gate: installed reinforced pivot pins, replaced rusted bottom channel, and re-welded rollers.',
+    specifications: 'Completed in 3 Hours On-Site • 100% Structural Stability Restored',
+  },
+  {
+    id: 'proj-9',
+    title: 'Small Industrial Shed Truss & Frame',
+    category: 'custom',
+    categoryLabel: 'Custom Fabrication',
+    imageUrl: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop',
+    description: 'Engineered steel roof trusses and purlin brackets fabricated for Auto Nagar workshop expansion and material storage shed.',
+    specifications: 'Tubular Steel & C-Channels • Pre-drilled Anchor Holes • Red Oxide Primer',
+  },
+];
+
+export const PINTEREST_BOARDS = [
+  {
+    title: 'Modern Iron Gate Designs',
+    count: '60+ Designs',
+    imageUrl: 'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=600&auto=format&fit=crop',
+    description: 'Inspirations for modern sliding, swing, and contemporary laser-cut hybrid iron gates.',
+  },
+  {
+    title: 'Window Safety Grill Patterns',
+    count: '45+ Patterns',
+    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop',
+    description: 'Minimalist vertical bars, floral motifs, and geometric grill concepts for Indian homes.',
+  },
+  {
+    title: 'Staircase & Balcony Railing Ideas',
+    count: '50+ Ideas',
+    imageUrl: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=600&auto=format&fit=crop',
+    description: 'Sleek industrial and ornamental railing ideas to elevate interior and outdoor spaces.',
+  },
+];
+
+/**
+ * Calculates current business open/closed status based on local time
+ * Mon-Sat: 9:00 AM - 8:00 PM (09:00 - 20:00)
+ * Sun: 9:00 AM - 2:00 PM (09:00 - 14:00)
+ */
+export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursState {
+  const day = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const currentTimeInMinutes = hours * 60 + minutes;
+
+  const isSunday = day === 0;
+  const openTimeMinutes = 9 * 60; // 9:00 AM
+  const closeTimeMinutes = isSunday ? 14 * 60 : 20 * 60; // 2:00 PM on Sunday, 8:00 PM Mon-Sat
+
+  const todayHours = isSunday ? '9:00 AM – 2:00 PM' : '9:00 AM – 8:00 PM';
+
+  if (currentTimeInMinutes >= openTimeMinutes && currentTimeInMinutes < closeTimeMinutes) {
+    const closingHourDisplay = isSunday ? '2:00 PM' : '8:00 PM';
+    return {
+      isOpen: true,
+      statusText: 'Open Now',
+      nextEvent: `Closes today at ${closingHourDisplay}`,
+      todayHours,
+    };
+  } else {
+    let nextOpening = 'Opens at 9:00 AM';
+    if (currentTimeInMinutes >= closeTimeMinutes) {
+      nextOpening = 'Opens tomorrow at 9:00 AM';
+    }
+    return {
+      isOpen: false,
+      statusText: 'Closed Now',
+      nextEvent: nextOpening,
+      todayHours,
+    };
+  }
+}
+
+export function generateWhatsAppUrl(customMessage?: string): string {
+  const text = encodeURIComponent(customMessage || BUSINESS_INFO.whatsappDefaultMsg);
+  return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${text}`;
+}
