@@ -1,20 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Hammer } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
 
 export const Header: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoursStatus, setHoursStatus] = useState<BusinessHoursState>(getBusinessHoursStatus());
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      setIsScrolled(currentScrollY > 20);
+
+      // Always show when near the very top of the page
+      if (currentScrollY < 15) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Keep visible if mobile dropdown menu is open
+      if (mobileMenuOpen) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Small threshold to prevent micro-jitter
+      const diff = currentScrollY - lastScrollY.current;
+      if (Math.abs(diff) > 6) {
+        if (currentScrollY > lastScrollY.current && currentScrollY > 70) {
+          // Scrolling down -> hide navbar
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scrolling up -> reveal navbar
+          setIsVisible(true);
+        }
+        lastScrollY.current = currentScrollY;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,6 +68,7 @@ export const Header: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setIsVisible(true);
     const element = document.querySelector(href);
     if (element) {
       const headerOffset = 80;
@@ -51,7 +84,9 @@ export const Header: React.FC = () => {
   return (
     <header
       id="main-header"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      } ${
         isScrolled
           ? 'bg-stone-900/95 backdrop-blur-md text-stone-100 shadow-lg border-b border-stone-800'
           : 'bg-stone-900 text-stone-100 border-b border-stone-800'

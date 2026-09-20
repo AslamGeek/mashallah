@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { WorkshopMap } from './WorkshopMap';
 
 export const ContactSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState('Iron Gates');
@@ -290,6 +291,9 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Embedded Google Maps Component */}
+        <WorkshopMap />
       </div>
     </section>
   );
