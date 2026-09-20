@@ -9,18 +9,18 @@ export const SocialShowcase: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-100 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
-            <span>Online Inspiration</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-stone-300 text-stone-700 text-xs font-bold uppercase tracking-wider">
+            <span>Design Inspiration</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900">
-            Explore Our Designs on Pinterest & Social Media
+            Explore Modern Fabrication Ideas & Concepts
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-            Looking for design inspiration? Browse our curated Pinterest boards featuring modern gates, decorative grills, and custom steel patterns. Found a design you like? Send it to us for an exact fabrication quote!
+            Looking for design inspiration? Browse our curated collections featuring modern gates, decorative grills, and custom steel patterns. Found a design you like? Send it to us for an exact fabrication quote!
           </p>
         </div>
 
-        {/* Pinterest Boards Grid */}
+        {/* Boards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {PINTEREST_BOARDS.map((board, idx) => (
             <div
@@ -34,9 +34,9 @@ export const SocialShowcase: React.FC = () => {
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-3 right-3 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white mr-1.5 inline-block" />
-                  Pinterest Board
+                <div className="absolute top-3 right-3 bg-stone-900/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center border border-stone-700">
+                  <Sparkles className="w-3 h-3 text-amber-400 mr-1.5" />
+                  Design Idea
                 </div>
                 <div className="absolute bottom-3 left-3 bg-stone-900/80 backdrop-blur-sm text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-stone-700/60">
                   {board.count}
@@ -50,23 +50,15 @@ export const SocialShowcase: React.FC = () => {
                 </p>
 
                 <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
+                  <span className="text-xs text-stone-500 font-medium">Custom fabrication</span>
                   <a
-                    href={BUSINESS_INFO.pinterestUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-xs font-bold text-red-600 hover:text-red-700 transition-colors"
-                  >
-                    <span>View on Pinterest</span>
-                    <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                  </a>
-                  <a
-                    href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to share a Pinterest pin of "${board.title}" to check if you can make it.`)}
+                    href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to enquire about fabrication for "${board.title}".`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-xs font-semibold text-emerald-600 hover:text-emerald-700"
                   >
                     <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
-                    <span>Share Pin on WhatsApp</span>
+                    <span>Enquire on WhatsApp</span>
                   </a>
                 </div>
               </div>
@@ -74,75 +66,45 @@ export const SocialShowcase: React.FC = () => {
           ))}
         </div>
 
-        {/* Action Buttons & Integration Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Pinterest Official Profile Card */}
-          <div className="bg-red-50/70 border border-red-200/80 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1.5">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-                  P
-                </div>
-                <h4 className="font-bold text-stone-900 text-base sm:text-lg">
-                  Official Pinterest Profile
-                </h4>
+        {/* Instagram Integration Card */}
+        <div className="bg-rose-50/50 border border-rose-200/80 rounded-2xl p-6 sm:p-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-sm">
+                <Instagram className="w-4 h-4" />
               </div>
-              <p className="text-xs sm:text-sm text-stone-600">
-                Follow <strong className="text-stone-800">@skarimulla2018</strong> for daily welding designs, modern iron grill ideas & gate blueprints.
-              </p>
+              <h4 className="font-bold text-stone-900 text-base sm:text-lg">
+                Official Instagram Profile
+              </h4>
+              <span className="text-[10px] font-semibold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-md">
+                Active
+              </span>
             </div>
+            <p className="text-xs sm:text-sm text-stone-600">
+              Follow <strong className="text-stone-800">@karimulla955</strong> on Instagram for recent metalwork reels, workshop fabrication videos & client installations.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
             <a
-              id="view-pinterest-profile-btn"
-              href={BUSINESS_INFO.pinterestUrl}
+              id="view-instagram-profile-btn"
+              href={BUSINESS_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-sm transition-colors"
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-sm transition-opacity"
             >
-              <span>View More on Pinterest</span>
-              <ExternalLink className="w-4 h-4 ml-2" />
+              <Instagram className="w-4 h-4 mr-2" />
+              <span>Follow @karimulla955</span>
+              <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
             </a>
-          </div>
-
-          {/* Instagram Integration Card */}
-          <div className="bg-rose-50/50 border border-rose-200/80 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1.5">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-sm">
-                  <Instagram className="w-4 h-4" />
-                </div>
-                <h4 className="font-bold text-stone-900 text-base sm:text-lg">
-                  Official Instagram Profile
-                </h4>
-                <span className="text-[10px] font-semibold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-md">
-                  Active
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-stone-600">
-                Follow <strong className="text-stone-800">@karimulla955</strong> on Instagram for recent metalwork reels, workshop fabrication videos & client installations.
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-              <a
-                id="view-instagram-profile-btn"
-                href={BUSINESS_INFO.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-sm transition-opacity"
-              >
-                <Instagram className="w-4 h-4 mr-2" />
-                <span>Follow @karimulla955</span>
-                <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
-              </a>
-              <a
-                href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-semibold text-xs transition-colors"
-              >
-                <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
-                <span>WhatsApp Photos</span>
-              </a>
-            </div>
+            <a
+              href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-semibold text-xs transition-colors"
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+              <span>WhatsApp Photos</span>
+            </a>
           </div>
         </div>
       </div>

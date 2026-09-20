@@ -7,10 +7,8 @@ import { Gallery } from './components/Gallery';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { SocialShowcase } from './components/SocialShowcase';
 import { FaqSection } from './components/FaqSection';
-import { LocationHours } from './components/LocationHours';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MobileStickyBar } from './components/MobileStickyBar';
 
 export default function App() {
@@ -42,18 +40,12 @@ export default function App() {
         {/* 7. FAQs Section */}
         <FaqSection />
 
-        {/* 8. Location & Timings / Google Maps (just above Contact section) */}
-        <LocationHours />
-
-        {/* 9. Contact Section */}
+        {/* 8. Contact Section */}
         <ContactSection />
       </main>
 
-      {/* 11. Footer */}
+      {/* Footer */}
       <Footer />
-
-      {/* Floating WhatsApp Action & Tooltip */}
-      <FloatingWhatsApp />
 
       {/* Mobile Sticky 1-Tap Action Bar (Call, WhatsApp, Directions) */}
       <MobileStickyBar />

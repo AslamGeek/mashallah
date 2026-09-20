@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Menu, X, Hammer } from 'lucide-react';
-import { BUSINESS_INFO, getBusinessHoursStatus, generateWhatsAppUrl } from '../data/content';
+import { Menu, X, Hammer } from 'lucide-react';
+import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
-import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,7 +30,6 @@ export const Header: React.FC = () => {
     { name: 'Services', href: '#services' },
     { name: 'Highlights', href: '#highlights' },
     { name: 'FAQ', href: '#faq' },
-    { name: 'Hours & Location', href: '#location' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -140,25 +138,6 @@ export const Header: React.FC = () => {
                 {link.name}
               </a>
             ))}
-          </div>
-
-          <div className="pt-2 border-t border-stone-800 flex flex-col gap-2">
-            <a
-              href={BUSINESS_INFO.phoneTel}
-              className="flex items-center justify-center py-2.5 px-4 rounded-lg bg-amber-500 text-stone-950 font-bold text-sm shadow-sm"
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              Call Now (9553217643)
-            </a>
-            <a
-              href={generateWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center py-2.5 px-4 rounded-lg bg-emerald-600 text-white font-bold text-sm shadow-sm"
-            >
-              <WhatsAppIcon className="w-4 h-4 mr-2" />
-              Chat on WhatsApp
-            </a>
           </div>
         </div>
       )}

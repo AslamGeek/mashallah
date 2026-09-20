@@ -61,15 +61,6 @@ export const Footer: React.FC = () => {
                 <span>Instagram: @karimulla955</span>
                 <ExternalLink className="w-3 h-3 ml-1.5" />
               </a>
-              <a
-                href={BUSINESS_INFO.pinterestUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-red-950/60 hover:bg-red-900/80 text-red-300 border border-red-800/60 text-xs font-semibold flex items-center transition-colors"
-              >
-                <span>Pinterest: @skarimulla2018</span>
-                <ExternalLink className="w-3 h-3 ml-1.5" />
-              </a>
             </div>
           </div>
 
@@ -107,11 +98,6 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="#faq" onClick={(e) => handleScroll(e, '#faq')} className="hover:text-amber-400 transition-colors">
                   FAQ & Questions
-                </a>
-              </li>
-              <li>
-                <a href="#location" onClick={(e) => handleScroll(e, '#location')} className="hover:text-amber-400 transition-colors">
-                  Location & Hours
                 </a>
               </li>
               <li>

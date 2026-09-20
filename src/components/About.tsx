@@ -1,36 +1,9 @@
 import React from 'react';
-import { Home, Store, Building2, School, Factory, Wrench, Shield, Check, Phone } from 'lucide-react';
+import { Wrench, Shield, Check, Phone } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const About: React.FC = () => {
-  const clientSectors = [
-    {
-      icon: Home,
-      title: 'Homes & Residences',
-      desc: 'Main gates, window safety grills, staircase balustrades, balcony railings, and security mesh doors.',
-    },
-    {
-      icon: Store,
-      title: 'Shops & Retail',
-      desc: 'Entrance shutters, display stands, security gates, overhead sign brackets, and merchandise racks.',
-    },
-    {
-      icon: Building2,
-      title: 'Commercial Businesses',
-      desc: 'Office partition frames, safety doors, warehouse storage racks, and structural access ladders.',
-    },
-    {
-      icon: School,
-      title: 'Institutions & Schools',
-      desc: 'Perimeter boundary fence grills, campus gates, bench frames, and sturdy protective barriers.',
-    },
-    {
-      icon: Factory,
-      title: 'Small Industrial Units',
-      desc: 'Shed trusses, machine mountings, heavy material trolleys, and structural welding support.',
-    },
-  ];
 
   return (
     <section id="about" className="py-20 bg-stone-100 text-stone-900 border-b border-stone-200">
@@ -49,7 +22,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* Story & Proprietor Highlight */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-5 text-stone-700 leading-relaxed">
             <h3 className="text-2xl font-bold text-stone-900">
               Transforming Raw Metal into Long-Lasting Protection & Elegance
@@ -134,36 +107,6 @@ export const About: React.FC = () => {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Sectors Served Grid */}
-        <div className="pt-4">
-          <div className="text-center mb-8">
-            <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
-              Tailored Metal Solutions Across Every Sector
-            </h3>
-            <p className="text-sm text-stone-500 mt-1">
-              Custom fabrication and repairs for private residences, commercial shops, and industrial facilities
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {clientSectors.map((sector, index) => {
-              const Icon = sector.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-5 border border-stone-200/80 hover:border-amber-400 transition-colors shadow-sm flex flex-col"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center mb-3.5 shrink-0 border border-amber-200">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-bold text-stone-900 text-base mb-1.5">{sector.title}</h4>
-                  <p className="text-xs text-stone-600 leading-relaxed mt-auto">{sector.desc}</p>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
