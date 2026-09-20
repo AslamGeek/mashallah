@@ -9,7 +9,6 @@ import { SocialShowcase } from './components/SocialShowcase';
 import { LocationHours } from './components/LocationHours';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { MobileStickyBar } from './components/MobileStickyBar';
 
 export default function App() {
@@ -47,9 +46,6 @@ export default function App() {
 
       {/* 11. Footer */}
       <Footer />
-
-      {/* 12. Floating WhatsApp Button */}
-      <FloatingWhatsApp />
 
       {/* Mobile Sticky 1-Tap Action Bar (Call, WhatsApp, Directions) */}
       <MobileStickyBar />

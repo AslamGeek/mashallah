@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Camera, Image, Layers, Sparkles } from 'lucide-react';
+import { ExternalLink, Camera, Instagram, Image, Layers, Sparkles } from 'lucide-react';
 import { BUSINESS_INFO, PINTEREST_BOARDS, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -104,32 +104,45 @@ export const SocialShowcase: React.FC = () => {
           </div>
 
           {/* Instagram Integration Card */}
-          <div className="bg-stone-100 border border-stone-200 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="bg-rose-50/50 border border-rose-200/80 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1.5">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-sm">
-                  <Camera className="w-4 h-4" />
+                  <Instagram className="w-4 h-4" />
                 </div>
                 <h4 className="font-bold text-stone-900 text-base sm:text-lg">
-                  Instagram Profile
+                  Official Instagram Profile
                 </h4>
-                <span className="text-[10px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">
-                  Configurable
+                <span className="text-[10px] font-semibold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-md">
+                  Active
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-stone-600">
-                Instagram profile URL will be connected here once active. In the meantime, message us directly for live workshop photos.
+                Follow <strong className="text-stone-800">@karimulla955</strong> on Instagram for recent metalwork reels, workshop fabrication videos & client installations.
               </p>
             </div>
-            <a
-              href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-semibold text-xs sm:text-sm transition-colors"
-            >
-              <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-400" />
-              <span>Request Photos on WhatsApp</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a
+                id="view-instagram-profile-btn"
+                href={BUSINESS_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-sm transition-opacity"
+              >
+                <Instagram className="w-4 h-4 mr-2" />
+                <span>Follow @karimulla955</span>
+                <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+              </a>
+              <a
+                href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-semibold text-xs transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+                <span>WhatsApp Photos</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

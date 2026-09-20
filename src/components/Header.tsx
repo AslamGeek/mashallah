@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Clock, MapPin, Menu, X, Hammer } from 'lucide-react';
+import { Phone, Menu, X, Hammer } from 'lucide-react';
 import { BUSINESS_INFO, getBusinessHoursStatus, generateWhatsAppUrl } from '../data/content';
 import { BusinessHoursState } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -58,44 +58,6 @@ export const Header: React.FC = () => {
           : 'bg-stone-900 text-stone-100 border-b border-stone-800'
       }`}
     >
-      {/* Top micro bar for quick trust signals & live status */}
-      <div className="hidden md:block bg-stone-950 text-xs text-stone-400 py-1.5 border-b border-stone-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center text-stone-300">
-              <MapPin className="w-3.5 h-3.5 text-amber-500 mr-1 inline" />
-              Auto Nagar, Kottapalle, Andhra Pradesh 516360
-            </span>
-            <span className="text-stone-600">|</span>
-            <span className="text-stone-300">
-              Proprietor: <strong className="text-amber-400 font-semibold">{BUSINESS_INFO.proprietor}</strong>
-            </span>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center">
-              <span
-                className={`inline-block w-2 h-2 rounded-full mr-1.5 ${
-                  hoursStatus.isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
-                }`}
-              />
-              <span className={`font-semibold ${hoursStatus.isOpen ? 'text-emerald-400' : 'text-amber-400'}`}>
-                {hoursStatus.statusText}
-              </span>
-              <span className="text-stone-400 ml-1.5">({hoursStatus.nextEvent})</span>
-            </div>
-            <span className="text-stone-600">|</span>
-            <a
-              href={BUSINESS_INFO.phoneTel}
-              className="text-stone-300 hover:text-amber-400 transition-colors flex items-center font-medium"
-            >
-              <Phone className="w-3 h-3 mr-1 text-amber-500" />
-              {BUSINESS_INFO.phoneFormatted}
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main navigation row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 sm:h-20">

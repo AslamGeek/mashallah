@@ -12,7 +12,7 @@ export const BUSINESS_INFO = {
   address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Kottapalle, Andhra Pradesh 516360',
   mapsUrl: 'https://maps.app.goo.gl/jNsuWLiv61PiG28G8',
   pinterestUrl: 'https://in.pinterest.com/skarimulla2018',
-  instagramUrl: '', // Pending configuration as specified in prompt
+  instagramUrl: 'https://www.instagram.com/karimulla955',
   hours: {
     monSat: '9:00 AM – 8:00 PM',
     sunday: '9:00 AM – 2:00 PM',

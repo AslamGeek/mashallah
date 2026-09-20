@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hammer, Phone, MapPin, Navigation, ExternalLink, Clock } from 'lucide-react';
+import { Hammer, Phone, MapPin, Navigation, ExternalLink, Clock, Instagram } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -50,6 +50,16 @@ export const Footer: React.FC = () => {
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
                 <span>WhatsApp: 9553217643</span>
+              </a>
+              <a
+                href={BUSINESS_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800/60 text-xs font-semibold flex items-center transition-colors"
+              >
+                <Instagram className="w-3.5 h-3.5 mr-1.5" />
+                <span>Instagram: @karimulla955</span>
+                <ExternalLink className="w-3 h-3 ml-1.5" />
               </a>
               <a
                 href={BUSINESS_INFO.pinterestUrl}

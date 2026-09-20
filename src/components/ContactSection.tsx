@@ -9,6 +9,7 @@ import {
   Share2,
   ExternalLink,
   Camera,
+  Instagram,
   CheckCircle2,
 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
@@ -173,13 +174,14 @@ export const ContactSection: React.FC = () => {
                 <div className="pt-1">
                   <a
                     id="contact-instagram-btn"
-                    href={generateWhatsAppUrl('Hello Mashallah Welding Works, please share your Instagram profile / latest video updates.')}
+                    href={BUSINESS_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-950 text-stone-300 hover:text-white border border-stone-700 text-xs font-semibold transition-colors"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-950 text-stone-300 hover:text-white border border-stone-700 text-xs font-semibold transition-colors group"
                   >
-                    <Camera className="w-4 h-4 mr-2 text-rose-400" />
-                    <span>Instagram Profile (Connect directly via WhatsApp)</span>
+                    <Instagram className="w-4 h-4 mr-2 text-rose-400 group-hover:scale-110 transition-transform" />
+                    <span>Instagram: @karimulla955</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-stone-500 group-hover:text-stone-300" />
                   </a>
                 </div>
               </div>

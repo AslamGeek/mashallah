@@ -9,7 +9,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-stone-900 text-stone-100 overflow-hidden border-b border-stone-800"
+      className="relative pt-24 pb-16 md:pt-30 md:pb-24 bg-stone-900 text-stone-100 overflow-hidden border-b border-stone-800"
     >
       {/* Subtle industrial steel geometric grid background */}
       <div
@@ -27,8 +27,6 @@ export const Hero: React.FC = () => {
                 <Sparkles className="w-3.5 h-3.5 mr-1 text-amber-400" />
                 Trusted Metal Craftsmen
               </span>
-              <span className="text-stone-500">•</span>
-              <span>Auto Nagar, Kottapalle</span>
               <span className="text-stone-500">•</span>
               <span className={`font-medium ${hours.isOpen ? 'text-emerald-400' : 'text-amber-400'}`}>
                 {hours.statusText}
