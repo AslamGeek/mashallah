@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, Camera, Image, Layers, Sparkles } from 'lucide-react';
 import { BUSINESS_INFO, PINTEREST_BOARDS, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const SocialShowcase: React.FC = () => {
   return (
@@ -62,9 +63,10 @@ export const SocialShowcase: React.FC = () => {
                     href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to share a Pinterest pin of "${board.title}" to check if you can make it.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-emerald-600 hover:text-emerald-700"
+                    className="inline-flex items-center text-xs font-semibold text-emerald-600 hover:text-emerald-700"
                   >
-                    Share Pin on WhatsApp
+                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
+                    <span>Share Pin on WhatsApp</span>
                   </a>
                 </div>
               </div>
@@ -125,6 +127,7 @@ export const SocialShowcase: React.FC = () => {
               rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-semibold text-xs sm:text-sm transition-colors"
             >
+              <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-400" />
               <span>Request Photos on WhatsApp</span>
             </a>
           </div>

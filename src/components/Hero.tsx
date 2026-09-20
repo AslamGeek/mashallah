@@ -1,6 +1,7 @@
 import React from 'react';
-import { Phone, MessageCircle, Navigation, ShieldCheck, Wrench, CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { Phone, Navigation, ShieldCheck, Wrench, CheckCircle2, Clock, Sparkles } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl, getBusinessHoursStatus } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Hero: React.FC = () => {
   const hours = getBusinessHoursStatus();
@@ -69,7 +70,7 @@ export const Hero: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base transition-all duration-150 shadow-lg shadow-emerald-600/20 active:scale-[0.98]"
               >
-                <MessageCircle className="w-5 h-5 mr-2 fill-current" />
+                <WhatsAppIcon className="w-5 h-5 mr-2" />
                 WhatsApp Us
               </a>
 
@@ -144,7 +145,7 @@ export const Hero: React.FC = () => {
                   <span className="block text-[11px] text-stone-400 font-medium">Custom Fit</span>
                 </div>
                 <div className="p-2 rounded-lg bg-stone-900/60 border border-stone-700/50">
-                  <span className="block text-lg font-black text-amber-400">ARC & Gas</span>
+                  <span className="block text-lg font-black text-amber-400">Electric Arc</span>
                   <span className="block text-[11px] text-stone-400 font-medium">Welding</span>
                 </div>
                 <div className="p-2 rounded-lg bg-stone-900/60 border border-stone-700/50">

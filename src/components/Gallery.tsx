@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Maximize2, X, MessageCircle, ExternalLink, Tag } from 'lucide-react';
+import { Maximize2, X, ExternalLink, Tag } from 'lucide-react';
 import { GALLERY_ITEMS, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -121,7 +122,7 @@ export const Gallery: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 mr-1 fill-current" />
+                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
                     Enquire
                   </a>
                 </div>
@@ -198,7 +199,7 @@ export const Gallery: React.FC = () => {
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors"
                     >
-                      <MessageCircle className="w-4 h-4 mr-2 fill-current" />
+                      <WhatsAppIcon className="w-4 h-4 mr-2" />
                       Enquire for This Design on WhatsApp
                     </a>
                     <button

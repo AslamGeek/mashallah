@@ -1,6 +1,7 @@
 import React from 'react';
-import { Home, Store, Building2, School, Factory, Wrench, Shield, Check, Phone, MessageCircle } from 'lucide-react';
+import { Home, Store, Building2, School, Factory, Wrench, Shield, Check, Phone } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const About: React.FC = () => {
   const clientSectors = [
@@ -128,7 +129,7 @@ export const About: React.FC = () => {
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2" />
                   WhatsApp Direct Enquiry
                 </a>
               </div>

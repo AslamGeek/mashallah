@@ -1,6 +1,7 @@
 import React from 'react';
-import { Hammer, Phone, MessageCircle, MapPin, Navigation, ExternalLink, Clock } from 'lucide-react';
+import { Hammer, Phone, MapPin, Navigation, ExternalLink, Clock } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -31,7 +32,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-stone-400 text-xs leading-relaxed">
-              Custom iron fabrication, electric arc & gas welding, and metal repair works in Auto Nagar, Kottapalle, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
+              Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Kottapalle, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
             </p>
 
             <div className="pt-1 text-xs text-stone-300">
@@ -40,7 +41,16 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-3 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+              <a
+                href={generateWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-800/60 text-xs font-semibold flex items-center transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                <span>WhatsApp: 9553217643</span>
+              </a>
               <a
                 href={BUSINESS_INFO.pinterestUrl}
                 target="_blank"
@@ -108,7 +118,7 @@ export const Footer: React.FC = () => {
               <li>• Staircase & Balcony Railings</li>
               <li>• Heavy Sheet Metal Doors</li>
               <li>• Water Tank & AC Stands</li>
-              <li>• ARC & Gas Welding Works</li>
+              <li>• Electric Arc Welding Works</li>
               <li>• Gate Re-alignment & Repair Works</li>
               <li>• Small Industrial Shed Fabrication</li>
             </ul>

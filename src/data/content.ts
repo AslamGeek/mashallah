@@ -65,7 +65,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     id: 'welding-works',
     title: 'Welding Works',
     category: 'fabrication',
-    description: 'Precision electric arc welding, gas welding, spot welding, and joinery with deep penetration and clean slag removal.',
+    description: 'Precision electric arc welding, metal joinery, and structural reinforcement with deep penetration and clean slag removal.',
     features: ['Uniform weld bead quality', 'Heavy joint stress tolerance', 'On-site mobile welding service', 'All iron & mild steel grades'],
     iconName: 'Flame',
   },

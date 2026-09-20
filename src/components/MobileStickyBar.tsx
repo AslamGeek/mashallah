@@ -1,6 +1,7 @@
 import React from 'react';
-import { Phone, MessageCircle, Navigation } from 'lucide-react';
+import { Phone, Navigation } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const MobileStickyBar: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ export const MobileStickyBar: React.FC = () => {
         rel="noopener noreferrer"
         className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-xs shadow-sm"
       >
-        <MessageCircle className="w-4 h-4 mb-0.5 fill-current" />
+        <WhatsAppIcon className="w-4 h-4 mb-0.5" />
         <span>WhatsApp</span>
       </a>
 

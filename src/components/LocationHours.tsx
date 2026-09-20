@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin, Navigation, Phone, MessageCircle, Calendar, CheckCircle2 } from 'lucide-react';
+import { Clock, MapPin, Navigation, Phone, Calendar, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO, getBusinessHoursStatus, generateWhatsAppUrl } from '../data/content';
 import { BusinessHoursState } from '../types';
 

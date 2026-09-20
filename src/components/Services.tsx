@@ -13,10 +13,10 @@ import {
   Factory,
   ArrowRight,
   CheckCircle,
-  MessageCircle,
 } from 'lucide-react';
 import { SERVICES_LIST, generateWhatsAppUrl } from '../data/content';
 import { ServiceItem } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Services: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -145,7 +145,7 @@ export const Services: React.FC = () => {
                   rel="noopener noreferrer"
                   className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-stone-50 hover:bg-emerald-600 text-stone-800 hover:text-white border border-stone-200 hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-sm"
                 >
-                  <MessageCircle className="w-4 h-4 mr-1.5 text-emerald-600 group-hover:text-white" />
+                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-600 group-hover:text-white" />
                   <span>Enquire for {service.title}</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-60 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -170,7 +170,7 @@ export const Services: React.FC = () => {
             rel="noopener noreferrer"
             className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-sm tracking-wide shadow-md transition-all active:scale-[0.98]"
           >
-            <MessageCircle className="w-4 h-4 mr-2" />
+            <WhatsAppIcon className="w-4 h-4 mr-2" />
             Send Your Design on WhatsApp
           </a>
         </div>

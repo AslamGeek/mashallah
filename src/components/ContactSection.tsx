@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Phone,
-  MessageCircle,
   MapPin,
   Clock,
   Navigation,
@@ -13,6 +12,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const ContactSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState('Iron Gate');
@@ -138,7 +138,7 @@ export const ContactSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors"
                   >
-                    <MessageCircle className="w-4 h-4 mr-2 fill-current" />
+                    <WhatsAppIcon className="w-4 h-4 mr-2" />
                     WhatsApp Us
                   </a>
 
@@ -217,7 +217,7 @@ export const ContactSection: React.FC = () => {
                     <option value="Railings">Railings (Staircase, Terrace)</option>
                     <option value="Metal Doors">Metal Doors & Safety Doors</option>
                     <option value="Iron Stands">Iron Stands (Water Tank, AC, Machinery)</option>
-                    <option value="Welding Works">Welding Works (Arc, Gas Joinery)</option>
+                    <option value="Welding Works">Welding Works (Electric Arc Welding & Joinery)</option>
                     <option value="Iron Repair Works">Iron Repair Works (Hinges, Re-alignment)</option>
                     <option value="Custom Iron Fabrication">Custom Iron Fabrication (Bespoke)</option>
                     <option value="Residential Iron Works">Residential Iron Works</option>
@@ -271,7 +271,7 @@ export const ContactSection: React.FC = () => {
                   type="submit"
                   className="w-full flex items-center justify-center py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all active:scale-[0.98]"
                 >
-                  <MessageCircle className="w-5 h-5 mr-2 fill-current" />
+                  <WhatsAppIcon className="w-5 h-5 mr-2" />
                   Send Instant Enquiry on WhatsApp (+91 95532 17643)
                 </button>
 

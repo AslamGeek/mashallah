@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Clock, MapPin, Menu, X, Hammer } from 'lucide-react';
+import { Phone, Clock, MapPin, Menu, X, Hammer } from 'lucide-react';
 import { BUSINESS_INFO, getBusinessHoursStatus, generateWhatsAppUrl } from '../data/content';
 import { BusinessHoursState } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -151,7 +152,7 @@ export const Header: React.FC = () => {
               className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-all shadow-md hover:shadow-emerald-600/30"
               title="WhatsApp enquiry"
             >
-              <MessageCircle className="w-4 h-4 mr-1.5 fill-current" />
+              <WhatsAppIcon className="w-4 h-4 mr-1.5" />
               <span>WhatsApp</span>
             </a>
           </div>
@@ -223,7 +224,7 @@ export const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="flex items-center justify-center py-2.5 px-4 rounded-lg bg-emerald-600 text-white font-bold text-sm shadow-sm"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
+              <WhatsAppIcon className="w-4 h-4 mr-2" />
               Chat on WhatsApp
             </a>
           </div>

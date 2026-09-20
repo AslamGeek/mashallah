@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -44,15 +45,12 @@ export const FloatingWhatsApp: React.FC = () => {
         href={generateWhatsAppUrl()}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-2xl hover:shadow-emerald-600/50 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-400/40"
+        className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl hover:shadow-emerald-600/40 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-400/40"
         aria-label="Chat with Mashallah Welding Works on WhatsApp"
       >
-        {/* Radar ping ring */}
-        <span className="absolute -inset-1 rounded-full bg-emerald-500/30 animate-ping pointer-events-none" />
+        <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8" />
 
-        <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-current" />
-
-        {/* Small verified dot */}
+        {/* Small status dot */}
         <span className="absolute top-1 right-1 w-3.5 h-3.5 bg-amber-400 rounded-full border-2 border-stone-900" />
       </a>
     </div>
