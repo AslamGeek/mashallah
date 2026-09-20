@@ -1,4 +1,4 @@
-import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem } from '../types';
+import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem, GalleryCategoryConfig } from '../types';
 
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',
@@ -117,12 +117,22 @@ export const SERVICES_LIST: ServiceItem[] = [
   },
 ];
 
+export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
+  { slug: 'gates-doors', label: 'Steel Gates & Doors' },
+  { slug: 'window-safety-grills', label: 'Window & Safety Grills' },
+  { slug: 'railings-staircases', label: 'Railings & Staircases' },
+  { slug: 'sheds-roofing', label: 'Sheds & Roofing' },
+  { slug: 'steel-racks-stands', label: 'Steel Racks & Stands' },
+  { slug: 'welding-repairs', label: 'Welding Repairs' },
+  { slug: 'custom-fabrication', label: 'Custom Fabrication' },
+];
+
 export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-1',
     title: 'Modern Geometric Main Entrance Gate',
-    category: 'gates',
-    categoryLabel: 'Gates',
+    category: 'gates-doors',
+    categoryLabel: 'Steel Gates & Doors',
     imageUrl: 'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1200&auto=format&fit=crop',
     description: 'Heavy-gauge mild steel entrance gate with clean geometric pattern, integrated pedestrian access door, and high-gloss anti-rust coating.',
     specifications: '14ft x 7ft • Heavy L-Angle Frame • 16-Gauge MS Sheet • Heavy Bearings',
@@ -130,8 +140,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-2',
     title: 'Ornamental Window Safety Grills',
-    category: 'grills',
-    categoryLabel: 'Grills',
+    category: 'window-safety-grills',
+    categoryLabel: 'Window & Safety Grills',
     imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop',
     description: 'Solid square bar safety grills with decorative scrollwork designed for home ventilation, maximum light, and burglar deterrence.',
     specifications: '12mm Solid MS Square Bar • Zinc Chromate Primer • Deep Anchors',
@@ -139,8 +149,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-3',
     title: 'Architectural Staircase & Balcony Railings',
-    category: 'railings',
-    categoryLabel: 'Railings',
+    category: 'railings-staircases',
+    categoryLabel: 'Railings & Staircases',
     imageUrl: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1200&auto=format&fit=crop',
     description: 'Ergonomically designed internal and external staircase handrails crafted for strong grip, smooth curves, and seamless welds.',
     specifications: 'Tubular Handrail • Vertical Spindle Bar Guard • Heavy Base Plate Fasteners',
@@ -148,8 +158,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-4',
     title: 'Heavy Metal Security & Grill Door',
-    category: 'doors',
-    categoryLabel: 'Doors',
+    category: 'gates-doors',
+    categoryLabel: 'Steel Gates & Doors',
     imageUrl: 'https://images.unsplash.com/photo-1582037928769-181f2644ecb7?q=80&w=1200&auto=format&fit=crop',
     description: 'Secondary safety door with double lock reinforcement, high-strength expanded metal mesh, and heavy-duty greaseable hinges.',
     specifications: '3.5ft x 7ft • Box Frame Structure • Multi-Point Godrej Lock Mount',
@@ -157,8 +167,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-5',
     title: 'Heavy-Duty Water Tank & AC Stand',
-    category: 'stands',
-    categoryLabel: 'Stands',
+    category: 'steel-racks-stands',
+    categoryLabel: 'Steel Racks & Stands',
     imageUrl: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1200&auto=format&fit=crop',
     description: 'Four-leg cross-braced structural iron stand built to support 1000L rooftop water tanks and commercial outdoor AC chiller units.',
     specifications: '40x40x5mm Heavy Angle Iron • Cross-Tie Gusset Plates • Reinforced Structural Bracing',
@@ -166,7 +176,7 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-6',
     title: 'Precision Arc & Structural Welding',
-    category: 'custom',
+    category: 'custom-fabrication',
     categoryLabel: 'Custom Fabrication',
     imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop',
     description: 'Continuous seam welding on structural framework for small industrial sheds with spotless slag cleaning and joint stress relief.',
@@ -175,8 +185,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-7',
     title: 'Compound Wall Security Grills & Spikes',
-    category: 'grills',
-    categoryLabel: 'Grills',
+    category: 'window-safety-grills',
+    categoryLabel: 'Window & Safety Grills',
     imageUrl: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?q=80&w=1200&auto=format&fit=crop',
     description: 'Boundary wall perimeter grill extensions fitted with sharp spearhead tops to secure residential complexes and godowns.',
     specifications: 'Modular 10ft Sections • Wall Expansion Bolts • Dual Primer Protection',
@@ -184,8 +194,8 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-8',
     title: 'Gate Re-alignment & Welding Repair',
-    category: 'repairs',
-    categoryLabel: 'Repair Works',
+    category: 'welding-repairs',
+    categoryLabel: 'Welding Repairs',
     imageUrl: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop',
     description: 'On-site rehabilitation of sagging commercial gate: installed reinforced pivot pins, replaced rusted bottom channel, and re-welded rollers.',
     specifications: 'Completed On-Site • Realigned Sagging Frame & Reinforced Weld Joints',
@@ -193,11 +203,21 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-9',
     title: 'Small Industrial Shed Truss & Frame',
-    category: 'custom',
-    categoryLabel: 'Custom Fabrication',
+    category: 'sheds-roofing',
+    categoryLabel: 'Sheds & Roofing',
     imageUrl: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop',
     description: 'Engineered steel roof trusses and purlin brackets fabricated for Auto Nagar workshop expansion and material storage shed.',
     specifications: 'Tubular Steel & C-Channels • Pre-drilled Anchor Holes • Red Oxide Primer',
+  },
+  {
+    id: 'proj-10',
+    title: 'Custom Steel Storage Rack',
+    category: 'steel-racks-stands',
+    categoryLabel: 'Steel Racks & Stands',
+    imageUrl: '/images/projects/custom-steel-storage-rack.webp',
+    imageAlt: 'Custom steel storage rack fabricated by Mashallah Welding Works',
+    description: 'Custom-fabricated steel storage rack for indoor storage.',
+    specifications: 'Custom Welded Steel Frame • Multi-Tier Indoor Storage',
   },
 ];
 

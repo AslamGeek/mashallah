@@ -7,12 +7,27 @@ export interface ServiceItem {
   iconName: string;
 }
 
+export type GalleryCategorySlug =
+  | 'gates-doors'
+  | 'window-safety-grills'
+  | 'railings-staircases'
+  | 'sheds-roofing'
+  | 'steel-racks-stands'
+  | 'welding-repairs'
+  | 'custom-fabrication';
+
+export interface GalleryCategoryConfig {
+  slug: GalleryCategorySlug;
+  label: string;
+}
+
 export interface GalleryProject {
   id: string;
   title: string;
-  category: 'gates' | 'grills' | 'railings' | 'doors' | 'stands' | 'repairs' | 'custom';
+  category: GalleryCategorySlug;
   categoryLabel: string;
   imageUrl: string;
+  imageAlt?: string;
   description: string;
   specifications: string;
 }

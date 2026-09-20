@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Maximize2, X, Tag } from 'lucide-react';
-import { GALLERY_ITEMS, generateWhatsAppUrl } from '../data/content';
+import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -13,15 +13,9 @@ export const Gallery: React.FC = () => {
   const modalContainerRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'gates', label: 'Gates' },
-    { id: 'grills', label: 'Grills' },
-    { id: 'railings', label: 'Railings' },
-    { id: 'doors', label: 'Doors' },
-    { id: 'stands', label: 'Stands' },
-    { id: 'repairs', label: 'Repair Works' },
-    { id: 'custom', label: 'Custom Fabrication' },
+  const categoryTabs = [
+    { slug: 'all', label: 'All Projects' },
+    ...GALLERY_CATEGORIES,
   ];
 
   const filteredItems = GALLERY_ITEMS.filter((item) => {
@@ -116,95 +110,122 @@ export const Gallery: React.FC = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
-                selectedCategory === cat.id
-                  ? 'bg-steel text-white shadow-xs'
-                  : 'bg-white text-dark-text hover:bg-stone-200/90 border border-light-border'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((project: GalleryProject) => (
-            <article
-              key={project.id}
-              id={`gallery-card-${project.id}`}
-              className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group"
-            >
-              {/* Keyboard-accessible trigger button wrapping the preview */}
+        <div
+          role="group"
+          aria-label="Filter projects by category"
+          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-10"
+        >
+          {categoryTabs.map((cat) => {
+            const isActive = selectedCategory === cat.slug;
+            return (
               <button
+                key={cat.slug}
                 type="button"
-                id={`gallery-item-${project.id}`}
-                ref={(el) => {
-                  triggerRefs.current[project.id] = el;
-                }}
-                onClick={() => openLightbox(project)}
-                className="w-full text-left flex flex-col flex-grow cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 rounded-t-2xl"
-                aria-haspopup="dialog"
-                aria-label={`View enlarged photo and specifications for ${project.title}`}
+                onClick={() => setSelectedCategory(cat.slug)}
+                aria-pressed={isActive}
+                className={`px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 ${
+                  isActive
+                    ? 'bg-steel text-white shadow-xs'
+                    : 'bg-white text-dark-text hover:bg-stone-200/90 border border-light-border'
+                }`}
               >
-                {/* Image Container with Hover Overlay */}
-                <div className="relative aspect-[4/3] bg-black overflow-hidden w-full">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-gunmetal/95 text-stone-100 font-semibold text-xs backdrop-blur-xs border border-dark-border shadow-xs">
-                      <Maximize2 className="w-4 h-4 mr-1.5 text-copper" />
-                      Enlarge Photo
-                    </span>
-                  </div>
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60">
-                      <Tag className="w-3 h-3 mr-1 text-copper" />
-                      {project.categoryLabel}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Card Meta Content */}
-                <div className="p-5 pb-2 flex flex-col flex-grow w-full">
-                  <h3 className="font-bold text-dark-text text-lg mb-2 group-hover:text-copper transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2 flex-grow">
-                    {project.description}
-                  </p>
-                </div>
+                {cat.label}
               </button>
-
-              {/* Card Footer with Technical Specifications and WhatsApp Enquire Link */}
-              <div className="px-5 pb-5 pt-2 flex flex-col justify-end">
-                <div className="pt-3 border-t border-light-border/60 flex items-center justify-between text-xs">
-                  <span className="text-stone-500 font-medium truncate max-w-[170px] sm:max-w-[200px]">
-                    {project.specifications}
-                  </span>
-                  <a
-                    href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
-                  >
-                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
-                    Enquire
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Empty Category State */}
+        {filteredItems.length === 0 ? (
+          <div className="text-center py-16 px-4 bg-white rounded-2xl border border-light-border max-w-md mx-auto shadow-xs">
+            <p className="text-dark-text font-bold text-lg mb-1.5">No projects in this category yet</p>
+            <p className="text-stone-600 text-sm mb-5">
+              We fabricate custom units to order. Contact Abdul Sattar for immediate requirements.
+            </p>
+            <button
+              type="button"
+              onClick={() => setSelectedCategory('all')}
+              className="inline-flex items-center px-4 py-2 rounded-xl bg-steel text-white font-semibold text-xs sm:text-sm hover:bg-gunmetal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+            >
+              Show All Projects
+            </button>
+          </div>
+        ) : (
+          /* Projects Grid */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredItems.map((project: GalleryProject) => (
+              <article
+                key={project.id}
+                id={`gallery-card-${project.id}`}
+                className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group"
+              >
+                {/* Keyboard-accessible trigger button wrapping the preview */}
+                <button
+                  type="button"
+                  id={`gallery-item-${project.id}`}
+                  ref={(el) => {
+                    triggerRefs.current[project.id] = el;
+                  }}
+                  onClick={() => openLightbox(project)}
+                  className="w-full text-left flex flex-col flex-grow cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 rounded-t-2xl"
+                  aria-haspopup="dialog"
+                  aria-label={`View enlarged photo and specifications for ${project.title}`}
+                >
+                  {/* Image Container with Hover Overlay */}
+                  <div className="relative aspect-[4/3] bg-black overflow-hidden w-full">
+                    <img
+                      src={project.imageUrl}
+                      alt={project.imageAlt || project.title}
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-gunmetal/95 text-stone-100 font-semibold text-xs backdrop-blur-xs border border-dark-border shadow-xs">
+                        <Maximize2 className="w-4 h-4 mr-1.5 text-copper" />
+                        Enlarge Photo
+                      </span>
+                    </div>
+                    <div className="absolute top-3 left-3">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60">
+                        <Tag className="w-3 h-3 mr-1 text-copper" />
+                        {project.categoryLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Meta Content */}
+                  <div className="p-5 pb-2 flex flex-col flex-grow w-full">
+                    <h3 className="font-bold text-dark-text text-lg mb-2 group-hover:text-copper transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2 flex-grow">
+                      {project.description}
+                    </p>
+                  </div>
+                </button>
+
+                {/* Card Footer with Technical Specifications and WhatsApp Enquire Link */}
+                <div className="px-5 pb-5 pt-2 flex flex-col justify-end">
+                  <div className="pt-3 border-t border-light-border/60 flex items-center justify-between text-xs">
+                    <span className="text-stone-500 font-medium truncate max-w-[170px] sm:max-w-[200px]">
+                      {project.specifications}
+                    </span>
+                    <a
+                      href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                    >
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
+                      Enquire
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
 
         {/* Lightbox Zoom Modal */}
         {activeModalProject && (
@@ -238,7 +259,8 @@ export const Gallery: React.FC = () => {
                 <div className="md:col-span-7 bg-black flex items-center justify-center p-2 sm:p-4">
                   <img
                     src={activeModalProject.imageUrl}
-                    alt={activeModalProject.title}
+                    alt={activeModalProject.imageAlt || activeModalProject.title}
+                    referrerPolicy="no-referrer"
                     className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
                   />
                 </div>
