@@ -1,6 +1,90 @@
-# Pages CMS configuration (https://pagescms.org)
-# Single canonical image directory for all website images
-
 media:
   input: public/images
   output: /images
+  rename: safe
+  categories:
+    - image
+  extensions:
+    - webp
+    - avif
+    - jpg
+    - jpeg
+    - png
+
+content:
+  - name: projects
+    label: Projects
+    type: collection
+    path: content/projects
+    format: json
+
+    filename:
+      template: "{title}.json"
+      field: false
+
+    fields:
+      - name: title
+        label: Project Title
+        type: string
+        required: true
+
+      - name: image
+        label: Project Image
+        type: image
+        required: true
+        description: Upload or select the exact project image.
+
+      - name: alt
+        label: Image Alt Text
+        type: string
+        required: true
+        description: Short, accurate description of what is visible in the image.
+
+      - name: description
+        label: Description
+        type: text
+        required: true
+
+      - name: specifications
+        label: Technical Specifications
+        type: string
+        list: true
+
+      - name: category
+        label: Category
+        type: string
+
+      - name: location
+        label: Location
+        type: string
+
+      - name: featured
+        label: Featured
+        type: boolean
+
+      - name: order
+        label: Display Order
+        type: number
+
+    view:
+      fields:
+        - title
+        - category
+        - featured
+        - order
+
+      primary: title
+
+      sort:
+        - order
+        - title
+
+      search:
+        - title
+        - description
+        - category
+        - location
+
+      default:
+        sort: order
+        order: asc
