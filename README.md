@@ -80,12 +80,16 @@ This includes:
 - Services, categories, and technical features
 - Frequently asked questions (FAQs)
 
-### Replacing Temporary Image Placeholders
+### Image Storage Convention & CMS Uploads
 
-The project currently uses curated photography placeholders for gallery and hero visuals. When real on-site workshop photos and completed customer installations are ready:
-1. Place the optimized image files in `public/` (or host them via a CDN/cloud storage).
-2. Update the `imageUrl` fields in `GALLERY_ITEMS` inside `src/data/content.ts`.
-3. Update the `og:image` and `twitter:image` tags in `index.html`.
+All website images are consolidated under the canonical root `public/images/`:
+- `public/images/branding/` — Logos and brand imagery
+- `public/images/ui/` — Permanent UI/decorative imagery
+- `public/images/services/` — Service-related images
+- `public/images/portfolio/` — Real customer/project photos managed through Pages CMS
+- `public/images/projects/` — Existing project assets
+
+Images are referenced in code using root-relative URLs (e.g. `/images/portfolio/...`). Pages CMS is configured via `.pages.yml` with media input pointing to `public/images/portfolio` and output to `/images/portfolio`.
 
 ## Production Build
 
