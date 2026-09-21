@@ -28,6 +28,7 @@ export interface GalleryProject {
   categoryLabel: string;
   imageUrl: string;
   imageAlt?: string;
+  srcSetWebp?: string;
   description: string;
   specifications: string;
 }

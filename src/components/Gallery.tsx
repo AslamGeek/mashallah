@@ -153,7 +153,7 @@ export const Gallery: React.FC = () => {
         ) : (
           /* Projects Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((project: GalleryProject) => (
+            {filteredItems.map((project: GalleryProject, idx: number) => (
               <article
                 key={project.id}
                 id={`gallery-card-${project.id}`}
@@ -173,13 +173,42 @@ export const Gallery: React.FC = () => {
                 >
                   {/* Image Container with Hover Overlay */}
                   <div className="relative aspect-[4/3] bg-black overflow-hidden w-full">
-                    <img
-                      src={project.imageUrl}
-                      alt={project.imageAlt || project.title}
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                    {project.srcSetWebp ? (
+                      <picture className="w-full h-full block">
+                        <source
+                          type="image/webp"
+                          srcSet={project.srcSetWebp}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <img
+                          src={project.imageUrl}
+                          alt={project.imageAlt || project.title}
+                          width={1200}
+                          height={896}
+                          referrerPolicy="no-referrer"
+                          loading={idx < 2 ? 'eager' : 'lazy'}
+                          decoding="async"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                              target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur.jpg';
+                            }
+                          }}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </picture>
+                    ) : (
+                      <img
+                        src={project.imageUrl}
+                        alt={project.imageAlt || project.title}
+                        width={1200}
+                        height={900}
+                        referrerPolicy="no-referrer"
+                        loading={idx < 2 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-gunmetal/95 text-stone-100 font-semibold text-xs backdrop-blur-xs border border-dark-border shadow-xs">
                         <Maximize2 className="w-4 h-4 mr-1.5 text-copper" />
@@ -257,12 +286,37 @@ export const Gallery: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-12">
                 {/* Large Project Image */}
                 <div className="md:col-span-7 bg-black flex items-center justify-center p-2 sm:p-4">
-                  <img
-                    src={activeModalProject.imageUrl}
-                    alt={activeModalProject.imageAlt || activeModalProject.title}
-                    referrerPolicy="no-referrer"
-                    className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
-                  />
+                  {activeModalProject.srcSetWebp ? (
+                    <picture className="flex items-center justify-center">
+                      <source
+                        type="image/webp"
+                        srcSet={activeModalProject.srcSetWebp}
+                        sizes="(max-width: 768px) 100vw, 800px"
+                      />
+                      <img
+                        src={activeModalProject.imageUrl}
+                        alt={activeModalProject.imageAlt || activeModalProject.title}
+                        width={1200}
+                        height={896}
+                        referrerPolicy="no-referrer"
+                        decoding="async"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (activeModalProject.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                            target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur.jpg';
+                          }
+                        }}
+                        className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
+                      />
+                    </picture>
+                  ) : (
+                    <img
+                      src={activeModalProject.imageUrl}
+                      alt={activeModalProject.imageAlt || activeModalProject.title}
+                      referrerPolicy="no-referrer"
+                      className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
+                    />
+                  )}
                 </div>
 
                 {/* Details Sidebar */}

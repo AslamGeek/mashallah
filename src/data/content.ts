@@ -130,21 +130,23 @@ export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
 export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-1',
+    title: 'Copper-Finish Window Safety Grill with S-Curve Design',
+    category: 'window-safety-grills',
+    categoryLabel: 'Window & Safety Grills',
+    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur.webp',
+    imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
+    srcSetWebp: '/images/projects/window-safety-grill-s-curve-design-proddatur-480.webp 480w, /images/projects/window-safety-grill-s-curve-design-proddatur-768.webp 768w, /images/projects/window-safety-grill-s-curve-design-proddatur-1200.webp 1200w',
+    description: 'Double-panel residential window safety grill crafted with copper metallic finish, twin S-curve vertical bars, spherical finial beads, and flower rosettes mounted in wooden and masonry framing.',
+    specifications: 'Double-Panel Fit • Twin S-Curve Bars • Flower Rosettes • Copper Protective Coating • Proddatur Workshop',
+  },
+  {
+    id: 'proj-2',
     title: 'Modern Geometric Main Entrance Gate',
     category: 'gates-doors',
     categoryLabel: 'Steel Gates & Doors',
     imageUrl: 'https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=1200&auto=format&fit=crop',
     description: 'Heavy-gauge mild steel entrance gate with clean geometric pattern, integrated pedestrian access door, and high-gloss anti-rust coating.',
     specifications: '14ft x 7ft • Heavy L-Angle Frame • 16-Gauge MS Sheet • Heavy Bearings',
-  },
-  {
-    id: 'proj-2',
-    title: 'Ornamental Window Safety Grills',
-    category: 'window-safety-grills',
-    categoryLabel: 'Window & Safety Grills',
-    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop',
-    description: 'Solid square bar safety grills with decorative scrollwork designed for home ventilation, maximum light, and burglar deterrence.',
-    specifications: '12mm Solid MS Square Bar • Zinc Chromate Primer • Deep Anchors',
   },
   {
     id: 'proj-3',
@@ -231,8 +233,9 @@ export const PINTEREST_BOARDS = [
   {
     title: 'Window Safety Grill Patterns',
     count: '45+ Patterns',
-    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop',
-    description: 'Minimalist vertical bars, floral motifs, and geometric grill concepts for Indian homes.',
+    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur-768.webp',
+    imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
+    description: 'Twin S-curve bars, flower rosettes, and copper-finish window safety grill concepts for homes.',
   },
   {
     title: 'Staircase & Balcony Railing Ideas',

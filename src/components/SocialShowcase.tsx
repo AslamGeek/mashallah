@@ -30,8 +30,16 @@ export const SocialShowcase: React.FC = () => {
               <div className="relative aspect-[16/10] overflow-hidden bg-black">
                 <img
                   src={board.imageUrl}
-                  alt={board.title}
+                  alt={board.imageAlt || board.title}
                   loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (board.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                      target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur.jpg';
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-3 right-3 bg-gunmetal/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center border border-dark-border">
