@@ -1,4 +1,7 @@
-import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem, GalleryCategoryConfig } from '../types';
+import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem } from '../types';
+import { loadCmsProjects, GALLERY_CATEGORIES } from './projects';
+
+export { GALLERY_CATEGORIES } from './projects';
 
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',
@@ -117,17 +120,9 @@ export const SERVICES_LIST: ServiceItem[] = [
   },
 ];
 
-export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
-  { slug: 'gates-doors', label: 'Steel Gates & Doors' },
-  { slug: 'window-safety-grills', label: 'Window & Safety Grills' },
-  { slug: 'railings-staircases', label: 'Railings & Staircases' },
-  { slug: 'sheds-roofing', label: 'Sheds & Roofing' },
-  { slug: 'steel-racks-stands', label: 'Steel Racks & Stands' },
-  { slug: 'welding-repairs', label: 'Welding Repairs' },
-  { slug: 'custom-fabrication', label: 'Custom Fabrication' },
-];
+const cmsProjects = loadCmsProjects();
 
-export const GALLERY_ITEMS: GalleryProject[] = [
+export const FALLBACK_GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-1',
     title: 'Copper-Finish Window Safety Grill with Twin S-Curve Design',
@@ -222,6 +217,9 @@ export const GALLERY_ITEMS: GalleryProject[] = [
     specifications: 'Custom Welded Steel Frame • Multi-Tier Reinforced Shelves • Heavy Gauge MS Angle',
   },
 ];
+
+export const CMS_PROJECTS: GalleryProject[] = cmsProjects;
+export const GALLERY_ITEMS: GalleryProject[] = cmsProjects.length > 0 ? cmsProjects : FALLBACK_GALLERY_ITEMS;
 
 export const PINTEREST_BOARDS = [
   {
