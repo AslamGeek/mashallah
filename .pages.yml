@@ -1,6 +1,6 @@
 # Pages CMS configuration (https://pagescms.org)
-# Canonical image root for CMS-managed portfolio photos
+# Single canonical image directory for all website images
 
 media:
-  input: public/images/portfolio
-  output: /images/portfolio
+  input: public/images
+  output: /images

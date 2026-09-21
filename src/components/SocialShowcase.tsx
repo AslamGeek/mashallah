@@ -37,7 +37,7 @@ export const SocialShowcase: React.FC = () => {
                   onError={(e) => {
                     const target = e.currentTarget;
                     if (board.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                      target.src = '/images/portfolio/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                      target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
                     }
                   }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

@@ -82,14 +82,10 @@ This includes:
 
 ### Image Storage Convention & CMS Uploads
 
-All website images are consolidated under the canonical root `public/images/`:
-- `public/images/branding/` — Logos and brand imagery
-- `public/images/ui/` — Permanent UI/decorative imagery
-- `public/images/services/` — Service-related images
-- `public/images/portfolio/` — Real customer/project photos managed through Pages CMS
-- `public/images/projects/` — Existing project assets
+All website images are stored directly in the single canonical directory `public/images/` without category subdirectories:
+- `public/images/` — Single canonical storage for all website assets, logos, and real project photos
 
-Images are referenced in code using root-relative URLs (e.g. `/images/portfolio/...`). Pages CMS is configured via `.pages.yml` with media input pointing to `public/images/portfolio` and output to `/images/portfolio`.
+Images are referenced in code using root-relative URLs (e.g. `/images/project-name.webp`). Pages CMS is configured via `.pages.yml` with media input pointing directly to `public/images` and output to `/images`.
 
 ## Production Build
 
