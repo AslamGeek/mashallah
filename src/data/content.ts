@@ -130,14 +130,14 @@ export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
 export const GALLERY_ITEMS: GalleryProject[] = [
   {
     id: 'proj-1',
-    title: 'Copper-Finish Window Safety Grill with S-Curve Design',
+    title: 'Copper-Finish Window Safety Grill with Twin S-Curve Design',
     category: 'window-safety-grills',
     categoryLabel: 'Window & Safety Grills',
     imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur.webp',
     imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
     srcSetWebp: '/images/projects/window-safety-grill-s-curve-design-proddatur-480.webp 480w, /images/projects/window-safety-grill-s-curve-design-proddatur-768.webp 768w, /images/projects/window-safety-grill-s-curve-design-proddatur-1200.webp 1200w',
-    description: 'Double-panel residential window safety grill crafted with copper metallic finish, twin S-curve vertical bars, spherical finial beads, and flower rosettes mounted in wooden and masonry framing.',
-    specifications: 'Double-Panel Fit • Twin S-Curve Bars • Flower Rosettes • Copper Protective Coating • Proddatur Workshop',
+    description: 'Double-panel residential window safety grill featuring a warm copper-finish metal frame, symmetrical twin S-curve vertical bars, spherical finial beads, and decorative flower rosettes, installed within a light wooden frame and masonry wall.',
+    specifications: 'Double-Panel Design • Twin S-Curve Bars • Spherical Finials • Decorative Flower Rosettes • Copper-Finish Coating • Residential Window Safety Grill',
   },
   {
     id: 'proj-2',
@@ -235,7 +235,7 @@ export const PINTEREST_BOARDS = [
     count: '45+ Patterns',
     imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur-768.webp',
     imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
-    description: 'Twin S-curve bars, flower rosettes, and copper-finish window safety grill concepts for homes.',
+    description: 'Double-panel residential window safety grill with symmetrical twin S-curve bars, spherical finials, and decorative flower rosettes in copper finish.',
   },
   {
     title: 'Staircase & Balcony Railing Ideas',
