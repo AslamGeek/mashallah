@@ -180,7 +180,20 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       {/* 1. HERO (OFFER) */}
       {/* ========================================================================= */}
-      <Hero />
+      <Hero
+        onImageClick={() =>
+          setActiveModalProject({
+            id: 'modern-double-leaf-steel-main-gate-gold-panels',
+            title: 'Modern Double-Leaf Steel Main Gate with Gold Decorative Panels',
+            category: 'gates-doors',
+            categoryLabel: 'Steel Gates & Doors',
+            imageUrl: '/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp',
+            imageAlt: 'Modern double-leaf steel main gate with gold decorative panels in Proddatur',
+            description: 'Double-leaf entrance gate fabricated with heavy mild steel framing, ornamental gold-accented steel panels, reinforced hinges, and weather-resistant anti-rust primer in Auto Nagar, Proddatur.',
+            specifications: 'Heavy Mild Steel • Gold Accent Inlay Panels • Reinforced Heavy Hinges • Anti-Rust Primer',
+          })
+        }
+      />
 
       {/* ========================================================================= */}
       {/* 2. PROOF (SHOW WORK EARLY - REAL PROJECTS BEFORE BUSINESS DETAILS) */}
@@ -205,7 +218,7 @@ export const HomePage: React.FC = () => {
                 Real Fabrication Work in <span className="text-copper">Proddatur</span>
               </h2>
               <p className="text-sm sm:text-base text-muted-text leading-relaxed">
-                Genuine custom iron gates, window safety grills, staircase railings, and school furniture built with solid steel and anti-rust primer in our Auto Nagar workshop.
+                Genuine custom iron gates, window safety grills, staircase railings, and school furniture built with solid steel and anti-rust primer in our Auto Nagar workshop. Tap any photo to enlarge.
               </p>
             </div>
             <Link
@@ -228,7 +241,7 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setActiveModalProject(project)}
-                  className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                  className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block"
                   aria-label={`Enlarge photo of ${project.title}`}
                 >
                   <img
@@ -248,14 +261,15 @@ export const HomePage: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-dark-bg/90 backdrop-blur-xs text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border">
                     {project.categoryLabel || project.category.replace(/-/g, ' ')}
                   </div>
-                  {/* Enlarge overlay icon */}
-                  <div className="absolute bottom-3 right-3 p-2 rounded-lg bg-dark-bg/85 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-4 h-4 text-copper" />
+                  {/* Obvious Tap Indicator for Mobile & Low-tech Comfort */}
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
+                    <Maximize2 className="w-3 h-3 text-copper" />
+                    <span>Tap photo</span>
                   </div>
                 </button>
 
                 {/* Card Content */}
-                <div className="p-5 flex flex-col flex-grow justify-between">
+                <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
                   <div className="space-y-2">
                     <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-copper transition-colors leading-snug">
                       {project.title}
@@ -270,14 +284,15 @@ export const HomePage: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Actions */}
-                  <div className="pt-4 mt-3 border-t border-dark-border flex items-center justify-between gap-2">
+                  {/* Actions: Large touch targets for low-tech mobile comfort */}
+                  <div className="pt-3 border-t border-dark-border flex items-center justify-between gap-2.5">
                     <button
                       type="button"
                       onClick={() => setActiveModalProject(project)}
-                      className="text-xs text-stone-300 hover:text-white font-medium inline-flex items-center cursor-pointer"
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors cursor-pointer min-h-[44px]"
                     >
-                      <span>View details</span>
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper" />
+                      <span>View Photo</span>
                     </button>
                     <a
                       href={generateWhatsAppUrl(
@@ -285,10 +300,10 @@ export const HomePage: React.FC = () => {
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-800/50 px-3 py-1.5 rounded-lg transition-colors"
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px]"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                      <span>Quote</span>
+                      <span>WhatsApp Quote</span>
                     </a>
                   </div>
                 </div>
@@ -309,10 +324,16 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Lightbox Modal for Photo Inspection */}
+      {/* Lightbox Modal for Photo Inspection with Swipe & Navigation */}
       <ProjectLightbox
         project={activeModalProject}
+        items={
+          activeModalProject && featuredProjects.some((p) => p.id === activeModalProject.id)
+            ? featuredProjects
+            : undefined
+        }
         onClose={() => setActiveModalProject(null)}
+        onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
       />
 
       {/* ========================================================================= */}

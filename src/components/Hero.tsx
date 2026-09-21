@@ -1,9 +1,13 @@
 import React from 'react';
-import { Phone, Navigation, CheckCircle2, MapPin } from 'lucide-react';
+import { Phone, Navigation, CheckCircle2, MapPin, Maximize2 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
-export const Hero: React.FC = () => {
+export interface HeroProps {
+  onImageClick?: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onImageClick }) => {
   return (
     <section
       id="home"
@@ -97,7 +101,12 @@ export const Hero: React.FC = () => {
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl bg-gunmetal border border-dark-border p-2 sm:p-3 shadow-xl overflow-hidden group">
-              <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black">
+              <button
+                type="button"
+                onClick={onImageClick}
+                className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block"
+                aria-label="Enlarge photo of modern double-leaf steel main gate"
+              >
                 <img
                   src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
                   alt="Modern double-leaf steel main gate with gold decorative panels in Proddatur"
@@ -108,11 +117,15 @@ export const Hero: React.FC = () => {
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1000&auto=format&fit=crop';
                   }}
                 />
+                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
+                  <Maximize2 className="w-3 h-3 text-copper" />
+                  <span>Tap to enlarge</span>
+                </div>
                 <div className="absolute bottom-3 left-3 right-3 bg-dark-bg/85 backdrop-blur-xs p-2.5 rounded-lg border border-dark-border text-xs text-stone-200 flex items-center justify-between">
                   <span className="font-semibold text-white">Fabricated in Auto Nagar</span>
                   <span className="text-[11px] text-copper font-medium">Custom Main Gate</span>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>

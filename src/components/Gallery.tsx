@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { Maximize2, X, Tag } from 'lucide-react';
+import { Maximize2, Tag } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ProjectLightbox } from './ProjectLightbox';
 
 interface GalleryProps {
   className?: string;
@@ -35,8 +36,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
 
   const lastTriggerRef = useRef<HTMLElement | null>(null);
   const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
-  const modalContainerRef = useRef<HTMLDivElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const categoryTabs = [
     { slug: 'all', label: 'All Projects' },
@@ -68,72 +67,15 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
   const openLightbox = (project: GalleryProject) => {
     lastTriggerRef.current = (document.activeElement as HTMLElement) || triggerRefs.current[project.id] || null;
     setActiveModalProject(project);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setActiveModalProject(null);
-    document.body.style.overflow = '';
     // Restore focus to the gallery item button that opened the modal
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
   };
-
-  // Move focus into the modal once opened
-  useEffect(() => {
-    if (activeModalProject) {
-      const timer = requestAnimationFrame(() => {
-        closeButtonRef.current?.focus();
-      });
-      return () => cancelAnimationFrame(timer);
-    }
-  }, [activeModalProject]);
-
-  // Handle Escape key and focus trapping inside the modal dialog
-  useEffect(() => {
-    if (!activeModalProject) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeLightbox();
-        return;
-      }
-
-      if (e.key === 'Tab' && modalContainerRef.current) {
-        const focusable = modalContainerRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusable.length === 0) return;
-
-        const firstElement = focusable[0];
-        const lastElement = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeModalProject]);
-
-  // Reset body overflow if component unmounts
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
 
   return (
     <section id="gallery" className={`${className} bg-light-bg text-dark-text border-b border-light-border`}>
@@ -278,14 +220,12 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
-                    <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="inline-flex items-center px-3.5 py-2 rounded-lg bg-gunmetal/95 text-stone-100 font-semibold text-xs backdrop-blur-xs border border-dark-border shadow-xs">
-                        <Maximize2 className="w-4 h-4 mr-1.5 text-copper" />
-                        Enlarge Photo
-                      </span>
+                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
+                      <Maximize2 className="w-3.5 h-3.5 text-copper" />
+                      <span>Tap to enlarge</span>
                     </div>
                     <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60">
                         <Tag className="w-3 h-3 mr-1 text-copper" />
                         {project.categoryLabel}
                       </span>
@@ -303,20 +243,28 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                   </div>
                 </button>
 
-                {/* Card Footer with Technical Specifications and WhatsApp Enquire Link */}
-                <div className="px-5 pb-5 pt-2 flex flex-col justify-end">
-                  <div className="pt-3 border-t border-light-border/60 flex items-center justify-between text-xs">
-                    <span className="text-stone-500 font-medium truncate max-w-[170px] sm:max-w-[200px]">
-                      {project.specifications}
-                    </span>
+                {/* Card Footer with Technical Specifications and Direct Action Buttons */}
+                <div className="px-5 pb-5 pt-2 flex flex-col justify-end space-y-3">
+                  <p className="text-stone-500 font-medium text-xs truncate">
+                    <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
+                  </p>
+                  <div className="pt-2.5 border-t border-light-border/60 flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openLightbox(project)}
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors cursor-pointer min-h-[42px]"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper" />
+                      <span>View Photo</span>
+                    </button>
                     <a
                       href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold shrink-0 ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[42px]"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
-                      Enquire
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                      <span>WhatsApp Quote</span>
                     </a>
                   </div>
                 </div>
@@ -325,122 +273,13 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
           </div>
         )}
 
-        {/* Lightbox Zoom Modal */}
-        {activeModalProject && (
-          <div
-            id="gallery-lightbox-modal"
-            className="fixed inset-0 z-60 bg-dark-bg/90 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-150"
-            onClick={closeLightbox}
-          >
-            <div
-              ref={modalContainerRef}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="gallery-modal-title"
-              tabIndex={-1}
-              className="bg-gunmetal text-[#F5F3EE] rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-dark-border shadow-2xl relative focus:outline-none"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-steel text-stone-300 hover:text-white hover:bg-dark-border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-                aria-label="Close project view"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="grid grid-cols-1 md:grid-cols-12">
-                {/* Large Project Image */}
-                <div className="md:col-span-7 bg-black flex items-center justify-center p-2 sm:p-4">
-                  {activeModalProject.srcSetWebp ? (
-                    <picture className="flex items-center justify-center">
-                      <source
-                        type="image/webp"
-                        srcSet={activeModalProject.srcSetWebp}
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                      <img
-                        src={activeModalProject.imageUrl}
-                        alt={activeModalProject.imageAlt || activeModalProject.title}
-                        width={1200}
-                        height={896}
-                        referrerPolicy="no-referrer"
-                        decoding="async"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          if (activeModalProject.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                            target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                          }
-                        }}
-                        className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
-                      />
-                    </picture>
-                  ) : (
-                    <img
-                      src={activeModalProject.imageUrl}
-                      alt={activeModalProject.imageAlt || activeModalProject.title}
-                      referrerPolicy="no-referrer"
-                      className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
-                    />
-                  )}
-                </div>
-
-                {/* Details Sidebar */}
-                <div className="md:col-span-5 p-6 flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <span className="inline-block px-3 py-1 rounded-md bg-steel text-copper border border-dark-border font-semibold text-xs uppercase tracking-wider">
-                      {activeModalProject.categoryLabel}
-                    </span>
-                    <h3 id="gallery-modal-title" className="text-xl sm:text-2xl font-extrabold text-white">
-                      {activeModalProject.title}
-                    </h3>
-                    <p className="text-sm text-stone-300 leading-relaxed">
-                      {activeModalProject.description}
-                    </p>
-
-                    <div className="bg-steel/80 p-3.5 rounded-xl border border-dark-border">
-                      <span className="block text-xs uppercase font-bold text-copper mb-1">
-                        Technical Specifications:
-                      </span>
-                      <p className="text-xs text-stone-300">
-                        {activeModalProject.specifications}
-                      </p>
-                    </div>
-
-                    <div className="text-xs text-muted-text space-y-1">
-                      <p>• Workshop: Auto Nagar, Proddatur, AP</p>
-                      <p>• Custom sizing & on-site installation provided</p>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 border-t border-dark-border space-y-2.5 mt-6">
-                    <a
-                      href={generateWhatsAppUrl(
-                        `Hello Mashallah Welding Works, I like this project: "${activeModalProject.title}". Please share approximate cost and details.`
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-                    >
-                      <WhatsAppIcon className="w-4 h-4 mr-2" />
-                      WhatsApp Us for This Design
-                    </a>
-                    <button
-                      type="button"
-                      onClick={closeLightbox}
-                      className="w-full py-2.5 text-center text-xs font-semibold text-muted-text hover:text-white transition-colors focus:outline-none focus-visible:underline"
-                    >
-                      Close Preview
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Unified Mobile-First Lightbox with Swipe and Touch Navigation */}
+        <ProjectLightbox
+          project={activeModalProject}
+          items={filteredItems}
+          onClose={closeLightbox}
+          onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
+        />
       </div>
     </section>
   );

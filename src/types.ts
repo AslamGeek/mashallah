@@ -33,6 +33,8 @@ export interface GalleryProject {
   srcSetWebp?: string;
   description: string;
   specifications: string;
+  location?: string;
+  whatsappMessage?: string;
 }
 
 export interface BusinessHoursState {
