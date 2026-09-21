@@ -30,7 +30,7 @@ export const AboutPage: React.FC = () => {
       <section className="pt-28 pb-16 bg-light-bg text-dark-text border-b border-light-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
+          <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
               <span>About Mashallah Welding Works</span>
             </div>
@@ -40,6 +40,48 @@ export const AboutPage: React.FC = () => {
             <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
               Reliable, durable, and practical iron fabrication tailored to your exact architectural and structural specifications.
             </p>
+          </div>
+
+          {/* Workshop Showcase Banner */}
+          <div className="mb-14 bg-white rounded-2xl sm:rounded-3xl border border-light-border overflow-hidden shadow-xs">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              <div className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900">
+                <img
+                  src="/images/mashallah-welding-workshop-proddatur.webp"
+                  alt="Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out"
+                  width={1200}
+                  height={800}
+                  className="w-full h-full object-cover object-center"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-gunmetal/90 backdrop-blur-xs text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-dark-border/60 flex items-center space-x-1.5 shadow-md">
+                  <MapPin className="w-3.5 h-3.5 text-copper" />
+                  <span>Auto Nagar, Proddatur</span>
+                </div>
+              </div>
+              <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
+                <div className="space-y-3.5">
+                  <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-copper">
+                    <Wrench className="w-4 h-4" />
+                    <span>Fabrication Facility</span>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-dark-text tracking-tight">
+                    Our Workshop in Auto Nagar
+                  </h2>
+                  <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    This is the Mashallah Welding Works workshop in Proddatur, where custom gates, grills, railings, repair work, and other welding/fabrication projects are carried out.
+                  </p>
+                  <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
+                    Equipped for precision steel cutting, arc welding, and structural assembly, our workshop manages every fabrication stage locally with heavy-gauge materials and anti-rust protection for lasting durability.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-light-border flex flex-wrap items-center justify-between gap-2 text-xs text-stone-500">
+                  <span className="font-medium text-stone-700">Workshop Hours: Mon–Sat 9 AM–8 PM • Sun 9 AM–2 PM</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Story & Proprietor Highlight */}
