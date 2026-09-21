@@ -26,9 +26,15 @@ export const Footer: React.FC = () => {
               Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Proddatur, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
             </p>
 
-            <div className="pt-1 text-xs text-stone-300">
-              <span>Proprietor: </span>
-              <strong className="text-copper font-semibold">{BUSINESS_INFO.proprietor}</strong>
+            <div className="pt-1 text-xs text-stone-300 space-y-0.5">
+              <div>
+                <span className="text-muted-text">Enquiries & Fabrication: </span>
+                <strong className="text-white font-semibold">{BUSINESS_INFO.leadFabricator}</strong>
+              </div>
+              <div className="text-muted-text text-[11px]">
+                <span>Proprietor: </span>
+                <span className="text-stone-400">{BUSINESS_INFO.proprietor}</span>
+              </div>
             </div>
 
             {/* Social Links */}

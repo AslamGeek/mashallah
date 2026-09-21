@@ -23,7 +23,7 @@ export const AboutPage: React.FC = () => {
     <>
       <PageSeo
         title="About Mashallah Welding Works | Proddatur"
-        description="Learn about Mashallah Welding Works and lead fabricator Abdul Sattar in Auto Nagar, Proddatur. Heavy-gauge mild steel fabrication, precision on-site measurements, and durable repairs."
+        description="Learn about Mashallah Welding Works in Auto Nagar, Proddatur. Heavy-gauge mild steel fabrication, precision on-site measurements, and durable repairs."
       />
 
       {/* Main About Story Section */}
@@ -115,15 +115,15 @@ export const AboutPage: React.FC = () => {
               <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-light-border relative">
                 <div className="flex items-center space-x-4 mb-5">
                   <div className="w-16 h-16 rounded-xl bg-gunmetal text-copper flex items-center justify-center font-extrabold text-2xl border border-dark-border">
-                    AS
+                    KC
                   </div>
                   <div>
                     <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-                      Proprietor & Fabricator
+                      Lead Fabricator & Customer Enquiries
                     </span>
-                    <h3 className="text-xl font-bold text-dark-text">{BUSINESS_INFO.proprietor}</h3>
+                    <h3 className="text-xl font-bold text-dark-text">{BUSINESS_INFO.leadFabricator}</h3>
                     <span className="text-xs text-stone-500 block">
-                      Mashallah Welding Works, Auto Nagar
+                      Mashallah Welding Works • Proprietor: {BUSINESS_INFO.proprietor}
                     </span>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export const AboutPage: React.FC = () => {
                     className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border"
                   >
                     <Phone className="w-4 h-4 mr-2 text-copper" />
-                    Call {BUSINESS_INFO.phoneFormatted}
+                    Call Now
                   </a>
                   <a
                     href={generateWhatsAppUrl('Hello, I would like to discuss an iron fabrication requirement.')}
@@ -147,7 +147,7 @@ export const AboutPage: React.FC = () => {
                     className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-2" />
-                    WhatsApp Direct Enquiry
+                    WhatsApp Us
                   </a>
                 </div>
               </div>

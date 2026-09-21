@@ -28,7 +28,7 @@ export const MobileStickyBar: React.FC = () => {
         className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-xs shadow-xs"
       >
         <WhatsAppIcon className="w-4 h-4 mb-0.5" />
-        <span>WhatsApp</span>
+        <span>WhatsApp Us</span>
       </a>
 
       {/* 3. Directions */}

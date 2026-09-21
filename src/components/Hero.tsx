@@ -37,12 +37,12 @@ export const Hero: React.FC = () => {
 
             {/* Clear Offer Description */}
             <p className="text-sm sm:text-base text-muted-text max-w-2xl leading-relaxed">
-              Built to your exact on-site dimensions using heavy-gauge mild steel, clean arc welding, and weather-resistant anti-rust primer by experienced fabricator Abdul Sattar.
+              Built to your exact on-site dimensions using heavy-gauge mild steel, clean arc welding, and weather-resistant anti-rust primer by lead fabricator Karimulla C. and our experienced team.
             </p>
 
             {/* Primary & Secondary Actions: WhatsApp quote is Primary, Call is Secondary, Directions is demoted */}
             <div className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
-              {/* Primary CTA: WhatsApp Quote */}
+              {/* Primary CTA: WhatsApp Us */}
               <a
                 id="hero-whatsapp-us-btn"
                 href={generateWhatsAppUrl('Hello Mashallah Welding Works, I would like to get a quote for iron fabrication/welding work in Proddatur.')}
@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg shadow-emerald-950/40 transition-all duration-150 active:scale-[0.98]"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2 shrink-0" />
-                <span>WhatsApp Quote</span>
+                <span>WhatsApp Us</span>
               </a>
 
               {/* Secondary CTA: Call Now */}

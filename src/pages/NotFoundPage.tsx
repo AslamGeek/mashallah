@@ -64,7 +64,7 @@ export const NotFoundPage: React.FC = () => {
               href={BUSINESS_INFO.phoneTel}
               className="text-white hover:text-copper font-semibold ml-1"
             >
-              Call {BUSINESS_INFO.phoneFormatted}
+              Call Now
             </a>
             <span className="mx-2">•</span>
             <a
@@ -73,7 +73,7 @@ export const NotFoundPage: React.FC = () => {
               rel="noopener noreferrer"
               className="text-emerald-400 hover:text-emerald-300 font-semibold"
             >
-              WhatsApp Support
+              WhatsApp Us
             </a>
           </div>
         </div>

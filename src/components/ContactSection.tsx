@@ -71,33 +71,65 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
                   {BUSINESS_INFO.name}
                 </h3>
-                <div className="mt-2 flex items-center text-stone-300 text-sm">
-                  <User className="w-4 h-4 text-copper mr-2 shrink-0" />
-                  <span>
-                    Proprietor:{' '}
-                    <strong className="text-white font-semibold">{BUSINESS_INFO.proprietor}</strong>
-                  </span>
+                <p className="text-xs text-muted-text mt-1">
+                  Custom metal fabrication, arc welding, and on-site repair services in Auto Nagar, Proddatur
+                </p>
+              </div>
+
+              {/* Direct Contacts Breakdown */}
+              <div className="space-y-3 pt-2">
+                {/* Primary Customer-Facing Contact: Karimulla C. */}
+                <div className="bg-steel/60 rounded-xl p-4 border border-copper/50">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-copper bg-copper/15 px-2 py-0.5 rounded">
+                      Primary Contact • Enquiries & Quotes
+                    </span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <h4 className="text-base font-bold text-white">
+                        {BUSINESS_INFO.primaryContact.name}
+                      </h4>
+                      <span className="text-xs text-stone-300">
+                        {BUSINESS_INFO.primaryContact.role}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-2 pt-1 sm:pt-0">
+                      <a
+                        href={BUSINESS_INFO.primaryContact.phoneTel}
+                        className="text-sm font-extrabold text-copper hover:text-copper-hover transition-colors"
+                      >
+                        {BUSINESS_INFO.primaryContact.phoneFormatted}
+                      </a>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-stone-400 mt-1.5">
+                    For pricing estimates, design discussions, and on-site measurements across Proddatur.
+                  </p>
+                </div>
+
+                {/* Proprietor: Abdul Sattar */}
+                <div className="bg-dark-bg/60 rounded-xl p-3.5 border border-dark-border">
+                  <div className="flex items-center justify-between gap-2">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-muted-text block">
+                        Proprietor
+                      </span>
+                      <h4 className="text-sm font-semibold text-stone-200">
+                        {BUSINESS_INFO.proprietorContact.name}
+                      </h4>
+                    </div>
+                    <a
+                      href={BUSINESS_INFO.proprietorContact.phoneTel}
+                      className="text-xs font-semibold text-stone-400 hover:text-white transition-colors"
+                    >
+                      {BUSINESS_INFO.proprietorContact.phoneFormatted}
+                    </a>
+                  </div>
                 </div>
               </div>
 
               <div className="space-y-4 pt-4 border-t border-dark-border text-sm">
-                {/* Phone */}
-                <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs text-muted-text block">Phone / WhatsApp</span>
-                    <a
-                      href={BUSINESS_INFO.phoneTel}
-                      className="text-base font-bold text-white hover:text-copper transition-colors"
-                    >
-                      {BUSINESS_INFO.phoneFormatted}
-                    </a>
-                    <span className="text-xs text-muted-text/80 block">Calls & WhatsApp welcome</span>
-                  </div>
-                </div>
-
                 {/* Address */}
                 <div className="flex items-start space-x-3.5">
                   <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
@@ -154,7 +186,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                    <span>WhatsApp</span>
+                    <span>WhatsApp Us</span>
                   </a>
 
                   {/* 3. Get Directions */}

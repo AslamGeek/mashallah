@@ -116,7 +116,7 @@ export const HomePage: React.FC = () => {
     },
     {
       title: 'Experienced Master Welder',
-      desc: 'Lead fabricator Abdul Sattar brings hands-on metal fabrication experience with clean weld seams, deep arc penetration, and smooth grinding.',
+      desc: 'Lead fabricator Karimulla C. and our skilled workshop team bring hands-on metal fabrication experience with clean weld seams, deep arc penetration, and smooth grinding.',
     },
   ];
 
@@ -150,7 +150,7 @@ export const HomePage: React.FC = () => {
     {
       id: 'faq-quote',
       q: 'How do I get an initial cost estimate?',
-      a: 'Simply send approximate measurements (height × width) or a photo on WhatsApp, or call Abdul Sattar directly. We will provide an initial quote and schedule an on-site inspection if needed.',
+      a: 'Simply send approximate measurements (height × width) or a photo on WhatsApp, or call us directly. Lead fabricator Karimulla C. will provide an initial quote and schedule an on-site inspection if needed.',
     },
   ];
 
@@ -174,7 +174,7 @@ export const HomePage: React.FC = () => {
     <>
       <PageSeo
         title="Mashallah Welding Works | Custom Iron Fabrication & Welding in Proddatur"
-        description="Custom iron fabrication, electric arc welding, and on-site repair works in Auto Nagar, Proddatur by Abdul Sattar. Heavy-gauge iron gates, window safety grills, staircase railings, and custom metalwork."
+        description="Custom iron fabrication, electric arc welding, and on-site repair works in Auto Nagar, Proddatur. Heavy-gauge iron gates, window safety grills, staircase railings, and custom metalwork by Mashallah Welding Works."
       />
 
       {/* ========================================================================= */}
@@ -433,7 +433,7 @@ export const HomePage: React.FC = () => {
               Why Proddatur Chooses <span className="text-copper">Mashallah Welding Works</span>
             </h2>
             <p className="text-sm sm:text-base text-muted-text leading-relaxed">
-              No hollow promises. Honest metal fabrication backed by heavy-gauge steel, clean weld penetration, and direct craftsmanship by Abdul Sattar.
+              No hollow promises. Honest metal fabrication backed by heavy-gauge steel, clean weld penetration, and direct craftsmanship by lead fabricator Karimulla C. and our experienced team.
             </p>
           </div>
 
@@ -461,16 +461,19 @@ export const HomePage: React.FC = () => {
           <div className="bg-steel/50 rounded-2xl p-6 sm:p-8 border border-dark-border shadow-lg flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
               <div className="w-14 h-14 rounded-2xl bg-copper text-white flex items-center justify-center font-extrabold text-xl shrink-0 shadow-sm">
-                AS
+                KC
               </div>
               <div className="space-y-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-                  Proprietor & Lead Fabricator
+                  Lead Fabricator & Customer Enquiries
                 </span>
-                <h4 className="text-xl font-bold text-white">{BUSINESS_INFO.proprietor}</h4>
+                <h4 className="text-xl font-bold text-white">{BUSINESS_INFO.leadFabricator}</h4>
                 <p className="text-xs sm:text-sm text-stone-300 max-w-xl leading-relaxed">
                   “Every gate, grill, and railing leaving our Auto Nagar workshop is welded with structural discipline to protect your home or business for years to come.”
                 </p>
+                <span className="text-[11px] text-stone-400 block pt-1">
+                  Proprietor: {BUSINESS_INFO.proprietor} | Auto Nagar, Proddatur
+                </span>
               </div>
             </div>
 
@@ -487,7 +490,7 @@ export const HomePage: React.FC = () => {
                 className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm transition-colors shadow-xs"
               >
                 <Phone className="w-4 h-4 mr-1.5" />
-                <span>Call Abdul Sattar</span>
+                <span>Call Now</span>
               </a>
             </div>
           </div>
@@ -595,24 +598,24 @@ export const HomePage: React.FC = () => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <span className="text-xs text-stone-500 block uppercase tracking-wider font-semibold">
-                  Proprietor & Master Fabricator
+                  Customer Enquiries & Fabrication
                 </span>
                 <p className="font-bold text-dark-text text-base">
-                  {BUSINESS_INFO.proprietor}
+                  {BUSINESS_INFO.leadFabricator}
                 </p>
-                <a
-                  href={BUSINESS_INFO.phoneTel}
-                  className="text-base text-copper hover:text-copper-hover font-extrabold block transition-colors"
-                >
-                  {BUSINESS_INFO.phoneFormatted}
-                </a>
+                <span className="text-xs text-stone-600 block">
+                  Lead Fabricator & On-Site Measurements
+                </span>
+                <span className="text-[11px] text-stone-400 block pt-1">
+                  Proprietor: {BUSINESS_INFO.proprietor}
+                </span>
               </div>
               <div className="pt-4 mt-3 border-t border-light-border flex items-center justify-between">
                 <a
                   href={BUSINESS_INFO.phoneTel}
                   className="text-xs font-bold text-stone-700 hover:text-copper transition-colors"
                 >
-                  Call Directly
+                  Call Now
                 </a>
                 <a
                   href={generateWhatsAppUrl()}
@@ -621,7 +624,7 @@ export const HomePage: React.FC = () => {
                   className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800"
                 >
                   <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
-                  <span>WhatsApp</span>
+                  <span>WhatsApp Us</span>
                 </a>
               </div>
             </div>
@@ -760,7 +763,7 @@ export const HomePage: React.FC = () => {
               </h2>
 
               <p className="text-muted-text text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-                Send your measurements, reference design, or repair query directly to master welder Abdul Sattar on WhatsApp for quick, transparent pricing and on-site scheduling in Proddatur.
+                Send your measurements, reference design, or repair query directly to lead fabricator Karimulla C. on WhatsApp for quick, transparent pricing and on-site scheduling in Proddatur.
               </p>
 
               {/* Quick Preset Selector for One-Tap WhatsApp */}
@@ -788,7 +791,7 @@ export const HomePage: React.FC = () => {
 
               {/* Primary & Secondary Actions: WhatsApp Quote is Primary, Call is Secondary */}
               <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                {/* Primary CTA: WhatsApp Quote */}
+                {/* Primary CTA: WhatsApp Us */}
                 <a
                   id="final-cta-whatsapp"
                   href={generateWhatsAppUrl(
@@ -799,24 +802,24 @@ export const HomePage: React.FC = () => {
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xl shadow-emerald-950/50 transition-all duration-150 active:scale-[0.98] cursor-pointer"
                 >
                   <WhatsAppIcon className="w-5 h-5 mr-2.5 shrink-0" />
-                  <span>Get WhatsApp Quote ({selectedProjectType})</span>
+                  <span>WhatsApp Us ({selectedProjectType})</span>
                 </a>
 
-                {/* Secondary CTA: Call Directly */}
+                {/* Secondary CTA: Call Now */}
                 <a
                   id="final-cta-call"
                   href={BUSINESS_INFO.phoneTel}
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98]"
                 >
                   <Phone className="w-5 h-5 mr-2 stroke-[2.2] shrink-0" />
-                  <span>Call {BUSINESS_INFO.phoneFormatted}</span>
+                  <span>Call Now</span>
                 </a>
               </div>
 
               {/* Reassurance Footer */}
               <div className="pt-6 border-t border-dark-border/80 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-stone-400">
                 <span>✓ On-Site Measurements in Proddatur</span>
-                <span>✓ Direct Master Fabricator (No Middlemen)</span>
+                <span>✓ Direct Workshop Team (No Middlemen)</span>
                 <span>✓ Red Oxide Anti-Rust Primer Treated</span>
               </div>
             </div>

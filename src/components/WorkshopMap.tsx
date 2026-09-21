@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Navigation, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { MapPin, Navigation, ExternalLink } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/content';
 
 export const WorkshopMap: React.FC = () => {
@@ -56,22 +56,6 @@ export const WorkshopMap: React.FC = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </div>
-
-      {/* Bottom Features Strip */}
-      <div className="p-4 sm:p-5 bg-dark-bg border-t border-dark-border grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-stone-300">
-        <div className="flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>Industrial Auto Nagar fabrication zone</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>Spacious loading for tempos & trucks</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>On-site consultations across Proddatur</span>
-        </div>
       </div>
     </div>
   );

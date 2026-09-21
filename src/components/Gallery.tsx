@@ -198,7 +198,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
               </p>
             )}
             <p className="text-stone-500 text-xs mb-6">
-              We fabricate custom units to order. Contact Abdul Sattar for immediate requirements and quotation.
+              We fabricate custom units to order. Contact lead fabricator Karimulla C. for immediate requirements and quotation.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
@@ -215,7 +215,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 className="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-500 transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                <span>Enquire on WhatsApp</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
           </div>
@@ -426,7 +426,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       className="w-full inline-flex items-center justify-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                     >
                       <WhatsAppIcon className="w-4 h-4 mr-2" />
-                      Enquire for This Design on WhatsApp
+                      WhatsApp Us for This Design
                     </a>
                     <button
                       type="button"

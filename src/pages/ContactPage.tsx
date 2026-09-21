@@ -8,7 +8,7 @@ export const ContactPage: React.FC = () => {
     <>
       <PageSeo
         title="Contact Mashallah Welding Works | Proddatur"
-        description={`Contact Abdul Sattar at Mashallah Welding Works in Auto Nagar, Proddatur for custom iron gates, window safety grills, staircase railings, and emergency welding repairs. Phone: ${BUSINESS_INFO.phoneFormatted}.`}
+        description={`Contact Karimulla C. (Lead Fabricator / Enquiries: ${BUSINESS_INFO.primaryContact.phoneFormatted}) or Abdul Sattar (Proprietor) at Mashallah Welding Works in Auto Nagar, Proddatur for custom iron gates, window safety grills, staircase railings, and emergency welding repairs.`}
       />
 
       {/* Main Contact Section with top padding for fixed header */}

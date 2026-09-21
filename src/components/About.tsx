@@ -65,20 +65,20 @@ export const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Proprietor Card */}
+          {/* Lead Fabricator Card */}
           <div className="lg:col-span-5">
             <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-light-border relative">
               <div className="flex items-center space-x-4 mb-5">
                 <div className="w-16 h-16 rounded-xl bg-gunmetal text-copper flex items-center justify-center font-extrabold text-2xl border border-dark-border">
-                  AS
+                  KC
                 </div>
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-                    Proprietor & Fabricator
+                    Lead Fabricator & Customer Enquiries
                   </span>
-                  <h4 className="text-xl font-bold text-dark-text">{BUSINESS_INFO.proprietor}</h4>
+                  <h4 className="text-xl font-bold text-dark-text">{BUSINESS_INFO.leadFabricator}</h4>
                   <span className="text-xs text-stone-500 block">
-                    Mashallah Welding Works, Proddatur
+                    Mashallah Welding Works • Proprietor: {BUSINESS_INFO.proprietor}
                   </span>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export const About: React.FC = () => {
                   className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border"
                 >
                   <Phone className="w-4 h-4 mr-2 text-copper" />
-                  Call Directly
+                  Call Now
                 </a>
                 <a
                   href={generateWhatsAppUrl('Hello, I would like to discuss an iron fabrication requirement.')}
@@ -102,7 +102,7 @@ export const About: React.FC = () => {
                   className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2" />
-                  WhatsApp Direct Enquiry
+                  WhatsApp Us
                 </a>
               </div>
             </div>

@@ -6,7 +6,38 @@ export { GALLERY_CATEGORIES } from './projects';
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',
   tagline: 'Custom Iron Fabrication, Welding & Repair Works',
+
+  // Primary Customer-Facing Contact (Enquiries, Quotes & On-Site Visits)
+  primaryContact: {
+    name: 'Karimulla C.',
+    role: 'Lead Fabricator / Enquiries',
+    phone: '9553217643',
+    phoneFormatted: '+91 95532 17643',
+    phoneTel: 'tel:9553217643',
+    whatsappNumber: '919553217643',
+  },
+
+  // Proprietor
+  proprietorContact: {
+    name: 'Abdul Sattar',
+    role: 'Proprietor',
+    phone: '9000491853',
+    phoneFormatted: '+91 90004 91853',
+    phoneTel: 'tel:9000491853',
+  },
+
+  // Helper references
   proprietor: 'Abdul Sattar',
+  proprietorPhone: '9000491853',
+  proprietorPhoneFormatted: '+91 90004 91853',
+  proprietorPhoneTel: 'tel:9000491853',
+
+  leadFabricator: 'Karimulla C.',
+  leadFabricatorPhone: '9553217643',
+  leadFabricatorPhoneFormatted: '+91 95532 17643',
+  leadFabricatorPhoneTel: 'tel:9553217643',
+
+  // Default customer-facing enquiry phone & WhatsApp (defaults to Karimulla C. — 9553217643)
   phone: '9553217643',
   phoneFormatted: '+91 95532 17643',
   phoneTel: 'tel:9553217643',
