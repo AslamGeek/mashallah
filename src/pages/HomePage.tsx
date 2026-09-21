@@ -240,8 +240,8 @@ export const HomePage: React.FC = () => {
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-3 left-3 bg-gunmetal/90 text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border capitalize">
-                    {project.category.replace('-', ' ')}
+                  <div className="absolute top-3 left-3 bg-gunmetal/90 text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border">
+                    {project.categoryLabel || project.category.replace('-', ' ')}
                   </div>
                 </div>
                 <div className="p-5 flex flex-col flex-grow justify-between">

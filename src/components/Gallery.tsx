@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { Maximize2, X, Tag } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
@@ -9,8 +10,28 @@ interface GalleryProps {
 }
 
 export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const { categorySlug } = useParams<{ categorySlug?: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const queryCategory = searchParams.get('category') || categorySlug;
+  const initialCategory =
+    queryCategory &&
+    (queryCategory === 'all' || GALLERY_CATEGORIES.some((c) => c.slug === queryCategory))
+      ? queryCategory
+      : 'all';
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+
+  // Synchronize category state when URL route param or query string changes
+  useEffect(() => {
+    if (queryCategory && (queryCategory === 'all' || GALLERY_CATEGORIES.some((c) => c.slug === queryCategory))) {
+      setSelectedCategory(queryCategory);
+    }
+  }, [queryCategory]);
+
+  const activeCategoryConfig = GALLERY_CATEGORIES.find((c) => c.slug === selectedCategory);
 
   const lastTriggerRef = useRef<HTMLElement | null>(null);
   const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -21,6 +42,23 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
     { slug: 'all', label: 'All Projects' },
     ...GALLERY_CATEGORIES,
   ];
+
+  const handleCategorySelect = (slug: string) => {
+    setSelectedCategory(slug);
+    if (categorySlug) {
+      if (slug === 'all') {
+        navigate('/our-work', { replace: true });
+      } else {
+        navigate(`/our-work/${slug}`, { replace: true });
+      }
+    } else {
+      if (slug === 'all') {
+        setSearchParams({}, { replace: true });
+      } else {
+        setSearchParams({ category: slug }, { replace: true });
+      }
+    }
+  };
 
   const filteredItems = GALLERY_ITEMS.filter((item) => {
     if (selectedCategory === 'all') return true;
@@ -117,7 +155,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
         <div
           role="group"
           aria-label="Filter projects by category"
-          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-10"
+          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8"
         >
           {categoryTabs.map((cat) => {
             const isActive = selectedCategory === cat.slug;
@@ -125,7 +163,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
               <button
                 key={cat.slug}
                 type="button"
-                onClick={() => setSelectedCategory(cat.slug)}
+                onClick={() => handleCategorySelect(cat.slug)}
                 aria-pressed={isActive}
                 className={`px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 ${
                   isActive
@@ -139,20 +177,47 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
           })}
         </div>
 
+        {/* Category Description Banner (if present and specific category selected) */}
+        {activeCategoryConfig?.description && selectedCategory !== 'all' && (
+          <div className="max-w-2xl mx-auto text-center -mt-3 mb-8 px-4">
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed italic bg-white/70 py-2 px-4 rounded-xl border border-light-border/80 shadow-2xs">
+              {activeCategoryConfig.description}
+            </p>
+          </div>
+        )}
+
         {/* Empty Category State */}
         {filteredItems.length === 0 ? (
-          <div className="text-center py-16 px-4 bg-white rounded-2xl border border-light-border max-w-md mx-auto shadow-xs">
-            <p className="text-dark-text font-bold text-lg mb-1.5">No projects in this category yet</p>
-            <p className="text-stone-600 text-sm mb-5">
-              We fabricate custom units to order. Contact Abdul Sattar for immediate requirements.
+          <div className="text-center py-14 px-6 bg-white rounded-2xl border border-light-border max-w-lg mx-auto shadow-xs">
+            <p className="text-dark-text font-bold text-lg mb-2">
+              {activeCategoryConfig ? activeCategoryConfig.label : 'No projects in this category yet'}
             </p>
-            <button
-              type="button"
-              onClick={() => setSelectedCategory('all')}
-              className="inline-flex items-center px-4 py-2 rounded-xl bg-steel text-white font-semibold text-xs sm:text-sm hover:bg-gunmetal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-            >
-              Show All Projects
-            </button>
+            {activeCategoryConfig?.description && (
+              <p className="text-stone-600 text-sm mb-4 leading-relaxed max-w-md mx-auto">
+                {activeCategoryConfig.description}
+              </p>
+            )}
+            <p className="text-stone-500 text-xs mb-6">
+              We fabricate custom units to order. Contact Abdul Sattar for immediate requirements and quotation.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleCategorySelect('all')}
+                className="inline-flex items-center px-4 py-2 rounded-xl bg-steel text-white font-semibold text-xs sm:text-sm hover:bg-gunmetal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+              >
+                Show All Projects
+              </button>
+              <a
+                href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I would like to enquire about custom ${activeCategoryConfig?.label || 'fabrication'}.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-500 transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                <span>Enquire on WhatsApp</span>
+              </a>
+            </div>
           </div>
         ) : (
           /* Projects Grid */

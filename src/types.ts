@@ -9,6 +9,7 @@ export interface ServiceItem {
 
 export type GalleryCategorySlug =
   | 'gates-doors'
+  | 'school-college-furniture'
   | 'window-safety-grills'
   | 'railings-staircases'
   | 'sheds-roofing'
@@ -19,6 +20,7 @@ export type GalleryCategorySlug =
 export interface GalleryCategoryConfig {
   slug: GalleryCategorySlug;
   label: string;
+  description?: string;
 }
 
 export interface GalleryProject {

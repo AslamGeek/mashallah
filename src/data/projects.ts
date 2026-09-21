@@ -2,6 +2,11 @@ import { GalleryProject, GalleryCategorySlug, GalleryCategoryConfig } from '../t
 
 export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
   { slug: 'gates-doors', label: 'Steel Gates & Doors' },
+  {
+    slug: 'school-college-furniture',
+    label: 'School & College Furniture',
+    description: 'Durable steel desks, benches, tables, seating, and custom furniture for schools, colleges, and other educational institutions.',
+  },
   { slug: 'window-safety-grills', label: 'Window & Safety Grills' },
   { slug: 'railings-staircases', label: 'Railings & Staircases' },
   { slug: 'sheds-roofing', label: 'Sheds & Roofing' },
@@ -33,6 +38,13 @@ const CATEGORY_MAP: Record<string, { slug: GalleryCategorySlug; label: string }>
   'steel gates and doors': { slug: 'gates-doors', label: 'Steel Gates & Doors' },
   'steel gates': { slug: 'gates-doors', label: 'Steel Gates & Doors' },
   'gates': { slug: 'gates-doors', label: 'Steel Gates & Doors' },
+
+  'school-college-furniture': { slug: 'school-college-furniture', label: 'School & College Furniture' },
+  'school & college furniture': { slug: 'school-college-furniture', label: 'School & College Furniture' },
+  'school and college furniture': { slug: 'school-college-furniture', label: 'School & College Furniture' },
+  'school furniture': { slug: 'school-college-furniture', label: 'School & College Furniture' },
+  'college furniture': { slug: 'school-college-furniture', label: 'School & College Furniture' },
+  'school & college': { slug: 'school-college-furniture', label: 'School & College Furniture' },
 
   'window-safety-grills': { slug: 'window-safety-grills', label: 'Window & Safety Grills' },
   'window & safety grills': { slug: 'window-safety-grills', label: 'Window & Safety Grills' },

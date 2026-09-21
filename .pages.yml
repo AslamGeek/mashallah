@@ -52,7 +52,16 @@ content:
 
       - name: category
         label: Category
-        type: string
+        type: select
+        options:
+          - Steel Gates & Doors
+          - School & College Furniture
+          - Window & Safety Grills
+          - Railings & Staircases
+          - Sheds & Roofing
+          - Steel Racks & Stands
+          - Welding Repairs
+          - Custom Fabrication
 
       - name: location
         label: Location
