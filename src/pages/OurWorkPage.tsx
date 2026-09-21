@@ -43,17 +43,17 @@ export const OurWorkPage: React.FC = () => {
                 href={generateWhatsAppUrl('Hello Mashallah Welding Works, I am looking at your portfolio and would like to share a design for a quote.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"
               >
-                <WhatsAppIcon className="w-4 h-4 mr-2" />
+                <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
                 <span>Send Photo on WhatsApp</span>
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors whitespace-nowrap min-h-[44px]"
               >
                 <span>Request On-Site Measurement</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2 shrink-0" />
               </Link>
             </div>
           </div>

@@ -37,23 +37,23 @@ export const ServicesPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto shrink-0">
               <a
                 href={BUSINESS_INFO.phoneTel}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-all active:scale-95"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"
               >
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className="w-4 h-4 mr-2 shrink-0" />
                 <span>Call Now</span>
               </a>
               <a
                 href={generateWhatsAppUrl('Hello Mashallah Welding Works, I would like to get a quote for fabrication services.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"
               >
-                <WhatsAppIcon className="w-4 h-4 mr-2" />
+                <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
                 <span>WhatsApp Us</span>
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
+                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-sm transition-colors whitespace-nowrap min-h-[44px]"
               >
                 <span>Contact Us</span>
               </Link>

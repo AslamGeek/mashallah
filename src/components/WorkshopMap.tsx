@@ -36,11 +36,11 @@ export const WorkshopMap: React.FC = () => {
             href={BUSINESS_INFO.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-colors"
+            className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-colors whitespace-nowrap min-h-[44px]"
           >
             <Navigation className="w-4 h-4 mr-2 shrink-0" />
             <span>Open in Google Maps</span>
-            <ExternalLink className="w-3.5 h-3.5 ml-1.5 opacity-80" />
+            <ExternalLink className="w-3.5 h-3.5 ml-1.5 opacity-80 shrink-0" />
           </a>
         </div>
       </div>

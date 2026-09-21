@@ -90,7 +90,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 ${
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 whitespace-nowrap ${
                 activeCategory === cat.id
                   ? 'bg-copper text-white shadow-xs'
                   : 'bg-gunmetal text-muted-text hover:text-white hover:bg-steel border border-dark-border'
@@ -119,7 +119,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   <div className="w-12 h-12 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
                     <IconComponent className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-text bg-steel px-2.5 py-1 rounded-md border border-dark-border/60">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-text bg-steel px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap">
                     {service.category}
                   </span>
                 </div>
@@ -147,11 +147,11 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   href={serviceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-steel hover:bg-emerald-600 text-stone-200 hover:text-white border border-dark-border hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-xs"
+                  className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-steel hover:bg-emerald-600 text-stone-200 hover:text-white border border-dark-border hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-xs min-h-[44px]"
                 >
-                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-400 group-hover:text-white" />
-                  <span>Enquire for {service.title}</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-60 group-hover:translate-x-1 transition-transform" />
+                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-400 group-hover:text-white shrink-0" />
+                  <span className="whitespace-nowrap">Enquire for {service.title}</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-60 group-hover:translate-x-1 transition-transform shrink-0" />
                 </a>
               </div>
             );
@@ -164,7 +164,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             <h4 className="text-xl sm:text-2xl font-extrabold text-white">
               Have a Custom Metal Blueprint or Unique Measurement?
             </h4>
-            <p className="text-muted-text text-sm max-w-2xl">
+            <p className="text-muted-text text-sm max-w-2xl leading-relaxed">
               We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Proddatur.
             </p>
           </div>
@@ -172,10 +172,10 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             href={generateWhatsAppUrl('Hello Mashallah Welding Works, I have a custom design/drawing I would like an estimate for.')}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98]"
+            className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98] whitespace-nowrap min-h-[44px]"
           >
-            <WhatsAppIcon className="w-4 h-4 mr-2" />
-            Send Your Design on WhatsApp
+            <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
+            <span>Send Your Design on WhatsApp</span>
           </a>
         </div>
       </div>

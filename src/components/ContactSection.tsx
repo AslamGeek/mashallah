@@ -97,13 +97,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <div className="flex items-center space-x-2 pt-1 sm:pt-0">
                       <a
                         href={BUSINESS_INFO.primaryContact.phoneTel}
-                        className="text-sm font-extrabold text-copper hover:text-copper-hover transition-colors"
+                        className="text-sm font-extrabold text-copper hover:text-copper-hover transition-colors whitespace-nowrap"
                       >
                         {BUSINESS_INFO.primaryContact.phoneFormatted}
                       </a>
                     </div>
                   </div>
-                  <p className="text-[11px] text-stone-400 mt-1.5">
+                  <p className="text-[11px] text-stone-400 mt-1.5 leading-relaxed">
                     For pricing estimates, design discussions, and on-site measurements across Proddatur.
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </div>
                     <a
                       href={BUSINESS_INFO.proprietorContact.phoneTel}
-                      className="text-xs font-semibold text-stone-400 hover:text-white transition-colors"
+                      className="text-xs font-semibold text-stone-400 hover:text-white transition-colors whitespace-nowrap"
                     >
                       {BUSINESS_INFO.proprietorContact.phoneFormatted}
                     </a>
@@ -136,7 +136,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-muted-text block">Workshop Address</span>
+                    <span className="text-xs text-muted-text block mb-0.5">Workshop Address</span>
                     <p className="text-stone-300 font-medium leading-relaxed">
                       {BUSINESS_INFO.address}
                     </p>
@@ -148,12 +148,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="space-y-1">
                     <span className="text-xs text-muted-text block">Business Hours</span>
-                    <p className="text-stone-300 font-medium">
+                    <p className="text-stone-300 font-medium whitespace-nowrap">
                       Monday – Saturday: <strong className="text-white">9:00 AM – 8:00 PM</strong>
                     </p>
-                    <p className="text-stone-300 font-medium">
+                    <p className="text-stone-300 font-medium whitespace-nowrap">
                       Sunday: <strong className="text-white">9:00 AM – 2:00 PM</strong>
                     </p>
                   </div>
@@ -171,7 +171,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <a
                     id="contact-call-btn"
                     href={BUSINESS_INFO.phoneTel}
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                   >
                     <Phone className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>Call Now</span>
@@ -183,7 +183,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={generateWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>WhatsApp Us</span>
@@ -195,7 +195,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={BUSINESS_INFO.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 font-semibold text-xs sm:text-sm border border-dark-border transition-colors"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 font-semibold text-xs sm:text-sm border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
                   >
                     <Navigation className="w-4 h-4 mr-1.5 text-copper shrink-0" />
                     <span>Directions</span>
@@ -209,11 +209,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={BUSINESS_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-dark-bg hover:bg-steel/50 text-stone-300 hover:text-white border border-dark-border text-xs font-semibold transition-colors group"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-dark-bg hover:bg-steel/50 text-stone-300 hover:text-white border border-dark-border text-xs font-semibold transition-colors group min-h-[44px] whitespace-nowrap"
                   >
-                    <Instagram className="w-4 h-4 mr-2 text-rose-400 group-hover:scale-110 transition-transform" />
+                    <Instagram className="w-4 h-4 mr-2 text-rose-400 group-hover:scale-110 transition-transform shrink-0" />
                     <span>Instagram: @karimulla955</span>
-                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-muted-text group-hover:text-stone-300" />
+                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-muted-text group-hover:text-stone-300 shrink-0" />
                   </a>
                 </div>
               </div>

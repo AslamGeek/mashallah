@@ -13,10 +13,10 @@ export const MobileStickyBar: React.FC = () => {
       <a
         id="mobile-bar-call-btn"
         href={BUSINESS_INFO.phoneTel}
-        className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg bg-copper active:bg-copper-hover text-white text-center font-bold text-xs shadow-xs"
+        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-copper active:bg-copper-hover text-white text-center font-bold text-xs shadow-xs min-h-[44px]"
       >
-        <Phone className="w-4 h-4 mb-0.5 stroke-[2.5]" />
-        <span>Call Now</span>
+        <Phone className="w-4 h-4 mb-0.5 stroke-[2.5] shrink-0" />
+        <span className="whitespace-nowrap">Call Now</span>
       </a>
 
       {/* 2. WhatsApp */}
@@ -25,10 +25,10 @@ export const MobileStickyBar: React.FC = () => {
         href={generateWhatsAppUrl()}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-xs shadow-xs"
+        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-xs shadow-xs min-h-[44px]"
       >
-        <WhatsAppIcon className="w-4 h-4 mb-0.5" />
-        <span>WhatsApp Us</span>
+        <WhatsAppIcon className="w-4 h-4 mb-0.5 shrink-0" />
+        <span className="whitespace-nowrap">WhatsApp Us</span>
       </a>
 
       {/* 3. Directions */}
@@ -37,10 +37,10 @@ export const MobileStickyBar: React.FC = () => {
         href={BUSINESS_INFO.mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg bg-gunmetal active:bg-steel text-stone-200 text-center font-medium text-xs border border-dark-border shadow-xs"
+        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-gunmetal active:bg-steel text-stone-200 text-center font-medium text-xs border border-dark-border shadow-xs min-h-[44px]"
       >
-        <Navigation className="w-4 h-4 mb-0.5 text-copper" />
-        <span>Directions</span>
+        <Navigation className="w-4 h-4 mb-0.5 text-copper shrink-0" />
+        <span className="whitespace-nowrap">Directions</span>
       </a>
     </div>
   );

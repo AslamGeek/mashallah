@@ -159,16 +159,21 @@ export const Header: React.FC = () => {
           aria-label="Mobile navigation"
           className="lg:hidden bg-gunmetal border-b border-dark-border px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2"
         >
-          <div className="flex items-center justify-between py-2 px-3 bg-steel border border-dark-border rounded-lg text-xs">
-            <span className="text-stone-300">Workshop Status:</span>
-            <span className={`font-semibold flex items-center ${hoursStatus.isOpen ? 'text-emerald-400' : 'text-copper'}`}>
-              <span
-                className={`inline-block w-2 h-2 rounded-full mr-1.5 ${
-                  hoursStatus.isOpen ? 'bg-emerald-500' : 'bg-copper'
-                }`}
-              />
-              {hoursStatus.statusText} ({hoursStatus.todayHours})
-            </span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 py-2.5 px-3 bg-steel border border-dark-border rounded-lg text-xs">
+            <span className="text-stone-300 whitespace-nowrap">Workshop Status:</span>
+            <div className={`font-semibold flex items-center flex-wrap gap-1 ${hoursStatus.isOpen ? 'text-emerald-400' : 'text-copper'}`}>
+              <span className="inline-flex items-center whitespace-nowrap">
+                <span
+                  className={`inline-block w-2 h-2 rounded-full mr-1.5 shrink-0 ${
+                    hoursStatus.isOpen ? 'bg-emerald-500' : 'bg-copper'
+                  }`}
+                />
+                {hoursStatus.statusText}
+              </span>
+              <span className="text-stone-300 font-normal whitespace-nowrap">
+                ({hoursStatus.todayHours})
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2 pt-1">

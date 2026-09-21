@@ -129,13 +129,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all shadow-xs ${
+                  className={`inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all shadow-xs whitespace-nowrap min-h-[40px] ${
                     isSelected
                       ? 'bg-copper text-white ring-2 ring-copper/40 font-bold'
                       : 'bg-gunmetal border border-dark-border text-muted-text hover:bg-steel hover:text-white'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-muted-text'}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-white' : 'text-muted-text'}`} />
                   <span>{cat.label}</span>
                 </button>
               );
@@ -249,9 +249,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
                           href={generateWhatsAppUrl(`Hello, regarding this question: "${faq.question}", I'd like to know more.`)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-800/40 px-3 py-1.5 rounded-md transition-colors"
+                          className="inline-flex items-center font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-800/40 px-3 py-1.5 rounded-md transition-colors whitespace-nowrap min-h-[36px]"
                         >
-                          <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                          <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
                           <span>Ask about this on WhatsApp</span>
                         </a>
                       </div>
@@ -266,8 +266,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
         {/* Still Have Questions? Banner */}
         <div className="mt-12 bg-gunmetal text-[#F5F3EE] rounded-2xl p-6 sm:p-8 border border-dark-border shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-center sm:text-left space-y-1 max-w-xl">
-            <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-copper">
-              <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
+            <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-copper whitespace-nowrap">
+              <MessageCircle className="w-3.5 h-3.5 mr-1.5 shrink-0" />
               Direct Master Welder Consultation
             </span>
             <h3 className="text-xl sm:text-2xl font-extrabold text-white">
@@ -282,9 +282,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
             <a
               id="faq-call-cta"
               href={BUSINESS_INFO.phoneTel}
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm transition-all shadow-xs active:scale-95"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm transition-all shadow-xs active:scale-95 whitespace-nowrap min-h-[44px]"
             >
-              <Phone className="w-4 h-4 mr-2" />
+              <Phone className="w-4 h-4 mr-2 shrink-0" />
               <span>Call Us</span>
             </a>
             <a
@@ -292,9 +292,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
               href={generateWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-xs active:scale-95"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-xs active:scale-95 whitespace-nowrap min-h-[44px]"
             >
-              <WhatsAppIcon className="w-4 h-4 mr-2" />
+              <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
               <span>WhatsApp Chat</span>
             </a>
           </div>

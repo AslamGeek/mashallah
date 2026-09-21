@@ -62,15 +62,15 @@ export const SocialShowcase: React.FC = () => {
                   }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-3 right-3 bg-gunmetal/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center border border-dark-border">
-                  <Sparkles className="w-3 h-3 text-copper mr-1.5" />
+                <div className="absolute top-3 right-3 bg-gunmetal/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center border border-dark-border whitespace-nowrap">
+                  <Sparkles className="w-3 h-3 text-copper mr-1.5 shrink-0" />
                   Design Idea
                 </div>
-                <div className="absolute bottom-3 left-3 bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-dark-border/60">
+                <div className="absolute bottom-3 left-3 bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap">
                   {board.count}
                 </div>
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
-                  <Maximize2 className="w-3.5 h-3.5 text-copper" />
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md whitespace-nowrap">
+                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
                   <span>Tap to view</span>
                 </div>
               </button>
@@ -83,7 +83,7 @@ export const SocialShowcase: React.FC = () => {
                 >
                   {board.title}
                 </button>
-                <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow">
+                <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow leading-relaxed">
                   {board.description}
                 </p>
 
@@ -91,18 +91,18 @@ export const SocialShowcase: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setActiveBoard(boardItems[idx])}
-                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1 px-2 rounded bg-stone-100 border border-stone-200 cursor-pointer min-h-[36px]"
+                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1.5 px-2.5 rounded bg-stone-100 border border-stone-200 cursor-pointer min-h-[38px] whitespace-nowrap"
                   >
-                    <Maximize2 className="w-3.5 h-3.5 mr-1 text-copper" />
+                    <Maximize2 className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
                     <span>View Large</span>
                   </button>
                   <a
                     href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to enquire about fabrication for "${board.title}".`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 py-1 px-2 min-h-[36px]"
+                    className="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 py-1.5 px-2.5 min-h-[38px] whitespace-nowrap"
                   >
-                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
+                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
                     <span>Enquire on WhatsApp</span>
                   </a>
                 </div>
@@ -121,12 +121,12 @@ export const SocialShowcase: React.FC = () => {
               <h4 className="font-bold text-dark-text text-base sm:text-lg">
                 Official Instagram Profile
               </h4>
-              <span className="text-[10px] font-semibold bg-stone-100 text-stone-700 border border-light-border px-2 py-0.5 rounded-md">
+              <span className="text-[10px] font-semibold bg-stone-100 text-stone-700 border border-light-border px-2 py-0.5 rounded-md whitespace-nowrap">
                 Active
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-stone-600">
-              Follow <strong className="text-dark-text">@karimulla955</strong> on Instagram for recent metalwork reels, workshop fabrication videos & client installations.
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              Follow <strong className="text-dark-text whitespace-nowrap">@karimulla955</strong> on Instagram for recent metalwork reels, workshop fabrication videos & client installations.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2.5 shrink-0">
@@ -135,19 +135,19 @@ export const SocialShowcase: React.FC = () => {
               href={BUSINESS_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-xs transition-opacity"
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-xs transition-opacity whitespace-nowrap min-h-[44px]"
             >
-              <Instagram className="w-4 h-4 mr-2" />
+              <Instagram className="w-4 h-4 mr-2 shrink-0" />
               <span>Follow @karimulla955</span>
-              <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+              <ExternalLink className="w-3.5 h-3.5 ml-1.5 shrink-0" />
             </a>
             <a
               href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 font-semibold text-xs border border-dark-border transition-colors"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 font-semibold text-xs border border-dark-border transition-colors whitespace-nowrap min-h-[44px]"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+              <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400 shrink-0" />
               <span>WhatsApp Photos</span>
             </a>
           </div>

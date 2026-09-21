@@ -289,9 +289,9 @@ export const HomePage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setActiveModalProject(project)}
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors cursor-pointer min-h-[44px]"
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors cursor-pointer min-h-[44px] whitespace-nowrap"
                     >
-                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper" />
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                       <span>View Photo</span>
                     </button>
                     <a
@@ -300,9 +300,9 @@ export const HomePage: React.FC = () => {
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px]"
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
                       <span>WhatsApp Quote</span>
                     </a>
                   </div>
@@ -402,7 +402,7 @@ export const HomePage: React.FC = () => {
                   <div className="pt-5 mt-4 border-t border-light-border flex items-center justify-between">
                     <Link
                       to="/services"
-                      className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors"
+                      className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors whitespace-nowrap"
                     >
                       Specifications →
                     </Link>
@@ -410,9 +410,9 @@ export const HomePage: React.FC = () => {
                       href={generateWhatsAppUrl(service.whatsappMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors"
+                      className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[36px]"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
                       <span>Get Quote</span>
                     </a>
                   </div>
@@ -501,16 +501,16 @@ export const HomePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-xs sm:text-sm transition-colors"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-xs sm:text-sm transition-colors whitespace-nowrap min-h-[44px]"
               >
                 <span>Read Our Craftsmanship Story</span>
-                <ArrowRight className="w-4 h-4 ml-1.5" />
+                <ArrowRight className="w-4 h-4 ml-1.5 shrink-0" />
               </Link>
               <a
                 href={BUSINESS_INFO.phoneTel}
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm transition-colors shadow-xs"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm transition-colors shadow-xs whitespace-nowrap min-h-[44px]"
               >
-                <Phone className="w-4 h-4 mr-1.5" />
+                <Phone className="w-4 h-4 mr-1.5 shrink-0" />
                 <span>Call Now</span>
               </a>
             </div>
@@ -566,9 +566,9 @@ export const HomePage: React.FC = () => {
                   href={BUSINESS_INFO.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs font-bold text-copper hover:text-copper-hover"
+                  className="inline-flex items-center text-xs font-bold text-copper hover:text-copper-hover transition-colors whitespace-nowrap min-h-[36px]"
                 >
-                  <Navigation className="w-3.5 h-3.5 mr-1" />
+                  <Navigation className="w-3.5 h-3.5 mr-1 shrink-0" />
                   <span>Open in Google Maps →</span>
                 </a>
               </div>
@@ -583,14 +583,14 @@ export const HomePage: React.FC = () => {
                   </div>
                   {/* Live Status indicator */}
                   <span
-                    className={`inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full ${
+                    className={`inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${
                       hoursStatus.isOpen
                         ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                         : 'bg-copper/15 text-copper border border-copper/30'
                     }`}
                   >
                     <span
-                      className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                      className={`w-1.5 h-1.5 rounded-full mr-1.5 shrink-0 ${
                         hoursStatus.isOpen ? 'bg-emerald-600' : 'bg-copper'
                       }`}
                     />
@@ -600,12 +600,14 @@ export const HomePage: React.FC = () => {
                 <span className="text-xs text-stone-500 block uppercase tracking-wider font-semibold">
                   Operational Timings
                 </span>
-                <p className="font-bold text-dark-text text-sm">
-                  Mon – Sat: <span className="font-semibold text-stone-700">{BUSINESS_INFO.hours.monSat}</span>
-                </p>
-                <p className="font-bold text-dark-text text-sm">
-                  Sunday: <span className="font-semibold text-stone-700">{BUSINESS_INFO.hours.sunday}</span>
-                </p>
+                <div className="space-y-1">
+                  <p className="font-bold text-dark-text text-sm whitespace-nowrap">
+                    Mon – Sat: <span className="font-semibold text-stone-700 whitespace-nowrap">{BUSINESS_INFO.hours.monSat}</span>
+                  </p>
+                  <p className="font-bold text-dark-text text-sm whitespace-nowrap">
+                    Sunday: <span className="font-semibold text-stone-700 whitespace-nowrap">{BUSINESS_INFO.hours.sunday}</span>
+                  </p>
+                </div>
               </div>
               <div className="pt-4 mt-3 border-t border-light-border text-xs text-stone-500">
                 On-site measurement visits available upon appointment.
@@ -634,7 +636,7 @@ export const HomePage: React.FC = () => {
               <div className="pt-4 mt-3 border-t border-light-border flex items-center justify-between">
                 <a
                   href={BUSINESS_INFO.phoneTel}
-                  className="text-xs font-bold text-stone-700 hover:text-copper transition-colors"
+                  className="text-xs font-bold text-stone-700 hover:text-copper transition-colors whitespace-nowrap min-h-[36px] inline-flex items-center"
                 >
                   Call Now
                 </a>
@@ -642,9 +644,9 @@ export const HomePage: React.FC = () => {
                   href={generateWhatsAppUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                  className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 whitespace-nowrap min-h-[36px]"
                 >
-                  <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
+                  <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
                   <span>WhatsApp Us</span>
                 </a>
               </div>
@@ -839,9 +841,9 @@ export const HomePage: React.FC = () => {
 
               {/* Reassurance Footer */}
               <div className="pt-6 border-t border-dark-border/80 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-stone-400">
-                <span>✓ On-Site Measurements in Proddatur</span>
-                <span>✓ Direct Workshop Team (No Middlemen)</span>
-                <span>✓ Red Oxide Anti-Rust Primer Treated</span>
+                <span className="whitespace-nowrap">✓ On-Site Measurements in Proddatur</span>
+                <span className="whitespace-nowrap">✓ Direct Workshop Team (No Middlemen)</span>
+                <span className="whitespace-nowrap">✓ Red Oxide Anti-Rust Primer Treated</span>
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ export const AboutPage: React.FC = () => {
     imageAlt: 'Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out',
     categoryLabel: 'Workshop Facility',
     description: 'This is the Mashallah Welding Works workshop in Proddatur, where custom gates, grills, railings, repair work, and other welding/fabrication projects are carried out.',
-    specifications: 'Auto Nagar, Proddatur • Heavy-Gauge Steel Materials • Precision Arc Welding • Mon–Sat 9 AM–8 PM',
+    specifications: 'Auto Nagar, Proddatur • Heavy-Gauge Mild Steel • Precision Arc Welding • Mon–Sat: 9:00 AM – 8:00 PM • Sun: 9:00 AM – 2:00 PM',
     location: 'Auto Nagar, Proddatur',
     whatsappMessage: 'Hello Mashallah Welding Works, I saw your workshop in Auto Nagar on your website. I would like to visit or discuss a fabrication requirement.',
   };
@@ -102,8 +102,11 @@ export const AboutPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-light-border flex flex-wrap items-center justify-between gap-2 text-xs text-stone-500">
-                  <span className="font-medium text-stone-700">Workshop Hours: Mon–Sat 9 AM–8 PM • Sun 9 AM–2 PM</span>
+                <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
+                  <span className="font-bold text-dark-text whitespace-nowrap">Workshop Hours:</span>
+                  <span className="font-semibold text-stone-700 whitespace-nowrap">Mon–Sat: 9:00 AM – 8:00 PM</span>
+                  <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
+                  <span className="font-semibold text-stone-700 whitespace-nowrap">Sun: 9:00 AM – 2:00 PM</span>
                 </div>
               </div>
             </div>
@@ -202,19 +205,19 @@ export const AboutPage: React.FC = () => {
                 <div className="space-y-2.5 pt-3 border-t border-light-border">
                   <a
                     href={BUSINESS_INFO.phoneTel}
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border min-h-[44px] whitespace-nowrap"
                   >
-                    <Phone className="w-4 h-4 mr-2 text-copper" />
-                    Call Now
+                    <Phone className="w-4 h-4 mr-2 text-copper shrink-0" />
+                    <span>Call Now</span>
                   </a>
                   <a
                     href={generateWhatsAppUrl('Hello, I would like to discuss an iron fabrication requirement.')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors min-h-[44px] whitespace-nowrap"
                   >
-                    <WhatsAppIcon className="w-4 h-4 mr-2" />
-                    WhatsApp Us
+                    <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
+                    <span>WhatsApp Us</span>
                   </a>
                 </div>
               </div>

@@ -352,11 +352,11 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
         <div className="p-4 sm:p-6 bg-gunmetal space-y-4">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-block px-2.5 py-1 rounded-md bg-steel text-copper border border-dark-border font-bold text-xs uppercase tracking-wider">
+              <span className="inline-block px-2.5 py-1 rounded-md bg-steel text-copper border border-dark-border font-bold text-xs uppercase tracking-wider whitespace-nowrap">
                 {project.categoryLabel || 'Custom Metalwork'}
               </span>
-              <span className="inline-flex items-center text-xs text-stone-400">
-                <MapPin className="w-3.5 h-3.5 text-copper mr-1" />
+              <span className="inline-flex items-center text-xs text-stone-400 whitespace-nowrap">
+                <MapPin className="w-3.5 h-3.5 text-copper mr-1 shrink-0" />
                 {project.location || 'Auto Nagar, Proddatur'}
               </span>
             </div>
@@ -389,7 +389,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
               href={generateWhatsAppUrl(whatsappMsg)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-md transition-all active:scale-[0.98] min-h-[48px]"
+              className="flex-1 inline-flex items-center justify-center py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-md transition-all active:scale-[0.98] min-h-[48px] whitespace-nowrap"
             >
               <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
               <span>WhatsApp Us for This Design</span>
@@ -398,9 +398,9 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             <button
               type="button"
               onClick={handleClose}
-              className="inline-flex items-center justify-center py-3 px-4 rounded-xl bg-steel hover:bg-dark-border text-stone-200 hover:text-white font-bold text-xs sm:text-sm border border-stone-600 transition-colors cursor-pointer min-h-[44px]"
+              className="inline-flex items-center justify-center py-3 px-4 rounded-xl bg-steel hover:bg-dark-border text-stone-200 hover:text-white font-bold text-xs sm:text-sm border border-stone-600 transition-colors cursor-pointer min-h-[44px] whitespace-nowrap"
             >
-              <X className="w-4 h-4 mr-1.5" />
+              <X className="w-4 h-4 mr-1.5 shrink-0" />
               <span>Close View</span>
             </button>
           </div>

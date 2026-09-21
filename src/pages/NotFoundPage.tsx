@@ -36,23 +36,23 @@ export const NotFoundPage: React.FC = () => {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors whitespace-nowrap min-h-[44px]"
             >
-              <Home className="w-4 h-4 mr-2" />
+              <Home className="w-4 h-4 mr-2 shrink-0" />
               <span>Back to Home</span>
             </Link>
             <Link
               to="/our-work"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-sm transition-colors whitespace-nowrap min-h-[44px]"
             >
-              <Grid className="w-4 h-4 mr-2 text-copper" />
+              <Grid className="w-4 h-4 mr-2 text-copper shrink-0" />
               <span>View Our Work</span>
             </Link>
             <Link
               to="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 border border-dark-border font-semibold text-sm transition-colors whitespace-nowrap min-h-[44px]"
             >
-              <Phone className="w-4 h-4 mr-2 text-copper" />
+              <Phone className="w-4 h-4 mr-2 text-copper shrink-0" />
               <span>Contact Us</span>
             </Link>
           </div>
@@ -62,7 +62,7 @@ export const NotFoundPage: React.FC = () => {
             <span>Need immediate welding assistance? </span>
             <a
               href={BUSINESS_INFO.phoneTel}
-              className="text-white hover:text-copper font-semibold ml-1"
+              className="text-white hover:text-copper font-semibold ml-1 whitespace-nowrap"
             >
               Call Now
             </a>
@@ -71,7 +71,7 @@ export const NotFoundPage: React.FC = () => {
               href={generateWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 font-semibold"
+              className="text-emerald-400 hover:text-emerald-300 font-semibold whitespace-nowrap"
             >
               WhatsApp Us
             </a>

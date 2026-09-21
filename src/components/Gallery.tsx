@@ -225,8 +225,8 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       <span>Tap to enlarge</span>
                     </div>
                     <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60">
-                        <Tag className="w-3 h-3 mr-1 text-copper" />
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60 whitespace-nowrap">
+                        <Tag className="w-3 h-3 mr-1 text-copper shrink-0" />
                         {project.categoryLabel}
                       </span>
                     </div>
@@ -252,18 +252,18 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                     <button
                       type="button"
                       onClick={() => openLightbox(project)}
-                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors cursor-pointer min-h-[42px]"
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors cursor-pointer min-h-[44px] whitespace-nowrap"
                     >
-                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper" />
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                       <span>View Photo</span>
                     </button>
                     <a
                       href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[42px]"
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
                       <span>WhatsApp Quote</span>
                     </a>
                   </div>
