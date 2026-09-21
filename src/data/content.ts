@@ -133,9 +133,9 @@ export const GALLERY_ITEMS: GalleryProject[] = [
     title: 'Copper-Finish Window Safety Grill with Twin S-Curve Design',
     category: 'window-safety-grills',
     categoryLabel: 'Window & Safety Grills',
-    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur.webp',
+    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur-1.webp',
     imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
-    srcSetWebp: '/images/projects/window-safety-grill-s-curve-design-proddatur-480.webp 480w, /images/projects/window-safety-grill-s-curve-design-proddatur-768.webp 768w, /images/projects/window-safety-grill-s-curve-design-proddatur-1200.webp 1200w',
+    srcSetWebp: '/images/projects/window-safety-grill-s-curve-design-proddatur-1-480.webp 480w, /images/projects/window-safety-grill-s-curve-design-proddatur-1-768.webp 768w, /images/projects/window-safety-grill-s-curve-design-proddatur-1.webp 1164w',
     description: 'Double-panel residential window safety grill featuring a warm copper-finish metal frame, symmetrical twin S-curve vertical bars, spherical finial beads, and decorative flower rosettes, installed within a light wooden frame and masonry wall.',
     specifications: 'Double-Panel Design • Twin S-Curve Bars • Spherical Finials • Decorative Flower Rosettes • Copper-Finish Coating • Residential Window Safety Grill',
   },
@@ -213,13 +213,13 @@ export const GALLERY_ITEMS: GalleryProject[] = [
   },
   {
     id: 'proj-10',
-    title: 'Custom Steel Storage Rack',
+    title: 'Custom Heavy Duty Storage Rack',
     category: 'steel-racks-stands',
     categoryLabel: 'Steel Racks & Stands',
-    imageUrl: '/images/projects/custom-steel-storage-rack.webp',
+    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop',
     imageAlt: 'Custom steel storage rack fabricated by Mashallah Welding Works',
-    description: 'Custom-fabricated steel storage rack for indoor storage.',
-    specifications: 'Custom Welded Steel Frame • Multi-Tier Indoor Storage',
+    description: 'Heavy-duty multi-tier welded steel storage rack engineered for commercial storerooms and workshop inventory.',
+    specifications: 'Custom Welded Steel Frame • Multi-Tier Reinforced Shelves • Heavy Gauge MS Angle',
   },
 ];
 
@@ -233,7 +233,7 @@ export const PINTEREST_BOARDS = [
   {
     title: 'Window Safety Grill Patterns',
     count: '45+ Patterns',
-    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur-768.webp',
+    imageUrl: '/images/projects/window-safety-grill-s-curve-design-proddatur-1-768.webp',
     imageAlt: 'Copper-finish window safety grill with twin S-curve bars and flower rosettes, fabricated in Proddatur',
     description: 'Double-panel residential window safety grill with symmetrical twin S-curve bars, spherical finials, and decorative flower rosettes in copper finish.',
   },

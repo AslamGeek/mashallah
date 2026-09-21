@@ -191,7 +191,7 @@ export const Gallery: React.FC = () => {
                           onError={(e) => {
                             const target = e.currentTarget;
                             if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                              target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur.jpg';
+                              target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur-1.jpg';
                             }
                           }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -303,7 +303,7 @@ export const Gallery: React.FC = () => {
                         onError={(e) => {
                           const target = e.currentTarget;
                           if (activeModalProject.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                            target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur.jpg';
+                            target.src = '/images/projects/window-safety-grill-s-curve-design-proddatur-1.jpg';
                           }
                         }}
                         className="max-h-[60vh] md:max-h-[75vh] w-auto object-contain rounded-lg"
