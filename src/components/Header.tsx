@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Hammer } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
-import { scrollToSection } from '../utils/scrollToSection';
 
 export const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -68,20 +68,17 @@ export const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Our Work', href: '#gallery' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Highlights', href: '#highlights' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', to: '/' },
+    { name: 'Our Work', to: '/our-work' },
+    { name: 'Services', to: '/services' },
+    { name: 'About Us', to: '/about' },
+    { name: 'FAQ', to: '/faq' },
+    { name: 'Contact', to: '/contact' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const handleMobileLinkClick = () => {
     setMobileMenuOpen(false);
     setIsVisible(true);
-    scrollToSection(href);
   };
 
   return (
@@ -99,9 +96,9 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 sm:h-20">
           {/* Logo / Brand Name */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
+          <Link
+            to="/"
+            onClick={handleMobileLinkClick}
             className="flex items-center space-x-3 group text-left"
             id="brand-logo-link"
           >
@@ -116,19 +113,25 @@ export const Header: React.FC = () => {
                 Welding & Fabrication Works
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium" aria-label="Desktop navigation">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-2 rounded-md text-muted-text hover:text-white hover:bg-steel/60 transition-colors"
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `px-3.5 py-2 rounded-lg transition-colors text-sm font-semibold ${
+                    isActive
+                      ? 'text-copper bg-steel/90 shadow-xs ring-1 ring-copper/30'
+                      : 'text-muted-text hover:text-white hover:bg-steel/60'
+                  }`
+                }
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
@@ -170,14 +173,21 @@ export const Header: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-2 pt-1">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="block px-3 py-2.5 rounded-lg text-stone-200 hover:bg-steel font-medium text-sm transition-colors"
+                to={link.to}
+                end={link.to === '/'}
+                onClick={handleMobileLinkClick}
+                className={({ isActive }) =>
+                  `block px-3.5 py-2.5 rounded-lg font-medium text-sm transition-colors ${
+                    isActive
+                      ? 'bg-copper text-white font-bold shadow-xs'
+                      : 'text-stone-200 hover:bg-steel'
+                  }`
+                }
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
           </div>
         </nav>
@@ -185,3 +195,4 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+

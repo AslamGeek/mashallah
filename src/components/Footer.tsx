@@ -1,16 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Hammer, Phone, MapPin, Navigation, ExternalLink, Clock, Instagram } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { scrollToSection } from '../utils/scrollToSection';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    scrollToSection(href);
-  };
 
   return (
     <footer className="bg-[#131517] text-muted-text text-sm border-t border-dark-border pt-16 pb-24 sm:pb-16">
@@ -18,14 +13,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-dark-border">
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-lg bg-copper text-white flex items-center justify-center font-bold">
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-9 h-9 rounded-lg bg-copper text-white flex items-center justify-center font-bold group-hover:bg-copper-hover transition-colors">
                 <Hammer className="w-5 h-5 stroke-[2.2]" />
               </div>
-              <span className="font-extrabold text-lg tracking-tight text-white">
+              <span className="font-extrabold text-lg tracking-tight text-white group-hover:text-copper transition-colors">
                 Mashallah Welding Works
               </span>
-            </div>
+            </Link>
 
             <p className="text-muted-text text-xs leading-relaxed">
               Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Proddatur, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
@@ -67,39 +62,39 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#home" onClick={(e) => handleScroll(e, '#home')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/" className="text-muted-text hover:text-copper transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#gallery" onClick={(e) => handleScroll(e, '#gallery')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/our-work" className="text-muted-text hover:text-copper transition-colors">
                   Work Gallery
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" onClick={(e) => handleScroll(e, '#about')} className="text-muted-text hover:text-copper transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/services" className="text-muted-text hover:text-copper transition-colors">
                   Services (11)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#highlights" onClick={(e) => handleScroll(e, '#highlights')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/about" className="text-muted-text hover:text-copper transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/about#highlights" className="text-muted-text hover:text-copper transition-colors">
                   Why Choose Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#faq" onClick={(e) => handleScroll(e, '#faq')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/faq" className="text-muted-text hover:text-copper transition-colors">
                   FAQ & Questions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="text-muted-text hover:text-copper transition-colors">
+                <Link to="/contact" className="text-muted-text hover:text-copper transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -166,3 +161,4 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+

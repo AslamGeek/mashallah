@@ -4,7 +4,11 @@ import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
-export const Gallery: React.FC = () => {
+interface GalleryProps {
+  className?: string;
+}
+
+export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
 
@@ -94,7 +98,7 @@ export const Gallery: React.FC = () => {
   }, []);
 
   return (
-    <section id="gallery" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
+    <section id="gallery" className={`${className} bg-light-bg text-dark-text border-b border-light-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">

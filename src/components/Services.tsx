@@ -18,7 +18,11 @@ import { SERVICES_LIST, generateWhatsAppUrl } from '../data/content';
 import { ServiceItem } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
-export const Services: React.FC = () => {
+interface ServicesProps {
+  className?: string;
+}
+
+export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   // Map icon name to Lucide component
@@ -65,7 +69,7 @@ export const Services: React.FC = () => {
   });
 
   return (
-    <section id="services" className="py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border">
+    <section id="services" className={`${className} bg-dark-bg text-[#F5F3EE] border-b border-dark-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title & Description */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">

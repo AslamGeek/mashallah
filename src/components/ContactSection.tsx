@@ -16,7 +16,13 @@ import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { WorkshopMap } from './WorkshopMap';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  className?: string;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({
+  className = 'py-20',
+}) => {
   const [selectedService, setSelectedService] = useState('Iron Gates');
   const [customService, setCustomService] = useState('');
   const [customerName, setCustomerName] = useState('');
@@ -39,7 +45,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border">
+    <section id="contact" className={`${className} bg-dark-bg text-[#F5F3EE] border-b border-dark-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">

@@ -25,7 +25,13 @@ const CATEGORIES: { id: CategoryFilter; label: string; icon: React.FC<{ classNam
   { id: 'general', label: 'Orders & Workshop', icon: Sparkles },
 ];
 
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  className?: string;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({
+  className = 'py-16 sm:py-20 lg:py-24',
+}) => {
   const [openIds, setOpenIds] = useState<string[]>(['faq-1', 'faq-2']);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -60,7 +66,7 @@ export const FaqSection: React.FC = () => {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-20 lg:py-24 bg-dark-bg text-[#F5F3EE] border-t border-dark-border scroll-mt-20"
+      className={`${className} bg-dark-bg text-[#F5F3EE] border-t border-dark-border scroll-mt-20`}
       aria-labelledby="faq-heading"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
