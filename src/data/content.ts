@@ -1,7 +1,8 @@
-import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem } from '../types';
+import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem, WhatsAppContext, WhatsAppInput } from '../types';
 import { loadCmsProjects, GALLERY_CATEGORIES, getFullResolutionImageUrl } from './projects';
 
 export { GALLERY_CATEGORIES, getFullResolutionImageUrl } from './projects';
+export type { WhatsAppContext, WhatsAppInput } from '../types';
 
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',
@@ -14,7 +15,7 @@ export const BUSINESS_INFO = {
     phone: '9553217643',
     phoneFormatted: '+91 95532 17643',
     phoneTel: 'tel:9553217643',
-    whatsappNumber: '919553217643',
+    whatsappNumber: '919440658955',
   },
 
   // Proprietor
@@ -37,12 +38,12 @@ export const BUSINESS_INFO = {
   leadFabricatorPhoneFormatted: '+91 95532 17643',
   leadFabricatorPhoneTel: 'tel:9553217643',
 
-  // Default customer-facing enquiry phone & WhatsApp (defaults to Karimulla C. — 9553217643)
+  // Default customer-facing enquiry phone & WhatsApp
   phone: '9553217643',
   phoneFormatted: '+91 95532 17643',
   phoneTel: 'tel:9553217643',
-  whatsappNumber: '919553217643',
-  whatsappDefaultMsg: 'Hello, I would like to ask about welding/fabrication work.',
+  whatsappNumber: '919440658955',
+  whatsappDefaultMsg: 'Hello Mashallah Welding Works, I would like to ask about welding and fabrication work.',
   address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360',
   // Canonical Google Maps place: Mashallah Welding Works
   // Coordinates: 14.7410663, 78.5710838
@@ -337,8 +338,37 @@ export function getBusinessHoursStatus(date: Date = new Date()): BusinessHoursSt
   }
 }
 
-export function generateWhatsAppUrl(customMessage?: string): string {
-  const text = encodeURIComponent(customMessage || BUSINESS_INFO.whatsappDefaultMsg);
+export function getWhatsAppMessage(input?: WhatsAppInput): string {
+  if (!input) {
+    return 'Hello Mashallah Welding Works, I would like to ask about welding and fabrication work.';
+  }
+
+  if (typeof input === 'string') {
+    return input.trim() || 'Hello Mashallah Welding Works, I would like to ask about welding and fabrication work.';
+  }
+
+  switch (input.type) {
+    case 'hero':
+      return 'Hello Mashallah Welding Works, I’d like a quote. I’ll send my design/photo and approximate measurements here.';
+    case 'project': {
+      const urlInfo = input.projectUrl ? ` (${input.projectUrl})` : '';
+      return `Hello Mashallah Welding Works, I’m interested in a design similar to "${input.projectName}"${urlInfo}. My location is ____. I’ll send my approximate size/photo below.`;
+    }
+    case 'service':
+      return `Hello Mashallah Welding Works, I’d like a quote for ${input.serviceName}. I’ll share my requirements and measurements here.`;
+    case 'repair':
+      return input.details
+        ? `Hello Mashallah Welding Works, I have a welding/repair job for ${input.details}. I’ll send details and a photo of the damaged part.`
+        : 'Hello Mashallah Welding Works, I have a welding/repair job. I’ll send details and a photo of the damaged part.';
+    case 'generic':
+    default:
+      return input.message?.trim() || 'Hello Mashallah Welding Works, I would like to ask about welding and fabrication work.';
+  }
+}
+
+export function generateWhatsAppUrl(input?: WhatsAppInput): string {
+  const message = getWhatsAppMessage(input);
+  const text = encodeURIComponent(message);
   return `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${text}`;
 }
 

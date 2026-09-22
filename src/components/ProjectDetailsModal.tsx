@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { X, Maximize2, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 import { GalleryProject } from '../types';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { getProjectUrl } from '../data/projects';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ProjectShareButton } from './ProjectShareButton';
 import { useModalOverlay } from '../hooks/useModalOverlay';
@@ -47,9 +48,12 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
   if (!isOpen || !project) return null;
 
-  const whatsappProjectMessage = generateWhatsAppUrl(
-    `Hello, I would like to ask about this project: ${project.title}.`
-  );
+  const whatsappProjectMessage = generateWhatsAppUrl({
+    type: 'project',
+    projectName: project.title,
+    projectSlug: project.id,
+    projectUrl: getProjectUrl(project.id),
+  });
 
   // Parse specifications into individual items
   const specItems = project.specifications
@@ -203,7 +207,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
           {/* Call + WhatsApp CTA row: wraps/stacks cleanly on narrow screens without overflow */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full">
-            {/* Primary CTA: Ask About This Project */}
+            {/* Primary CTA: Get Quote for Similar Design */}
             <a
               href={whatsappProjectMessage}
               target="_blank"
@@ -211,7 +215,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
               className="order-1 sm:order-2 flex-1 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors min-h-[48px] active:scale-[0.98] text-center"
             >
               <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-              <span>Ask About This Project</span>
+              <span>Get Quote for Similar Design</span>
             </a>
 
             {/* Secondary CTA: Call */}

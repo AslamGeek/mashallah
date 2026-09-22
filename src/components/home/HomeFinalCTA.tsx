@@ -64,9 +64,10 @@ export const HomeFinalCTA: React.FC = () => {
               {/* Primary CTA: Get a Quote on WhatsApp */}
               <a
                 id="final-cta-whatsapp"
-                href={generateWhatsAppUrl(
-                  `Hello, I would like to get a quote for ${selectedProjectType} work.`
-                )}
+                href={generateWhatsAppUrl({
+                  type: 'service',
+                  serviceName: selectedProjectType,
+                })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px] text-center"

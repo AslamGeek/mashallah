@@ -117,8 +117,11 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
           {filteredServices.map((service: ServiceItem) => {
             const IconComponent = getIcon(service.iconName);
             const isExpanded = !!expandedServiceIds[service.id];
-            const whatsappText = `Hello, I would like to ask about ${service.title}.`;
-            const serviceUrl = generateWhatsAppUrl(whatsappText);
+            const serviceUrl = generateWhatsAppUrl({
+              type: service.category === 'repair' ? 'repair' : 'service',
+              serviceName: service.title,
+              details: service.title,
+            });
 
             return (
               <div

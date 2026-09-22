@@ -52,3 +52,12 @@ export interface FaqItem {
   answer: string;
   category: 'general' | 'custom' | 'repairs' | 'materials';
 }
+
+export type WhatsAppContext =
+  | { type: 'hero' }
+  | { type: 'project'; projectName: string; projectUrl?: string; projectSlug?: string }
+  | { type: 'service'; serviceName: string }
+  | { type: 'repair'; details?: string }
+  | { type: 'generic'; message?: string };
+
+export type WhatsAppInput = WhatsAppContext | string;

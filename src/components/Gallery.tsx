@@ -238,9 +238,12 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((project: GalleryProject, index: number) => {
               const isHighlighted = highlightedProjectId === project.id;
-              const whatsappEnquiryUrl = generateWhatsAppUrl(
-                `Hello, I would like to ask about this project: ${project.title}.`
-              );
+              const whatsappEnquiryUrl = generateWhatsAppUrl({
+                type: 'project',
+                projectName: project.title,
+                projectSlug: project.id,
+                projectUrl: getProjectUrl(project.id),
+              });
 
               return (
                 <article
@@ -343,7 +346,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                           className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-center"
                         >
                           <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                          <span>Ask About This Project</span>
+                          <span>Get Quote for Similar Design</span>
                         </a>
                       </div>
                     </div>

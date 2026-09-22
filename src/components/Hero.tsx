@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone } from 'lucide-react';
+import { Phone, Ruler, FileCheck2, Camera } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -25,37 +25,53 @@ export const Hero: React.FC<HeroProps> = () => {
               Iron Gates, Grills &amp; Welding Work in Proddatur
             </h1>
 
-            {/* 2. Short Supporting Sentence */}
+            {/* 2. Supporting Sentence: Photo -> Quote flow with rough measurements */}
             <p
               id="hero-subheadline"
               className="text-base sm:text-lg text-stone-600 leading-relaxed break-words max-w-xl"
             >
-              Custom fabrication, repairs, and steel work for homes and businesses.
+              Custom gates, grills, railings, and welding work. Send us a photo, reference design, or approximate measurements on WhatsApp to get started.
             </p>
 
             {/* 3 & 4. Primary (WhatsApp) and Secondary (Call) CTAs */}
             <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              {/* Primary: Get a Quote on WhatsApp */}
+              {/* Primary: Send Photo & Get Quote */}
               <a
                 id="hero-whatsapp-cta"
-                href={generateWhatsAppUrl('Hello, I would like to get a quote for welding/fabrication work in Proddatur.')}
+                href={generateWhatsAppUrl({ type: 'hero' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xs transition-colors duration-150 active:scale-[0.98] min-h-[48px] text-center"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2 shrink-0" />
-                <span>Get a Quote on WhatsApp</span>
+                <span>Send Photo &amp; Get Quote</span>
               </a>
 
-              {/* Secondary: Call */}
+              {/* Secondary: Call Workshop */}
               <a
                 id="hero-call-cta"
                 href={BUSINESS_INFO.phoneTel}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base shadow-xs transition-colors duration-150 active:scale-[0.98] min-h-[48px] text-center"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-bold text-base shadow-2xs transition-colors duration-150 active:scale-[0.98] min-h-[48px] text-center"
               >
-                <Phone className="w-5 h-5 mr-2 stroke-[2.2] shrink-0" />
-                <span>Call</span>
+                <Phone className="w-5 h-5 mr-2 text-copper stroke-[2.2] shrink-0" />
+                <span>Call Workshop</span>
               </a>
+            </div>
+
+            {/* 5. Compact Reassurance / Trust Row */}
+            <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-stone-600">
+              <div className="inline-flex items-center space-x-1.5">
+                <Ruler className="w-3.5 h-3.5 text-copper shrink-0" />
+                <span>On-site measurements available</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5">
+                <FileCheck2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                <span>Clear quotation before fabrication</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5">
+                <Camera className="w-3.5 h-3.5 text-copper shrink-0" />
+                <span>Custom designs from reference photos</span>
+              </div>
             </div>
           </div>
 

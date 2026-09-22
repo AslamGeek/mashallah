@@ -192,7 +192,11 @@ export const HomeServices: React.FC = () => {
                     )}
                   </button>
                   <a
-                    href={generateWhatsAppUrl(`Hello, I would like to ask about ${service.title}.`)}
+                    href={generateWhatsAppUrl({
+                      type: service.category === 'repair' ? 'repair' : 'service',
+                      serviceName: service.title,
+                      details: service.title,
+                    })}
                     onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"

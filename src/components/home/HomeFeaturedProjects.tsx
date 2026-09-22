@@ -1,42 +1,75 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Maximize2, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
+import React, { useState, useRef, useCallback } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { GALLERY_ITEMS, generateWhatsAppUrl } from '../../data/content';
+import { getProjectUrl } from '../../data/projects';
 import { GalleryProject } from '../../types';
 import { ProjectLightbox } from '../ProjectLightbox';
-import { ProjectShareButton } from '../ProjectShareButton';
+import { ProjectDetailsModal } from '../ProjectDetailsModal';
 import { WhatsAppIcon } from '../WhatsAppIcon';
 
 export const HomeFeaturedProjects: React.FC = () => {
   const featuredProjects = GALLERY_ITEMS.slice(0, 6);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  // Local state for Project Details modal
+  const [activeDetailsProject, setActiveDetailsProject] = useState<GalleryProject | null>(null);
   // Local state for Project Lightbox modal (Photo Viewer)
-  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+  const [activeLightboxProject, setActiveLightboxProject] = useState<GalleryProject | null>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
-  // Local state for detailed card view expansion
-  const [expandedProjectIds, setExpandedProjectIds] = useState<Record<string, boolean>>({});
-
-  const toggleProjectDetails = (id: string, e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setExpandedProjectIds((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const openLightbox = (project: GalleryProject, e?: React.MouseEvent) => {
+  const openProjectDetails = useCallback((project: GalleryProject, e?: React.MouseEvent) => {
     e?.stopPropagation();
     lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
-    setActiveModalProject(project);
-  };
+    setActiveDetailsProject(project);
 
-  const closeLightbox = () => {
-    setActiveModalProject(null);
+    // Sync URL cleanly so browser back button works and shareable URL is reflected
+    const targetPath = `/portfolio/${project.id}`;
+    if (location.pathname !== targetPath) {
+      navigate(targetPath, {
+        state: {
+          fromHome: true,
+          returnTo: '/',
+        },
+      });
+    }
+  }, [location.pathname, navigate]);
+
+  const closeProjectDetails = useCallback(() => {
+    setActiveDetailsProject(null);
+    if (location.pathname.startsWith('/portfolio/')) {
+      const returnTarget = (location.state as { returnTo?: string })?.returnTo || '/';
+      navigate(returnTarget, { replace: true });
+    }
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus({ preventScroll: true });
     }
-  };
+  }, [location.pathname, location.state, navigate]);
+
+  const handleNavigateDetails = useCallback((direction: 'prev' | 'next') => {
+    if (!activeDetailsProject) return;
+    const currentIndex = featuredProjects.findIndex((p) => p.id === activeDetailsProject.id);
+    if (currentIndex === -1) return;
+
+    const nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+    if (nextIndex >= 0 && nextIndex < featuredProjects.length) {
+      const nextProject = featuredProjects[nextIndex];
+      setActiveDetailsProject(nextProject);
+      navigate(`/portfolio/${nextProject.id}`, { replace: true, state: location.state });
+    }
+  }, [activeDetailsProject, featuredProjects, location.state, navigate]);
+
+  const closeLightbox = useCallback(() => {
+    setActiveLightboxProject(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  }, []);
+
+  const activeIndex = activeDetailsProject ? featuredProjects.findIndex((p) => p.id === activeDetailsProject.id) : -1;
+  const hasPrev = activeIndex > 0;
+  const hasNext = activeIndex >= 0 && activeIndex < featuredProjects.length - 1;
 
   return (
     <section
@@ -70,23 +103,26 @@ export const HomeFeaturedProjects: React.FC = () => {
         {/* 6 Real Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredProjects.map((project, index) => {
-            const isExpanded = !!expandedProjectIds[project.id];
+            const projectWhatsAppUrl = generateWhatsAppUrl({
+              type: 'project',
+              projectName: project.title,
+              projectSlug: project.id,
+              projectUrl: getProjectUrl(project.id),
+            });
+
             return (
               <div
                 key={project.id}
                 id={`gallery-card-${project.id}`}
                 className="bg-white rounded-2xl overflow-hidden border border-light-border hover:border-copper/70 transition-all duration-200 shadow-xs flex flex-col group"
               >
-                {/* Clickable Image Container: Opens Photo Viewer only */}
+                {/* Clickable Image Container: Opens Project Detail View */}
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openLightbox(project, e);
-                  }}
+                  onClick={(e) => openProjectDetails(project, e)}
                   className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
                   aria-haspopup="dialog"
-                  aria-label={`View photo of ${project.title}`}
+                  aria-label={`View project details for ${project.title}`}
                 >
                   <picture className="w-full h-full block">
                     <source
@@ -123,115 +159,36 @@ export const HomeFeaturedProjects: React.FC = () => {
                       {project.categoryLabel || project.category.replace(/-/g, ' ')}
                     </div>
 
-                    {/* Card Title */}
+                    {/* Card Title: Clicking opens Project Detail View */}
                     <button
                       type="button"
-                      onClick={(e) => toggleProjectDetails(project.id, e)}
-                      aria-expanded={isExpanded}
-                      className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
-                      aria-label={`${project.title} - ${isExpanded ? 'Hide details' : 'View full details'}`}
+                      onClick={(e) => openProjectDetails(project, e)}
+                      className="w-full text-left py-0.5 group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg block"
+                      aria-label={`View details for ${project.title}`}
                     >
-                      <span className="text-base sm:text-lg font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug break-words flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug line-clamp-2 min-h-[2.75rem] break-words">
                         {project.title}
-                      </span>
-                      <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
-                        {isExpanded ? (
-                          <ChevronUp className="w-4 h-4 text-copper" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4" />
-                        )}
-                      </span>
+                      </h3>
                     </button>
 
-                    {/* Detailed or Summary View */}
-                    {isExpanded ? (
-                      <div className="space-y-3 pt-1 text-left min-w-0">
-                        <p className="text-xs sm:text-sm text-stone-700 leading-relaxed break-words">
-                          {project.description}
-                        </p>
-                        {project.specifications && (
-                          <div className="p-3 rounded-xl bg-stone-50 border border-light-border space-y-1 text-xs min-w-0">
-                            <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
-                              Detailed Specifications
-                            </span>
-                            <p className="text-stone-700 font-medium leading-relaxed break-words">
-                              {project.specifications}
-                            </p>
-                          </div>
-                        )}
-                        <div className="text-[11px] text-stone-500 flex items-center space-x-1.5 pt-0.5">
-                          <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
-                          <span className="break-words">Auto Nagar, Proddatur workshop fabrication</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="space-y-2 min-w-0">
-                        <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed break-words">
-                          {project.description}
-                        </p>
-                        {project.specifications && (
-                          <p className="text-[11px] text-stone-500 truncate">
-                            <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
-                          </p>
-                        )}
-                      </div>
-                    )}
+                    {/* Description preview */}
+                    <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 min-h-[2.5rem] leading-relaxed break-words">
+                      {project.description}
+                    </p>
                   </div>
 
-                  {/* Actions */}
-                  <div className="pt-3 border-t border-light-border space-y-2.5">
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openLightbox(project, e);
-                        }}
-                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs border border-light-border transition-colors min-h-[44px] cursor-pointer text-center"
-                      >
-                        <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                        <span>View Photo</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={(e) => toggleProjectDetails(project.id, e)}
-                        className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] cursor-pointer text-center ${
-                          isExpanded
-                            ? 'bg-copper text-white border-copper'
-                            : 'bg-white hover:bg-stone-50 text-stone-700 border-light-border'
-                        }`}
-                      >
-                        {isExpanded ? (
-                          <>
-                            <ChevronUp className="w-3.5 h-3.5 mr-1 text-white shrink-0" />
-                            <span>Hide Details</span>
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
-                            <span>View Details</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-
-                    <div className="flex flex-col sm:grid sm:grid-cols-[100px_1fr] gap-2">
-                      <ProjectShareButton project={project} />
-
-                      <a
-                        href={generateWhatsAppUrl(
-                          `Hello, I would like to ask about this project: ${project.title}.`
-                        )}
-                        onClick={(e) => e.stopPropagation()}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] text-center"
-                      >
-                        <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                        <span>Ask About This Project</span>
-                      </a>
-                    </div>
+                  {/* Actions: One clear, prominent enquiry CTA */}
+                  <div className="pt-3 border-t border-light-border">
+                    <a
+                      href={projectWhatsAppUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-2xs transition-colors min-h-[44px] active:scale-[0.98] text-center"
+                    >
+                      <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
+                      <span>Get Quote for Similar Design</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -245,18 +202,29 @@ export const HomeFeaturedProjects: React.FC = () => {
             to="/our-work"
             className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors"
           >
-            <span>View Complete Portfolio & All 12+ Projects</span>
+            <span>View Complete Portfolio &amp; All 12+ Projects</span>
             <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
       </div>
 
-      {/* Featured Project Lightbox Viewer with Full Resolution Option and Scroll Protection */}
+      {/* Project Details Modal (opens on image or title click) */}
+      <ProjectDetailsModal
+        project={activeDetailsProject}
+        isOpen={!!activeDetailsProject}
+        onClose={closeProjectDetails}
+        onOpenPhoto={(p) => setActiveLightboxProject(p)}
+        onNavigate={handleNavigateDetails}
+        hasPrev={hasPrev}
+        hasNext={hasNext}
+      />
+
+      {/* Featured Project Lightbox Viewer (when opened from details modal) */}
       <ProjectLightbox
-        project={activeModalProject}
+        project={activeLightboxProject}
         items={featuredProjects}
         onClose={closeLightbox}
-        onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
+        onNavigate={(item) => setActiveLightboxProject(item as GalleryProject)}
       />
     </section>
   );
