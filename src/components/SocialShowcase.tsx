@@ -1,24 +1,9 @@
-import React, { useState } from 'react';
-import { ExternalLink, Camera, Instagram, Image, Layers, Sparkles, Maximize2 } from 'lucide-react';
+import React from 'react';
+import { ExternalLink, Instagram, Sparkles } from 'lucide-react';
 import { BUSINESS_INFO, PINTEREST_BOARDS, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { ProjectLightbox, LightboxMediaItem } from './ProjectLightbox';
 
 export const SocialShowcase: React.FC = () => {
-  const [activeBoard, setActiveBoard] = useState<LightboxMediaItem | null>(null);
-
-  const boardItems: LightboxMediaItem[] = PINTEREST_BOARDS.map((board, idx) => ({
-    id: `board-${idx}`,
-    title: board.title,
-    imageUrl: board.imageUrl,
-    imageAlt: board.imageAlt || board.title,
-    categoryLabel: 'Design Inspiration',
-    description: board.description,
-    specifications: `${board.count} • Custom Fabrication to Order • Auto Nagar, Proddatur`,
-    location: 'Auto Nagar, Proddatur',
-    whatsappMessage: `Hello Mashallah Welding Works, I saw "${board.title}" on your website design inspirations and want to discuss fabrication.`,
-  }));
-
   return (
     <section id="social-showcase" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,11 +27,12 @@ export const SocialShowcase: React.FC = () => {
               key={idx}
               className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all group flex flex-col"
             >
-              <button
-                type="button"
-                onClick={() => setActiveBoard(boardItems[idx])}
-                className="relative aspect-[16/10] overflow-hidden bg-black text-left cursor-pointer w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-                aria-label={`View enlarged photo for ${board.title}`}
+              <a
+                href={board.imageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative aspect-[16/10] overflow-hidden bg-black text-left cursor-pointer w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
+                aria-label={`Open original photo for ${board.title} in a new tab`}
               >
                 <img
                   src={board.imageUrl}
@@ -60,42 +46,39 @@ export const SocialShowcase: React.FC = () => {
                       target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
                     }
                   }}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-3 right-3 bg-gunmetal/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center border border-dark-border whitespace-nowrap">
+                <div className="absolute top-3 right-3 bg-gunmetal/90 text-stone-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center border border-dark-border whitespace-nowrap pointer-events-none">
                   <Sparkles className="w-3 h-3 text-copper mr-1.5 shrink-0" />
                   Design Idea
                 </div>
-                <div className="absolute bottom-3 left-3 bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap">
+                <div className="absolute bottom-3 left-3 bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap pointer-events-none">
                   {board.count}
                 </div>
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md whitespace-nowrap">
-                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                  <span>Tap to view</span>
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md whitespace-nowrap pointer-events-none">
+                  <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
+                  <span>View full photo</span>
                 </div>
-              </button>
+              </a>
 
               <div className="p-5 flex flex-col flex-grow">
-                <button
-                  type="button"
-                  onClick={() => setActiveBoard(boardItems[idx])}
-                  className="text-left font-bold text-dark-text text-lg mb-1.5 group-hover:text-copper transition-colors cursor-pointer"
-                >
+                <h3 className="font-bold text-dark-text text-lg mb-1.5 group-hover:text-copper transition-colors">
                   {board.title}
-                </button>
+                </h3>
                 <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow leading-relaxed">
                   {board.description}
                 </p>
 
                 <div className="pt-3 border-t border-light-border/70 flex items-center justify-between gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setActiveBoard(boardItems[idx])}
-                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1.5 px-2.5 rounded bg-stone-100 border border-stone-200 cursor-pointer min-h-[38px] whitespace-nowrap"
+                  <a
+                    href={board.imageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1.5 px-2.5 rounded bg-stone-100 border border-stone-200 min-h-[38px] whitespace-nowrap"
                   >
-                    <Maximize2 className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
-                    <span>View Large</span>
-                  </button>
+                    <ExternalLink className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                    <span>View Full Photo</span>
+                  </a>
                   <a
                     href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to enquire about fabrication for "${board.title}".`)}
                     target="_blank"
@@ -152,14 +135,6 @@ export const SocialShowcase: React.FC = () => {
             </a>
           </div>
         </div>
-
-        {/* Full-screen Lightbox for Design Ideas */}
-        <ProjectLightbox
-          project={activeBoard}
-          items={boardItems}
-          onClose={() => setActiveBoard(null)}
-          onNavigate={(item) => setActiveBoard(item)}
-        />
       </div>
     </section>
   );

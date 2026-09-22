@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { Maximize2, Tag } from 'lucide-react';
+import { ExternalLink, Tag } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { ProjectLightbox } from './ProjectLightbox';
 
 interface GalleryProps {
   className?: string;
@@ -23,7 +22,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
       : 'all';
 
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
-  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
 
   // Synchronize category state when URL route param or query string changes
   useEffect(() => {
@@ -33,9 +31,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
   }, [queryCategory]);
 
   const activeCategoryConfig = GALLERY_CATEGORIES.find((c) => c.slug === selectedCategory);
-
-  const lastTriggerRef = useRef<HTMLElement | null>(null);
-  const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const categoryTabs = [
     { slug: 'all', label: 'All Projects' },
@@ -64,19 +59,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
     return item.category === selectedCategory;
   });
 
-  const openLightbox = (project: GalleryProject) => {
-    lastTriggerRef.current = (document.activeElement as HTMLElement) || triggerRefs.current[project.id] || null;
-    setActiveModalProject(project);
-  };
-
-  const closeLightbox = () => {
-    setActiveModalProject(null);
-    // Restore focus to the gallery item button that opened the modal
-    if (lastTriggerRef.current) {
-      lastTriggerRef.current.focus();
-    }
-  };
-
   return (
     <section id="gallery" className={`${className} bg-light-bg text-dark-text border-b border-light-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +71,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
             Our Work & Fabrication Gallery
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-            A showcase of recently completed iron gates, window safety grills, architectural railings, and heavy custom fittings. Tap any project to enlarge.
+            A showcase of recently completed iron gates, window safety grills, architectural railings, and heavy custom fittings. Tap any photo to view in full resolution.
           </p>
         </div>
 
@@ -170,78 +152,71 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 id={`gallery-card-${project.id}`}
                 className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group"
               >
-                {/* Keyboard-accessible trigger button wrapping the preview */}
-                <button
-                  type="button"
-                  id={`gallery-item-${project.id}`}
-                  ref={(el) => {
-                    triggerRefs.current[project.id] = el;
-                  }}
-                  onClick={() => openLightbox(project)}
-                  className="w-full text-left flex flex-col flex-grow cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 rounded-t-2xl"
-                  aria-haspopup="dialog"
-                  aria-label={`View enlarged photo and specifications for ${project.title}`}
+                {/* Image Container with direct full-resolution link */}
+                <a
+                  href={project.imageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-[4/3] bg-black overflow-hidden w-full block cursor-pointer group/img focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                  aria-label={`Open original full-resolution photo of ${project.title} in a new tab`}
                 >
-                  {/* Image Container with Hover Overlay */}
-                  <div className="relative aspect-[4/3] bg-black overflow-hidden w-full">
-                    {project.srcSetWebp ? (
-                      <picture className="w-full h-full block">
-                        <source
-                          type="image/webp"
-                          srcSet={project.srcSetWebp}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                        <img
-                          src={project.imageUrl}
-                          alt={project.imageAlt || project.title}
-                          width={1200}
-                          height={896}
-                          referrerPolicy="no-referrer"
-                          loading={idx < 2 ? 'eager' : 'lazy'}
-                          decoding="async"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                              target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                            }
-                          }}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </picture>
-                    ) : (
+                  {project.srcSetWebp ? (
+                    <picture className="w-full h-full block">
+                      <source
+                        type="image/webp"
+                        srcSet={project.srcSetWebp}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                       <img
                         src={project.imageUrl}
                         alt={project.imageAlt || project.title}
                         width={1200}
-                        height={900}
+                        height={896}
                         referrerPolicy="no-referrer"
                         loading={idx < 2 ? 'eager' : 'lazy'}
                         decoding="async"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                            target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                          }
+                        }}
+                        className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                       />
-                    )}
-                    <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
-                      <Maximize2 className="w-3.5 h-3.5 text-copper" />
-                      <span>Tap to enlarge</span>
-                    </div>
-                    <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60 whitespace-nowrap">
-                        <Tag className="w-3 h-3 mr-1 text-copper shrink-0" />
-                        {project.categoryLabel}
-                      </span>
-                    </div>
+                    </picture>
+                  ) : (
+                    <img
+                      src={project.imageUrl}
+                      alt={project.imageAlt || project.title}
+                      width={1200}
+                      height={900}
+                      referrerPolicy="no-referrer"
+                      loading={idx < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                    />
+                  )}
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
+                    <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
+                    <span>View full photo</span>
                   </div>
+                  <div className="absolute top-3 left-3 pointer-events-none">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60 whitespace-nowrap">
+                      <Tag className="w-3 h-3 mr-1 text-copper shrink-0" />
+                      {project.categoryLabel}
+                    </span>
+                  </div>
+                </a>
 
-                  {/* Card Meta Content */}
-                  <div className="p-5 pb-2 flex flex-col flex-grow w-full">
-                    <h3 className="font-bold text-dark-text text-lg mb-2 group-hover:text-copper transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2 flex-grow">
-                      {project.description}
-                    </p>
-                  </div>
-                </button>
+                {/* Card Meta Content */}
+                <div className="p-5 pb-2 flex flex-col flex-grow w-full">
+                  <h3 className="font-bold text-dark-text text-lg mb-2 group-hover:text-copper transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2 flex-grow">
+                    {project.description}
+                  </p>
+                </div>
 
                 {/* Card Footer with Technical Specifications and Direct Action Buttons */}
                 <div className="px-5 pb-5 pt-2 flex flex-col justify-end space-y-3">
@@ -249,14 +224,15 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                     <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
                   </p>
                   <div className="pt-2.5 border-t border-light-border/60 flex items-center justify-between gap-2">
-                    <button
-                      type="button"
-                      onClick={() => openLightbox(project)}
-                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors cursor-pointer min-h-[44px] whitespace-nowrap"
+                    <a
+                      href={project.imageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap"
                     >
-                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                      <span>View Photo</span>
-                    </button>
+                      <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                      <span>View Full Photo</span>
+                    </a>
                     <a
                       href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                       target="_blank"
@@ -272,14 +248,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
             ))}
           </div>
         )}
-
-        {/* Unified Mobile-First Lightbox with Swipe and Touch Navigation */}
-        <ProjectLightbox
-          project={activeModalProject}
-          items={filteredItems}
-          onClose={closeLightbox}
-          onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
-        />
       </div>
     </section>
   );

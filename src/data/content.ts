@@ -1,7 +1,7 @@
 import { ServiceItem, GalleryProject, BusinessHoursState, FaqItem } from '../types';
-import { loadCmsProjects, GALLERY_CATEGORIES } from './projects';
+import { loadCmsProjects, GALLERY_CATEGORIES, getFullResolutionImageUrl } from './projects';
 
-export { GALLERY_CATEGORIES } from './projects';
+export { GALLERY_CATEGORIES, getFullResolutionImageUrl } from './projects';
 
 export const BUSINESS_INFO = {
   name: 'Mashallah Welding Works',

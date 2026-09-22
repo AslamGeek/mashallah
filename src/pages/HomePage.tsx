@@ -13,7 +13,7 @@ import {
   Phone,
   CheckCircle2,
   Sparkles,
-  Maximize2,
+  ExternalLink,
   HelpCircle,
   ChevronDown,
   Navigation,
@@ -23,7 +23,6 @@ import {
 import { PageSeo } from '../components/PageSeo';
 import { Hero } from '../components/Hero';
 import { WorkshopMap } from '../components/WorkshopMap';
-import { ProjectLightbox } from '../components/ProjectLightbox';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import {
   BUSINESS_INFO,
@@ -154,9 +153,6 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  // State for interactive Lightbox in Step 2 (Proof)
-  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
-
   // State for interactive FAQ accordion in Step 6
   const [openFaqIds, setOpenFaqIds] = useState<string[]>(['faq-measurements', 'faq-pricing']);
 
@@ -180,20 +176,7 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       {/* 1. HERO (OFFER) */}
       {/* ========================================================================= */}
-      <Hero
-        onImageClick={() =>
-          setActiveModalProject({
-            id: 'modern-double-leaf-steel-main-gate-gold-panels',
-            title: 'Modern Double-Leaf Steel Main Gate with Gold Decorative Panels',
-            category: 'gates-doors',
-            categoryLabel: 'Steel Gates & Doors',
-            imageUrl: '/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp',
-            imageAlt: 'Modern double-leaf steel main gate with gold decorative panels in Proddatur',
-            description: 'Double-leaf entrance gate fabricated with heavy mild steel framing, ornamental gold-accented steel panels, reinforced hinges, and weather-resistant anti-rust primer in Auto Nagar, Proddatur.',
-            specifications: 'Heavy Mild Steel • Gold Accent Inlay Panels • Reinforced Heavy Hinges • Anti-Rust Primer',
-          })
-        }
-      />
+      <Hero />
 
       {/* ========================================================================= */}
       {/* 2. PROOF (SHOW WORK EARLY - REAL PROJECTS BEFORE BUSINESS DETAILS) */}
@@ -238,11 +221,12 @@ export const HomePage: React.FC = () => {
                 className="bg-gunmetal rounded-2xl overflow-hidden border border-dark-border hover:border-copper/60 transition-all duration-200 shadow-sm flex flex-col group"
               >
                 {/* Clickable Image Container */}
-                <button
-                  type="button"
-                  onClick={() => setActiveModalProject(project)}
-                  className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block"
-                  aria-label={`Enlarge photo of ${project.title}`}
+                <a
+                  href={project.imageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
+                  aria-label={`Open original photo of ${project.title} in a new tab`}
                 >
                   <img
                     src={project.imageUrl}
@@ -255,18 +239,18 @@ export const HomePage: React.FC = () => {
                         target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
                       }
                     }}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                   />
                   {/* Category Pill */}
-                  <div className="absolute top-3 left-3 bg-dark-bg/90 backdrop-blur-xs text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border">
+                  <div className="absolute top-3 left-3 bg-dark-bg/90 backdrop-blur-xs text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border pointer-events-none whitespace-nowrap">
                     {project.categoryLabel || project.category.replace(/-/g, ' ')}
                   </div>
                   {/* Obvious Tap Indicator for Mobile & Low-tech Comfort */}
-                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
-                    <Maximize2 className="w-3 h-3 text-copper" />
-                    <span>Tap photo</span>
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
+                    <ExternalLink className="w-3 h-3 text-copper shrink-0" />
+                    <span>View full photo</span>
                   </div>
-                </button>
+                </a>
 
                 {/* Card Content */}
                 <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
@@ -286,14 +270,15 @@ export const HomePage: React.FC = () => {
 
                   {/* Actions: Large touch targets for low-tech mobile comfort */}
                   <div className="pt-3 border-t border-dark-border flex items-center justify-between gap-2.5">
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalProject(project)}
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors cursor-pointer min-h-[44px] whitespace-nowrap"
+                    <a
+                      href={project.imageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
                     >
-                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                      <span>View Photo</span>
-                    </button>
+                      <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                      <span>View Full Photo</span>
+                    </a>
                     <a
                       href={generateWhatsAppUrl(
                         `Hello Mashallah Welding Works, I saw this project on your website: "${project.title}". Can you give me an estimate for something similar?`
@@ -323,18 +308,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Lightbox Modal for Photo Inspection with Swipe & Navigation */}
-      <ProjectLightbox
-        project={activeModalProject}
-        items={
-          activeModalProject && featuredProjects.some((p) => p.id === activeModalProject.id)
-            ? featuredProjects
-            : undefined
-        }
-        onClose={() => setActiveModalProject(null)}
-        onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
-      />
 
       {/* ========================================================================= */}
       {/* 3. SERVICES (SIMPLIFIED, CONCISE, SCANNABLE) */}

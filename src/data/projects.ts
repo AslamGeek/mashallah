@@ -116,6 +116,12 @@ function normalizeSpecifications(rawSpecs?: string[] | string): string {
   return '';
 }
 
+export function getFullResolutionImageUrl(url?: string): string {
+  if (!url) return '';
+  // Strip any responsive suffixes like -769.webp, -768.webp, -480.webp to ensure full-resolution source image
+  return url.replace(/-\d{3,4}\.(webp|jpg|jpeg|png)$/i, '.$1');
+}
+
 /**
  * Load all project JSON records from content/projects/*.json using Vite's import.meta.glob
  * with eager loading.
@@ -158,7 +164,8 @@ export function loadCmsProjects(): GalleryProject[] {
     const filename = filePath.split('/').pop()?.replace(/\.json$/, '') || '';
     const id = raw.id || filename || 'project';
     const { slug, label } = normalizeCategory(raw.category);
-    const imageUrl = raw.imageUrl || raw.image || '';
+    const rawImage = raw.imageUrl || raw.image || '';
+    const imageUrl = getFullResolutionImageUrl(rawImage);
     const imageAlt = raw.imageAlt || raw.alt || raw.title || 'Mashallah Welding Works project';
     const specifications = normalizeSpecifications(raw.specifications);
 

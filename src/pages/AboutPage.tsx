@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Wrench,
@@ -12,29 +12,14 @@ import {
   Sparkles,
   Building,
   Home,
-  Maximize2,
+  ExternalLink,
 } from 'lucide-react';
 import { PageSeo } from '../components/PageSeo';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
-import { ProjectLightbox, LightboxMediaItem } from '../components/ProjectLightbox';
 
 export const AboutPage: React.FC = () => {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-
-  const workshopMediaItem: LightboxMediaItem = {
-    id: 'workshop-facility',
-    title: 'Mashallah Welding Works Workshop - Auto Nagar, Proddatur',
-    imageUrl: '/images/mashallah-welding-workshop-proddatur.webp',
-    imageAlt: 'Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out',
-    categoryLabel: 'Workshop Facility',
-    description: 'This is the Mashallah Welding Works workshop in Proddatur, where custom gates, grills, railings, repair work, and other welding/fabrication projects are carried out.',
-    specifications: 'Auto Nagar, Proddatur • Heavy-Gauge Mild Steel • Precision Arc Welding • Mon–Sat: 9:00 AM – 8:00 PM • Sun: 9:00 AM – 2:00 PM',
-    location: 'Auto Nagar, Proddatur',
-    whatsappMessage: 'Hello Mashallah Welding Works, I saw your workshop in Auto Nagar on your website. I would like to visit or discuss a fabrication requirement.',
-  };
-
   return (
     <>
       <PageSeo
@@ -61,30 +46,31 @@ export const AboutPage: React.FC = () => {
           {/* Workshop Showcase Banner */}
           <div className="mb-14 bg-white rounded-2xl sm:rounded-3xl border border-light-border overflow-hidden shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              <button
-                type="button"
-                onClick={() => setIsLightboxOpen(true)}
-                className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group overflow-hidden"
-                aria-label="View enlarged photo of Mashallah Welding Works workshop"
+              <a
+                href="/images/mashallah-welding-workshop-proddatur.webp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/about overflow-hidden"
+                aria-label="Open full-resolution photo of Mashallah Welding Works workshop in a new tab"
               >
                 <img
                   src="/images/mashallah-welding-workshop-proddatur.webp"
                   alt="Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out"
                   width={1200}
                   height={800}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover/about:scale-105 transition-transform duration-300"
                   loading="eager"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-gunmetal/90 backdrop-blur-xs text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-dark-border/60 flex items-center space-x-1.5 shadow-md">
-                  <MapPin className="w-3.5 h-3.5 text-copper" />
+                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-gunmetal/90 backdrop-blur-xs text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-dark-border/60 flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
+                  <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
                   <span>Auto Nagar, Proddatur</span>
                 </div>
-                <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 px-3 py-1.5 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-xs font-bold flex items-center space-x-1.5 shadow-md">
-                  <Maximize2 className="w-3.5 h-3.5 text-copper" />
-                  <span>Tap to view full screen</span>
+                <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 px-3 py-1.5 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-xs font-bold flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
+                  <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
+                  <span>View full photo</span>
                 </div>
-              </button>
+              </a>
               <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
                 <div className="space-y-3.5">
                   <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-copper">
@@ -277,12 +263,6 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Full-Screen Workshop Photo Lightbox */}
-      <ProjectLightbox
-        project={isLightboxOpen ? workshopMediaItem : null}
-        onClose={() => setIsLightboxOpen(false)}
-      />
     </>
   );
 };

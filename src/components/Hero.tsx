@@ -1,13 +1,13 @@
 import React from 'react';
-import { Phone, Navigation, CheckCircle2, MapPin, Maximize2 } from 'lucide-react';
+import { Phone, Navigation, CheckCircle2, MapPin, ExternalLink } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
 export interface HeroProps {
-  onImageClick?: () => void;
+  className?: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onImageClick }) => {
+export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="home"
@@ -101,31 +101,32 @@ export const Hero: React.FC<HeroProps> = ({ onImageClick }) => {
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl bg-gunmetal border border-dark-border p-2 sm:p-3 shadow-xl overflow-hidden group">
-              <button
-                type="button"
-                onClick={onImageClick}
-                className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block"
-                aria-label="Enlarge photo of modern double-leaf steel main gate"
+              <a
+                href="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/hero"
+                aria-label="Open original photo of modern double-leaf steel main gate in a new tab"
               >
                 <img
                   src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
                   alt="Modern double-leaf steel main gate with gold decorative panels in Proddatur"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover/hero:scale-105 transition-transform duration-500"
                   loading="eager"
                   onError={(e) => {
                     // Fallback to unsplash workshop image if local webp not found
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1000&auto=format&fit=crop';
                   }}
                 />
-                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md">
-                  <Maximize2 className="w-3 h-3 text-copper" />
-                  <span>Tap to enlarge</span>
+                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
+                  <ExternalLink className="w-3 h-3 text-copper shrink-0" />
+                  <span>View full photo</span>
                 </div>
-                <div className="absolute bottom-3 left-3 right-3 bg-dark-bg/85 backdrop-blur-xs p-2.5 rounded-lg border border-dark-border text-xs text-stone-200 flex items-center justify-between">
+                <div className="absolute bottom-3 left-3 right-3 bg-dark-bg/85 backdrop-blur-xs p-2.5 rounded-lg border border-dark-border text-xs text-stone-200 flex items-center justify-between pointer-events-none">
                   <span className="font-semibold text-white">Fabricated in Auto Nagar</span>
-                  <span className="text-[11px] text-copper font-medium">Custom Main Gate</span>
+                  <span className="text-[11px] text-copper font-medium whitespace-nowrap">Custom Main Gate</span>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>
