@@ -34,6 +34,7 @@ import {
 } from '../data/content';
 import { GalleryProject } from '../types';
 import { ProjectLightbox } from '../components/ProjectLightbox';
+import { ProjectShareButton } from '../components/ProjectShareButton';
 
 export const HomePage: React.FC = () => {
   const hoursStatus = getBusinessHoursStatus();
@@ -227,6 +228,7 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={project.id}
+                  id={`gallery-card-${project.id}`}
                   className="bg-white rounded-2xl overflow-hidden border border-light-border hover:border-copper/70 transition-all duration-200 shadow-xs flex flex-col group"
                 >
                   {/* Clickable Image Container: Opens Photo Viewer only */}
@@ -261,8 +263,11 @@ export const HomePage: React.FC = () => {
                   {/* Card Content */}
                   <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
                     <div className="space-y-2">
-                      <div className="text-xs font-semibold text-copper uppercase tracking-wider">
-                        {project.categoryLabel || project.category.replace(/-/g, ' ')}
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="text-xs font-semibold text-copper uppercase tracking-wider">
+                          {project.categoryLabel || project.category.replace(/-/g, ' ')}
+                        </div>
+                        <ProjectShareButton project={project} />
                       </div>
 
                       {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}

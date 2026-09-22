@@ -5,6 +5,7 @@ import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ProjectLightbox } from './ProjectLightbox';
+import { ProjectShareButton } from './ProjectShareButton';
 
 interface GalleryProps {
   className?: string;
@@ -230,8 +231,11 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
 
                   {/* Card Meta Content */}
                   <div className="p-5 pb-2 flex flex-col flex-grow w-full">
-                    <div className="text-xs font-semibold text-copper mb-1.5 uppercase tracking-wider">
-                      {project.categoryLabel}
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <div className="text-xs font-semibold text-copper uppercase tracking-wider">
+                        {project.categoryLabel}
+                      </div>
+                      <ProjectShareButton project={project} />
                     </div>
 
                     {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}
