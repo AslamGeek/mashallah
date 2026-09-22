@@ -1,9 +1,37 @@
-import React from 'react';
-import { ExternalLink, Instagram, Sparkles } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Instagram, Sparkles, Maximize2, ExternalLink } from 'lucide-react';
 import { BUSINESS_INFO, PINTEREST_BOARDS, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ProjectLightbox, LightboxMediaItem } from './ProjectLightbox';
 
 export const SocialShowcase: React.FC = () => {
+  const showcaseItems: LightboxMediaItem[] = PINTEREST_BOARDS.map((board, idx) => ({
+    id: `board-${idx}`,
+    title: board.title,
+    imageUrl: board.imageUrl,
+    imageAlt: board.imageAlt || board.title,
+    categoryLabel: 'Design Inspiration',
+    description: board.description,
+    specifications: `${board.count} • Custom Fabrication Available`,
+    location: 'Proddatur Workshop',
+    whatsappMessage: `Hello Mashallah Welding Works, I want to enquire about custom fabrication for "${board.title}".`,
+  }));
+
+  const [activeModalItem, setActiveModalItem] = useState<LightboxMediaItem | null>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openLightbox = (item: LightboxMediaItem, e?: React.MouseEvent) => {
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveModalItem(item);
+  };
+
+  const closeLightbox = () => {
+    setActiveModalItem(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  };
+
   return (
     <section id="social-showcase" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,27 +50,27 @@ export const SocialShowcase: React.FC = () => {
 
         {/* Boards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {PINTEREST_BOARDS.map((board, idx) => (
+          {showcaseItems.map((item, idx) => (
             <div
               key={idx}
               className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all group flex flex-col"
             >
-              <a
-                href={board.imageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={(e) => openLightbox(item, e)}
                 className="relative aspect-[16/10] overflow-hidden bg-black text-left cursor-pointer w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
-                aria-label={`Open original photo for ${board.title} in a new tab`}
+                aria-haspopup="dialog"
+                aria-label={`View enlarged photo and inspiration details for ${item.title}`}
               >
                 <img
-                  src={board.imageUrl}
-                  alt={board.imageAlt || board.title}
+                  src={item.imageUrl}
+                  alt={item.imageAlt || item.title}
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (board.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                    if (item.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
                       target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
                     }
                   }}
@@ -52,35 +80,31 @@ export const SocialShowcase: React.FC = () => {
                   <Sparkles className="w-3 h-3 text-copper mr-1.5 shrink-0" />
                   Design Idea
                 </div>
-                <div className="absolute bottom-3 left-3 bg-gunmetal/80 backdrop-blur-xs text-stone-200 text-xs font-semibold px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap pointer-events-none">
-                  {board.count}
-                </div>
                 <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md whitespace-nowrap pointer-events-none">
-                  <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
-                  <span>View full photo</span>
+                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                  <span>Tap to inspect</span>
                 </div>
-              </a>
+              </button>
 
               <div className="p-5 flex flex-col flex-grow">
                 <h3 className="font-bold text-dark-text text-lg mb-1.5 group-hover:text-copper transition-colors">
-                  {board.title}
+                  {item.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow leading-relaxed">
-                  {board.description}
+                  {item.description}
                 </p>
 
                 <div className="pt-3 border-t border-light-border/70 flex items-center justify-between gap-2">
-                  <a
-                    href={board.imageUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1.5 px-2.5 rounded bg-stone-100 border border-stone-200 min-h-[38px] whitespace-nowrap"
+                  <button
+                    type="button"
+                    onClick={(e) => openLightbox(item, e)}
+                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-1.5 px-2.5 rounded bg-stone-100 border border-stone-200 min-h-[38px] whitespace-nowrap cursor-pointer"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
-                    <span>View Full Photo</span>
-                  </a>
+                    <Maximize2 className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                    <span>View Photo</span>
+                  </button>
                   <a
-                    href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I want to enquire about fabrication for "${board.title}".`)}
+                    href={generateWhatsAppUrl(item.whatsappMessage || `Hello Mashallah Welding Works, I want to enquire about fabrication for "${item.title}".`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-700 py-1.5 px-2.5 min-h-[38px] whitespace-nowrap"
@@ -135,6 +159,14 @@ export const SocialShowcase: React.FC = () => {
             </a>
           </div>
         </div>
+
+        {/* Design Inspiration Lightbox Viewer */}
+        <ProjectLightbox
+          project={activeModalItem}
+          items={showcaseItems}
+          onClose={closeLightbox}
+          onNavigate={(item) => setActiveModalItem(item)}
+        />
       </div>
     </section>
   );

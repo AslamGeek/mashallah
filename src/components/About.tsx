@@ -1,9 +1,36 @@
-import React from 'react';
-import { Wrench, Shield, Check, Phone, MapPin, ExternalLink } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Wrench, Shield, Check, Phone, MapPin, Maximize2 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ProjectLightbox, LightboxMediaItem } from './ProjectLightbox';
 
 export const About: React.FC = () => {
+  const [activeModalItem, setActiveModalItem] = useState<LightboxMediaItem | null>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const workshopItem: LightboxMediaItem = {
+    id: 'workshop-facility',
+    title: 'Mashallah Welding Works Workshop Facility',
+    imageUrl: '/images/mashallah-welding-workshop-proddatur.webp',
+    imageAlt: 'Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out',
+    categoryLabel: 'Fabrication Workshop',
+    description: 'Our fabrication facility in Auto Nagar, Proddatur, equipped for precision steel cutting, arc welding, and structural assembly of heavy-duty gates, safety grills, and railings.',
+    specifications: 'Auto Nagar, Proddatur, Andhra Pradesh 516360',
+    location: 'Auto Nagar, Proddatur',
+  };
+
+  const openLightbox = (e?: React.MouseEvent) => {
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveModalItem(workshopItem);
+  };
+
+  const closeLightbox = () => {
+    setActiveModalItem(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  };
+
   return (
     <section id="about" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,12 +50,12 @@ export const About: React.FC = () => {
         {/* Workshop Showcase Banner */}
         <div className="mb-14 bg-white rounded-2xl sm:rounded-3xl border border-light-border overflow-hidden shadow-xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-            <a
-              href="/images/mashallah-welding-workshop-proddatur.webp"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={(e) => openLightbox(e)}
               className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/about overflow-hidden"
-              aria-label="Open full-resolution photo of Mashallah Welding Works workshop in a new tab"
+              aria-haspopup="dialog"
+              aria-label="View enlarged photo and details of Mashallah Welding Works workshop"
             >
               <img
                 src="/images/mashallah-welding-workshop-proddatur.webp"
@@ -44,10 +71,10 @@ export const About: React.FC = () => {
                 <span>Auto Nagar, Proddatur</span>
               </div>
               <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 px-3 py-1.5 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-xs font-bold flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
-                <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
-                <span>View full photo</span>
+                <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                <span>Tap to inspect</span>
               </div>
-            </a>
+            </button>
             <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
               <div className="space-y-3.5">
                 <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-copper">
@@ -162,6 +189,12 @@ export const About: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Workshop Photo Lightbox Viewer */}
+        <ProjectLightbox
+          project={activeModalItem}
+          onClose={closeLightbox}
+        />
       </div>
     </section>
   );

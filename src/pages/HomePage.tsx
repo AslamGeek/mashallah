@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -11,9 +11,9 @@ import {
   Clock,
   MapPin,
   Phone,
-  CheckCircle2,
   Sparkles,
   ExternalLink,
+  Maximize2,
   HelpCircle,
   ChevronDown,
   Navigation,
@@ -32,12 +32,29 @@ import {
   generateWhatsAppUrl,
 } from '../data/content';
 import { GalleryProject } from '../types';
+import { ProjectLightbox } from '../components/ProjectLightbox';
 
 export const HomePage: React.FC = () => {
   const hoursStatus = getBusinessHoursStatus();
 
   // Step 2: Proof - Feature top 6 real fabrication projects
   const featuredProjects = GALLERY_ITEMS.slice(0, 6);
+
+  // State for Project Lightbox modal
+  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openLightbox = (project: GalleryProject, e?: React.MouseEvent) => {
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveModalProject(project);
+  };
+
+  const closeLightbox = () => {
+    setActiveModalProject(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  };
 
   // Step 3: Services - Concise 6 core services for homepage
   const homepageServices = [
@@ -91,35 +108,7 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  // Step 4: Practical Trust Highlights
-  const trustSignals = [
-    {
-      title: 'Heavy-Gauge Raw Steel',
-      desc: 'We never compromise on metal thickness. We use structural mild steel, solid bars, and quality angle iron sections built for long-term durability.',
-    },
-    {
-      title: 'Precision On-Site Measurements',
-      desc: 'We personally take and verify exact on-site measurements across Proddatur, ensuring zero gaps, seamless gate swings, and flush fits.',
-    },
-    {
-      title: 'Anti-Rust Primer Application',
-      desc: 'Every fabricated item receives red oxide or zinc-chromate anti-corrosive primer before delivery to guard against monsoon weathering and rust.',
-    },
-    {
-      title: 'Honest Direct Workshop Pricing',
-      desc: 'No middleman commissions. Clear estimates based on raw steel weight, design specifications, and actual installation labor.',
-    },
-    {
-      title: 'Fast Turnaround on Repairs',
-      desc: 'Broken hinges, misaligned gates, or detached grills receive prompt on-site repair visits across Auto Nagar and Proddatur.',
-    },
-    {
-      title: 'Experienced Master Welder',
-      desc: 'Lead fabricator Karimulla C. and our skilled workshop team bring hands-on metal fabrication experience with clean weld seams, deep arc penetration, and smooth grinding.',
-    },
-  ];
-
-  // Step 6: FAQ items for objection handling
+  // Step 4: FAQ items for objection handling
   const objectionFaqs = [
     {
       id: 'faq-measurements',
@@ -221,12 +210,12 @@ export const HomePage: React.FC = () => {
                 className="bg-gunmetal rounded-2xl overflow-hidden border border-dark-border hover:border-copper/60 transition-all duration-200 shadow-sm flex flex-col group"
               >
                 {/* Clickable Image Container */}
-                <a
-                  href={project.imageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={(e) => openLightbox(project, e)}
                   className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
-                  aria-label={`Open original photo of ${project.title} in a new tab`}
+                  aria-haspopup="dialog"
+                  aria-label={`View enlarged photo and specifications for ${project.title}`}
                 >
                   <img
                     src={project.imageUrl}
@@ -247,10 +236,10 @@ export const HomePage: React.FC = () => {
                   </div>
                   {/* Obvious Tap Indicator for Mobile & Low-tech Comfort */}
                   <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                    <ExternalLink className="w-3 h-3 text-copper shrink-0" />
-                    <span>View full photo</span>
+                    <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                    <span>Tap to inspect</span>
                   </div>
-                </a>
+                </button>
 
                 {/* Card Content */}
                 <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
@@ -270,15 +259,14 @@ export const HomePage: React.FC = () => {
 
                   {/* Actions: Large touch targets for low-tech mobile comfort */}
                   <div className="pt-3 border-t border-dark-border flex items-center justify-between gap-2.5">
-                    <a
-                      href={project.imageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
+                    <button
+                      type="button"
+                      onClick={(e) => openLightbox(project, e)}
+                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
                     >
-                      <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                      <span>View Full Photo</span>
-                    </a>
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                      <span>View Photo</span>
+                    </button>
                     <a
                       href={generateWhatsAppUrl(
                         `Hello Mashallah Welding Works, I saw this project on your website: "${project.title}". Can you give me an estimate for something similar?`
@@ -308,6 +296,14 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Featured Project Lightbox Viewer with Full Resolution Option and Scroll Protection */}
+      <ProjectLightbox
+        project={activeModalProject}
+        items={featuredProjects}
+        onClose={closeLightbox}
+        onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
+      />
 
       {/* ========================================================================= */}
       {/* 3. SERVICES (SIMPLIFIED, CONCISE, SCANNABLE) */}
@@ -407,92 +403,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. TRUST (WHY CHOOSE US / PRACTICAL SIGNALS & PROPRIETOR EXPERTISE) */}
-      {/* ========================================================================= */}
-      <section
-        id="trust-section"
-        className="py-16 sm:py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border"
-        aria-labelledby="trust-heading"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-3 mb-12 sm:mb-14">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
-              <Shield className="w-3.5 h-3.5" />
-              <span>Practical Trust Signals</span>
-            </div>
-            <h2
-              id="trust-heading"
-              className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white"
-            >
-              Why Proddatur Chooses <span className="text-copper">Mashallah Welding Works</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-text leading-relaxed">
-              No hollow promises. Honest metal fabrication backed by heavy-gauge steel, clean weld penetration, and direct craftsmanship by lead fabricator Karimulla C. and our experienced team.
-            </p>
-          </div>
-
-          {/* Trust Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {trustSignals.map((item, index) => (
-              <div
-                key={index}
-                className="bg-gunmetal rounded-2xl p-6 border border-dark-border hover:border-copper/70 transition-all flex flex-col group shadow-xs"
-              >
-                <div className="w-10 h-10 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center mb-4 group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
-                  <CheckCircle2 className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-copper transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-stone-300 text-sm leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Master Welder Spotlight Card */}
-          <div className="bg-steel/50 rounded-2xl p-6 sm:p-8 border border-dark-border shadow-lg flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-copper text-white flex items-center justify-center font-extrabold text-xl shrink-0 shadow-sm">
-                KC
-              </div>
-              <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-                  Lead Fabricator & Customer Enquiries
-                </span>
-                <h4 className="text-xl font-bold text-white">{BUSINESS_INFO.leadFabricator}</h4>
-                <p className="text-xs sm:text-sm text-stone-300 max-w-xl leading-relaxed">
-                  “Every gate, grill, and railing leaving our Auto Nagar workshop is welded with structural discipline to protect your home or business for years to come.”
-                </p>
-                <span className="text-[11px] text-stone-400 block pt-1">
-                  Proprietor: {BUSINESS_INFO.proprietor} | Auto Nagar, Proddatur
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-              <Link
-                to="/about"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 border border-dark-border font-semibold text-xs sm:text-sm transition-colors whitespace-nowrap min-h-[44px]"
-              >
-                <span>Read Our Craftsmanship Story</span>
-                <ArrowRight className="w-4 h-4 ml-1.5 shrink-0" />
-              </Link>
-              <a
-                href={BUSINESS_INFO.phoneTel}
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm transition-colors shadow-xs whitespace-nowrap min-h-[44px]"
-              >
-                <Phone className="w-4 h-4 mr-1.5 shrink-0" />
-                <span>Call Now</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 5. BUSINESS INFO (LOCATION, HOURS & MAP MOVED LOWER) */}
+      {/* 4. BUSINESS INFO (LOCATION, HOURS & MAP MOVED LOWER) */}
       {/* ========================================================================= */}
       <section
         id="business-info"

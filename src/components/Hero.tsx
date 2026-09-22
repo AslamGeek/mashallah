@@ -1,13 +1,40 @@
-import React from 'react';
-import { Phone, Navigation, CheckCircle2, MapPin, ExternalLink } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Phone, Navigation, CheckCircle2, MapPin, Maximize2 } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ProjectLightbox, LightboxMediaItem } from './ProjectLightbox';
 
 export interface HeroProps {
   className?: string;
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const [activeModalItem, setActiveModalItem] = useState<LightboxMediaItem | null>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const heroItem: LightboxMediaItem = {
+    id: 'hero-main-gate',
+    title: 'Modern Double-Leaf Steel Main Gate with Gold Accents',
+    imageUrl: '/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp',
+    imageAlt: 'Modern double-leaf steel main gate with gold decorative panels in Proddatur',
+    categoryLabel: 'Custom Main Gate',
+    description: 'Custom-engineered double leaf steel residential main gate fabricated in Auto Nagar, Proddatur with heavy gauge steel framework, vertical privacy louvers, and gold accent decorative motif panels.',
+    specifications: 'Heavy Gauge Mild Steel Box Sections • Anti-Rust Red Oxide Primer • Custom Gold Panel Inlays',
+    location: 'Auto Nagar, Proddatur',
+    whatsappMessage: 'Hello Mashallah Welding Works, I saw the modern double-leaf steel main gate on your homepage and would like an estimate.',
+  };
+
+  const openLightbox = (e?: React.MouseEvent) => {
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveModalItem(heroItem);
+  };
+
+  const closeLightbox = () => {
+    setActiveModalItem(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  };
   return (
     <section
       id="home"
@@ -101,12 +128,12 @@ export const Hero: React.FC<HeroProps> = () => {
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl bg-gunmetal border border-dark-border p-2 sm:p-3 shadow-xl overflow-hidden group">
-              <a
-                href="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={(e) => openLightbox(e)}
                 className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/hero"
-                aria-label="Open original photo of modern double-leaf steel main gate in a new tab"
+                aria-haspopup="dialog"
+                aria-label="View enlarged photo and specifications of modern double-leaf steel main gate"
               >
                 <img
                   src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
@@ -119,18 +146,24 @@ export const Hero: React.FC<HeroProps> = () => {
                   }}
                 />
                 <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                  <ExternalLink className="w-3 h-3 text-copper shrink-0" />
-                  <span>View full photo</span>
+                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                  <span>Tap to inspect</span>
                 </div>
                 <div className="absolute bottom-3 left-3 right-3 bg-dark-bg/85 backdrop-blur-xs p-2.5 rounded-lg border border-dark-border text-xs text-stone-200 flex items-center justify-between pointer-events-none">
                   <span className="font-semibold text-white">Fabricated in Auto Nagar</span>
                   <span className="text-[11px] text-copper font-medium whitespace-nowrap">Custom Main Gate</span>
                 </div>
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Hero Project Lightbox Viewer */}
+      <ProjectLightbox
+        project={activeModalItem}
+        onClose={closeLightbox}
+      />
     </section>
   );
 };

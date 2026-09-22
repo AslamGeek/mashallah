@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { ExternalLink, Tag } from 'lucide-react';
+import { Tag, Maximize2 } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ProjectLightbox } from './ProjectLightbox';
 
 interface GalleryProps {
   className?: string;
@@ -22,6 +23,20 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
       : 'all';
 
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
+  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openLightbox = (project: GalleryProject, e?: React.MouseEvent) => {
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveModalProject(project);
+  };
+
+  const closeLightbox = () => {
+    setActiveModalProject(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  };
 
   // Synchronize category state when URL route param or query string changes
   useEffect(() => {
@@ -152,13 +167,14 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 id={`gallery-card-${project.id}`}
                 className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group"
               >
-                {/* Image Container with direct full-resolution link */}
-                <a
-                  href={project.imageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative aspect-[4/3] bg-black overflow-hidden w-full block cursor-pointer group/img focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-                  aria-label={`Open original full-resolution photo of ${project.title} in a new tab`}
+                {/* Image Container with lightbox trigger */}
+                <button
+                  type="button"
+                  id={`gallery-item-${project.id}`}
+                  onClick={(e) => openLightbox(project, e)}
+                  className="relative aspect-[4/3] bg-black overflow-hidden w-full block cursor-pointer group/img focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-left"
+                  aria-haspopup="dialog"
+                  aria-label={`View enlarged photo and specifications for ${project.title}`}
                 >
                   {project.srcSetWebp ? (
                     <picture className="w-full h-full block">
@@ -197,8 +213,8 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                     />
                   )}
                   <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                    <ExternalLink className="w-3.5 h-3.5 text-copper shrink-0" />
-                    <span>View full photo</span>
+                    <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
+                    <span>Tap to inspect</span>
                   </div>
                   <div className="absolute top-3 left-3 pointer-events-none">
                     <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60 whitespace-nowrap">
@@ -206,7 +222,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       {project.categoryLabel}
                     </span>
                   </div>
-                </a>
+                </button>
 
                 {/* Card Meta Content */}
                 <div className="p-5 pb-2 flex flex-col flex-grow w-full">
@@ -224,15 +240,14 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                     <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
                   </p>
                   <div className="pt-2.5 border-t border-light-border/60 flex items-center justify-between gap-2">
-                    <a
-                      href={project.imageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap"
+                    <button
+                      type="button"
+                      onClick={(e) => openLightbox(project, e)}
+                      className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text font-bold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
                     >
-                      <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                      <span>View Full Photo</span>
-                    </a>
+                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                      <span>View Photo</span>
+                    </button>
                     <a
                       href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
                       target="_blank"
@@ -248,6 +263,14 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
             ))}
           </div>
         )}
+
+        {/* Portfolio Project Lightbox Viewer with Full Resolution Option and Scroll Protection */}
+        <ProjectLightbox
+          project={activeModalProject}
+          items={filteredItems}
+          onClose={closeLightbox}
+          onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
+        />
       </div>
     </section>
   );
