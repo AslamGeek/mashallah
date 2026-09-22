@@ -131,7 +131,7 @@ export const HomeFeaturedProjects: React.FC = () => {
                       className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
                       aria-label={`${project.title} - ${isExpanded ? 'Hide details' : 'View full details'}`}
                     >
-                      <span className="text-base sm:text-lg font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug">
+                      <span className="text-base sm:text-lg font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug break-words flex-1 min-w-0">
                         {project.title}
                       </span>
                       <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
@@ -145,28 +145,28 @@ export const HomeFeaturedProjects: React.FC = () => {
 
                     {/* Detailed or Summary View */}
                     {isExpanded ? (
-                      <div className="space-y-3 pt-1 text-left">
-                        <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                      <div className="space-y-3 pt-1 text-left min-w-0">
+                        <p className="text-xs sm:text-sm text-stone-700 leading-relaxed break-words">
                           {project.description}
                         </p>
                         {project.specifications && (
-                          <div className="p-3 rounded-xl bg-stone-50 border border-light-border space-y-1 text-xs">
+                          <div className="p-3 rounded-xl bg-stone-50 border border-light-border space-y-1 text-xs min-w-0">
                             <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
                               Detailed Specifications
                             </span>
-                            <p className="text-stone-700 font-medium leading-relaxed">
+                            <p className="text-stone-700 font-medium leading-relaxed break-words">
                               {project.specifications}
                             </p>
                           </div>
                         )}
                         <div className="text-[11px] text-stone-500 flex items-center space-x-1.5 pt-0.5">
                           <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
-                          <span>Auto Nagar, Proddatur workshop fabrication</span>
+                          <span className="break-words">Auto Nagar, Proddatur workshop fabrication</span>
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-2">
-                        <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed">
+                      <div className="space-y-2 min-w-0">
+                        <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed break-words">
                           {project.description}
                         </p>
                         {project.specifications && (
@@ -187,7 +187,7 @@ export const HomeFeaturedProjects: React.FC = () => {
                           e.stopPropagation();
                           openLightbox(project, e);
                         }}
-                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs border border-light-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
+                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs border border-light-border transition-colors min-h-[44px] cursor-pointer text-center"
                       >
                         <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                         <span>View Photo</span>
@@ -196,7 +196,7 @@ export const HomeFeaturedProjects: React.FC = () => {
                       <button
                         type="button"
                         onClick={(e) => toggleProjectDetails(project.id, e)}
-                        className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
+                        className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] cursor-pointer text-center ${
                           isExpanded
                             ? 'bg-copper text-white border-copper'
                             : 'bg-white hover:bg-stone-50 text-stone-700 border-light-border'
@@ -216,7 +216,7 @@ export const HomeFeaturedProjects: React.FC = () => {
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-[auto_1fr] sm:grid-cols-[100px_1fr] gap-2">
+                    <div className="flex flex-col sm:grid sm:grid-cols-[100px_1fr] gap-2">
                       <ProjectShareButton project={project} />
 
                       <a
@@ -226,7 +226,7 @@ export const HomeFeaturedProjects: React.FC = () => {
                         onClick={(e) => e.stopPropagation()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap"
+                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] text-center"
                       >
                         <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
                         <span>Ask About This Project</span>

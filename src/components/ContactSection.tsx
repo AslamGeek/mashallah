@@ -60,15 +60,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Official Contact Card with all Required Fields */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-light-border shadow-xs space-y-6">
+            <div className="bg-white rounded-2xl p-5 sm:p-8 border border-light-border shadow-xs space-y-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-copper block mb-1">
                   Fabrication Workshop
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-dark-text">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-dark-text break-words">
                   {BUSINESS_INFO.name}
                 </h3>
-                <p className="text-xs text-stone-500 mt-1">
+                <p className="text-xs text-stone-500 mt-1 break-words">
                   Custom metal fabrication, arc welding, and on-site repair services in Auto Nagar, Proddatur
                 </p>
               </div>
@@ -83,42 +83,42 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div>
-                      <h4 className="text-base font-bold text-dark-text">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-base font-bold text-dark-text break-words">
                         {BUSINESS_INFO.primaryContact.name}
                       </h4>
-                      <span className="text-xs text-stone-600">
+                      <span className="text-xs text-stone-600 block break-words">
                         {BUSINESS_INFO.primaryContact.role}
                       </span>
                     </div>
                     <div className="flex items-center space-x-2 pt-1 sm:pt-0">
                       <a
                         href={BUSINESS_INFO.primaryContact.phoneTel}
-                        className="text-sm font-extrabold text-copper hover:text-copper-hover transition-colors whitespace-nowrap"
+                        className="text-sm font-extrabold text-copper hover:text-copper-hover transition-colors"
                       >
                         {BUSINESS_INFO.primaryContact.phoneFormatted}
                       </a>
                     </div>
                   </div>
-                  <p className="text-[11px] text-stone-600 mt-1.5 leading-relaxed">
+                  <p className="text-[11px] text-stone-600 mt-1.5 leading-relaxed break-words">
                     For pricing estimates, design discussions, and on-site measurements across Proddatur.
                   </p>
                 </div>
 
                 {/* Proprietor: Abdul Sattar */}
                 <div className="bg-stone-50 rounded-xl p-3.5 border border-light-border">
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="min-w-0 flex-1">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block">
                         Proprietor
                       </span>
-                      <h4 className="text-sm font-semibold text-dark-text">
+                      <h4 className="text-sm font-semibold text-dark-text break-words">
                         {BUSINESS_INFO.proprietorContact.name}
                       </h4>
                     </div>
                     <a
                       href={BUSINESS_INFO.proprietorContact.phoneTel}
-                      className="text-xs font-semibold text-stone-600 hover:text-dark-text transition-colors whitespace-nowrap"
+                      className="text-xs font-semibold text-stone-600 hover:text-dark-text transition-colors"
                     >
                       {BUSINESS_INFO.proprietorContact.phoneFormatted}
                     </a>
@@ -132,9 +132,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div className="w-10 h-10 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-xs text-stone-500 block mb-0.5">Workshop Address</span>
-                    <p className="text-stone-700 font-medium leading-relaxed">
+                    <p className="text-stone-700 font-medium leading-relaxed break-words">
                       {BUSINESS_INFO.address}
                     </p>
                   </div>
@@ -145,14 +145,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div className="w-10 h-10 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5" />
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1.5 min-w-0 flex-1">
                     <span className="text-xs text-stone-500 block">Business Hours</span>
-                    <p className="text-stone-700 font-medium whitespace-nowrap">
-                      Monday – Saturday: <strong className="text-dark-text">9:00 AM – 8:00 PM</strong>
-                    </p>
-                    <p className="text-stone-700 font-medium whitespace-nowrap">
-                      Sunday: <strong className="text-dark-text">9:00 AM – 2:00 PM</strong>
-                    </p>
+                    <div className="space-y-2 pt-0.5 text-sm">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5">
+                        <span className="font-bold text-dark-text">Monday – Saturday</span>
+                        <span className="font-semibold text-stone-700">9:00 AM – 8:00 PM</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5">
+                        <span className="font-bold text-dark-text">Sunday</span>
+                        <span className="font-semibold text-stone-700">9:00 AM – 2:00 PM</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -168,7 +172,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <a
                     id="contact-call-btn"
                     href={BUSINESS_INFO.phoneTel}
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] text-center"
                   >
                     <Phone className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>Call Now</span>
@@ -180,7 +184,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={generateWhatsAppUrl('Hello, I would like to ask about welding/fabrication work.')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] text-center"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
                     <span>WhatsApp Us</span>
@@ -192,7 +196,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={BUSINESS_INFO.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs sm:text-sm border border-stone-200 transition-colors min-h-[44px] whitespace-nowrap"
+                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs sm:text-sm border border-stone-200 transition-colors min-h-[44px] text-center"
                   >
                     <Navigation className="w-4 h-4 mr-1.5 text-copper shrink-0" />
                     <span>Directions</span>
@@ -206,11 +210,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     href={BUSINESS_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 hover:text-dark-text border border-light-border text-xs font-semibold transition-colors group min-h-[44px] whitespace-nowrap"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-700 hover:text-dark-text border border-light-border text-xs font-semibold transition-colors group min-h-[44px] text-center flex-wrap gap-1"
                   >
-                    <Instagram className="w-4 h-4 mr-2 text-rose-500 group-hover:scale-110 transition-transform shrink-0" />
-                    <span>Instagram: @karimulla955</span>
-                    <ExternalLink className="w-3.5 h-3.5 ml-1.5 text-stone-400 group-hover:text-stone-600 shrink-0" />
+                    <Instagram className="w-4 h-4 mr-1.5 text-rose-500 group-hover:scale-110 transition-transform shrink-0" />
+                    <span className="break-words">Instagram: @karimulla955</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1 text-stone-400 group-hover:text-stone-600 shrink-0" />
                   </a>
                 </div>
               </div>
@@ -219,7 +223,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
           {/* Right Column: Quick WhatsApp Enquiry & Quotation Builder */}
           <div className="lg:col-span-6">
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-light-border shadow-xs space-y-5 text-left">
+            <div className="bg-white rounded-2xl p-5 sm:p-8 border border-light-border shadow-xs space-y-5 text-left">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 block mb-1">
                   Fast WhatsApp Quote
@@ -313,7 +317,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <button
                   id="submit-whatsapp-enquiry-btn"
                   type="submit"
-                  className="w-full inline-flex items-center justify-center py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-[0.99] whitespace-nowrap cursor-pointer"
+                  className="w-full inline-flex items-center justify-center py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-[0.99] cursor-pointer text-center"
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
                   <span>Send Quote Request</span>

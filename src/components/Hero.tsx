@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 href={generateWhatsAppUrl('Hello, I would like to ask about welding/fabrication work.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xs transition-all duration-150 active:scale-[0.98] whitespace-nowrap min-h-[48px]"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xs transition-all duration-150 active:scale-[0.98] min-h-[48px] text-center"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2 shrink-0" />
                 <span>WhatsApp Us</span>
@@ -77,7 +77,7 @@ export const Hero: React.FC<HeroProps> = () => {
               <a
                 id="hero-call-now-btn"
                 href={BUSINESS_INFO.phoneTel}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98] whitespace-nowrap min-h-[48px]"
+                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98] min-h-[48px] text-center"
               >
                 <Phone className="w-5 h-5 mr-2 stroke-[2.2] shrink-0" />
                 <span>Call Now</span>
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 href={BUSINESS_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-3 rounded-xl text-stone-700 hover:text-copper bg-white hover:bg-stone-50 text-xs sm:text-sm font-semibold transition-colors duration-150 border border-light-border whitespace-nowrap min-h-[44px]"
+                className="inline-flex items-center justify-center px-4 py-3 rounded-xl text-stone-700 hover:text-copper bg-white hover:bg-stone-50 text-xs sm:text-sm font-semibold transition-colors duration-150 border border-light-border min-h-[44px] text-center"
               >
                 <Navigation className="w-4 h-4 mr-1.5 text-copper shrink-0" />
                 <span>Directions to Workshop</span>
@@ -98,15 +98,15 @@ export const Hero: React.FC<HeroProps> = () => {
 
             {/* Clean Value Signals */}
             <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-y-2 gap-x-6 text-xs sm:text-sm text-stone-700 font-medium">
-              <div className="flex items-center space-x-2 whitespace-nowrap">
+              <div className="flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 text-copper shrink-0" />
                 <span>On-Site Measurements</span>
               </div>
-              <div className="flex items-center space-x-2 whitespace-nowrap">
+              <div className="flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 text-copper shrink-0" />
                 <span>Heavy-Gauge Steel</span>
               </div>
-              <div className="flex items-center space-x-2 whitespace-nowrap">
+              <div className="flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 text-copper shrink-0" />
                 <span>Anti-Rust Primer Treated</span>
               </div>

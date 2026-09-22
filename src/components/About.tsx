@@ -62,11 +62,19 @@ export const About: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
-                <span className="font-bold text-dark-text whitespace-nowrap">Workshop Hours:</span>
-                <span className="font-semibold text-stone-700 whitespace-nowrap">Mon–Sat: 9:00 AM – 8:00 PM</span>
-                <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
-                <span className="font-semibold text-stone-700 whitespace-nowrap">Sun: 9:00 AM – 2:00 PM</span>
+              <div className="pt-4 border-t border-light-border text-xs">
+                <span className="font-bold text-dark-text block mb-1.5">Workshop Hours:</span>
+                <div className="space-y-1.5 sm:space-y-0 sm:flex sm:items-center sm:gap-x-3 text-stone-700">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5">
+                    <span className="font-semibold text-stone-900">Monday – Saturday</span>
+                    <span>9:00 AM – 8:00 PM</span>
+                  </div>
+                  <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5">
+                    <span className="font-semibold text-stone-900">Sunday</span>
+                    <span>9:00 AM – 2:00 PM</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -84,7 +92,7 @@ export const About: React.FC = () => {
             <p>
               Backed by hands-on fabrication experience, our workshop specializes in converting solid mild steel and iron into made-to-requirement gates, grills, railings, and heavy stands.
             </p>
-            <p className="bg-white border-l-4 border-copper p-4 rounded-r-lg text-dark-text shadow-xs border-y border-r border-light-border text-sm">
+            <p className="bg-white border-l-4 border-copper p-4 rounded-r-lg text-dark-text shadow-xs border-y border-r border-light-border text-sm leading-relaxed">
               <strong>Both New Fabrication & Repair Services:</strong> Whether you are constructing a new home and need complete custom iron fittings, or have an existing sagging gate or broken hinge that needs fast on-site repair, our workshop delivers prompt, honest, and high-quality workmanship.
             </p>
 
@@ -118,30 +126,30 @@ export const About: React.FC = () => {
 
           {/* Lead Fabricator Card */}
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-light-border relative">
-              <div className="flex items-center space-x-4 mb-5">
-                <div className="w-16 h-16 rounded-xl bg-warm-tint text-copper flex items-center justify-center font-extrabold text-2xl border border-light-border">
+            <div className="bg-white rounded-2xl p-5 sm:p-7 shadow-xs border border-light-border relative">
+              <div className="flex items-center space-x-3.5 sm:space-x-4 mb-5 min-w-0">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-warm-tint text-copper flex items-center justify-center font-extrabold text-xl sm:text-2xl border border-light-border shrink-0">
                   KC
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="text-xs font-bold uppercase tracking-wider text-copper block">
                     Lead Fabricator & Customer Enquiries
                   </span>
-                  <h4 className="text-xl font-bold text-dark-text">{BUSINESS_INFO.leadFabricator}</h4>
-                  <span className="text-xs text-stone-500 block">
+                  <h4 className="text-lg sm:text-xl font-bold text-dark-text break-words">{BUSINESS_INFO.leadFabricator}</h4>
+                  <span className="text-xs text-stone-500 block break-words">
                     Mashallah Welding Works • Proprietor: {BUSINESS_INFO.proprietor}
                   </span>
                 </div>
               </div>
 
-              <blockquote className="text-stone-600 text-sm italic border-l-2 border-copper pl-3.5 py-1 mb-6">
+              <blockquote className="text-stone-600 text-sm italic border-l-2 border-copper pl-3.5 py-1 mb-6 leading-relaxed break-words">
                 “Every gate and grill that leaves our Auto Nagar workshop is welded with pride and structural discipline. We stand by our work to ensure dependable, long-term durability for your property.”
               </blockquote>
 
               <div className="space-y-2.5 pt-3 border-t border-light-border">
                 <a
                   href={BUSINESS_INFO.phoneTel}
-                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-copper hover:bg-copper-hover text-white text-sm font-bold shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
+                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-copper hover:bg-copper-hover text-white text-sm font-bold shadow-xs transition-colors min-h-[44px] text-center"
                 >
                   <Phone className="w-4 h-4 mr-2 text-white shrink-0" />
                   <span>Call Now</span>
@@ -150,7 +158,7 @@ export const About: React.FC = () => {
                   href={generateWhatsAppUrl('Hello, I would like to discuss an iron fabrication requirement.')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors min-h-[44px] whitespace-nowrap"
+                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors min-h-[44px] text-center"
                 >
                   <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
                   <span>WhatsApp Us</span>

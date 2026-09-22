@@ -77,12 +77,12 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
         className="relative w-full max-w-2xl max-h-[92vh] max-h-[92dvh] flex flex-col bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-stone-200 overflow-hidden"
       >
         {/* 1. Close / Share Top Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-stone-200 bg-stone-50/95 shrink-0">
-          <span className="text-xs font-bold uppercase tracking-wider text-copper">
+        <div className="flex items-center justify-between px-3.5 sm:px-6 py-3 border-b border-stone-200 bg-stone-50/95 shrink-0 min-w-0 gap-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-copper truncate min-w-0 flex-1">
             {project.categoryLabel || 'Fabrication Work'}
           </span>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 shrink-0">
             {/* Single discreet Share button */}
             <ProjectShareButton project={project} variant="modal" />
 
@@ -208,7 +208,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
               href={whatsappProjectMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="order-1 sm:order-2 flex-1 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors min-h-[48px] active:scale-[0.98] whitespace-nowrap"
+              className="order-1 sm:order-2 flex-1 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors min-h-[48px] active:scale-[0.98] text-center"
             >
               <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
               <span>Ask About This Project</span>
@@ -217,7 +217,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
             {/* Secondary CTA: Call */}
             <a
               href={BUSINESS_INFO.phoneTel}
-              className="order-2 sm:order-1 inline-flex items-center justify-center px-4 py-2.5 sm:py-3 rounded-xl bg-white hover:bg-stone-100 text-stone-800 text-xs sm:text-sm font-semibold border border-stone-300 transition-colors min-h-[44px] sm:min-h-[48px] active:scale-[0.98] whitespace-nowrap"
+              className="order-2 sm:order-1 inline-flex items-center justify-center px-4 py-2.5 sm:py-3 rounded-xl bg-white hover:bg-stone-100 text-stone-800 text-xs sm:text-sm font-semibold border border-stone-300 transition-colors min-h-[44px] sm:min-h-[48px] active:scale-[0.98] text-center"
             >
               <Phone className="w-4 h-4 mr-1.5 text-copper stroke-[2.2] shrink-0" />
               <span>Call</span>

@@ -123,28 +123,30 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 4: Location & Direct Contact */}
-          <div className="lg:col-span-3 space-y-3.5 text-xs">
+          <div className="lg:col-span-3 space-y-3.5 text-xs min-w-0">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider">
               Workshop Contact
             </h4>
-            <div className="flex items-start text-stone-300">
+            <div className="flex items-start text-stone-300 min-w-0">
               <MapPin className="w-4 h-4 text-copper mr-2 shrink-0 mt-0.5" />
-              <span className="leading-relaxed">{BUSINESS_INFO.address}</span>
+              <span className="leading-relaxed break-words">{BUSINESS_INFO.address}</span>
             </div>
-            <div className="flex items-center text-stone-300">
+            <div className="flex items-center text-stone-300 min-w-0">
               <Phone className="w-4 h-4 text-copper mr-2 shrink-0" />
-              <a href={BUSINESS_INFO.phoneTel} className="text-white hover:text-copper font-semibold transition-colors whitespace-nowrap">
+              <a href={BUSINESS_INFO.phoneTel} className="text-white hover:text-copper font-semibold transition-colors break-words">
                 {BUSINESS_INFO.phoneFormatted}
               </a>
             </div>
-            <div className="flex items-start text-stone-300">
+            <div className="flex items-start text-stone-300 min-w-0">
               <Clock className="w-4 h-4 text-copper mr-2 shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <div className="whitespace-nowrap">
-                  <span className="font-semibold text-white">Mon–Sat:</span> 9:00 AM – 8:00 PM
+              <div className="space-y-1.5 min-w-0 flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5">
+                  <span className="font-semibold text-white">Monday – Saturday</span>
+                  <span className="text-stone-300">9:00 AM – 8:00 PM</span>
                 </div>
-                <div className="whitespace-nowrap">
-                  <span className="font-semibold text-white">Sunday:</span> 9:00 AM – 2:00 PM
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5">
+                  <span className="font-semibold text-white">Sunday</span>
+                  <span className="text-stone-300">9:00 AM – 2:00 PM</span>
                 </div>
               </div>
             </div>
@@ -154,7 +156,7 @@ export const Footer: React.FC = () => {
                 href={BUSINESS_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-gunmetal hover:bg-steel text-stone-300 border border-dark-border text-xs font-medium transition-colors whitespace-nowrap min-h-[38px]"
+                className="inline-flex items-center px-3 py-2 rounded-lg bg-gunmetal hover:bg-steel text-stone-300 border border-dark-border text-xs font-medium transition-colors min-h-[38px]"
               >
                 <Navigation className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                 <span>Open in Google Maps</span>
@@ -166,7 +168,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-3">
           <p>© {currentYear} Mashallah Welding Works. All rights reserved.</p>
-          <p className="text-center sm:text-right whitespace-nowrap">
+          <p className="text-center sm:text-right break-words">
             Auto Nagar, Proddatur, Andhra Pradesh 516360
           </p>
         </div>

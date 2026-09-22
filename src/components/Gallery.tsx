@@ -316,7 +316,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                         <button
                           type="button"
                           onClick={(e) => openLightbox(project, e)}
-                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs border border-stone-300 transition-colors min-h-[44px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-center"
                         >
                           <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                           <span>View Photo</span>
@@ -325,7 +325,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                         <button
                           type="button"
                           onClick={(e) => openProjectDetails(project, e)}
-                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs transition-colors min-h-[44px] whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs transition-colors min-h-[44px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-center"
                         >
                           <FileText className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                           <span>View Details</span>
@@ -333,14 +333,14 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       </div>
 
                       {/* Action Row 2: Share & WhatsApp */}
-                      <div className="grid grid-cols-[auto_1fr] sm:grid-cols-[100px_1fr] gap-2">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[100px_1fr] gap-2">
                         <ProjectShareButton project={project} />
 
                         <a
                           href={whatsappEnquiryUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-center"
                         >
                           <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
                           <span>Ask About This Project</span>

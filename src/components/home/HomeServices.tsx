@@ -130,7 +130,7 @@ export const HomeServices: React.FC = () => {
                     className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
                     aria-label={`${service.title} - ${isServiceExpanded ? 'Hide details' : 'View service details'}`}
                   >
-                    <span className="text-lg sm:text-xl font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug">
+                    <span className="text-lg sm:text-xl font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug break-words flex-1 min-w-0">
                       {service.title}
                     </span>
                     <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
@@ -142,29 +142,29 @@ export const HomeServices: React.FC = () => {
                     </span>
                   </button>
 
-                  <p className="text-stone-600 text-sm leading-relaxed">
+                  <p className="text-stone-600 text-sm leading-relaxed break-words">
                     {service.description}
                   </p>
 
                   {/* Expanded Detailed Information with Features from SERVICES_LIST */}
                   {isServiceExpanded && (
-                    <div className="pt-2 space-y-2 border-t border-light-border text-xs text-stone-600">
+                    <div className="pt-2 space-y-2 border-t border-light-border text-xs text-stone-600 min-w-0">
                       {service.features && service.features.length > 0 ? (
                         service.features.map((feat, idx) => (
                           <div key={idx} className="flex items-start space-x-2">
                             <span className="text-copper font-bold">•</span>
-                            <span>{feat}</span>
+                            <span className="break-words">{feat}</span>
                           </div>
                         ))
                       ) : (
                         <>
                           <div className="flex items-start space-x-2">
                             <span className="text-copper font-bold">•</span>
-                            <span><strong>Quality Metal:</strong> Strong steel made to your exact measurements.</span>
+                            <span className="break-words"><strong>Quality Metal:</strong> Strong steel made to your exact measurements.</span>
                           </div>
                           <div className="flex items-start space-x-2">
                             <span className="text-copper font-bold">•</span>
-                            <span><strong>Rust Protection:</strong> Anti-rust primer coating and clean paint finish.</span>
+                            <span className="break-words"><strong>Rust Protection:</strong> Anti-rust primer coating and clean paint finish.</span>
                           </div>
                         </>
                       )}
@@ -173,11 +173,11 @@ export const HomeServices: React.FC = () => {
                 </div>
 
                 {/* Action Row */}
-                <div className="pt-5 mt-4 border-t border-light-border flex items-center justify-between gap-2">
+                <div className="pt-5 mt-4 border-t border-light-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                   <button
                     type="button"
                     onClick={(e) => toggleServiceDetails(service.id, e)}
-                    className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors whitespace-nowrap inline-flex items-center min-h-[36px] cursor-pointer"
+                    className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors inline-flex items-center justify-center sm:justify-start min-h-[36px] cursor-pointer"
                   >
                     {isServiceExpanded ? (
                       <>
@@ -196,7 +196,7 @@ export const HomeServices: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[36px]"
+                    className="inline-flex items-center justify-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-2 rounded-lg transition-colors min-h-[36px] text-center"
                   >
                     <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
                     <span>Ask on WhatsApp</span>

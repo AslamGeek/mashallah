@@ -23,16 +23,16 @@ export const HomeFinalCTA: React.FC = () => {
       aria-labelledby="conversion-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#22272C] rounded-3xl p-8 sm:p-12 border border-dark-border shadow-2xl">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
+        <div className="bg-[#22272C] rounded-3xl p-5 sm:p-8 md:p-12 border border-dark-border shadow-2xl">
+          <div className="max-w-3xl mx-auto text-center space-y-4 min-w-0">
             <h2
               id="conversion-heading"
-              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight break-words"
             >
               Ready to Start Your Iron Fabrication Project?
             </h2>
 
-            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto break-words">
               Send your measurements, reference design, or repair query directly to lead fabricator Karimulla C. on WhatsApp for quick, transparent pricing and on-site scheduling in Proddatur.
             </p>
 
@@ -69,7 +69,7 @@ export const HomeFinalCTA: React.FC = () => {
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px] text-center"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2.5 shrink-0" />
                 <span>Get a Quote on WhatsApp</span>
@@ -79,7 +79,7 @@ export const HomeFinalCTA: React.FC = () => {
               <a
                 id="final-cta-call"
                 href={BUSINESS_INFO.phoneTel}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98] min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98] min-h-[48px] text-center"
               >
                 <Phone className="w-5 h-5 mr-2 stroke-[2.2] shrink-0" />
                 <span>Call Now</span>
@@ -88,9 +88,9 @@ export const HomeFinalCTA: React.FC = () => {
 
             {/* Reassurance Footer */}
             <div className="pt-6 border-t border-dark-border/80 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-stone-400">
-              <span className="whitespace-nowrap">✓ On-Site Measurements in Proddatur</span>
-              <span className="whitespace-nowrap">✓ Direct Workshop Team (No Middlemen)</span>
-              <span className="whitespace-nowrap">✓ Red Oxide Anti-Rust Primer Treated</span>
+              <span className="text-center">✓ On-Site Measurements in Proddatur</span>
+              <span className="text-center">✓ Direct Workshop Team (No Middlemen)</span>
+              <span className="text-center">✓ Red Oxide Anti-Rust Primer Treated</span>
             </div>
           </div>
         </div>

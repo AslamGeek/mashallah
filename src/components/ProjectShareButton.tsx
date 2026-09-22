@@ -68,7 +68,7 @@ export const ProjectShareButton: React.FC<ProjectShareButtonProps> = ({
     }
   };
 
-  const baseCardStyle = "inline-flex items-center justify-center px-3 py-2 rounded-xl text-xs font-semibold border transition-colors cursor-pointer min-h-[44px] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-copper";
+  const baseCardStyle = "inline-flex items-center justify-center px-3 py-2 rounded-xl text-xs font-semibold border transition-colors cursor-pointer min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-center";
   const cardStyle = copied
     ? "bg-emerald-50 text-emerald-700 border-emerald-300"
     : "bg-white hover:bg-stone-50 text-stone-700 border-stone-300";

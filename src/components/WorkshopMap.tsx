@@ -13,23 +13,23 @@ export const WorkshopMap: React.FC = () => {
       className="mt-10 bg-white rounded-2xl border border-light-border shadow-xs overflow-hidden"
     >
       {/* Map Header */}
-      <div className="p-5 sm:p-6 border-b border-light-border bg-stone-50/70 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <h3 className="text-xl sm:text-2xl font-extrabold text-dark-text">
+      <div className="p-5 sm:p-6 border-b border-light-border bg-stone-50/70 flex flex-col md:flex-row md:items-center justify-between gap-4 min-w-0">
+        <div className="space-y-1 min-w-0 flex-1">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-dark-text break-words">
             Visit Our Workshop in Auto Nagar, Proddatur
           </h3>
-          <p className="text-stone-600 text-xs sm:text-sm">
+          <p className="text-stone-600 text-xs sm:text-sm break-words">
             {BUSINESS_INFO.address}
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 shrink-0">
           <a
             id="map-directions-btn"
             href={BUSINESS_INFO.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-colors whitespace-nowrap min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-copper hover:bg-copper-hover text-white text-xs sm:text-sm font-bold shadow-xs transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-center"
           >
             <Navigation className="w-4 h-4 mr-2 shrink-0" />
             <span>Open in Google Maps</span>
