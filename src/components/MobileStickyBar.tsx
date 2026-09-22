@@ -23,11 +23,11 @@ export const MobileStickyBar: React.FC = () => {
       {/* 2. WhatsApp */}
       <a
         id="mobile-bar-whatsapp-btn"
-        href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+        href={generateWhatsAppUrl()}
         target="_blank"
         rel="noopener noreferrer"
         className="flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-sm shadow-md transition-all active:scale-[0.98] min-h-[48px]"
-        aria-label="Send photo on WhatsApp to Mashallah Welding Works"
+        aria-label="Chat with Mashallah Welding Works on WhatsApp"
       >
         <WhatsAppIcon className="w-5 h-5 shrink-0" />
         <span className="font-extrabold tracking-wide">WhatsApp</span>

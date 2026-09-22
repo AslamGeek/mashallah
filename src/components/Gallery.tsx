@@ -232,13 +232,13 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 Show All Projects
               </button>
               <a
-                href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+                href={generateWhatsAppUrl('Hello, I would like to ask about custom welding/fabrication work.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-500 transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                <span>Send Photo on WhatsApp</span>
+                <span>Ask on WhatsApp</span>
               </a>
             </div>
           </div>
@@ -248,7 +248,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
             {filteredItems.map((project: GalleryProject, index: number) => {
               const isHighlighted = highlightedProjectId === project.id;
               const whatsappEnquiryUrl = generateWhatsAppUrl(
-                `Hello, I want this type of work: ${project.title}. I will send a photo.`
+                `Hello, I would like to ask about this project: ${project.title}.`
               );
 
               return (
@@ -350,7 +350,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                           className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                         >
                           <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                          <span>Send Photo on WhatsApp</span>
+                          <span>Ask About This Project</span>
                         </a>
                       </div>
                     </div>

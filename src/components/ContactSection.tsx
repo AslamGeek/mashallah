@@ -177,13 +177,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   {/* 2. WhatsApp */}
                   <a
                     id="contact-whatsapp-btn"
-                    href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+                    href={generateWhatsAppUrl('Hello, I would like to ask about welding/fabrication work.')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                    <span>Send Photo on WhatsApp</span>
+                    <span>WhatsApp Us</span>
                   </a>
 
                   {/* 3. Get Directions */}

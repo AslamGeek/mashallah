@@ -39,13 +39,13 @@ export const ServicesPage: React.FC = () => {
                 <span>Call Now</span>
               </a>
               <a
-                href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+                href={generateWhatsAppUrl('Hello, I would like to get a quote for welding/fabrication work in Proddatur.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"
               >
                 <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-                <span>Send Photo on WhatsApp</span>
+                <span>Get a Quote on WhatsApp</span>
               </a>
               <Link
                 to="/contact"

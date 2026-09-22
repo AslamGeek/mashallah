@@ -61,16 +61,16 @@ export const Hero: React.FC<HeroProps> = () => {
 
             {/* Primary & Secondary Actions */}
             <div className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
-              {/* Primary CTA: Send Photo on WhatsApp */}
+              {/* Primary CTA: WhatsApp Us */}
               <a
                 id="hero-whatsapp-us-btn"
-                href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+                href={generateWhatsAppUrl('Hello, I would like to ask about welding/fabrication work.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xs transition-all duration-150 active:scale-[0.98] whitespace-nowrap min-h-[48px]"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2 shrink-0" />
-                <span>Send Photo on WhatsApp</span>
+                <span>WhatsApp Us</span>
               </a>
 
               {/* Secondary CTA: Call Now */}

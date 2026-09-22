@@ -91,8 +91,8 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
   if (!isOpen || !project) return null;
 
-  const whatsappPhotoMessage = generateWhatsAppUrl(
-    `Hello, I want this type of work: ${project.title}. I will send a photo.`
+  const whatsappProjectMessage = generateWhatsAppUrl(
+    `Hello, I would like to ask about this project: ${project.title}.`
   );
 
   // Parse specifications into individual items
@@ -245,17 +245,17 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
             </div>
           )}
 
-          {/* Call + Send Photo on WhatsApp row: wraps/stacks cleanly on narrow screens without overflow */}
+          {/* Call + WhatsApp CTA row: wraps/stacks cleanly on narrow screens without overflow */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full">
-            {/* Primary CTA: Send Photo on WhatsApp */}
+            {/* Primary CTA: Ask About This Project */}
             <a
-              href={whatsappPhotoMessage}
+              href={whatsappProjectMessage}
               target="_blank"
               rel="noopener noreferrer"
               className="order-1 sm:order-2 flex-1 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors min-h-[48px] active:scale-[0.98] whitespace-nowrap"
             >
               <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-              <span>Send Photo on WhatsApp</span>
+              <span>Ask About This Project</span>
             </a>
 
             {/* Secondary CTA: Call */}

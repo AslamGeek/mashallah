@@ -114,7 +114,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
           {filteredServices.map((service: ServiceItem) => {
             const IconComponent = getIcon(service.iconName);
             const isExpanded = !!expandedServiceIds[service.id];
-            const whatsappText = `Hello, I want this type of work: ${service.title}. I will send a photo.`;
+            const whatsappText = `Hello, I would like to ask about ${service.title}.`;
             const serviceUrl = generateWhatsAppUrl(whatsappText);
 
             return (
@@ -225,7 +225,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                       className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-all min-h-[44px] whitespace-nowrap"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
-                      <span>Send Photo on WhatsApp</span>
+                      <span>Ask on WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             </p>
           </div>
           <a
-            href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
+            href={generateWhatsAppUrl('Hello, I have a photo/sketch for custom welding work and would like an estimate.')}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98] whitespace-nowrap min-h-[44px]"

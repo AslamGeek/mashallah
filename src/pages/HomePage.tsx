@@ -362,13 +362,13 @@ export const HomePage: React.FC = () => {
                         </button>
                       </div>
 
-                      {/* Action Row 2: Share & Send Photo on WhatsApp */}
+                      {/* Action Row 2: Share & WhatsApp */}
                       <div className="grid grid-cols-[auto_1fr] sm:grid-cols-[100px_1fr] gap-2">
                         <ProjectShareButton project={project} />
 
                         <a
                           href={generateWhatsAppUrl(
-                            `Hello, I want this type of work: ${project.title}. I will send a photo.`
+                            `Hello, I would like to ask about this project: ${project.title}.`
                           )}
                           onClick={(e) => e.stopPropagation()}
                           target="_blank"
@@ -376,7 +376,7 @@ export const HomePage: React.FC = () => {
                           className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap"
                         >
                           <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                          <span>Send Photo on WhatsApp</span>
+                          <span>Ask About This Project</span>
                         </a>
                       </div>
                     </div>
@@ -521,14 +521,14 @@ export const HomePage: React.FC = () => {
                       )}
                     </button>
                     <a
-                      href={generateWhatsAppUrl(`Hello, I want this type of work: ${service.title}. I will send a photo.`)}
+                      href={generateWhatsAppUrl(`Hello, I would like to ask about ${service.title}.`)}
                       onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[36px]"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
-                      <span>Send Photo on WhatsApp</span>
+                      <span>Ask on WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -833,18 +833,18 @@ export const HomePage: React.FC = () => {
 
               {/* Primary & Secondary Actions: WhatsApp Quote is Primary, Call is Secondary */}
               <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                {/* Primary CTA: Send Photo on WhatsApp */}
+                {/* Primary CTA: Get a Quote on WhatsApp */}
                 <a
                   id="final-cta-whatsapp"
                   href={generateWhatsAppUrl(
-                    `Hello, I want this type of work (${selectedProjectType}). I will send a photo.`
+                    `Hello, I would like to get a quote for ${selectedProjectType} work.`
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px]"
                 >
                   <WhatsAppIcon className="w-5 h-5 mr-2.5 shrink-0" />
-                  <span>Send Photo on WhatsApp</span>
+                  <span>Get a Quote on WhatsApp</span>
                 </a>
 
                 {/* Secondary CTA: Call Now */}
