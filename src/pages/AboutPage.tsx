@@ -77,7 +77,7 @@ export const AboutPage: React.FC = () => {
                 onClick={(e) => openLightbox(e)}
                 className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/about overflow-hidden"
                 aria-haspopup="dialog"
-                aria-label="View enlarged photo and details of Mashallah Welding Works workshop"
+                aria-label="View photo and details of Mashallah Welding Works workshop"
               >
                 <img
                   src="/images/mashallah-welding-workshop-proddatur.webp"
@@ -89,20 +89,18 @@ export const AboutPage: React.FC = () => {
                   decoding="async"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-gunmetal/90 backdrop-blur-xs text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-dark-border/60 flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
-                  <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
-                  <span>Auto Nagar, Proddatur</span>
-                </div>
-                <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 px-3 py-1.5 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-xs font-bold flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
-                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                  <span>Tap to inspect</span>
-                </div>
               </button>
               <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
                 <div className="space-y-3.5">
-                  <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-copper">
-                    <Wrench className="w-4 h-4" />
-                    <span>Fabrication Facility</span>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-copper">
+                      <Wrench className="w-4 h-4" />
+                      <span>Fabrication Facility</span>
+                    </div>
+                    <span className="inline-flex items-center text-xs font-semibold text-stone-600">
+                      <MapPin className="w-3.5 h-3.5 text-copper mr-1 shrink-0" />
+                      Auto Nagar, Proddatur
+                    </span>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-extrabold text-dark-text tracking-tight">
                     Our Workshop in Auto Nagar
@@ -115,11 +113,21 @@ export const AboutPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
-                  <span className="font-bold text-dark-text whitespace-nowrap">Workshop Hours:</span>
-                  <span className="font-semibold text-stone-700 whitespace-nowrap">Mon–Sat: 9:00 AM – 8:00 PM</span>
-                  <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
-                  <span className="font-semibold text-stone-700 whitespace-nowrap">Sun: 9:00 AM – 2:00 PM</span>
+                <div className="pt-4 border-t border-light-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                    <span className="font-bold text-dark-text whitespace-nowrap">Hours:</span>
+                    <span className="text-stone-700 whitespace-nowrap">Mon–Sat: 9 AM – 8 PM</span>
+                    <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
+                    <span className="text-stone-700 whitespace-nowrap">Sun: 9 AM – 2 PM</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={(e) => openLightbox(e)}
+                    className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text text-xs font-bold border border-stone-300 transition-colors min-h-[44px] cursor-pointer shrink-0"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                    <span>View Photo</span>
+                  </button>
                 </div>
               </div>
             </div>

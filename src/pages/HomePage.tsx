@@ -190,7 +190,7 @@ export const HomePage: React.FC = () => {
                 Real Fabrication Work in <span className="text-copper">Proddatur</span>
               </h2>
               <p className="text-sm sm:text-base text-muted-text leading-relaxed">
-                Genuine custom iron gates, window safety grills, staircase railings, and school furniture built with solid steel and anti-rust primer in our Auto Nagar workshop. Tap any photo to enlarge.
+                Genuine custom iron gates, window safety grills, staircase railings, and school furniture built with solid steel and anti-rust primer in our Auto Nagar workshop.
               </p>
             </div>
             <Link
@@ -215,7 +215,7 @@ export const HomePage: React.FC = () => {
                   onClick={(e) => openLightbox(project, e)}
                   className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
                   aria-haspopup="dialog"
-                  aria-label={`View enlarged photo and specifications for ${project.title}`}
+                  aria-label={`View photo and specifications for ${project.title}`}
                 >
                   <img
                     src={project.imageUrl}
@@ -233,20 +233,14 @@ export const HomePage: React.FC = () => {
                     }}
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                   />
-                  {/* Category Pill */}
-                  <div className="absolute top-3 left-3 bg-dark-bg/90 backdrop-blur-xs text-copper text-[11px] font-bold px-2.5 py-1 rounded-md border border-dark-border pointer-events-none whitespace-nowrap">
-                    {project.categoryLabel || project.category.replace(/-/g, ' ')}
-                  </div>
-                  {/* Obvious Tap Indicator for Mobile & Low-tech Comfort */}
-                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                    <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                    <span>Tap to inspect</span>
-                  </div>
                 </button>
 
                 {/* Card Content */}
                 <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
                   <div className="space-y-2">
+                    <div className="text-xs font-semibold text-copper">
+                      {project.categoryLabel || project.category.replace(/-/g, ' ')}
+                    </div>
                     <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-copper transition-colors leading-snug">
                       {project.title}
                     </h3>

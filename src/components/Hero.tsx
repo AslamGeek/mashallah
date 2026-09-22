@@ -133,7 +133,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 onClick={(e) => openLightbox(e)}
                 className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-xl overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/hero"
                 aria-haspopup="dialog"
-                aria-label="View enlarged photo and specifications of modern double-leaf steel main gate"
+                aria-label="View photo and specifications of modern double-leaf steel main gate"
               >
                 <img
                   src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
@@ -149,15 +149,21 @@ export const Hero: React.FC<HeroProps> = () => {
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1000&auto=format&fit=crop';
                   }}
                 />
-                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                  <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                  <span>Tap to inspect</span>
-                </div>
-                <div className="absolute bottom-3 left-3 right-3 bg-dark-bg/85 backdrop-blur-xs p-2.5 rounded-lg border border-dark-border text-xs text-stone-200 flex items-center justify-between pointer-events-none">
-                  <span className="font-semibold text-white">Fabricated in Auto Nagar</span>
-                  <span className="text-[11px] text-copper font-medium whitespace-nowrap">Custom Main Gate</span>
-                </div>
               </button>
+              <div className="pt-3 px-1 flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold text-copper">Custom Main Gate</p>
+                  <p className="text-xs text-stone-300">Fabricated in Auto Nagar, Proddatur</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => openLightbox(e)}
+                  className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-steel hover:bg-dark-border text-stone-200 hover:text-white text-xs font-semibold border border-dark-border transition-colors min-h-[44px] cursor-pointer shrink-0"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                  <span>View Photo</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

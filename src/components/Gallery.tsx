@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { Tag, Maximize2 } from 'lucide-react';
+import { Maximize2 } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
@@ -86,7 +86,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
             Our Work & Fabrication Gallery
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-            A showcase of recently completed iron gates, window safety grills, architectural railings, and heavy custom fittings. Tap any photo to view in full resolution.
+            A showcase of recently completed iron gates, window safety grills, architectural railings, and heavy custom fittings.
           </p>
         </div>
 
@@ -212,20 +212,13 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                     />
                   )}
-                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-dark-bg/90 backdrop-blur-xs text-white border border-dark-border text-[11px] font-bold flex items-center space-x-1 shadow-md pointer-events-none whitespace-nowrap">
-                    <Maximize2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                    <span>Tap to inspect</span>
-                  </div>
-                  <div className="absolute top-3 left-3 pointer-events-none">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gunmetal/85 backdrop-blur-xs text-stone-200 text-xs font-semibold border border-dark-border/60 whitespace-nowrap">
-                      <Tag className="w-3 h-3 mr-1 text-copper shrink-0" />
-                      {project.categoryLabel}
-                    </span>
-                  </div>
                 </button>
 
                 {/* Card Meta Content */}
                 <div className="p-5 pb-2 flex flex-col flex-grow w-full">
+                  <div className="text-xs font-semibold text-copper mb-1.5">
+                    {project.categoryLabel}
+                  </div>
                   <h3 className="font-bold text-dark-text text-lg mb-2 group-hover:text-copper transition-colors">
                     {project.title}
                   </h3>
