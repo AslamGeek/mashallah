@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ExternalLink, Tag, MapPin, Maximize2 } from 'lucide-react';
+import React, { useEffect, useRef, useCallback } from 'react';
+import { X, ChevronLeft, ChevronRight, ExternalLink, MapPin } from 'lucide-react';
 import { generateWhatsAppUrl, getFullResolutionImageUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -134,10 +134,18 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
 
   if (!project) return null;
 
-  // Resolve full resolution source image url
-  const fullResolutionUrl = getFullResolutionImageUrl(project.imageUrl);
+  // Resolve original photo source URL
+  const fullPhotoUrl = getFullResolutionImageUrl(project.imageUrl);
   const whatsappText = project.whatsappMessage ||
     `Hello Mashallah Welding Works, I saw "${project.title}" on your website and would like an estimate.`;
+
+  // Format specifications into clean items if bullet points are used
+  const specItems = project.specifications
+    ? project.specifications
+        .split('•')
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [];
 
   return (
     <div
@@ -154,61 +162,41 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
       }}
     >
       <div
-        className="relative flex flex-col w-full max-w-5xl max-h-[96vh] sm:max-h-[92vh] bg-gunmetal border border-dark-border rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden"
+        className="relative flex flex-col w-full max-w-2xl lg:max-w-3xl max-h-[92vh] max-h-[92dvh] bg-gunmetal border border-dark-border rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden mx-auto"
         onClick={(e) => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Top Header Bar */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-dark-border bg-dark-bg/95 z-10 shrink-0">
-          <div className="flex items-center space-x-2.5 min-w-0 pr-2">
-            {project.categoryLabel && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-steel/60 text-stone-200 text-xs font-semibold border border-dark-border/80 whitespace-nowrap shrink-0">
-                <Tag className="w-3 h-3 mr-1 text-copper shrink-0" />
-                {project.categoryLabel}
+        {/* Top Bar: Minimal, image position and large obvious Close button only */}
+        <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-dark-border bg-dark-bg shrink-0 z-10">
+          <div>
+            {hasMultiple ? (
+              <span className="text-xs sm:text-sm font-semibold text-stone-300 tracking-wider">
+                {currentIndex + 1} / {items.length}
               </span>
-            )}
-            {hasMultiple && (
-              <span className="text-xs text-stone-400 font-medium whitespace-nowrap">
-                {currentIndex + 1} of {items.length}
-              </span>
+            ) : (
+              <span />
             )}
           </div>
 
-          <div className="flex items-center space-x-2 shrink-0">
-            {/* Direct Full-Resolution External Link in Header */}
-            <a
-              href={fullResolutionUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-steel/80 hover:bg-steel text-stone-200 hover:text-white text-xs font-semibold border border-dark-border transition-colors min-h-[38px] whitespace-nowrap"
-              title="Open full-resolution photo in a new browser tab"
-            >
-              <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-              <span className="hidden sm:inline">View Full Resolution</span>
-              <span className="sm:hidden">Full Res</span>
-            </a>
-
-            {/* Accessible Close Button */}
-            <button
-              ref={closeBtnRef}
-              type="button"
-              onClick={onClose}
-              className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-dark-border/60 hover:bg-dark-border text-stone-300 hover:text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-              aria-label="Close project viewer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+          <button
+            ref={closeBtnRef}
+            type="button"
+            onClick={onClose}
+            className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-steel/60 hover:bg-steel text-stone-200 hover:text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
 
-        {/* Center Image Container: Constrained to viewport, object-contain, no overflow */}
-        <div className="relative flex-1 min-h-0 flex items-center justify-center bg-black/95 p-2 sm:p-4 overflow-hidden select-none">
+        {/* Image Section: Consistent responsive height, object-contain, no jumping or content overlap */}
+        <div className="relative w-full h-[36vh] sm:h-[42vh] md:h-[46vh] max-h-[420px] bg-black/95 flex items-center justify-center p-2 sm:p-4 select-none shrink-0 overflow-hidden">
           <img
             key={project.id}
-            src={fullResolutionUrl}
+            src={fullPhotoUrl}
             alt={project.imageAlt || project.title}
-            className="max-h-[50vh] sm:max-h-[58vh] lg:max-h-[64vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-xl transition-transform duration-200"
+            className="w-full h-full object-contain rounded-md shadow-lg select-none"
             loading="eager"
             decoding="async"
             referrerPolicy="no-referrer"
@@ -220,83 +208,109 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             }}
           />
 
-          {/* Previous Arrow Button */}
+          {/* Previous Photo Button */}
           {hasPrev && (
             <button
               type="button"
               onClick={handlePrev}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-dark-bg/85 hover:bg-dark-bg text-white border border-dark-border flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
-              aria-label="Previous project photo"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center shadow-lg transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
+              aria-label="Previous photo"
             >
-              <ChevronLeft className="w-6 h-6 text-stone-200" />
+              <ChevronLeft className="w-6 h-6 text-white" />
             </button>
           )}
 
-          {/* Next Arrow Button */}
+          {/* Next Photo Button */}
           {hasNext && (
             <button
               type="button"
               onClick={handleNext}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-dark-bg/85 hover:bg-dark-bg text-white border border-dark-border flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
-              aria-label="Next project photo"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center shadow-lg transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
+              aria-label="Next photo"
             >
-              <ChevronRight className="w-6 h-6 text-stone-200" />
+              <ChevronRight className="w-6 h-6 text-white" />
             </button>
           )}
         </div>
 
-        {/* Bottom Details Panel & Action Buttons */}
-        <div className="bg-gunmetal px-4 sm:px-6 py-4 border-t border-dark-border shrink-0 overflow-y-auto max-h-[36vh] sm:max-h-[28vh]">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <div className="space-y-1.5 flex-1 min-w-0 pr-0 lg:pr-4">
-              <h2
-                id="lightbox-project-title"
-                className="text-lg sm:text-xl font-bold text-white leading-tight"
-              >
-                {project.title}
-              </h2>
-              {project.description && (
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed line-clamp-2 sm:line-clamp-3">
-                  {project.description}
+        {/* Project Information: Category -> Title -> Description -> Specifications -> Actions */}
+        <div className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-4 sm:py-5 bg-gunmetal space-y-3 text-left">
+          {/* 1. Category — small & subtle */}
+          {project.categoryLabel && (
+            <div>
+              <span className="text-xs font-semibold text-copper tracking-wide uppercase">
+                {project.categoryLabel}
+              </span>
+            </div>
+          )}
+
+          {/* 2. Project Title */}
+          <h2
+            id="lightbox-project-title"
+            className="text-lg sm:text-xl font-bold text-white leading-snug break-words"
+          >
+            {project.title}
+          </h2>
+
+          {/* 3. Full Description — wraps naturally without truncation */}
+          {project.description && (
+            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed break-words">
+              {project.description}
+            </p>
+          )}
+
+          {/* 4. Specifications / Details — formatted cleanly without cutoff */}
+          {project.specifications && (
+            <div className="pt-1 space-y-1.5">
+              <h3 className="text-xs font-bold text-stone-200 uppercase tracking-wider">
+                Details
+              </h3>
+              {specItems.length > 1 ? (
+                <ul className="space-y-1 text-xs sm:text-sm text-stone-300">
+                  {specItems.map((spec, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-copper mr-2 select-none shrink-0" aria-hidden="true">•</span>
+                      <span className="leading-relaxed break-words">{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed break-words">
+                  {project.specifications}
                 </p>
               )}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-400 pt-1">
-                {project.specifications && (
-                  <span className="truncate">
-                    <strong className="text-stone-300 font-semibold">Spec:</strong> {project.specifications}
-                  </span>
-                )}
-                {project.location && (
-                  <span className="inline-flex items-center text-copper font-medium whitespace-nowrap">
-                    <MapPin className="w-3 h-3 mr-1 shrink-0" />
-                    {project.location}
-                  </span>
-                )}
-              </div>
             </div>
+          )}
 
-            {/* Actions: View Full Resolution & WhatsApp Quote */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0 pt-2 lg:pt-0">
-              <a
-                href={fullResolutionUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-steel hover:bg-steel/80 text-white font-bold text-xs sm:text-sm border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
-              >
-                <ExternalLink className="w-4 h-4 mr-2 text-copper shrink-0" />
-                <span>View Full Resolution</span>
-              </a>
+          {/* Location details if available */}
+          {project.location && (
+            <p className="text-xs text-stone-400 flex items-center pt-0.5">
+              <MapPin className="w-3.5 h-3.5 text-copper mr-1.5 shrink-0" />
+              <span>Location: {project.location}</span>
+            </p>
+          )}
 
-              <a
-                href={generateWhatsAppUrl(whatsappText)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
-              >
-                <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-                <span>WhatsApp Quote</span>
-              </a>
-            </div>
+          {/* 5. Actions: View Full Photo (secondary) & WhatsApp Quote (primary) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3 sm:pt-4 border-t border-dark-border/80">
+            <a
+              href={fullPhotoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-4 py-3 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs sm:text-sm border border-dark-border transition-colors min-h-[48px] text-center"
+            >
+              <ExternalLink className="w-4 h-4 mr-2 text-copper shrink-0" />
+              <span>View Full Photo</span>
+            </a>
+
+            <a
+              href={generateWhatsAppUrl(whatsappText)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-colors min-h-[48px] text-center flex-1 sm:flex-initial"
+            >
+              <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
+              <span>WhatsApp Quote</span>
+            </a>
           </div>
         </div>
       </div>
