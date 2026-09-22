@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { PageSeo } from '../components/PageSeo';
 import { Gallery } from '../components/Gallery';
-import { SocialShowcase } from '../components/SocialShowcase';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 
@@ -17,9 +16,6 @@ export const OurWorkPage: React.FC = () => {
 
       {/* Primary Gallery Component with top padding for fixed header */}
       <Gallery className="pt-28 pb-16" />
-
-      {/* Social & Modern Design Showcase (Pinterest & Instagram) */}
-      <SocialShowcase />
 
       {/* Bottom CTA Banner */}
       <section className="py-16 bg-dark-bg text-[#FAF8F5] border-b border-dark-border">

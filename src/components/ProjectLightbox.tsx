@@ -205,10 +205,10 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             <button
               type="button"
               onClick={handlePrev}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center shadow-lg transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
+              className="absolute left-1 sm:left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/25 hover:bg-white/40 active:bg-white/55 text-white border border-white/40 backdrop-blur-sm flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10 before:absolute before:-inset-2 before:content-['']"
               aria-label="Previous photo"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-5 h-5 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" />
             </button>
           )}
 
@@ -217,10 +217,10 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             <button
               type="button"
               onClick={handleNext}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/80 hover:bg-black text-white border border-white/20 flex items-center justify-center shadow-lg transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10"
+              className="absolute right-1 sm:right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/25 hover:bg-white/40 active:bg-white/55 text-white border border-white/40 backdrop-blur-sm flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper z-10 before:absolute before:-inset-2 before:content-['']"
               aria-label="Next photo"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ChevronRight className="w-5 h-5 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" />
             </button>
           )}
         </div>
