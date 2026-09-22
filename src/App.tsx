@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { SiteLayout } from './layouts/SiteLayout';
 import { HomePage } from './pages/HomePage';
-import { OurWorkPage } from './pages/OurWorkPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+
+// Lazy-load secondary pages to optimize initial bundle size while keeping HomePage eager
+const OurWorkPage = lazy(() =>
+  import('./pages/OurWorkPage').then((module) => ({ default: module.OurWorkPage }))
+);
+const ServicesPage = lazy(() =>
+  import('./pages/ServicesPage').then((module) => ({ default: module.ServicesPage }))
+);
+const AboutPage = lazy(() =>
+  import('./pages/AboutPage').then((module) => ({ default: module.AboutPage }))
+);
+const ContactPage = lazy(() =>
+  import('./pages/ContactPage').then((module) => ({ default: module.ContactPage }))
+);
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage }))
+);
 
 export default function App() {
   return (

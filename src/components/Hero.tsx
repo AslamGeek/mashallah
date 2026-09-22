@@ -131,6 +131,8 @@ export const Hero: React.FC<HeroProps> = () => {
                   />
                   <img
                     src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur-768.webp"
+                    srcSet="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur-480.webp 480w, /images/modern-double-leaf-steel-main-gate-gold-panels-proddatur-768.webp 768w, /images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp 1200w"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 550px"
                     alt="Modern double-leaf steel main gate with gold decorative panels in Proddatur"
                     width={768}
                     height={576}

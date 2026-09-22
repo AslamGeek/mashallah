@@ -69,7 +69,7 @@ export const HomeFeaturedProjects: React.FC = () => {
 
         {/* 6 Real Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProjects.map((project) => {
+          {featuredProjects.map((project, index) => {
             const isExpanded = !!expandedProjectIds[project.id];
             return (
               <div
@@ -88,22 +88,32 @@ export const HomeFeaturedProjects: React.FC = () => {
                   aria-haspopup="dialog"
                   aria-label={`View photo of ${project.title}`}
                 >
-                  <img
-                    src={project.imageUrl}
-                    alt={project.imageAlt || project.title}
-                    width={800}
-                    height={600}
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                        target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                      }
-                    }}
-                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
-                  />
+                  <picture className="w-full h-full block">
+                    <source
+                      type="image/webp"
+                      srcSet={project.srcSetWebp || `${project.thumbnailUrl || project.imageUrl} 480w, ${project.mediumUrl || project.imageUrl} 768w`}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <img
+                      src={project.thumbnailUrl || project.imageUrl}
+                      srcSet={project.srcSetWebp || `${project.thumbnailUrl || project.imageUrl} 480w, ${project.mediumUrl || project.imageUrl} 768w`}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      alt={project.imageAlt || project.title}
+                      width={480}
+                      height={360}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                          target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                        }
+                      }}
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                    />
+                  </picture>
                 </button>
 
                 {/* Card Content */}

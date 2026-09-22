@@ -268,11 +268,13 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       />
                       <img
                         src={project.thumbnailUrl || project.imageUrl}
+                        srcSet={project.srcSetWebp || `${project.thumbnailUrl || project.imageUrl} 480w, ${project.mediumUrl || project.imageUrl} 768w`}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         alt={project.imageAlt || project.title}
                         width={480}
                         height={360}
                         referrerPolicy="no-referrer"
-                        loading={index < 3 ? 'eager' : 'lazy'}
+                        loading={index === 0 ? 'eager' : 'lazy'}
                         decoding="async"
                         fetchPriority={index === 0 ? 'high' : 'auto'}
                         onError={(e) => {

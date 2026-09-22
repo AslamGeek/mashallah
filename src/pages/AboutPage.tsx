@@ -43,16 +43,25 @@ export const AboutPage: React.FC = () => {
           <div className="mb-14 bg-white rounded-2xl sm:rounded-3xl border border-light-border overflow-hidden shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
               <div className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 overflow-hidden">
-                <img
-                  src="/images/mashallah-welding-workshop-proddatur.webp"
-                  alt="Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out"
-                  width={1200}
-                  height={800}
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                />
+                <picture className="w-full h-full block">
+                  <source
+                    type="image/webp"
+                    srcSet="/images/mashallah-welding-workshop-proddatur-480.webp 480w, /images/mashallah-welding-workshop-proddatur-768.webp 768w, /images/mashallah-welding-workshop-proddatur.webp 1200w"
+                    sizes="(max-width: 1024px) 100vw, 700px"
+                  />
+                  <img
+                    src="/images/mashallah-welding-workshop-proddatur-768.webp"
+                    srcSet="/images/mashallah-welding-workshop-proddatur-480.webp 480w, /images/mashallah-welding-workshop-proddatur-768.webp 768w, /images/mashallah-welding-workshop-proddatur.webp 1200w"
+                    sizes="(max-width: 1024px) 100vw, 700px"
+                    alt="Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out"
+                    width={768}
+                    height={512}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                  />
+                </picture>
               </div>
               <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
                 <div className="space-y-3.5">
