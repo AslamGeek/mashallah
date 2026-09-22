@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Wrench,
@@ -12,40 +12,13 @@ import {
   Sparkles,
   Building,
   Home,
-  Maximize2,
 } from 'lucide-react';
 import { PageSeo } from '../components/PageSeo';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
-import { ProjectLightbox, LightboxMediaItem } from '../components/ProjectLightbox';
 
 export const AboutPage: React.FC = () => {
-  const [activeModalItem, setActiveModalItem] = useState<LightboxMediaItem | null>(null);
-  const lastTriggerRef = useRef<HTMLElement | null>(null);
-
-  const workshopItem: LightboxMediaItem = {
-    id: 'workshop-facility',
-    title: 'Mashallah Welding Works Workshop Facility',
-    imageUrl: '/images/mashallah-welding-workshop-proddatur.webp',
-    imageAlt: 'Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out',
-    categoryLabel: 'Fabrication Workshop',
-    description: 'Our fabrication facility in Auto Nagar, Proddatur, equipped for precision steel cutting, arc welding, and structural assembly of heavy-duty gates, safety grills, and railings.',
-    specifications: 'Auto Nagar, Proddatur, Andhra Pradesh 516360',
-    location: 'Auto Nagar, Proddatur',
-  };
-
-  const openLightbox = (e?: React.MouseEvent) => {
-    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
-    setActiveModalItem(workshopItem);
-  };
-
-  const closeLightbox = () => {
-    setActiveModalItem(null);
-    if (lastTriggerRef.current) {
-      lastTriggerRef.current.focus({ preventScroll: true });
-    }
-  };
   return (
     <>
       <PageSeo
@@ -72,24 +45,18 @@ export const AboutPage: React.FC = () => {
           {/* Workshop Showcase Banner */}
           <div className="mb-14 bg-white rounded-2xl sm:rounded-3xl border border-light-border overflow-hidden shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              <button
-                type="button"
-                onClick={(e) => openLightbox(e)}
-                className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/about overflow-hidden"
-                aria-haspopup="dialog"
-                aria-label="View photo and details of Mashallah Welding Works workshop"
-              >
+              <div className="lg:col-span-7 relative min-h-[240px] sm:min-h-[320px] lg:min-h-[380px] bg-stone-900 overflow-hidden">
                 <img
                   src="/images/mashallah-welding-workshop-proddatur.webp"
                   alt="Mashallah Welding Works workshop in Auto Nagar, Proddatur where custom gates, grills, railings, and repair projects are carried out"
                   width={1200}
                   height={800}
-                  className="w-full h-full object-cover object-center group-hover/about:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center"
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
                 />
-              </button>
+              </div>
               <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between bg-white space-y-5">
                 <div className="space-y-3.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
@@ -113,21 +80,11 @@ export const AboutPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-light-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-                    <span className="font-bold text-dark-text whitespace-nowrap">Hours:</span>
-                    <span className="text-stone-700 whitespace-nowrap">Mon–Sat: 9 AM – 8 PM</span>
-                    <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
-                    <span className="text-stone-700 whitespace-nowrap">Sun: 9 AM – 2 PM</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={(e) => openLightbox(e)}
-                    className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-dark-text text-xs font-bold border border-stone-300 transition-colors min-h-[44px] cursor-pointer shrink-0"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                    <span>View Photo</span>
-                  </button>
+                <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
+                  <span className="font-bold text-dark-text whitespace-nowrap">Workshop Hours:</span>
+                  <span className="font-semibold text-stone-700 whitespace-nowrap">Mon–Sat: 9:00 AM – 8:00 PM</span>
+                  <span className="hidden sm:inline text-stone-400" aria-hidden="true">•</span>
+                  <span className="font-semibold text-stone-700 whitespace-nowrap">Sun: 9:00 AM – 2:00 PM</span>
                 </div>
               </div>
             </div>
@@ -299,11 +256,6 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Workshop Photo Lightbox Viewer */}
-      <ProjectLightbox
-        project={activeModalItem}
-        onClose={closeLightbox}
-      />
     </>
   );
 };
