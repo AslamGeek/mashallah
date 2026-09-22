@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Instagram, Sparkles, Maximize2, ExternalLink } from 'lucide-react';
+import { Instagram, Sparkles, Maximize2, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { BUSINESS_INFO, PINTEREST_BOARDS, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ProjectLightbox, LightboxMediaItem } from './ProjectLightbox';
@@ -18,9 +18,19 @@ export const SocialShowcase: React.FC = () => {
   }));
 
   const [activeModalItem, setActiveModalItem] = useState<LightboxMediaItem | null>(null);
+  const [expandedCardIds, setExpandedCardIds] = useState<Record<string, boolean>>({});
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
+  const toggleCardDetails = (id: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setExpandedCardIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   const openLightbox = (item: LightboxMediaItem, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
     setActiveModalItem(item);
   };
@@ -50,70 +60,148 @@ export const SocialShowcase: React.FC = () => {
 
         {/* Boards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {showcaseItems.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all group flex flex-col"
-            >
-              <button
-                type="button"
-                onClick={(e) => openLightbox(item, e)}
-                className="relative aspect-[16/10] overflow-hidden bg-black text-left cursor-pointer w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
-                aria-haspopup="dialog"
-                aria-label={`View photo and details for ${item.title}`}
+          {showcaseItems.map((item, idx) => {
+            const isExpanded = !!expandedCardIds[item.id];
+            return (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all group flex flex-col"
               >
-                <img
-                  src={item.imageUrl}
-                  alt={item.imageAlt || item.title}
-                  width={800}
-                  height={500}
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (item.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                      target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                    }
+                {/* Clickable Image Container: Opens photo viewer only */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(item, e);
                   }}
-                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
-                />
-              </button>
+                  className="relative aspect-[16/10] overflow-hidden bg-black text-left cursor-pointer w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
+                  aria-haspopup="dialog"
+                  aria-label={`View photo of ${item.title}`}
+                >
+                  <img
+                    src={item.imageUrl}
+                    alt={item.imageAlt || item.title}
+                    width={800}
+                    height={500}
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (item.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                        target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                      }
+                    }}
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                  />
+                </button>
 
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="text-xs font-semibold text-copper mb-1.5 flex items-center">
-                  <Sparkles className="w-3 h-3 text-copper mr-1 shrink-0" />
-                  <span>Design Idea</span>
-                </div>
-                <h3 className="font-bold text-dark-text text-lg mb-1.5 group-hover:text-copper transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow leading-relaxed">
-                  {item.description}
-                </p>
+                <div className="p-5 flex flex-col flex-grow">
+                  <div className="text-xs font-semibold text-copper mb-1.5 flex items-center uppercase tracking-wider">
+                    <Sparkles className="w-3 h-3 text-copper mr-1 shrink-0" />
+                    <span>Design Idea</span>
+                  </div>
 
-                <div className="pt-3 border-t border-light-border/70 flex items-center justify-between gap-2">
+                  {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ hit area */}
                   <button
                     type="button"
-                    onClick={(e) => openLightbox(item, e)}
-                    className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-dark-text py-2 px-3 rounded-lg bg-stone-100 hover:bg-stone-200 border border-stone-200 min-h-[44px] whitespace-nowrap cursor-pointer"
+                    onClick={(e) => toggleCardDetails(item.id, e)}
+                    aria-expanded={isExpanded}
+                    className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg mb-1"
+                    aria-label={`${item.title} - ${isExpanded ? 'Hide details' : 'View design details'}`}
                   >
-                    <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                    <span>View Photo</span>
+                    <span className="font-bold text-dark-text text-lg group-hover/title:text-copper transition-colors leading-snug">
+                      {item.title}
+                    </span>
+                    <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
+                      {isExpanded ? (
+                        <ChevronUp className="w-4 h-4 text-copper" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </span>
                   </button>
-                  <a
-                    href={generateWhatsAppUrl(item.whatsappMessage || `Hello Mashallah Welding Works, I want to enquire about fabrication for "${item.title}".`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 py-2 px-3 rounded-lg shadow-xs min-h-[44px] whitespace-nowrap"
-                  >
-                    <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
-                    <span>WhatsApp Quote</span>
-                  </a>
+
+                  {/* Detailed vs Summary View */}
+                  {isExpanded ? (
+                    <div className="space-y-2.5 mb-4 flex-grow text-left pt-1">
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {item.description}
+                      </p>
+                      <div className="p-3 rounded-xl bg-stone-50 border border-light-border text-xs space-y-1">
+                        <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
+                          Fabrication Availability
+                        </span>
+                        <p className="text-stone-700">
+                          {item.specifications}
+                        </p>
+                        <p className="text-stone-500 text-[11px] pt-1">
+                          Available for custom sizing and site fitting across Proddatur.
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs sm:text-sm text-stone-600 mb-4 flex-grow leading-relaxed line-clamp-2">
+                      {item.description}
+                    </p>
+                  )}
+
+                  {/* Actions: View Photo, View Details, WhatsApp Quote */}
+                  <div className="pt-3 border-t border-light-border/70 space-y-2 mt-auto">
+                    <div className="grid grid-cols-2 gap-2">
+                      {/* View Photo button: opens photo viewer only */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openLightbox(item, e);
+                        }}
+                        className="inline-flex items-center justify-center text-xs font-semibold text-stone-700 hover:text-dark-text py-2 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 border border-stone-200 min-h-[44px] whitespace-nowrap cursor-pointer"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                        <span>View Photo</span>
+                      </button>
+
+                      {/* View Details button: expands/collapses detailed card view */}
+                      <button
+                        type="button"
+                        onClick={(e) => toggleCardDetails(item.id, e)}
+                        className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
+                          isExpanded
+                            ? 'bg-copper text-white border-copper'
+                            : 'bg-white hover:bg-stone-50 text-dark-text border-stone-200'
+                        }`}
+                      >
+                        {isExpanded ? (
+                          <>
+                            <ChevronUp className="w-3.5 h-3.5 mr-1 text-white shrink-0" />
+                            <span>Hide Details</span>
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                            <span>View Details</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* WhatsApp Quote: Performs only WhatsApp action */}
+                    <a
+                      href={generateWhatsAppUrl(item.whatsappMessage || `Hello Mashallah Welding Works, I want to enquire about fabrication for "${item.title}".`)}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 py-2.5 px-4 rounded-xl shadow-xs min-h-[44px] whitespace-nowrap"
+                    >
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
+                      <span>WhatsApp Quote</span>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Instagram Integration Card */}

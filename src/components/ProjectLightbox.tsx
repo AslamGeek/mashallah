@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ExternalLink, MapPin } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { generateWhatsAppUrl, getFullResolutionImageUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -139,14 +139,6 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
   const whatsappText = project.whatsappMessage ||
     `Hello Mashallah Welding Works, I saw "${project.title}" on your website and would like an estimate.`;
 
-  // Format specifications into clean items if bullet points are used
-  const specItems = project.specifications
-    ? project.specifications
-        .split('•')
-        .map((s) => s.trim())
-        .filter(Boolean)
-    : [];
-
   return (
     <div
       role="dialog"
@@ -190,13 +182,13 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           </button>
         </div>
 
-        {/* Image Section: Consistent responsive height, object-contain, no jumping or content overlap */}
-        <div className="relative w-full h-[36vh] sm:h-[42vh] md:h-[46vh] max-h-[420px] bg-black/95 flex items-center justify-center p-2 sm:p-4 select-none shrink-0 overflow-hidden">
+        {/* Photo Viewport: Generous responsive height, object-contain, clean navigation */}
+        <div className="relative w-full h-[60vh] sm:h-[68vh] md:h-[72vh] max-h-[700px] bg-black/95 flex items-center justify-center p-2 sm:p-4 select-none shrink-0 overflow-hidden">
           <img
             key={project.id}
             src={fullPhotoUrl}
             alt={project.imageAlt || project.title}
-            className="w-full h-full object-contain rounded-md shadow-lg select-none"
+            className="w-full h-full object-contain rounded-md select-none"
             loading="eager"
             decoding="async"
             referrerPolicy="no-referrer"
@@ -233,82 +225,40 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           )}
         </div>
 
-        {/* Project Information: Category -> Title -> Description -> Specifications -> Actions */}
-        <div className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-4 sm:py-5 bg-gunmetal space-y-3 text-left">
-          {/* 1. Category — small & subtle */}
-          {project.categoryLabel && (
-            <div>
-              <span className="text-xs font-semibold text-copper tracking-wide uppercase">
+        {/* Clean Photo Viewer Footer: Title & Actions Only */}
+        <div className="px-4 sm:px-6 py-3 sm:py-3.5 bg-gunmetal border-t border-dark-border flex flex-col sm:flex-row items-center justify-between gap-3 text-left shrink-0">
+          <div className="space-y-0.5 max-w-md w-full">
+            {project.categoryLabel && (
+              <span className="text-[11px] font-bold text-copper tracking-wider uppercase">
                 {project.categoryLabel}
               </span>
-            </div>
-          )}
+            )}
+            <h2
+              id="lightbox-project-title"
+              className="text-sm sm:text-base font-bold text-white truncate"
+            >
+              {project.title}
+            </h2>
+          </div>
 
-          {/* 2. Project Title */}
-          <h2
-            id="lightbox-project-title"
-            className="text-lg sm:text-xl font-bold text-white leading-snug break-words"
-          >
-            {project.title}
-          </h2>
-
-          {/* 3. Full Description — wraps naturally without truncation */}
-          {project.description && (
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed break-words">
-              {project.description}
-            </p>
-          )}
-
-          {/* 4. Specifications / Details — formatted cleanly without cutoff */}
-          {project.specifications && (
-            <div className="pt-1 space-y-1.5">
-              <h3 className="text-xs font-bold text-stone-200 uppercase tracking-wider">
-                Details
-              </h3>
-              {specItems.length > 1 ? (
-                <ul className="space-y-1 text-xs sm:text-sm text-stone-300">
-                  {specItems.map((spec, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-copper mr-2 select-none shrink-0" aria-hidden="true">•</span>
-                      <span className="leading-relaxed break-words">{spec}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed break-words">
-                  {project.specifications}
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Location details if available */}
-          {project.location && (
-            <p className="text-xs text-stone-400 flex items-center pt-0.5">
-              <MapPin className="w-3.5 h-3.5 text-copper mr-1.5 shrink-0" />
-              <span>Location: {project.location}</span>
-            </p>
-          )}
-
-          {/* 5. Actions: View Full Photo (secondary) & WhatsApp Quote (primary) */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3 sm:pt-4 border-t border-dark-border/80">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
             <a
               href={fullPhotoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-3 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs sm:text-sm border border-dark-border transition-colors min-h-[48px] text-center"
+              className="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
             >
-              <ExternalLink className="w-4 h-4 mr-2 text-copper shrink-0" />
-              <span>View Full Photo</span>
+              <ExternalLink className="w-4 h-4 mr-1.5 text-copper shrink-0" />
+              <span>Full Photo</span>
             </a>
 
             <a
               href={generateWhatsAppUrl(whatsappText)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-colors min-h-[48px] text-center flex-1 sm:flex-initial"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap"
             >
-              <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
+              <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
               <span>WhatsApp Quote</span>
             </a>
           </div>

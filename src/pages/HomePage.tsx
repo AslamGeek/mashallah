@@ -16,6 +16,7 @@ import {
   Maximize2,
   HelpCircle,
   ChevronDown,
+  ChevronUp,
   Navigation,
   School,
   Hammer,
@@ -40,11 +41,32 @@ export const HomePage: React.FC = () => {
   // Step 2: Proof - Feature top 6 real fabrication projects
   const featuredProjects = GALLERY_ITEMS.slice(0, 6);
 
-  // State for Project Lightbox modal
+  // State for Project Lightbox modal (Photo Viewer)
   const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
+  // State for detailed card view expansion
+  const [expandedProjectIds, setExpandedProjectIds] = useState<Record<string, boolean>>({});
+  const [expandedServiceIds, setExpandedServiceIds] = useState<Record<string, boolean>>({});
+
+  const toggleProjectDetails = (id: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setExpandedProjectIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const toggleServiceDetails = (id: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setExpandedServiceIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   const openLightbox = (project: GalleryProject, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
     setActiveModalProject(project);
   };
@@ -204,81 +226,162 @@ export const HomePage: React.FC = () => {
 
           {/* 6 Real Projects Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="bg-gunmetal rounded-2xl overflow-hidden border border-dark-border hover:border-copper/60 transition-all duration-200 shadow-sm flex flex-col group"
-              >
-                {/* Clickable Image Container */}
-                <button
-                  type="button"
-                  onClick={(e) => openLightbox(project, e)}
-                  className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
-                  aria-haspopup="dialog"
-                  aria-label={`View photo and specifications for ${project.title}`}
+            {featuredProjects.map((project) => {
+              const isExpanded = !!expandedProjectIds[project.id];
+              return (
+                <div
+                  key={project.id}
+                  className="bg-gunmetal rounded-2xl overflow-hidden border border-dark-border hover:border-copper/60 transition-all duration-200 shadow-sm flex flex-col group"
                 >
-                  <img
-                    src={project.imageUrl}
-                    alt={project.imageAlt || project.title}
-                    width={800}
-                    height={600}
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                        target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                      }
+                  {/* Clickable Image Container: Opens Photo Viewer only */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openLightbox(project, e);
                     }}
-                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
-                  />
-                </button>
+                    className="relative aspect-[4/3] w-full overflow-hidden bg-black text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper block group/img"
+                    aria-haspopup="dialog"
+                    aria-label={`View photo of ${project.title}`}
+                  >
+                    <img
+                      src={project.imageUrl}
+                      alt={project.imageAlt || project.title}
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                          target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                        }
+                      }}
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                    />
+                  </button>
 
-                {/* Card Content */}
-                <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
-                  <div className="space-y-2">
-                    <div className="text-xs font-semibold text-copper">
-                      {project.categoryLabel || project.category.replace(/-/g, ' ')}
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-copper transition-colors leading-snug">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-muted-text line-clamp-2 leading-relaxed">
-                      {project.description}
-                    </p>
-                    {project.specifications && (
-                      <p className="text-[11px] text-stone-400 truncate">
-                        <span className="font-semibold text-stone-300">Spec:</span> {project.specifications}
-                      </p>
-                    )}
-                  </div>
+                  {/* Card Content */}
+                  <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
+                    <div className="space-y-2">
+                      <div className="text-xs font-semibold text-copper uppercase tracking-wider">
+                        {project.categoryLabel || project.category.replace(/-/g, ' ')}
+                      </div>
 
-                  {/* Actions: Large touch targets for low-tech mobile comfort */}
-                  <div className="pt-3 border-t border-dark-border flex items-center justify-between gap-2.5">
-                    <button
-                      type="button"
-                      onClick={(e) => openLightbox(project, e)}
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-bold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                      <span>View Photo</span>
-                    </button>
-                    <a
-                      href={generateWhatsAppUrl(
-                        `Hello Mashallah Welding Works, I saw this project on your website: "${project.title}". Can you give me an estimate for something similar?`
+                      {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}
+                      <button
+                        type="button"
+                        onClick={(e) => toggleProjectDetails(project.id, e)}
+                        aria-expanded={isExpanded}
+                        className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
+                        aria-label={`${project.title} - ${isExpanded ? 'Hide details' : 'View full details'}`}
+                      >
+                        <span className="text-base sm:text-lg font-bold text-white group-hover/title:text-copper transition-colors leading-snug">
+                          {project.title}
+                        </span>
+                        <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
+                          {isExpanded ? (
+                            <ChevronUp className="w-4 h-4 text-copper" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                        </span>
+                      </button>
+
+                      {/* Detailed or Summary View */}
+                      {isExpanded ? (
+                        <div className="space-y-3 pt-1 text-left">
+                          <p className="text-xs sm:text-sm text-stone-200 leading-relaxed">
+                            {project.description}
+                          </p>
+                          {project.specifications && (
+                            <div className="p-3 rounded-xl bg-steel/60 border border-dark-border space-y-1 text-xs">
+                              <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
+                                Detailed Specifications
+                              </span>
+                              <p className="text-stone-200 font-medium leading-relaxed">
+                                {project.specifications}
+                              </p>
+                            </div>
+                          )}
+                          <div className="text-[11px] text-stone-400 flex items-center space-x-1.5 pt-0.5">
+                            <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
+                            <span>Auto Nagar, Proddatur workshop fabrication</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <p className="text-xs sm:text-sm text-muted-text line-clamp-2 leading-relaxed">
+                            {project.description}
+                          </p>
+                          {project.specifications && (
+                            <p className="text-[11px] text-stone-400 truncate">
+                              <span className="font-semibold text-stone-300">Spec:</span> {project.specifications}
+                            </p>
+                          )}
+                        </div>
                       )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
-                    >
-                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
-                      <span>WhatsApp Quote</span>
-                    </a>
+                    </div>
+
+                    {/* Actions: View Photo, View Details, WhatsApp Quote */}
+                    <div className="pt-3 border-t border-dark-border space-y-2.5">
+                      <div className="grid grid-cols-2 gap-2">
+                        {/* View Photo button: opens photo viewer only */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openLightbox(project, e);
+                          }}
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                          <span>View Photo</span>
+                        </button>
+
+                        {/* View Details button: expands/collapses detailed card view */}
+                        <button
+                          type="button"
+                          onClick={(e) => toggleProjectDetails(project.id, e)}
+                          className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
+                            isExpanded
+                              ? 'bg-copper text-white border-copper'
+                              : 'bg-gunmetal hover:bg-steel text-stone-200 hover:text-white border-dark-border'
+                          }`}
+                        >
+                          {isExpanded ? (
+                            <>
+                              <ChevronUp className="w-3.5 h-3.5 mr-1 text-white shrink-0" />
+                              <span>Hide Details</span>
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                              <span>View Details</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+
+                      {/* WhatsApp Quote: Performs only WhatsApp action */}
+                      <a
+                        href={generateWhatsAppUrl(
+                          `Hello Mashallah Welding Works, I saw this project on your website: "${project.title}". Can you give me an estimate for something similar?`
+                        )}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
+                      >
+                        <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
+                        <span>WhatsApp Quote</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* View Full Gallery CTA */}
@@ -340,6 +443,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {homepageServices.map((service) => {
               const Icon = service.icon;
+              const isServiceExpanded = !!expandedServiceIds[service.id];
               return (
                 <div
                   key={service.id}
@@ -355,25 +459,71 @@ export const HomePage: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-dark-text group-hover:text-copper transition-colors">
-                      {service.title}
-                    </h3>
+                    {/* Service Title Button: Clickable to expand/open details, min 44px hit target */}
+                    <button
+                      type="button"
+                      onClick={(e) => toggleServiceDetails(service.id, e)}
+                      aria-expanded={isServiceExpanded}
+                      className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
+                      aria-label={`${service.title} - ${isServiceExpanded ? 'Hide details' : 'View service details'}`}
+                    >
+                      <span className="text-lg sm:text-xl font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug">
+                        {service.title}
+                      </span>
+                      <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
+                        {isServiceExpanded ? (
+                          <ChevronUp className="w-4 h-4 text-copper" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4" />
+                        )}
+                      </span>
+                    </button>
 
                     <p className="text-stone-600 text-sm leading-relaxed">
                       {service.description}
                     </p>
+
+                    {/* Expanded Detailed Information */}
+                    {isServiceExpanded && (
+                      <div className="pt-2 space-y-2 border-t border-light-border text-xs text-stone-600">
+                        <div className="flex items-start space-x-2">
+                          <span className="text-copper font-bold">•</span>
+                          <span><strong>Material:</strong> Heavy-gauge mild steel crafted to custom site measurements.</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-copper font-bold">•</span>
+                          <span><strong>Protection:</strong> Anti-rust red oxide primer + high-durability synthetic enamel coat.</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-copper font-bold">•</span>
+                          <span><strong>Fabrication:</strong> Direct in Auto Nagar workshop with doorstep delivery & fitment in Proddatur.</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Clean Action Row */}
-                  <div className="pt-5 mt-4 border-t border-light-border flex items-center justify-between">
-                    <Link
-                      to="/services"
-                      className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors whitespace-nowrap"
+                  <div className="pt-5 mt-4 border-t border-light-border flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => toggleServiceDetails(service.id, e)}
+                      className="text-xs font-semibold text-stone-600 hover:text-copper transition-colors whitespace-nowrap inline-flex items-center min-h-[36px] cursor-pointer"
                     >
-                      Specifications →
-                    </Link>
+                      {isServiceExpanded ? (
+                        <>
+                          <ChevronUp className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                          <span>Hide Details</span>
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                          <span>View Details</span>
+                        </>
+                      )}
+                    </button>
                     <a
                       href={generateWhatsAppUrl(service.whatsappMsg)}
+                      onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[36px]"

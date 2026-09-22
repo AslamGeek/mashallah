@@ -13,6 +13,8 @@ import {
   Factory,
   ArrowRight,
   CheckCircle,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { SERVICES_LIST, generateWhatsAppUrl } from '../data/content';
 import { ServiceItem } from '../types';
@@ -24,6 +26,15 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [expandedServiceIds, setExpandedServiceIds] = useState<Record<string, boolean>>({});
+
+  const toggleServiceDetails = (id: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setExpandedServiceIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   // Map icon name to Lucide component
   const getIcon = (iconName: string) => {
@@ -105,6 +116,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredServices.map((service: ServiceItem) => {
             const IconComponent = getIcon(service.iconName);
+            const isExpanded = !!expandedServiceIds[service.id];
             const whatsappText = `Hello Mashallah Welding Works, I would like to enquire about your ${service.title} service.`;
             const serviceUrl = generateWhatsAppUrl(whatsappText);
 
@@ -114,8 +126,8 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                 id={`service-${service.id}`}
                 className="bg-gunmetal rounded-2xl p-6 border border-dark-border shadow-xs hover:shadow-md hover:border-copper/70 transition-all flex flex-col group"
               >
-                {/* Header Icon + Title */}
-                <div className="flex items-start justify-between mb-4">
+                {/* Header Icon + Category */}
+                <div className="flex items-start justify-between mb-3">
                   <div className="w-12 h-12 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
                     <IconComponent className="w-6 h-6 stroke-[2]" />
                   </div>
@@ -124,16 +136,55 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-copper transition-colors">
-                  {service.title}
-                </h3>
+                {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}
+                <button
+                  type="button"
+                  onClick={(e) => toggleServiceDetails(service.id, e)}
+                  aria-expanded={isExpanded}
+                  className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg mb-2"
+                  aria-label={`${service.title} - ${isExpanded ? 'Hide details' : 'View service details'}`}
+                >
+                  <span className="text-xl font-bold text-white group-hover/title:text-copper transition-colors leading-snug">
+                    {service.title}
+                  </span>
+                  <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
+                    {isExpanded ? (
+                      <ChevronUp className="w-4 h-4 text-copper" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4" />
+                    )}
+                  </span>
+                </button>
 
-                <p className="text-muted-text text-sm leading-relaxed mb-5 flex-grow">
+                <p className="text-muted-text text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
 
+                {/* Expanded Detailed Information */}
+                {isExpanded && (
+                  <div className="p-3.5 mb-4 rounded-xl bg-steel/60 border border-dark-border space-y-2 text-xs text-stone-200">
+                    <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
+                      Fabrication & Service Details
+                    </span>
+                    <div className="space-y-1.5 leading-relaxed">
+                      <div className="flex items-start space-x-2">
+                        <span className="text-copper font-bold">•</span>
+                        <span><strong>Material & Gauge:</strong> Prime Tata / Jindal mild steel structured to load requirements.</span>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <span className="text-copper font-bold">•</span>
+                        <span><strong>Protective Coating:</strong> Anti-rust zinc phosphate / red oxide primer with synthetic enamel finish.</span>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <span className="text-copper font-bold">•</span>
+                        <span><strong>On-Site Service:</strong> Free site measurement, delivery, and welded installation across Proddatur.</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Features checklist */}
-                <div className="space-y-1.5 pt-3 border-t border-dark-border mb-5">
+                <div className="space-y-1.5 pt-3 border-t border-dark-border mb-5 flex-grow">
                   {service.features.map((feat, idx) => (
                     <div key={idx} className="flex items-center text-xs text-stone-300">
                       <CheckCircle className="w-3.5 h-3.5 text-copper mr-2 shrink-0" />
@@ -142,17 +193,45 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   ))}
                 </div>
 
-                {/* WhatsApp Action Button */}
-                <a
-                  href={serviceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-steel hover:bg-emerald-600 text-stone-200 hover:text-white border border-dark-border hover:border-emerald-600 font-semibold text-xs tracking-wide transition-all group-hover:shadow-xs min-h-[44px]"
-                >
-                  <WhatsAppIcon className="w-4 h-4 mr-1.5 text-emerald-400 group-hover:text-white shrink-0" />
-                  <span className="whitespace-nowrap">Enquire for {service.title}</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-60 group-hover:translate-x-1 transition-transform shrink-0" />
-                </a>
+                {/* Action Buttons: View Details + WhatsApp */}
+                <div className="mt-auto pt-3 border-t border-dark-border space-y-2.5">
+                  <div className="grid grid-cols-2 gap-2">
+                    {/* View Details button */}
+                    <button
+                      type="button"
+                      onClick={(e) => toggleServiceDetails(service.id, e)}
+                      className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
+                        isExpanded
+                          ? 'bg-copper text-white border-copper'
+                          : 'bg-steel hover:bg-steel/80 text-stone-200 hover:text-white border-dark-border'
+                      }`}
+                    >
+                      {isExpanded ? (
+                        <>
+                          <ChevronUp className="w-3.5 h-3.5 mr-1 text-white shrink-0" />
+                          <span>Hide Details</span>
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
+                          <span>View Details</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* WhatsApp Action Button */}
+                    <a
+                      href={serviceUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-all min-h-[44px] whitespace-nowrap"
+                    >
+                      <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
+                      <span>WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             );
           })}
