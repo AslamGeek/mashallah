@@ -220,8 +220,11 @@ export const HomePage: React.FC = () => {
                   <img
                     src={project.imageUrl}
                     alt={project.imageAlt || project.title}
+                    width={800}
+                    height={600}
                     loading="lazy"
                     decoding="async"
+                    referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
                       if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {

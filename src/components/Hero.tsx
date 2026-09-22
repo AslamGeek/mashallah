@@ -138,8 +138,12 @@ export const Hero: React.FC<HeroProps> = () => {
                 <img
                   src="/images/modern-double-leaf-steel-main-gate-gold-panels-proddatur.webp"
                   alt="Modern double-leaf steel main gate with gold decorative panels in Proddatur"
+                  width={800}
+                  height={600}
                   className="w-full h-full object-cover group-hover/hero:scale-105 transition-transform duration-500"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     // Fallback to unsplash workshop image if local webp not found
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=1000&auto=format&fit=crop';

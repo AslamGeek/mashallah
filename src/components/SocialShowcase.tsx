@@ -65,6 +65,8 @@ export const SocialShowcase: React.FC = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.imageAlt || item.title}
+                  width={800}
+                  height={500}
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"

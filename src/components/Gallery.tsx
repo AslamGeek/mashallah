@@ -189,7 +189,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                         width={1200}
                         height={896}
                         referrerPolicy="no-referrer"
-                        loading={idx < 2 ? 'eager' : 'lazy'}
+                        loading="lazy"
                         decoding="async"
                         onError={(e) => {
                           const target = e.currentTarget;
@@ -207,7 +207,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                       width={1200}
                       height={900}
                       referrerPolicy="no-referrer"
-                      loading={idx < 2 ? 'eager' : 'lazy'}
+                      loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
                     />

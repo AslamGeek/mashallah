@@ -63,7 +63,8 @@ export const About: React.FC = () => {
                 width={1200}
                 height={800}
                 className="w-full h-full object-cover object-center group-hover/about:scale-105 transition-transform duration-300"
-                loading="eager"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-gunmetal/90 backdrop-blur-xs text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-dark-border/60 flex items-center space-x-1.5 shadow-md pointer-events-none whitespace-nowrap">
