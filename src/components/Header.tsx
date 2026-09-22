@@ -104,10 +104,10 @@ export const Header: React.FC = () => {
             aria-label="Mashallah Welding Works"
           >
             <img
-              src="/images/mashallah-welding-works-logo-horizontal.webp"
+              src="/images/mashallah-welding-works-logo-horizontal-white.webp"
               alt="Mashallah Welding Works"
-              width={569}
-              height={147}
+              width={2172}
+              height={724}
               className="h-9 sm:h-11 w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[260px] object-contain block transition-opacity hover:opacity-90"
               loading="eager"
               decoding="async"
