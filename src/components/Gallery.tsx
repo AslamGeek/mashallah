@@ -19,9 +19,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Determine active project from URL (e.g. /portfolio/:projectSlug or /our-work/:projectSlug)
-  const directSlug = projectSlug || (categorySlug && !GALLERY_CATEGORIES.some((c) => c.slug === categorySlug) && categorySlug !== 'all' ? categorySlug : undefined);
-
   // Category determination
   const queryCategory = searchParams.get('category');
   const pathCategory = categorySlug && GALLERY_CATEGORIES.some((c) => c.slug === categorySlug) ? categorySlug : undefined;
@@ -43,32 +40,21 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
     }
   }, [queryCategory, pathCategory]);
 
-  // Handle direct project URL navigation (e.g. /portfolio/:projectSlug or refreshing with stable URL)
+  // Handle direct canonical project URL navigation (/portfolio/:projectSlug)
   useEffect(() => {
-    if (directSlug) {
-      const matched = findProjectBySlug(directSlug, GALLERY_ITEMS);
+    if (projectSlug) {
+      const matched = findProjectBySlug(projectSlug, GALLERY_ITEMS);
       if (matched) {
         setActiveDetailsProject(matched);
         setHighlightedProjectId(matched.id);
-
-        // Ensure the card is rendered in the grid even if a category was active
+        // Ensure card is rendered in grid by showing all projects
         setSelectedCategory('all');
-
-        // Smooth scroll to card in background after mounting
-        const cardTimer = setTimeout(() => {
-          const cardEl = document.getElementById(`project-card-${matched.id}`);
-          if (cardEl) {
-            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 150);
-
-        return () => clearTimeout(cardTimer);
       }
     } else {
-      // If user navigated away via browser back button, close the details modal
+      // User navigated away or closed modal via browser back button
       setActiveDetailsProject(null);
     }
-  }, [directSlug]);
+  }, [projectSlug]);
 
   const activeCategoryConfig = GALLERY_CATEGORIES.find((c) => c.slug === selectedCategory);
 
@@ -120,27 +106,32 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
     setActiveDetailsProject(project);
     setHighlightedProjectId(project.id);
 
-    // Update URL to stable project slug without full page reload
-    if (!location.pathname.startsWith(`/portfolio/${project.id}`)) {
-      navigate(`/portfolio/${project.id}`, { state: { fromGallery: true } });
+    // Update URL to canonical project slug without full page reload
+    const targetPath = `/portfolio/${project.id}`;
+    if (location.pathname !== targetPath) {
+      navigate(targetPath, {
+        state: {
+          fromGallery: true,
+          returnTo: location.pathname + location.search,
+        },
+      });
     }
-  }, [location.pathname, navigate]);
+  }, [location.pathname, location.search, navigate]);
 
   // Action: Close Project Details Modal
   const closeProjectDetails = useCallback(() => {
     setActiveDetailsProject(null);
 
-    // Return URL cleanly back to portfolio or our-work
+    // Return URL cleanly back to /our-work or origin page
     if (location.pathname.startsWith('/portfolio/')) {
-      navigate('/portfolio', { replace: false });
-    } else if (location.pathname.startsWith('/our-work/')) {
-      navigate('/our-work', { replace: false });
+      const returnTarget = (location.state as { returnTo?: string })?.returnTo || '/our-work';
+      navigate(returnTarget, { replace: true });
     }
 
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus({ preventScroll: true });
     }
-  }, [location.pathname, navigate]);
+  }, [location.pathname, location.state, navigate]);
 
   // Navigate between projects in details modal
   const handleNavigateDetails = useCallback((direction: 'prev' | 'next') => {
@@ -153,9 +144,9 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
       const nextProject = filteredItems[nextIndex];
       setActiveDetailsProject(nextProject);
       setHighlightedProjectId(nextProject.id);
-      navigate(`/portfolio/${nextProject.id}`, { replace: true });
+      navigate(`/portfolio/${nextProject.id}`, { replace: true, state: location.state });
     }
-  }, [activeDetailsProject, filteredItems, navigate]);
+  }, [activeDetailsProject, filteredItems, location.state, navigate]);
 
   const activeIndex = activeDetailsProject ? filteredItems.findIndex((p) => p.id === activeDetailsProject.id) : -1;
   const hasPrev = activeIndex > 0;

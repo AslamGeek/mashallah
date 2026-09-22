@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { SiteLayout } from './layouts/SiteLayout';
 import { HomePage } from './pages/HomePage';
 import { OurWorkPage } from './pages/OurWorkPage';
@@ -16,7 +16,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/our-work" element={<OurWorkPage />} />
           <Route path="/our-work/:categorySlug" element={<OurWorkPage />} />
-          <Route path="/portfolio" element={<OurWorkPage />} />
+          <Route path="/portfolio" element={<Navigate to="/our-work" replace />} />
           <Route path="/portfolio/:projectSlug" element={<OurWorkPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />

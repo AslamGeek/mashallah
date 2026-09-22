@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getFullResolutionImageUrl } from '../data/content';
+import { useModalOverlay } from '../hooks/useModalOverlay';
 
 export interface LightboxMediaItem {
   id: string;
@@ -52,56 +53,22 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
     }
   }, [hasNext, onNavigate, items, currentIndex]);
 
-  // Lock scroll cleanly and handle keyboard events
-  useEffect(() => {
-    if (!project) return;
-
-    // Record the exact scroll position before opening the modal
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
-
-    // Compensate for scrollbar removal to prevent layout shifts
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
-    document.body.style.overflow = 'hidden';
-
-    // Focus close button initially with preventScroll
-    const timer = setTimeout(() => {
-      closeBtnRef.current?.focus({ preventScroll: true });
-    }, 50);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-      } else if (e.key === 'ArrowLeft') {
+  // Consolidated modal scroll lock, focus trap, and keyboard events
+  useModalOverlay({
+    isOpen: !!project,
+    onClose,
+    containerRef: dialogRef,
+    initialFocusRef: closeBtnRef,
+    onKeyDown: (e) => {
+      if (e.key === 'ArrowLeft') {
         e.preventDefault();
         handlePrev();
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
         handleNext();
       }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
-
-      // Restore exact scroll position instantly without any smooth-scroll animation
-      window.scrollTo({
-        top: scrollY,
-        left: 0,
-        behavior: 'instant' as ScrollBehavior,
-      });
-    };
-  }, [project, handlePrev, handleNext, onClose]);
+    },
+  });
 
   // Touch swipe support for mobile
   const handleTouchStart = (e: React.TouchEvent) => {

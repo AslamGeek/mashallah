@@ -11,6 +11,7 @@ import {
   Home,
   Briefcase,
   Factory,
+  School,
   ArrowRight,
   CheckCircle,
   ChevronDown,
@@ -61,6 +62,8 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
         return Briefcase;
       case 'Factory':
         return Factory;
+      case 'School':
+        return School;
       default:
         return Wrench;
     }

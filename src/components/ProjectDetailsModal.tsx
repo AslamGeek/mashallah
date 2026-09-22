@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { X, Maximize2, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 import { GalleryProject } from '../types';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ProjectShareButton } from './ProjectShareButton';
+import { useModalOverlay } from '../hooks/useModalOverlay';
 
 export interface ProjectDetailsModalProps {
   project: GalleryProject | null;
@@ -27,67 +28,22 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
   const modalRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // Focus trap and keyboard navigation
-  useEffect(() => {
-    if (!isOpen || !project) return;
-
-    // Compensate for scrollbar width to prevent page shift
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
-
-    document.body.style.overflow = 'hidden';
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
-
-    // Auto focus close button
-    const timer = setTimeout(() => {
-      closeBtnRef.current?.focus();
-    }, 50);
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-      } else if (e.key === 'ArrowLeft' && onNavigate && hasPrev) {
+  // Consolidated modal scroll lock, focus trap, and Escape handling
+  useModalOverlay({
+    isOpen: isOpen && !!project,
+    onClose,
+    containerRef: modalRef,
+    initialFocusRef: closeBtnRef,
+    onKeyDown: (e) => {
+      if (e.key === 'ArrowLeft' && onNavigate && hasPrev) {
         e.preventDefault();
         onNavigate('prev');
       } else if (e.key === 'ArrowRight' && onNavigate && hasNext) {
         e.preventDefault();
         onNavigate('next');
-      } else if (e.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
-        }
       }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, project, onClose, onNavigate, hasPrev, hasNext]);
+    },
+  });
 
   if (!isOpen || !project) return null;
 

@@ -94,6 +94,14 @@ export const SERVICES_LIST: ServiceItem[] = [
     iconName: 'DoorClosed',
   },
   {
+    id: 'school-furniture',
+    title: 'Benches & Desks',
+    category: 'commercial',
+    description: 'Durable steel desk-bench sets, tables, and study furniture made to order for schools and colleges.',
+    features: ['Heavy-gauge square tube frames', 'Smooth wood or steel top fixing', 'Child-safe deburred edges', 'Bulk order delivery in Proddatur'],
+    iconName: 'School',
+  },
+  {
     id: 'iron-stands',
     title: 'Steel Racks & Stands',
     category: 'fabrication',
