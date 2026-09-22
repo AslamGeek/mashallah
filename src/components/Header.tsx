@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Hammer } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
 
@@ -95,24 +95,23 @@ export const Header: React.FC = () => {
       {/* Main navigation row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 sm:h-20">
-          {/* Logo / Brand Name */}
+          {/* Logo / Brand Image */}
           <Link
             to="/"
             onClick={handleMobileLinkClick}
-            className="flex items-center space-x-2.5 sm:space-x-3 group text-left min-w-0 flex-1 mr-2"
+            className="flex items-center text-left shrink-0 mr-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
             id="brand-logo-link"
+            aria-label="Mashallah Welding Works"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-copper text-white flex items-center justify-center font-bold shadow-xs group-hover:bg-copper-hover transition-colors shrink-0">
-              <Hammer className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-            </div>
-            <div className="min-w-0">
-              <span className="block font-extrabold text-base sm:text-xl tracking-tight text-white group-hover:text-copper-hover transition-colors truncate">
-                MASHALLAH
-              </span>
-              <span className="block text-[10px] sm:text-xs tracking-wider uppercase text-copper font-medium truncate">
-                Welding & Fabrication Works
-              </span>
-            </div>
+            <img
+              src="/images/mashallah-welding-works-logo-horizontal.webp"
+              alt="Mashallah Welding Works"
+              width={569}
+              height={147}
+              className="h-9 sm:h-11 w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[260px] object-contain block transition-opacity hover:opacity-90"
+              loading="eager"
+              decoding="async"
+            />
           </Link>
 
           {/* Desktop Nav Links */}
