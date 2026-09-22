@@ -22,9 +22,9 @@ export const OurWorkPage: React.FC = () => {
       <SocialShowcase />
 
       {/* Bottom CTA Banner */}
-      <section className="py-16 bg-gunmetal text-[#F5F3EE] border-b border-dark-border">
+      <section className="py-16 bg-dark-bg text-[#FAF8F5] border-b border-dark-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-steel/60 rounded-3xl p-8 sm:p-12 border border-dark-border shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="bg-[#22272C] rounded-3xl p-8 sm:p-12 border border-dark-border shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl text-center lg:text-left">
               <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-copper">
                 <Sparkles className="w-4 h-4 mr-2" />
@@ -33,7 +33,7 @@ export const OurWorkPage: React.FC = () => {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                 Found a Design You Like or Have Your Own Drawing?
               </h2>
-              <p className="text-muted-text text-sm sm:text-base leading-relaxed">
+              <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
                 Send us a photo or sketch on WhatsApp. We will inspect dimensions, calculate metal requirements, and provide a clear quotation.
               </p>
             </div>

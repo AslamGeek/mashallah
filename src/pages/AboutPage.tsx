@@ -162,7 +162,7 @@ export const AboutPage: React.FC = () => {
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-light-border relative">
                 <div className="flex items-center space-x-4 mb-5">
-                  <div className="w-16 h-16 rounded-xl bg-gunmetal text-copper flex items-center justify-center font-extrabold text-2xl border border-dark-border">
+                  <div className="w-16 h-16 rounded-xl bg-warm-tint text-copper flex items-center justify-center font-extrabold text-2xl border border-light-border">
                     KC
                   </div>
                   <div>
@@ -183,9 +183,9 @@ export const AboutPage: React.FC = () => {
                 <div className="space-y-2.5 pt-3 border-t border-light-border">
                   <a
                     href={BUSINESS_INFO.phoneTel}
-                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border min-h-[44px] whitespace-nowrap"
+                    className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-copper hover:bg-copper-hover text-white text-sm font-bold shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                   >
-                    <Phone className="w-4 h-4 mr-2 text-copper shrink-0" />
+                    <Phone className="w-4 h-4 mr-2 text-white shrink-0" />
                     <span>Call Now</span>
                   </a>
                   <a
@@ -223,13 +223,13 @@ export const AboutPage: React.FC = () => {
       {/* Why Choose Us / Highlights Pillars */}
       <WhyChooseUs />
 
-      {/* Cross-linking navigation strip */}
-      <section className="py-14 bg-gunmetal text-[#F5F3EE] border-b border-dark-border">
+      {/* Cross-linking navigation strip (Dark final CTA area before footer) */}
+      <section className="py-14 bg-dark-bg text-[#FAF8F5] border-b border-dark-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">
             Explore Our Metalwork or Plan Your Project
           </h2>
-          <p className="text-muted-text text-sm max-w-xl mx-auto mb-6">
+          <p className="text-stone-300 text-sm max-w-xl mx-auto mb-6">
             Review completed projects in our portfolio or get in touch for on-site consultation.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -242,13 +242,13 @@ export const AboutPage: React.FC = () => {
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-steel hover:bg-dark-border text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#22272C] hover:bg-stone-800 text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
             >
               <span>View All 11 Services</span>
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gunmetal hover:bg-steel text-white border border-dark-border font-semibold text-sm transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#22272C] hover:bg-stone-800 text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
             >
               <span>Contact & Workshop Map</span>
             </Link>

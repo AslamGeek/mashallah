@@ -43,13 +43,13 @@ export const SocialShowcase: React.FC = () => {
   };
 
   return (
-    <section id="social-showcase" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
+    <section id="social-showcase" className="py-20 bg-warm-tint text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-            <span>Design Inspiration</span>
-          </div>
+          <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+            Design Inspiration
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Explore Modern Fabrication Ideas & Concepts
           </h2>
@@ -238,9 +238,9 @@ export const SocialShowcase: React.FC = () => {
               href={generateWhatsAppUrl('Hello Mashallah Welding Works, please send recent photos/videos of your latest welding works.')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-gunmetal hover:bg-steel text-stone-200 font-semibold text-xs border border-dark-border transition-colors whitespace-nowrap min-h-[44px]"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-dark-text font-semibold text-xs border border-light-border transition-colors whitespace-nowrap min-h-[44px]"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-400 shrink-0" />
+              <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-600 shrink-0" />
               <span>WhatsApp Photos</span>
             </a>
           </div>

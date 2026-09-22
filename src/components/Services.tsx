@@ -80,17 +80,17 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
   });
 
   return (
-    <section id="services" className={`${className} bg-dark-bg text-[#F5F3EE] border-b border-dark-border`}>
+    <section id="services" className={`${className} bg-light-bg text-dark-text border-b border-light-border`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title & Description */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
-            <span>What We Do</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+            What We Do
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Our Iron Fabrication & Welding Services
           </h2>
-          <p className="text-base sm:text-lg text-muted-text leading-relaxed">
+          <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
             From precision architectural iron gates and window safety grills to heavy machine stands and emergency welding repairs in Proddatur.
           </p>
         </div>
@@ -101,10 +101,10 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 whitespace-nowrap cursor-pointer ${
                 activeCategory === cat.id
                   ? 'bg-copper text-white shadow-xs'
-                  : 'bg-gunmetal text-muted-text hover:text-white hover:bg-steel border border-dark-border'
+                  : 'bg-white text-stone-600 hover:text-dark-text hover:bg-stone-50 border border-light-border'
               }`}
             >
               {cat.label}
@@ -124,14 +124,14 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
               <div
                 key={service.id}
                 id={`service-${service.id}`}
-                className="bg-gunmetal rounded-2xl p-6 border border-dark-border shadow-xs hover:shadow-md hover:border-copper/70 transition-all flex flex-col group"
+                className="bg-white rounded-2xl p-6 border border-light-border shadow-xs hover:shadow-md hover:border-copper/70 transition-all flex flex-col group"
               >
                 {/* Header Icon + Category */}
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-steel text-copper border border-dark-border flex items-center justify-center group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center group-hover:bg-copper group-hover:text-white transition-colors shrink-0">
                     <IconComponent className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-text bg-steel px-2.5 py-1 rounded-md border border-dark-border/60 whitespace-nowrap">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-1 rounded-md border border-light-border whitespace-nowrap">
                     {service.category}
                   </span>
                 </div>
@@ -144,7 +144,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg mb-2"
                   aria-label={`${service.title} - ${isExpanded ? 'Hide details' : 'View service details'}`}
                 >
-                  <span className="text-xl font-bold text-white group-hover/title:text-copper transition-colors leading-snug">
+                  <span className="text-xl font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug">
                     {service.title}
                   </span>
                   <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
@@ -156,13 +156,13 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                   </span>
                 </button>
 
-                <p className="text-muted-text text-sm leading-relaxed mb-4">
+                <p className="text-stone-600 text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
 
                 {/* Expanded Detailed Information */}
                 {isExpanded && (
-                  <div className="p-3.5 mb-4 rounded-xl bg-steel/60 border border-dark-border space-y-2 text-xs text-stone-200">
+                  <div className="p-3.5 mb-4 rounded-xl bg-stone-50 border border-light-border space-y-2 text-xs text-stone-700">
                     <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
                       Fabrication & Service Details
                     </span>
@@ -184,9 +184,9 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                 )}
 
                 {/* Features checklist */}
-                <div className="space-y-1.5 pt-3 border-t border-dark-border mb-5 flex-grow">
+                <div className="space-y-1.5 pt-3 border-t border-light-border mb-5 flex-grow">
                   {service.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center text-xs text-stone-300">
+                    <div key={idx} className="flex items-center text-xs text-stone-600">
                       <CheckCircle className="w-3.5 h-3.5 text-copper mr-2 shrink-0" />
                       <span>{feat}</span>
                     </div>
@@ -194,7 +194,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                 </div>
 
                 {/* Action Buttons: View Details + WhatsApp */}
-                <div className="mt-auto pt-3 border-t border-dark-border space-y-2.5">
+                <div className="mt-auto pt-3 border-t border-light-border space-y-2.5">
                   <div className="grid grid-cols-2 gap-2">
                     {/* View Details button */}
                     <button
@@ -203,7 +203,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                       className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
                         isExpanded
                           ? 'bg-copper text-white border-copper'
-                          : 'bg-steel hover:bg-steel/80 text-stone-200 hover:text-white border-dark-border'
+                          : 'bg-stone-100 hover:bg-stone-200 text-stone-700 border-light-border'
                       }`}
                     >
                       {isExpanded ? (
@@ -238,12 +238,12 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
         </div>
 
         {/* Custom Requirements Callout Banner */}
-        <div className="mt-12 bg-gunmetal rounded-2xl p-6 sm:p-8 text-stone-100 shadow-xl border border-dark-border flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-12 bg-warm-tint rounded-2xl p-6 sm:p-8 text-dark-text shadow-xs border border-light-border flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <h4 className="text-xl sm:text-2xl font-extrabold text-white">
+            <h4 className="text-xl sm:text-2xl font-extrabold text-dark-text">
               Have a Custom Metal Blueprint or Unique Measurement?
             </h4>
-            <p className="text-muted-text text-sm max-w-2xl leading-relaxed">
+            <p className="text-stone-600 text-sm max-w-2xl leading-relaxed">
               We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Proddatur.
             </p>
           </div>

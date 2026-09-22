@@ -194,24 +194,23 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       <section
         id="proof-gallery"
-        className="py-16 sm:py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border"
+        className="py-16 sm:py-20 bg-warm-tint text-dark-text border-b border-light-border"
         aria-labelledby="proof-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
             <div className="max-w-2xl space-y-2">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Visual Proof & Finished Projects</span>
-              </div>
+              <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+                Visual Proof & Finished Projects
+              </span>
               <h2
                 id="proof-heading"
-                className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white"
+                className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
               >
                 Real Fabrication Work in <span className="text-copper">Proddatur</span>
               </h2>
-              <p className="text-sm sm:text-base text-muted-text leading-relaxed">
+              <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
                 Genuine custom iron gates, window safety grills, staircase railings, and school furniture built with solid steel and anti-rust primer in our Auto Nagar workshop.
               </p>
             </div>
@@ -231,7 +230,7 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={project.id}
-                  className="bg-gunmetal rounded-2xl overflow-hidden border border-dark-border hover:border-copper/60 transition-all duration-200 shadow-sm flex flex-col group"
+                  className="bg-white rounded-2xl overflow-hidden border border-light-border hover:border-copper/70 transition-all duration-200 shadow-xs flex flex-col group"
                 >
                   {/* Clickable Image Container: Opens Photo Viewer only */}
                   <button
@@ -277,7 +276,7 @@ export const HomePage: React.FC = () => {
                         className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
                         aria-label={`${project.title} - ${isExpanded ? 'Hide details' : 'View full details'}`}
                       >
-                        <span className="text-base sm:text-lg font-bold text-white group-hover/title:text-copper transition-colors leading-snug">
+                        <span className="text-base sm:text-lg font-bold text-dark-text group-hover/title:text-copper transition-colors leading-snug">
                           {project.title}
                         </span>
                         <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
@@ -292,32 +291,32 @@ export const HomePage: React.FC = () => {
                       {/* Detailed or Summary View */}
                       {isExpanded ? (
                         <div className="space-y-3 pt-1 text-left">
-                          <p className="text-xs sm:text-sm text-stone-200 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                             {project.description}
                           </p>
                           {project.specifications && (
-                            <div className="p-3 rounded-xl bg-steel/60 border border-dark-border space-y-1 text-xs">
+                            <div className="p-3 rounded-xl bg-stone-50 border border-light-border space-y-1 text-xs">
                               <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
                                 Detailed Specifications
                               </span>
-                              <p className="text-stone-200 font-medium leading-relaxed">
+                              <p className="text-stone-700 font-medium leading-relaxed">
                                 {project.specifications}
                               </p>
                             </div>
                           )}
-                          <div className="text-[11px] text-stone-400 flex items-center space-x-1.5 pt-0.5">
+                          <div className="text-[11px] text-stone-500 flex items-center space-x-1.5 pt-0.5">
                             <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
                             <span>Auto Nagar, Proddatur workshop fabrication</span>
                           </div>
                         </div>
                       ) : (
                         <div className="space-y-2">
-                          <p className="text-xs sm:text-sm text-muted-text line-clamp-2 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed">
                             {project.description}
                           </p>
                           {project.specifications && (
-                            <p className="text-[11px] text-stone-400 truncate">
-                              <span className="font-semibold text-stone-300">Spec:</span> {project.specifications}
+                            <p className="text-[11px] text-stone-500 truncate">
+                              <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
                             </p>
                           )}
                         </div>
@@ -325,7 +324,7 @@ export const HomePage: React.FC = () => {
                     </div>
 
                     {/* Actions: View Photo, View Details, WhatsApp Quote */}
-                    <div className="pt-3 border-t border-dark-border space-y-2.5">
+                    <div className="pt-3 border-t border-light-border space-y-2.5">
                       <div className="grid grid-cols-2 gap-2">
                         {/* View Photo button: opens photo viewer only */}
                         <button
@@ -334,7 +333,7 @@ export const HomePage: React.FC = () => {
                             e.stopPropagation();
                             openLightbox(project, e);
                           }}
-                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs border border-light-border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
                         >
                           <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                           <span>View Photo</span>
@@ -347,7 +346,7 @@ export const HomePage: React.FC = () => {
                           className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
                             isExpanded
                               ? 'bg-copper text-white border-copper'
-                              : 'bg-gunmetal hover:bg-steel text-stone-200 hover:text-white border-dark-border'
+                              : 'bg-white hover:bg-stone-50 text-stone-700 border-light-border'
                           }`}
                         >
                           {isExpanded ? (
@@ -540,7 +539,7 @@ export const HomePage: React.FC = () => {
           <div className="mt-10 text-center">
             <Link
               to="/services"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gunmetal hover:bg-steel text-white font-bold text-sm border border-dark-border shadow-xs transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors"
             >
               <span>Explore All 11 Fabrication & Repair Services</span>
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -554,15 +553,14 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       <section
         id="business-info"
-        className="py-16 sm:py-20 bg-light-bg text-dark-text border-b border-light-border"
+        className="py-16 sm:py-20 bg-warm-tint text-dark-text border-b border-light-border"
         aria-labelledby="business-info-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-              <MapPin className="w-3.5 h-3.5 text-copper" />
-              <span>Workshop Details</span>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+              Workshop Details
+            </span>
             <h2
               id="business-info-heading"
               className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
@@ -579,7 +577,7 @@ export const HomePage: React.FC = () => {
             {/* Workshop Location */}
             <div className="bg-white rounded-2xl p-6 border border-light-border shadow-xs flex flex-col justify-between">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-light-bg text-copper border border-light-border flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <span className="text-xs text-stone-500 block uppercase tracking-wider font-semibold">
@@ -609,7 +607,7 @@ export const HomePage: React.FC = () => {
             <div className="bg-white rounded-2xl p-6 border border-light-border shadow-xs flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-light-bg text-copper border border-light-border flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center">
                     <Clock className="w-5 h-5" />
                   </div>
                   {/* Live Status indicator */}
@@ -648,7 +646,7 @@ export const HomePage: React.FC = () => {
             {/* Direct Contact */}
             <div className="bg-white rounded-2xl p-6 border border-light-border shadow-xs flex flex-col justify-between">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-light-bg text-copper border border-light-border flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-warm-tint text-copper border border-light-border flex items-center justify-center">
                   <Phone className="w-5 h-5" />
                 </div>
                 <span className="text-xs text-stone-500 block uppercase tracking-wider font-semibold">
@@ -694,22 +692,21 @@ export const HomePage: React.FC = () => {
       {/* ========================================================================= */}
       <section
         id="faq-section"
-        className="py-16 sm:py-20 bg-dark-bg text-[#F5F3EE] border-b border-dark-border"
+        className="py-16 sm:py-20 bg-light-bg text-dark-text border-b border-light-border"
         aria-labelledby="faq-home-heading"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-3 mb-10 sm:mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Questions & Answers</span>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+              Questions & Answers
+            </span>
             <h2
               id="faq-home-heading"
-              className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white"
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
             >
               Frequently Asked Questions
             </h2>
-            <p className="text-sm sm:text-base text-muted-text leading-relaxed">
+            <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
               Everything you need to know about our fabrication pricing, measurements, anti-rust protection, and repairs in Proddatur.
             </p>
           </div>
@@ -724,10 +721,10 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={faq.id}
-                  className={`rounded-xl border transition-all duration-200 bg-gunmetal overflow-hidden ${
+                  className={`rounded-xl border transition-all duration-200 bg-white overflow-hidden ${
                     isOpen
-                      ? 'border-copper ring-1 ring-copper/40 shadow-md'
-                      : 'border-dark-border hover:border-steel'
+                      ? 'border-copper ring-1 ring-copper/40 shadow-xs'
+                      : 'border-light-border hover:border-stone-400'
                   }`}
                 >
                   <h3>
@@ -737,14 +734,14 @@ export const HomePage: React.FC = () => {
                       onClick={() => toggleFaq(faq.id)}
                       aria-expanded={isOpen}
                       aria-controls={aId}
-                      className="w-full flex items-center justify-between text-left px-5 sm:px-6 py-4 text-white hover:text-copper transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
+                      className="w-full flex items-center justify-between text-left px-5 sm:px-6 py-4 text-dark-text hover:text-copper transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
                     >
                       <span className="font-bold text-sm sm:text-base pr-4 leading-snug">
                         {faq.q}
                       </span>
                       <span
                         className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-200 ${
-                          isOpen ? 'bg-copper text-white rotate-180' : 'bg-steel text-stone-300'
+                          isOpen ? 'bg-copper text-white rotate-180' : 'bg-stone-100 text-stone-600'
                         }`}
                         aria-hidden="true"
                       >
@@ -758,19 +755,19 @@ export const HomePage: React.FC = () => {
                       id={aId}
                       role="region"
                       aria-labelledby={qId}
-                      className="px-5 sm:px-6 pb-4 pt-1 text-stone-300 text-xs sm:text-sm leading-relaxed border-t border-dark-border bg-steel/30"
+                      className="px-5 sm:px-6 pb-4 pt-2 text-stone-700 text-xs sm:text-sm leading-relaxed border-t border-light-border bg-stone-50/70"
                     >
                       <p>{faq.a}</p>
-                      <div className="mt-3 pt-2 border-t border-dark-border/60 flex items-center justify-end">
+                      <div className="mt-3 pt-2 border-t border-light-border flex items-center justify-end">
                         <a
                           href={generateWhatsAppUrl(
                             `Hello Mashallah Welding Works, regarding this FAQ: "${faq.q}", I have a question.`
                           )}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-xs font-semibold text-emerald-400 hover:text-emerald-300"
+                          className="inline-flex items-center text-xs font-semibold text-emerald-700 hover:text-emerald-800"
                         >
-                          <WhatsAppIcon className="w-3 h-3 mr-1" />
+                          <WhatsAppIcon className="w-3.5 h-3.5 mr-1" />
                           <span>Ask about this on WhatsApp →</span>
                         </a>
                       </div>
@@ -789,22 +786,22 @@ export const HomePage: React.FC = () => {
               className="inline-flex items-center space-x-1.5 text-xs sm:text-sm text-copper hover:text-copper-hover font-bold"
             >
               <span>Have a question not listed here? Ask us directly on WhatsApp</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 ml-1" />
             </a>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. CONVERSION (STRONG WHATSAPP-FOCUSED FINAL CTA) */}
+      {/* 7. CONVERSION (STRONG WHATSAPP-FOCUSED DARK FINAL CTA) */}
       {/* ========================================================================= */}
       <section
         id="conversion-cta"
-        className="py-16 sm:py-20 bg-gunmetal text-[#F5F3EE] border-b border-dark-border"
+        className="py-16 sm:py-20 bg-dark-bg text-[#FAF8F5] border-b border-dark-border"
         aria-labelledby="conversion-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-steel/60 rounded-3xl p-8 sm:p-12 border border-dark-border shadow-2xl">
+          <div className="bg-[#22272C] rounded-3xl p-8 sm:p-12 border border-dark-border shadow-2xl">
             <div className="max-w-3xl mx-auto text-center space-y-4">
               <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-800 px-3.5 py-1.5 rounded-full">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
@@ -818,7 +815,7 @@ export const HomePage: React.FC = () => {
                 Ready to Start Your Iron Fabrication Project?
               </h2>
 
-              <p className="text-muted-text text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
                 Send your measurements, reference design, or repair query directly to lead fabricator Karimulla C. on WhatsApp for quick, transparent pricing and on-site scheduling in Proddatur.
               </p>
 
@@ -833,10 +830,10 @@ export const HomePage: React.FC = () => {
                       key={type}
                       type="button"
                       onClick={() => setSelectedProjectType(type)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                      className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-colors cursor-pointer min-h-[40px] ${
                         selectedProjectType === type
                           ? 'bg-copper text-white shadow-xs font-bold'
-                          : 'bg-dark-bg text-stone-300 hover:text-white border border-dark-border'
+                          : 'bg-[#181B1E] text-stone-300 hover:text-white border border-dark-border'
                       }`}
                     >
                       {type}
@@ -855,7 +852,7 @@ export const HomePage: React.FC = () => {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xl shadow-emerald-950/50 transition-all duration-150 active:scale-[0.98] cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px]"
                 >
                   <WhatsAppIcon className="w-5 h-5 mr-2.5 shrink-0" />
                   <span>WhatsApp Us ({selectedProjectType})</span>
@@ -865,7 +862,7 @@ export const HomePage: React.FC = () => {
                 <a
                   id="final-cta-call"
                   href={BUSINESS_INFO.phoneTel}
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-base transition-all duration-150 shadow-xs active:scale-[0.98] min-h-[48px]"
                 >
                   <Phone className="w-5 h-5 mr-2 stroke-[2.2] shrink-0" />
                   <span>Call Now</span>

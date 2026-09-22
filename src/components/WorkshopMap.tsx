@@ -13,19 +13,19 @@ export const WorkshopMap: React.FC = () => {
   return (
     <div
       id="workshop-location-map"
-      className="mt-10 bg-gunmetal rounded-2xl border border-dark-border shadow-xs overflow-hidden"
+      className="mt-10 bg-white rounded-2xl border border-light-border shadow-xs overflow-hidden"
     >
       {/* Map Header */}
-      <div className="p-5 sm:p-6 border-b border-dark-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 sm:p-6 border-b border-light-border bg-stone-50/70 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="inline-flex items-center space-x-2 text-copper text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5" />
-            <span>Workshop Location Verification</span>
+            <span>Workshop Location</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-dark-text">
             Visit Our Workshop in Auto Nagar, Proddatur
           </h3>
-          <p className="text-muted-text text-xs sm:text-sm">
+          <p className="text-stone-600 text-xs sm:text-sm">
             {BUSINESS_INFO.address}
           </p>
         </div>
@@ -46,7 +46,7 @@ export const WorkshopMap: React.FC = () => {
       </div>
 
       {/* Embedded Google Map */}
-      <div className="relative w-full h-72 sm:h-96 bg-black">
+      <div className="relative w-full h-72 sm:h-96 bg-stone-100">
         <iframe
           id="google-maps-iframe"
           title="Mashallah Welding Works Workshop Location - Auto Nagar, Proddatur"

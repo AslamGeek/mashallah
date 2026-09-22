@@ -37,13 +37,13 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section id="highlights" className="py-20 bg-light-bg text-dark-text border-b border-light-border">
+    <section id="highlights" className="py-20 bg-warm-tint text-dark-text border-b border-light-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-            <span>Why Mashallah Welding Works</span>
-          </div>
+          <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+            Why Mashallah Welding Works
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Built for Strength, Security & Longevity
           </h2>

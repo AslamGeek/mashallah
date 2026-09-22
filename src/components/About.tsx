@@ -116,7 +116,7 @@ export const About: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-light-border relative">
               <div className="flex items-center space-x-4 mb-5">
-                <div className="w-16 h-16 rounded-xl bg-gunmetal text-copper flex items-center justify-center font-extrabold text-2xl border border-dark-border">
+                <div className="w-16 h-16 rounded-xl bg-warm-tint text-copper flex items-center justify-center font-extrabold text-2xl border border-light-border">
                   KC
                 </div>
                 <div>
@@ -137,9 +137,9 @@ export const About: React.FC = () => {
               <div className="space-y-2.5 pt-3 border-t border-light-border">
                 <a
                   href={BUSINESS_INFO.phoneTel}
-                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-gunmetal hover:bg-steel text-white text-sm font-semibold transition-colors border border-dark-border min-h-[44px] whitespace-nowrap"
+                  className="w-full flex items-center justify-center py-2.5 px-4 rounded-xl bg-copper hover:bg-copper-hover text-white text-sm font-bold shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                 >
-                  <Phone className="w-4 h-4 mr-2 text-copper shrink-0" />
+                  <Phone className="w-4 h-4 mr-2 text-white shrink-0" />
                   <span>Call Now</span>
                 </a>
                 <a

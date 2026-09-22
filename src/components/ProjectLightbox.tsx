@@ -154,13 +154,13 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
       }}
     >
       <div
-        className="relative flex flex-col w-full max-w-2xl lg:max-w-3xl max-h-[92vh] max-h-[92dvh] bg-gunmetal border border-dark-border rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden mx-auto"
+        className="relative flex flex-col w-full max-w-2xl lg:max-w-3xl max-h-[92vh] max-h-[92dvh] bg-[#181B1E] border border-stone-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden mx-auto"
         onClick={(e) => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         {/* Top Bar: Minimal, image position and large obvious Close button only */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-dark-border bg-dark-bg shrink-0 z-10">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-stone-800 bg-[#141619] shrink-0 z-10">
           <div>
             {hasMultiple ? (
               <span className="text-xs sm:text-sm font-semibold text-stone-300 tracking-wider">
@@ -175,7 +175,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             ref={closeBtnRef}
             type="button"
             onClick={onClose}
-            className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-steel/60 hover:bg-steel text-stone-200 hover:text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 hover:text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
             aria-label="Close"
           >
             <X className="w-6 h-6" />
@@ -225,14 +225,9 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           )}
         </div>
 
-        {/* Clean Photo Viewer Footer: Title & Actions Only */}
-        <div className="px-4 sm:px-6 py-3 sm:py-3.5 bg-gunmetal border-t border-dark-border flex flex-col sm:flex-row items-center justify-between gap-3 text-left shrink-0">
-          <div className="space-y-0.5 max-w-md w-full">
-            {project.categoryLabel && (
-              <span className="text-[11px] font-bold text-copper tracking-wider uppercase">
-                {project.categoryLabel}
-              </span>
-            )}
+        {/* Clean Photo Viewer Footer: Title & Actions Only (No category badges) */}
+        <div className="px-4 sm:px-6 py-3 sm:py-3.5 bg-[#181B1E] border-t border-dark-border flex flex-col sm:flex-row items-center justify-between gap-3 text-left shrink-0">
+          <div className="max-w-md w-full">
             <h2
               id="lightbox-project-title"
               className="text-sm sm:text-base font-bold text-white truncate"

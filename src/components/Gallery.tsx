@@ -91,9 +91,9 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-            <span>Portfolio</span>
-          </div>
+          <span className="text-xs font-bold uppercase tracking-wider text-copper block">
+            Portfolio
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Our Work & Fabrication Gallery
           </h2>
@@ -116,10 +116,10 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 type="button"
                 onClick={() => handleCategorySelect(cat.slug)}
                 aria-pressed={isActive}
-                className={`px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 ${
+                className={`px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 ${
                   isActive
-                    ? 'bg-steel text-white shadow-xs'
-                    : 'bg-white text-dark-text hover:bg-stone-200/90 border border-light-border'
+                    ? 'bg-copper text-white shadow-xs'
+                    : 'bg-white text-stone-700 hover:text-dark-text hover:bg-stone-100 border border-light-border'
                 }`}
               >
                 {cat.label}

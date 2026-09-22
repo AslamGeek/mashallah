@@ -38,40 +38,34 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="home"
-      className="relative pt-24 pb-16 md:pt-30 md:pb-24 bg-dark-bg text-[#F5F3EE] overflow-hidden border-b border-dark-border"
+      className="relative pt-24 pb-16 md:pt-30 md:pb-24 bg-light-bg text-dark-text overflow-hidden border-b border-light-border"
     >
-      {/* Subtle industrial steel geometric grid background */}
-      <div
-        className="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#3B434A_1px,transparent_1px)] [background-size:24px_24px]"
-        aria-hidden="true"
-      />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Main Copy & Hero CTA Column */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Location pill */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gunmetal border border-dark-border text-copper text-xs font-bold uppercase tracking-wider">
-              <MapPin className="w-3.5 h-3.5 text-copper" />
+            {/* Location indicator */}
+            <div className="inline-flex items-center space-x-2 text-stone-700 text-sm font-semibold">
+              <MapPin className="w-4 h-4 text-copper shrink-0" />
               <span>Auto Nagar, Proddatur</span>
             </div>
 
             {/* Clear Core Offer Heading */}
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <div className="space-y-2.5">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-dark-text leading-[1.12]">
                 Custom Iron Fabrication & <span className="text-copper">Welding in Proddatur</span>
               </h1>
-              <p className="text-base sm:text-xl font-medium text-stone-300">
+              <p className="text-base sm:text-xl font-medium text-stone-700">
                 Mashallah Welding Works — Heavy-duty gates, window safety grills, staircase railings, and structural steel repairs.
               </p>
             </div>
 
             {/* Clear Offer Description */}
-            <p className="text-sm sm:text-base text-muted-text max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base text-stone-600 max-w-2xl leading-relaxed">
               Built to your exact on-site dimensions using heavy-gauge mild steel, clean arc welding, and weather-resistant anti-rust primer by lead fabricator Karimulla C. and our experienced team.
             </p>
 
-            {/* Primary & Secondary Actions: WhatsApp quote is Primary, Call is Secondary, Directions is demoted */}
+            {/* Primary & Secondary Actions */}
             <div className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               {/* Primary CTA: WhatsApp Us */}
               <a
@@ -79,7 +73,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 href={generateWhatsAppUrl('Hello Mashallah Welding Works, I would like to get a quote for iron fabrication/welding work in Proddatur.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg shadow-emerald-950/40 transition-all duration-150 active:scale-[0.98] whitespace-nowrap min-h-[48px]"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-xs transition-all duration-150 active:scale-[0.98] whitespace-nowrap min-h-[48px]"
               >
                 <WhatsAppIcon className="w-5 h-5 mr-2 shrink-0" />
                 <span>WhatsApp Us</span>
@@ -95,21 +89,21 @@ export const Hero: React.FC<HeroProps> = () => {
                 <span>Call Now</span>
               </a>
 
-              {/* Demoted Tertiary Link: Directions */}
+              {/* Tertiary Link: Directions */}
               <a
                 id="hero-get-directions-btn"
                 href={BUSINESS_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 py-3 rounded-xl text-stone-300 hover:text-copper hover:bg-steel/40 text-xs sm:text-sm font-semibold transition-colors duration-150 border border-transparent hover:border-dark-border whitespace-nowrap min-h-[44px]"
+                className="inline-flex items-center justify-center px-4 py-3 rounded-xl text-stone-700 hover:text-copper bg-white hover:bg-stone-50 text-xs sm:text-sm font-semibold transition-colors duration-150 border border-light-border whitespace-nowrap min-h-[44px]"
               >
                 <Navigation className="w-4 h-4 mr-1.5 text-copper shrink-0" />
                 <span>Directions to Workshop</span>
               </a>
             </div>
 
-            {/* Clean Value Signals (No duplicate competing chips) */}
-            <div className="pt-4 border-t border-dark-border flex flex-wrap items-center gap-y-2 gap-x-6 text-xs sm:text-sm text-stone-300">
+            {/* Clean Value Signals */}
+            <div className="pt-4 border-t border-light-border flex flex-wrap items-center gap-y-2 gap-x-6 text-xs sm:text-sm text-stone-700 font-medium">
               <div className="flex items-center space-x-2 whitespace-nowrap">
                 <CheckCircle2 className="w-4 h-4 text-copper shrink-0" />
                 <span>On-Site Measurements</span>
@@ -127,7 +121,7 @@ export const Hero: React.FC<HeroProps> = () => {
 
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl bg-gunmetal border border-dark-border p-2 sm:p-3 shadow-xl overflow-hidden group">
+            <div className="relative rounded-2xl bg-white border border-light-border p-2.5 sm:p-3 shadow-xs overflow-hidden group">
               <button
                 type="button"
                 onClick={(e) => openLightbox(e)}
@@ -152,13 +146,13 @@ export const Hero: React.FC<HeroProps> = () => {
               </button>
               <div className="pt-3 px-1 flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-xs font-bold text-copper">Custom Main Gate</p>
-                  <p className="text-xs text-stone-300">Fabricated in Auto Nagar, Proddatur</p>
+                  <p className="text-xs font-bold text-copper uppercase tracking-wider">Custom Main Gate</p>
+                  <p className="text-xs text-stone-600 font-medium">Fabricated in Auto Nagar, Proddatur</p>
                 </div>
                 <button
                   type="button"
                   onClick={(e) => openLightbox(e)}
-                  className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-steel hover:bg-dark-border text-stone-200 hover:text-white text-xs font-semibold border border-dark-border transition-colors min-h-[44px] cursor-pointer shrink-0"
+                  className="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold border border-light-border transition-colors min-h-[44px] cursor-pointer shrink-0"
                 >
                   <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
                   <span>View Photo</span>

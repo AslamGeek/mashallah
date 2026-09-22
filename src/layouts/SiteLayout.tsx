@@ -7,7 +7,7 @@ import { ScrollToTop } from '../components/ScrollToTop';
 
 export const SiteLayout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-dark-bg text-dark-text selection:bg-copper selection:text-white">
+    <div className="min-h-screen flex flex-col bg-light-bg text-dark-text selection:bg-copper selection:text-white">
       <ScrollToTop />
       {/* Top Fixed Header with Route Navigation */}
       <Header />
