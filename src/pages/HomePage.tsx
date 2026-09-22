@@ -263,11 +263,8 @@ export const HomePage: React.FC = () => {
                   {/* Card Content */}
                   <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="text-xs font-semibold text-copper uppercase tracking-wider">
-                          {project.categoryLabel || project.category.replace(/-/g, ' ')}
-                        </div>
-                        <ProjectShareButton project={project} />
+                      <div className="text-xs font-semibold text-copper uppercase tracking-wider">
+                        {project.categoryLabel || project.category.replace(/-/g, ' ')}
                       </div>
 
                       {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}

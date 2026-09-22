@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ExternalLink, Phone } from 'lucide-react';
-import { BUSINESS_INFO, generateWhatsAppUrl, getFullResolutionImageUrl } from '../data/content';
-import { WhatsAppIcon } from './WhatsAppIcon';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getFullResolutionImageUrl } from '../data/content';
 
 export interface LightboxMediaItem {
   id: string;
@@ -136,8 +135,6 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
 
   // Resolve original photo source URL
   const fullPhotoUrl = getFullResolutionImageUrl(project.imageUrl);
-  const whatsappText = project.whatsappMessage ||
-    `Hello, I want this type of work: ${project.title}. I will send a photo.`;
 
   return (
     <div
@@ -176,14 +173,14 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
             type="button"
             onClick={onClose}
             className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 hover:text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
-            aria-label="Close"
+            aria-label="Close photo"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Photo Viewport: Generous responsive height, object-contain, clean navigation */}
-        <div className="relative w-full h-[60vh] sm:h-[68vh] md:h-[72vh] max-h-[700px] bg-black/95 flex items-center justify-center p-2 sm:p-4 select-none shrink-0 overflow-hidden">
+        <div className="relative w-full h-[62vh] sm:h-[70vh] max-h-[720px] bg-black/95 flex items-center justify-center p-2 sm:p-4 select-none shrink-0 overflow-hidden">
           <img
             key={project.id}
             src={fullPhotoUrl}
@@ -225,48 +222,14 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           )}
         </div>
 
-        {/* Clean Photo Viewer Footer: Title & Actions Only (No category badges) */}
-        <div className="px-4 sm:px-6 py-3 sm:py-3.5 bg-[#181B1E] border-t border-dark-border flex flex-col sm:flex-row items-center justify-between gap-3 text-left shrink-0">
-          <div className="max-w-md w-full">
-            <h2
-              id="lightbox-project-title"
-              className="text-sm sm:text-base font-bold text-white truncate"
-            >
-              {project.title}
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
-            <a
-              href={fullPhotoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-steel/80 hover:bg-steel text-stone-200 hover:text-white font-semibold text-xs border border-dark-border transition-colors min-h-[44px] whitespace-nowrap"
-            >
-              <ExternalLink className="w-4 h-4 mr-1.5 text-copper shrink-0" />
-              <span>Full Photo</span>
-            </a>
-
-            {/* Direct Call Button */}
-            <a
-              href={BUSINESS_INFO.phoneTel}
-              className="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap active:scale-[0.98]"
-            >
-              <Phone className="w-4 h-4 mr-1.5 stroke-[2.2] shrink-0" />
-              <span>Call</span>
-            </a>
-
-            {/* Send Photo on WhatsApp */}
-            <a
-              href={generateWhatsAppUrl(whatsappText)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap active:scale-[0.98]"
-            >
-              <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-              <span>Send Photo on WhatsApp</span>
-            </a>
-          </div>
+        {/* Clean Photo Caption Footer: Title only with natural text wrapping */}
+        <div className="px-4 sm:px-6 py-3 bg-[#141619] border-t border-stone-800 text-center shrink-0">
+          <h2
+            id="lightbox-project-title"
+            className="text-xs sm:text-sm font-medium text-stone-200 break-words leading-relaxed"
+          >
+            {project.title}
+          </h2>
         </div>
       </div>
     </div>
