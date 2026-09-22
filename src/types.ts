@@ -1,10 +1,19 @@
 export interface ServiceItem {
   id: string;
+  slug?: string;
   title: string;
+  shortDescription?: string;
   category: 'residential' | 'commercial' | 'industrial' | 'repair' | 'fabrication';
   description: string;
+  heroHeadline?: string;
+  heroDescription?: string;
   features: string[];
   iconName: string;
+  projectCategorySlug?: GalleryCategorySlug;
+  commonOptions?: string[];
+  quoteFactors?: string[];
+  ctaText?: string;
+  whatsappIntent?: string;
 }
 
 export type GalleryCategorySlug =
@@ -56,8 +65,9 @@ export interface FaqItem {
 export type WhatsAppContext =
   | { type: 'hero' }
   | { type: 'project'; projectName: string; projectUrl?: string; projectSlug?: string }
-  | { type: 'service'; serviceName: string }
-  | { type: 'repair'; details?: string }
+  | { type: 'service'; serviceName: string; customNote?: string }
+  | { type: 'repair'; details?: string; location?: string }
+  | { type: 'quote_form'; requirement: string; location?: string; note?: string }
   | { type: 'generic'; message?: string };
 
 export type WhatsAppInput = WhatsAppContext | string;

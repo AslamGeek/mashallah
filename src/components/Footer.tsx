@@ -110,15 +110,47 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-bold text-xs uppercase tracking-wider">
               What We Make & Fix
             </h4>
-            <ul className="space-y-1.5 text-xs text-muted-text">
-              <li>• Gates & Doors</li>
-              <li>• Window Grills</li>
-              <li>• Railings (Stairs & Balcony)</li>
-              <li>• Metal Doors</li>
-              <li>• Steel Racks & Stands</li>
-              <li>• Custom Welding Work</li>
-              <li>• Welding Repairs</li>
-              <li>• Shed & Factory Work</li>
+            <ul className="space-y-1.5 text-xs">
+              <li>
+                <Link to="/services/gates-doors" className="text-muted-text hover:text-copper transition-colors">
+                  • Gates & Doors
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/window-safety-grills" className="text-muted-text hover:text-copper transition-colors">
+                  • Window Grills
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/railings-staircases" className="text-muted-text hover:text-copper transition-colors">
+                  • Railings (Stairs & Balcony)
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/metal-doors" className="text-muted-text hover:text-copper transition-colors">
+                  • Metal Doors
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/steel-racks-stands" className="text-muted-text hover:text-copper transition-colors">
+                  • Steel Racks & Stands
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/custom-iron-fabrication" className="text-muted-text hover:text-copper transition-colors">
+                  • Custom Steel Work
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/iron-repair-works" className="text-muted-text hover:text-copper transition-colors">
+                  • Welding & Gate Repairs
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/shed-work" className="text-muted-text hover:text-copper transition-colors">
+                  • Shed & Factory Work
+                </Link>
+              </li>
             </ul>
           </div>
 

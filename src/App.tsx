@@ -31,6 +31,7 @@ export default function App() {
           <Route path="/portfolio" element={<Navigate to="/our-work" replace />} />
           <Route path="/portfolio/:projectSlug" element={<OurWorkPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:serviceSlug" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />

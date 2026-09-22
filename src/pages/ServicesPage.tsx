@@ -1,12 +1,53 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Phone, ArrowRight, Wrench } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { Phone, ArrowRight, Wrench, ChevronLeft } from 'lucide-react';
 import { PageSeo } from '../components/PageSeo';
 import { Services } from '../components/Services';
+import { ServiceLandingView } from '../components/ServiceLandingView';
+import { ConversionTrustPoints } from '../components/ConversionTrustPoints';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
-import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { BUSINESS_INFO, SERVICES_LIST, generateWhatsAppUrl } from '../data/content';
 
 export const ServicesPage: React.FC = () => {
+  const { serviceSlug } = useParams<{ serviceSlug?: string }>();
+
+  // If a specific service slug is requested, find the matching service
+  if (serviceSlug) {
+    const matchedService = SERVICES_LIST.find(
+      (s) => s.id === serviceSlug || s.slug === serviceSlug
+    );
+
+    if (matchedService) {
+      return (
+        <>
+          <PageSeo
+            title={`${matchedService.heroHeadline || matchedService.title} | Mashallah Welding Works Proddatur`}
+            description={matchedService.heroDescription || matchedService.description}
+          />
+          <ServiceLandingView service={matchedService} />
+        </>
+      );
+    }
+
+    // Fallback if service slug not recognized
+    return (
+      <div className="pt-32 pb-20 max-w-3xl mx-auto px-4 text-center">
+        <h1 className="text-2xl font-bold text-dark-text mb-2">Service Not Found</h1>
+        <p className="text-stone-600 text-sm mb-6">
+          The welding or fabrication service you requested could not be located.
+        </p>
+        <Link
+          to="/services"
+          className="inline-flex items-center px-4 py-2 rounded-xl bg-copper text-white text-xs font-bold"
+        >
+          <ChevronLeft className="w-4 h-4 mr-1" />
+          <span>View All Services</span>
+        </Link>
+      </div>
+    );
+  }
+
+  // Otherwise render the full Services directory
   return (
     <>
       <PageSeo
@@ -28,6 +69,12 @@ export const ServicesPage: React.FC = () => {
               <p className="text-stone-300 text-sm sm:text-base leading-relaxed break-words">
                 Every home and shop is different. Tell us what you want to make or fix, or ask for a free site visit in Proddatur.
               </p>
+              <ConversionTrustPoints
+                className="pt-2 text-left"
+                variant="service"
+                showLocation={true}
+                theme="dark"
+              />
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto shrink-0">

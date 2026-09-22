@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../../data/content';
 import { WhatsAppIcon } from '../WhatsAppIcon';
+import { ConversionTrustPoints } from '../ConversionTrustPoints';
 
 export const HomeFinalCTA: React.FC = () => {
   const projectTypes = [
@@ -88,11 +89,13 @@ export const HomeFinalCTA: React.FC = () => {
             </div>
 
             {/* Reassurance Footer */}
-            <div className="pt-6 border-t border-dark-border/80 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-stone-400">
-              <span className="text-center">✓ On-Site Measurements in Proddatur</span>
-              <span className="text-center">✓ Direct Workshop Team (No Middlemen)</span>
-              <span className="text-center">✓ Red Oxide Anti-Rust Primer Treated</span>
-            </div>
+            <ConversionTrustPoints
+              variant="compact"
+              showLocation={true}
+              showHours={true}
+              theme="dark"
+              className="pt-6 border-t border-dark-border/80"
+            />
           </div>
         </div>
       </div>

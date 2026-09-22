@@ -1,7 +1,8 @@
 import React from 'react';
-import { Phone, Ruler, FileCheck2, Camera } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { ConversionTrustPoints } from './ConversionTrustPoints';
 
 export interface HeroProps {
   className?: string;
@@ -59,20 +60,11 @@ export const Hero: React.FC<HeroProps> = () => {
             </div>
 
             {/* 5. Compact Reassurance / Trust Row */}
-            <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-stone-600">
-              <div className="inline-flex items-center space-x-1.5">
-                <Ruler className="w-3.5 h-3.5 text-copper shrink-0" />
-                <span>On-site measurements available</span>
-              </div>
-              <div className="inline-flex items-center space-x-1.5">
-                <FileCheck2 className="w-3.5 h-3.5 text-copper shrink-0" />
-                <span>Clear quotation before fabrication</span>
-              </div>
-              <div className="inline-flex items-center space-x-1.5">
-                <Camera className="w-3.5 h-3.5 text-copper shrink-0" />
-                <span>Custom designs from reference photos</span>
-              </div>
-            </div>
+            <ConversionTrustPoints
+              variant="hero"
+              showLocation={true}
+              className="pt-2"
+            />
           </div>
 
           {/* Right Column: One Large Clean Project Image (No badges, overlays, or stats) */}
