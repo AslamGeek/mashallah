@@ -245,13 +245,13 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
             </p>
           </div>
           <a
-            href={generateWhatsAppUrl('Hello, I have a photo/sketch for custom welding work and would like an estimate.')}
+            href={generateWhatsAppUrl('Hello, I would like to get a quote for custom welding/fabrication work.')}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98] whitespace-nowrap min-h-[44px]"
           >
             <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-            <span>Send Photo on WhatsApp</span>
+            <span>Get a Quote on WhatsApp</span>
           </a>
         </div>
       </div>

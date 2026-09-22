@@ -43,13 +43,13 @@ export const OurWorkPage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto shrink-0">
               <a
-                href={generateWhatsAppUrl('Hello, I have a photo/sketch of a design and would like an estimate.')}
+                href={generateWhatsAppUrl('Hello, I would like to get a quote for iron fabrication work.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"
               >
                 <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-                <span>Send Photo on WhatsApp</span>
+                <span>Get a Quote on WhatsApp</span>
               </a>
               <Link
                 to="/contact"

@@ -192,7 +192,7 @@ export const SocialShowcase: React.FC = () => {
                       className="w-full inline-flex items-center justify-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 py-2.5 px-4 rounded-xl shadow-xs min-h-[44px] whitespace-nowrap"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 shrink-0" />
-                      <span>WhatsApp Quote</span>
+                      <span>Ask About This Project</span>
                     </a>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export const SocialShowcase: React.FC = () => {
               className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-dark-text font-semibold text-xs border border-light-border transition-colors whitespace-nowrap min-h-[44px]"
             >
               <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5 text-emerald-600 shrink-0" />
-              <span>WhatsApp Photos</span>
+              <span>Ask on WhatsApp</span>
             </a>
           </div>
         </div>

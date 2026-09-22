@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
                 className="px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-800/60 text-xs font-semibold flex items-center transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                <span>Chat on WhatsApp</span>
+                <span>WhatsApp Us</span>
               </a>
               <a
                 href={BUSINESS_INFO.instagramUrl}
