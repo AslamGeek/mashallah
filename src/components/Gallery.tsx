@@ -91,9 +91,6 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
-          <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-            Portfolio
-          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
             Our Work & Fabrication Gallery
           </h2>

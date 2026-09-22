@@ -31,9 +31,6 @@ export const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-              <span>About Mashallah Welding Works</span>
-            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-dark-text">
               Dedicated Metal Craftsmen in Auto Nagar, Proddatur
             </h1>

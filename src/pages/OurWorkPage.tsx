@@ -22,10 +22,6 @@ export const OurWorkPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-[#22272C] rounded-3xl p-8 sm:p-12 border border-dark-border shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl text-center lg:text-left">
-              <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-copper">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Custom Blueprint & Estimation
-              </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                 Found a Design You Like or Have Your Own Drawing?
               </h2>

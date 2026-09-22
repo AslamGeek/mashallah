@@ -18,10 +18,6 @@ export const WorkshopMap: React.FC = () => {
       {/* Map Header */}
       <div className="p-5 sm:p-6 border-b border-light-border bg-stone-50/70 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center space-x-2 text-copper text-xs font-bold uppercase tracking-wider">
-            <MapPin className="w-3.5 h-3.5" />
-            <span>Workshop Location</span>
-          </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-dark-text">
             Visit Our Workshop in Auto Nagar, Proddatur
           </h3>

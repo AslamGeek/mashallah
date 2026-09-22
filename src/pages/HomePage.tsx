@@ -200,10 +200,7 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
-            <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-                Visual Proof & Finished Projects
-              </span>
+            <div className="max-w-2xl space-y-3">
               <h2
                 id="proof-heading"
                 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
@@ -415,10 +412,7 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
-            <div className="max-w-2xl space-y-2">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stone-200/80 border border-light-border text-stone-700 text-xs font-bold uppercase tracking-wider">
-                <span>Core Capabilities</span>
-              </div>
+            <div className="max-w-2xl space-y-3">
               <h2
                 id="services-heading"
                 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
@@ -558,9 +552,6 @@ export const HomePage: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-              Workshop Details
-            </span>
             <h2
               id="business-info-heading"
               className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
@@ -697,9 +688,6 @@ export const HomePage: React.FC = () => {
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-3 mb-10 sm:mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-copper block">
-              Questions & Answers
-            </span>
             <h2
               id="faq-home-heading"
               className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
@@ -803,11 +791,6 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-[#22272C] rounded-3xl p-8 sm:p-12 border border-dark-border shadow-2xl">
             <div className="max-w-3xl mx-auto text-center space-y-4">
-              <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-800 px-3.5 py-1.5 rounded-full">
-                <WhatsAppIcon className="w-4 h-4 mr-2" />
-                Direct Workshop Quotation
-              </span>
-
               <h2
                 id="conversion-heading"
                 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight"

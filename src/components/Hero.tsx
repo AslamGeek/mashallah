@@ -44,14 +44,8 @@ export const Hero: React.FC<HeroProps> = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Main Copy & Hero CTA Column */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Location indicator */}
-            <div className="inline-flex items-center space-x-2 text-stone-700 text-sm font-semibold">
-              <MapPin className="w-4 h-4 text-copper shrink-0" />
-              <span>Auto Nagar, Proddatur</span>
-            </div>
-
             {/* Clear Core Offer Heading */}
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-dark-text leading-[1.12]">
                 Custom Iron Fabrication & <span className="text-copper">Welding in Proddatur</span>
               </h1>
