@@ -108,7 +108,7 @@ export const Header: React.FC = () => {
               alt="Mashallah Welding Works"
               width={2172}
               height={724}
-              className="h-9 sm:h-11 w-auto max-w-[200px] sm:max-w-[240px] md:max-w-[260px] object-contain block transition-opacity hover:opacity-90"
+              className="w-[170px] sm:w-[190px] md:w-[210px] h-auto max-h-[58px] sm:max-h-[68px] object-contain block transition-opacity hover:opacity-90"
               loading="eager"
               decoding="async"
             />
