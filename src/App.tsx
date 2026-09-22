@@ -5,7 +5,6 @@ import { HomePage } from './pages/HomePage';
 import { OurWorkPage } from './pages/OurWorkPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
-import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
@@ -19,7 +18,6 @@ export default function App() {
           <Route path="/our-work/:categorySlug" element={<OurWorkPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/faq" element={<FaqPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

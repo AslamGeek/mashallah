@@ -635,13 +635,15 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <Link
-              to="/faq"
+            <a
+              href={generateWhatsAppUrl('Hello Mashallah Welding Works, I have a question about iron fabrication in Proddatur.')}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center space-x-1.5 text-xs sm:text-sm text-copper hover:text-copper-hover font-bold"
             >
-              <span>Have more questions? View our complete FAQ directory</span>
+              <span>Have a question not listed here? Ask us directly on WhatsApp</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
