@@ -5,15 +5,8 @@ import { BUSINESS_INFO } from '../data/content';
 export const WorkshopMap: React.FC = () => {
   // Canonical Google Maps place: Mashallah Welding Works (Coordinates: 14.7410663, 78.5710838)
   // Address: 11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360
-  const mapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const locationQuery = encodeURIComponent(
-    'Mashallah Welding Works, 11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360'
-  );
-
-  // Uses Google Maps Embed API when API key is provided, or the standard embed URL without API key
-  const embedUrl = mapsApiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${mapsApiKey}&q=${locationQuery}&center=14.7410663,78.5710838&zoom=16`
-    : `https://maps.google.com/maps?q=${locationQuery}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+  // Keyless static Google Maps widget centered on the workshop address
+  const embedUrl = `https://maps.google.com/maps?q=14.7410663,78.5710838+(Mashallah+Welding+Works)&t=&z=16&ie=UTF8&iwloc=B&output=embed`;
 
   // Official direct Google Maps navigation / directions URL
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
@@ -75,13 +68,13 @@ export const WorkshopMap: React.FC = () => {
         </div>
         <a
           id="map-directions-btn-bottom"
-          href={directionsUrl}
+          href={BUSINESS_INFO.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white text-sm font-bold shadow-xs transition-colors min-h-[48px] focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-center shrink-0"
         >
           <Navigation className="w-4 h-4 mr-2 shrink-0" />
-          <span>Get Directions</span>
+          <span>Open in Google Maps</span>
           <ExternalLink className="w-4 h-4 ml-1.5 opacity-80 shrink-0" />
         </a>
       </div>
