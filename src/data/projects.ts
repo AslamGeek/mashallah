@@ -2,11 +2,7 @@ import { GalleryProject, GalleryCategorySlug, GalleryCategoryConfig } from '../t
 
 export const GALLERY_CATEGORIES: GalleryCategoryConfig[] = [
   { slug: 'gates-doors', label: 'Steel Gates & Doors' },
-  {
-    slug: 'school-college-furniture',
-    label: 'School & College Furniture',
-    description: 'Durable steel desks, benches, tables, seating, and custom furniture for schools, colleges, and other educational institutions.',
-  },
+  { slug: 'school-college-furniture', label: 'School & College Furniture' },
   { slug: 'window-safety-grills', label: 'Window & Safety Grills' },
   { slug: 'railings-staircases', label: 'Railings & Staircases' },
   { slug: 'sheds-roofing', label: 'Sheds & Roofing' },

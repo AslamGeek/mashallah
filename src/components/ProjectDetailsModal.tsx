@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { X, Maximize2, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 import { GalleryProject } from '../types';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { getProjectUrl } from '../data/projects';
@@ -105,8 +105,8 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
 
         {/* Scrollable Body: Photo -> Title -> Details */}
         <div className="flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 space-y-4 sm:space-y-5">
-          {/* 2. Photo (Clean without overlays; tappable to enlarge) */}
-          <div className="space-y-1.5">
+          {/* 2. Photo (Clean without overlays; tappable to open full view) */}
+          <div>
             <button
               type="button"
               onClick={() => onOpenPhoto(project)}
@@ -128,19 +128,6 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                 />
               </div>
             </button>
-
-            {/* Simple discreet View Photo button positioned outside the image */}
-            <div className="flex items-center justify-between px-1 text-xs text-stone-500">
-              <button
-                type="button"
-                onClick={() => onOpenPhoto(project)}
-                className="inline-flex items-center text-xs font-semibold text-stone-700 hover:text-copper transition-colors cursor-pointer py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-copper rounded-md"
-              >
-                <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                <span>View Photo</span>
-              </button>
-              <span className="text-[11px] text-stone-400">Tap photo to enlarge</span>
-            </div>
           </div>
 
           {/* 3. Project Title (wraps naturally, no truncation) */}
