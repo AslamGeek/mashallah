@@ -15,7 +15,7 @@ export const BUSINESS_INFO = {
     phone: '9553217643',
     phoneFormatted: '+91 95532 17643',
     phoneTel: 'tel:9553217643',
-    whatsappNumber: '919440658955',
+    whatsappNumber: '919553217643',
   },
 
   // Proprietor
@@ -42,7 +42,7 @@ export const BUSINESS_INFO = {
   phone: '9553217643',
   phoneFormatted: '+91 95532 17643',
   phoneTel: 'tel:9553217643',
-  whatsappNumber: '919440658955',
+  whatsappNumber: '919553217643',
   whatsappDefaultMsg: 'Hello Mashallah Welding Works, I would like to ask about welding and fabrication work.',
   address: '11/276, MG, Lakshmi Nagar, Auto Nagar, Proddatur, Andhra Pradesh 516360',
   // Canonical Google Maps place: Mashallah Welding Works
