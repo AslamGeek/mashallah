@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { GALLERY_ITEMS, generateWhatsAppUrl } from '../../data/content';
 import { getProjectUrl } from '../../data/projects';
@@ -10,42 +10,66 @@ import { WhatsAppIcon } from '../WhatsAppIcon';
 
 export const HomeFeaturedProjects: React.FC = () => {
   const featuredProjects = GALLERY_ITEMS.slice(0, 6);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   // Local state for Project Details modal
   const [activeDetailsProject, setActiveDetailsProject] = useState<GalleryProject | null>(null);
   // Local state for Project Lightbox modal (Photo Viewer)
   const [activeLightboxProject, setActiveLightboxProject] = useState<GalleryProject | null>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const historyPushedRef = useRef(false);
+
+  // Synchronize browser history / back button so pressing Back closes the modal smoothly
+  useEffect(() => {
+    const handlePopState = () => {
+      if (historyPushedRef.current) {
+        historyPushedRef.current = false;
+        setActiveDetailsProject(null);
+        setActiveLightboxProject(null);
+        if (lastTriggerRef.current) {
+          lastTriggerRef.current.focus({ preventScroll: true });
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      historyPushedRef.current = false;
+    };
+  }, []);
 
   const openProjectDetails = useCallback((project: GalleryProject, e?: React.MouseEvent) => {
     e?.stopPropagation();
     lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
     setActiveDetailsProject(project);
 
-    // Sync URL cleanly so browser back button works and shareable URL is reflected
+    // Update browser address bar and push history entry so browser Back button closes modal,
+    // without triggering React Router route unmount of HomePage
     const targetPath = `/portfolio/${project.id}`;
-    if (location.pathname !== targetPath) {
-      navigate(targetPath, {
-        state: {
-          fromHome: true,
-          returnTo: '/',
-        },
-      });
+    try {
+      window.history.pushState(
+        { projectModal: project.id, fromHome: true },
+        '',
+        targetPath
+      );
+      historyPushedRef.current = true;
+    } catch {
+      // Fallback if pushState is restricted
     }
-  }, [location.pathname, navigate]);
+  }, []);
 
   const closeProjectDetails = useCallback(() => {
     setActiveDetailsProject(null);
-    if (location.pathname.startsWith('/portfolio/')) {
-      const returnTarget = (location.state as { returnTo?: string })?.returnTo || '/';
-      navigate(returnTarget, { replace: true });
+    if (historyPushedRef.current) {
+      historyPushedRef.current = false;
+      if (window.location.pathname.startsWith('/portfolio/')) {
+        window.history.back();
+      }
     }
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus({ preventScroll: true });
     }
-  }, [location.pathname, location.state, navigate]);
+  }, []);
 
   const handleNavigateDetails = useCallback((direction: 'prev' | 'next') => {
     if (!activeDetailsProject) return;
@@ -56,9 +80,19 @@ export const HomeFeaturedProjects: React.FC = () => {
     if (nextIndex >= 0 && nextIndex < featuredProjects.length) {
       const nextProject = featuredProjects[nextIndex];
       setActiveDetailsProject(nextProject);
-      navigate(`/portfolio/${nextProject.id}`, { replace: true, state: location.state });
+      if (historyPushedRef.current) {
+        try {
+          window.history.replaceState(
+            { projectModal: nextProject.id, fromHome: true },
+            '',
+            `/portfolio/${nextProject.id}`
+          );
+        } catch {
+          // Fallback
+        }
+      }
     }
-  }, [activeDetailsProject, featuredProjects, location.state, navigate]);
+  }, [activeDetailsProject, featuredProjects]);
 
   const closeLightbox = useCallback(() => {
     setActiveLightboxProject(null);
