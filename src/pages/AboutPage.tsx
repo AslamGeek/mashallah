@@ -241,7 +241,7 @@ export const AboutPage: React.FC = () => {
               to="/services"
               className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#22272C] hover:bg-stone-800 text-stone-200 border border-dark-border font-semibold text-sm transition-colors"
             >
-              <span>View All 11 Services</span>
+              <span>View All Services</span>
             </Link>
             <Link
               to="/contact"

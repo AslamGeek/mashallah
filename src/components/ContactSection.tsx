@@ -23,7 +23,7 @@ interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({
   className = 'py-20',
 }) => {
-  const [selectedService, setSelectedService] = useState('Iron Gates');
+  const [selectedService, setSelectedService] = useState('Gates & Doors');
   const [customService, setCustomService] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [projectNote, setProjectNote] = useState('');
@@ -177,13 +177,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   {/* 2. WhatsApp */}
                   <a
                     id="contact-whatsapp-btn"
-                    href={generateWhatsAppUrl()}
+                    href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
                   >
                     <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                    <span>WhatsApp Us</span>
+                    <span>Send Photo on WhatsApp</span>
                   </a>
 
                   {/* 3. Get Directions */}
@@ -243,15 +243,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     onChange={(e) => setSelectedService(e.target.value)}
                     className="w-full bg-stone-50 border border-light-border rounded-xl px-3.5 py-2.5 text-dark-text text-sm focus:outline-none focus:border-copper focus:bg-white transition-colors"
                   >
-                    <option value="Iron Gates">Iron Gates (Main Gate, Sliding & Swing)</option>
-                    <option value="Iron Grills">Iron Grills (Window Safety & Balcony)</option>
+                    <option value="Gates & Doors">Gates & Doors (Main Gates, Sliding & Safety)</option>
+                    <option value="Window Grills">Window Grills (Safety & Balcony)</option>
                     <option value="Railings">Railings (Staircase & Balcony)</option>
-                    <option value="Metal Doors">Metal Doors & Safety Doors</option>
-                    <option value="Iron Stands">Iron Stands (Water Tank, AC, Machinery)</option>
-                    <option value="Welding Works">Welding & Joinery Works</option>
-                    <option value="Iron Repair Works">Iron Repair & Maintenance</option>
-                    <option value="Custom Iron Fabrication">Custom Iron Fabrication</option>
-                    <option value="Other">Other (Specify Custom Requirement)</option>
+                    <option value="Metal Doors">Metal Doors</option>
+                    <option value="Steel Racks & Stands">Steel Racks & Stands (Tank, AC, Storage)</option>
+                    <option value="Custom Welding Work">Custom Welding Work</option>
+                    <option value="Welding Repairs">Welding Repairs</option>
+                    <option value="Custom Steel Work">Custom Steel Work</option>
+                    <option value="Other">Other Custom Work</option>
                   </select>
                 </div>
 

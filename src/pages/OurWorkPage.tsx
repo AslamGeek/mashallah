@@ -1,17 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { PageSeo } from '../components/PageSeo';
 import { Gallery } from '../components/Gallery';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
-import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
+import { BUSINESS_INFO, GALLERY_ITEMS, generateWhatsAppUrl } from '../data/content';
+import { findProjectBySlug } from '../data/projects';
 
 export const OurWorkPage: React.FC = () => {
+  const { projectSlug } = useParams<{ projectSlug?: string }>();
+  const activeProject = projectSlug ? findProjectBySlug(projectSlug, GALLERY_ITEMS) : undefined;
+
+  const pageTitle = activeProject
+    ? `${activeProject.title} | Mashallah Welding Works`
+    : 'Our Work & Fabrication Gallery | Mashallah Welding Works';
+
+  const pageDescription = activeProject?.description ||
+    'Browse our portfolio of custom iron gates, window safety grills, staircase railings, and metal fabrication projects in Proddatur by Mashallah Welding Works.';
+
   return (
     <>
       <PageSeo
-        title="Our Work & Fabrication Gallery | Mashallah Welding Works"
-        description="Browse our portfolio of custom iron gates, window safety grills, staircase railings, and metal fabrication projects in Proddatur by Mashallah Welding Works."
+        title={pageTitle}
+        description={pageDescription}
       />
 
       {/* Primary Gallery Component with top padding for fixed header */}
@@ -32,7 +43,7 @@ export const OurWorkPage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto shrink-0">
               <a
-                href={generateWhatsAppUrl('Hello Mashallah Welding Works, I am looking at your portfolio and would like to share a design for a quote.')}
+                href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xs transition-all active:scale-95 whitespace-nowrap min-h-[44px]"

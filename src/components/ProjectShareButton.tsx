@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Share2, Check } from 'lucide-react';
+import { getProjectUrl } from '../data/projects';
 
 interface ProjectShareButtonProps {
   project: {
@@ -9,11 +10,13 @@ interface ProjectShareButtonProps {
     category?: string;
   };
   className?: string;
+  variant?: 'card' | 'modal' | 'minimal';
 }
 
 export const ProjectShareButton: React.FC<ProjectShareButtonProps> = ({
   project,
   className = '',
+  variant = 'card',
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -21,21 +24,21 @@ export const ProjectShareButton: React.FC<ProjectShareButtonProps> = ({
     e.stopPropagation();
     e.preventDefault();
 
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const categoryParam = project.category ? `?category=${project.category}` : '';
-    const shareUrl = `${origin}/our-work${categoryParam}#gallery-card-${project.id}`;
+    const shareUrl = getProjectUrl(project.id);
 
     const shareData = {
-      title: `${project.title} | Mashallah Welding Works`,
-      text: `Check out ${project.title} by Mashallah Welding Works in Proddatur:`,
+      title: project.title,
+      text: `Check out ${project.title} from Mashallah Welding Works:`,
       url: shareUrl,
     };
 
-    // Use native Web Share API on supported devices
-    if (typeof navigator !== 'undefined' && navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+    // Use native Web Share API on supported mobile browsers
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       try {
-        await navigator.share(shareData);
-        return;
+        if (!navigator.canShare || navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+          return;
+        }
       } catch (err: unknown) {
         if ((err as Error)?.name === 'AbortError') {
           return;
@@ -58,29 +61,40 @@ export const ProjectShareButton: React.FC<ProjectShareButtonProps> = ({
         document.body.removeChild(textArea);
       }
       setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
+      setTimeout(() => setCopied(false), 2400);
     } catch {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
+      setTimeout(() => setCopied(false), 2400);
     }
   };
+
+  const baseCardStyle = "inline-flex items-center justify-center px-3 py-2 rounded-xl text-xs font-semibold border transition-colors cursor-pointer min-h-[44px] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-copper";
+  const cardStyle = copied
+    ? "bg-emerald-50 text-emerald-700 border-emerald-300"
+    : "bg-white hover:bg-stone-50 text-stone-700 border-stone-300";
+
+  const modalStyle = copied
+    ? "inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-300 min-h-[44px] cursor-pointer"
+    : "inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-300 min-h-[44px] cursor-pointer transition-colors";
+
+  const appliedClass = variant === 'modal' ? modalStyle : `${baseCardStyle} ${cardStyle}`;
 
   return (
     <button
       type="button"
       onClick={handleShare}
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium text-stone-500 hover:text-stone-800 hover:bg-stone-100 transition-colors cursor-pointer min-h-[36px] focus:outline-none focus-visible:ring-2 focus-visible:ring-copper select-none ${className}`}
+      className={`${appliedClass} ${className}`}
       aria-label={`Share ${project.title}`}
-      title={copied ? 'Link copied to clipboard' : 'Share this project'}
+      title={copied ? 'Link copied to clipboard' : 'Share this project URL'}
     >
       {copied ? (
         <>
-          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          <span className="text-emerald-700 font-semibold">Link copied</span>
+          <Check className="w-3.5 h-3.5 text-emerald-600 mr-1.5 shrink-0" />
+          <span className="text-emerald-700 font-bold">Link Copied!</span>
         </>
       ) : (
         <>
-          <Share2 className="w-3.5 h-3.5 text-stone-400 group-hover:text-stone-600 shrink-0" />
+          <Share2 className="w-3.5 h-3.5 text-stone-600 mr-1.5 shrink-0" />
           <span>Share</span>
         </>
       )}

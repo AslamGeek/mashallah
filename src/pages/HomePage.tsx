@@ -83,51 +83,51 @@ export const HomePage: React.FC = () => {
   const homepageServices = [
     {
       id: 'iron-gates',
-      title: 'Steel Gates & Doors',
-      category: 'Residential & Commercial',
-      description: 'Heavy-duty main entrance gates, double-leaf sliding gates, and protective safety doors made with solid steel.',
+      title: 'Gates & Doors',
+      category: 'Home & Shop',
+      description: 'Strong main gates, sliding gates, and entrance doors custom made for your home or shop.',
       icon: Shield,
-      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for a Steel Gate / Main Entrance Gate.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Gates & Doors.',
     },
     {
       id: 'window-grills',
-      title: 'Window & Safety Grills',
-      category: 'Residential',
-      description: 'Burglar-proof window safety grills and balcony safety frames with geometric bars and durable anti-rust primer.',
+      title: 'Window Grills',
+      category: 'Home Safety',
+      description: 'Strong safety grills for windows and balconies to keep your home secure.',
       icon: Grid,
-      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Window Safety Grills.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Window Grills.',
     },
     {
       id: 'railings',
-      title: 'Railings & Staircases',
-      category: 'Residential & Commercial',
-      description: 'Sturdy terrace handrails, staircase railings, and custom outdoor steel stairs built to exact step dimensions.',
+      title: 'Railings',
+      category: 'Home & Terrace',
+      description: 'Safe, sturdy handrails for staircases, balconies, and open terraces.',
       icon: Layers,
-      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Staircase Railings / Handrails.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Railings.',
     },
     {
       id: 'school-furniture',
-      title: 'School & College Furniture',
-      category: 'Institutional',
-      description: 'Heavy-gauge steel student desk-bench sets, classroom tables, laboratory stands, and institutional furniture.',
+      title: 'Benches & Desks',
+      category: 'School & Office',
+      description: 'Durable steel desk-bench sets, tables, and study furniture made to order.',
       icon: School,
-      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for School & College Steel Furniture.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Steel Benches & Desks.',
     },
     {
       id: 'stands-sheds',
-      title: 'Sheds, Racks & Stands',
-      category: 'Commercial & Industrial',
-      description: 'Corrugated roofing car sheds, water tank stands, AC frames, and heavy-duty commercial storage rack frames.',
+      title: 'Steel Racks & Stands',
+      category: 'Racks & Sheds',
+      description: 'Heavy-duty stands for water tanks, AC units, storage racks, and roof sheds.',
       icon: Box,
-      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Steel Sheds / Heavy Stands / Storage Racks.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I want an estimate for Steel Racks & Stands.',
     },
     {
       id: 'welding-repairs',
-      title: 'Welding Repairs & Joinery',
-      category: 'Repair & Maintenance',
-      description: 'Fast on-site visits across Proddatur for broken gate hinges, detached grill joints, and structural re-welding.',
+      title: 'Welding Repairs',
+      category: 'Repairs',
+      description: 'Quick doorstep fixing for broken gates, rusted hinges, and loose grills.',
       icon: Wrench,
-      whatsappMsg: 'Hello Mashallah Welding Works, I need urgent Welding Repair work in Proddatur.',
+      whatsappMsg: 'Hello Mashallah Welding Works, I need Welding Repairs in Proddatur.',
     },
   ];
 
@@ -365,19 +365,23 @@ export const HomePage: React.FC = () => {
                         </button>
                       </div>
 
-                      {/* WhatsApp Quote: Performs only WhatsApp action */}
-                      <a
-                        href={generateWhatsAppUrl(
-                          `Hello Mashallah Welding Works, I saw this project on your website: "${project.title}". Can you give me an estimate for something similar?`
-                        )}
-                        onClick={(e) => e.stopPropagation()}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
-                      >
-                        <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                        <span>WhatsApp Quote</span>
-                      </a>
+                      {/* Action Row 2: Share & Send Photo on WhatsApp */}
+                      <div className="grid grid-cols-[auto_1fr] sm:grid-cols-[100px_1fr] gap-2">
+                        <ProjectShareButton project={project} />
+
+                        <a
+                          href={generateWhatsAppUrl(
+                            `Hello, I want this type of work: ${project.title}. I will send a photo.`
+                          )}
+                          onClick={(e) => e.stopPropagation()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap"
+                        >
+                          <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
+                          <span>Send Photo on WhatsApp</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -422,17 +426,17 @@ export const HomePage: React.FC = () => {
                 id="services-heading"
                 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text"
               >
-                Fabrication & Welding Services
+                What We Make & Fix
               </h2>
               <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
-                Concise breakdown of what we manufacture and repair in Auto Nagar, Proddatur. Tap any service for an instant quote.
+                Simple overview of what we make and fix in Auto Nagar, Proddatur. Tap any service for a quick WhatsApp quote.
               </p>
             </div>
             <Link
               to="/services"
               className="inline-flex items-center space-x-2 text-copper hover:text-copper-hover font-bold text-sm group shrink-0"
             >
-              <span>View All 11 Services & Full Specs</span>
+              <span>View All Services</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -486,15 +490,15 @@ export const HomePage: React.FC = () => {
                       <div className="pt-2 space-y-2 border-t border-light-border text-xs text-stone-600">
                         <div className="flex items-start space-x-2">
                           <span className="text-copper font-bold">•</span>
-                          <span><strong>Material:</strong> Heavy-gauge mild steel crafted to custom site measurements.</span>
+                          <span><strong>Quality Metal:</strong> Strong steel made to your exact measurements.</span>
                         </div>
                         <div className="flex items-start space-x-2">
                           <span className="text-copper font-bold">•</span>
-                          <span><strong>Protection:</strong> Anti-rust red oxide primer + high-durability synthetic enamel coat.</span>
+                          <span><strong>Rust Protection:</strong> Anti-rust primer coating and clean paint finish.</span>
                         </div>
                         <div className="flex items-start space-x-2">
                           <span className="text-copper font-bold">•</span>
-                          <span><strong>Fabrication:</strong> Direct in Auto Nagar workshop with doorstep delivery & fitment in Proddatur.</span>
+                          <span><strong>Doorstep Service:</strong> Free measurement and welded fitting in Proddatur.</span>
                         </div>
                       </div>
                     )}
@@ -520,14 +524,14 @@ export const HomePage: React.FC = () => {
                       )}
                     </button>
                     <a
-                      href={generateWhatsAppUrl(service.whatsappMsg)}
+                      href={generateWhatsAppUrl(`Hello, I want this type of work: ${service.title}. I will send a photo.`)}
                       onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[36px]"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
-                      <span>Get Quote</span>
+                      <span>Send Photo on WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -540,7 +544,7 @@ export const HomePage: React.FC = () => {
               to="/services"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm shadow-xs transition-colors"
             >
-              <span>Explore All 11 Fabrication & Repair Services</span>
+              <span>View All Services</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -832,18 +836,18 @@ export const HomePage: React.FC = () => {
 
               {/* Primary & Secondary Actions: WhatsApp Quote is Primary, Call is Secondary */}
               <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-                {/* Primary CTA: WhatsApp Us */}
+                {/* Primary CTA: Send Photo on WhatsApp */}
                 <a
                   id="final-cta-whatsapp"
                   href={generateWhatsAppUrl(
-                    `Hello Mashallah Welding Works, I would like to get a quote for a ${selectedProjectType} in Proddatur.`
+                    `Hello, I want this type of work (${selectedProjectType}). I will send a photo.`
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer min-h-[48px]"
                 >
                   <WhatsAppIcon className="w-5 h-5 mr-2.5 shrink-0" />
-                  <span>WhatsApp Us ({selectedProjectType})</span>
+                  <span>Send Photo on WhatsApp</span>
                 </a>
 
                 {/* Secondary CTA: Call Now */}

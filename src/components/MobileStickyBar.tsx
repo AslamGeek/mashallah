@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Navigation } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -7,41 +7,32 @@ export const MobileStickyBar: React.FC = () => {
   return (
     <div
       id="mobile-sticky-cta-bar"
-      className="fixed bottom-0 left-0 right-0 z-30 sm:hidden bg-dark-bg/95 backdrop-blur-md border-t border-dark-border px-3 py-2 shadow-2xl flex items-center justify-around gap-2"
+      className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#181B1E]/95 backdrop-blur-md border-t border-dark-border px-3 pt-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] shadow-2xl flex items-center gap-2.5"
     >
-      {/* 1. Call Now */}
+      {/* 1. Call */}
       <a
         id="mobile-bar-call-btn"
         href={BUSINESS_INFO.phoneTel}
-        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-copper active:bg-copper-hover text-white text-center font-bold text-xs shadow-xs min-h-[44px]"
+        className="flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-copper active:bg-copper-hover text-white text-center font-bold text-sm shadow-md transition-all active:scale-[0.98] min-h-[48px]"
+        aria-label="Call Mashallah Welding Works"
       >
-        <Phone className="w-4 h-4 mb-0.5 stroke-[2.5] shrink-0" />
-        <span className="whitespace-nowrap">Call Now</span>
+        <Phone className="w-5 h-5 stroke-[2.2] shrink-0" />
+        <span className="font-extrabold tracking-wide">Call</span>
       </a>
 
       {/* 2. WhatsApp */}
       <a
         id="mobile-bar-whatsapp-btn"
-        href={generateWhatsAppUrl()}
+        href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-xs shadow-xs min-h-[44px]"
+        className="flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-emerald-600 active:bg-emerald-500 text-white text-center font-bold text-sm shadow-md transition-all active:scale-[0.98] min-h-[48px]"
+        aria-label="Send photo on WhatsApp to Mashallah Welding Works"
       >
-        <WhatsAppIcon className="w-4 h-4 mb-0.5 shrink-0" />
-        <span className="whitespace-nowrap">WhatsApp Us</span>
-      </a>
-
-      {/* 3. Directions */}
-      <a
-        id="mobile-bar-directions-btn"
-        href={BUSINESS_INFO.mapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex-1 flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-gunmetal active:bg-steel text-stone-200 text-center font-medium text-xs border border-dark-border shadow-xs min-h-[44px]"
-      >
-        <Navigation className="w-4 h-4 mb-0.5 text-copper shrink-0" />
-        <span className="whitespace-nowrap">Directions</span>
+        <WhatsAppIcon className="w-5 h-5 shrink-0" />
+        <span className="font-extrabold tracking-wide">WhatsApp</span>
       </a>
     </div>
   );
 };
+

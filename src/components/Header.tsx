@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Hammer } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
 
 export const Header: React.FC = () => {
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -116,22 +117,27 @@ export const Header: React.FC = () => {
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium" aria-label="Desktop navigation">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `px-3.5 py-2 rounded-lg transition-colors text-sm font-semibold ${
-                    isActive
-                      ? 'text-copper bg-steel/90 shadow-xs ring-1 ring-copper/30'
-                      : 'text-muted-text hover:text-white hover:bg-steel/60'
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              const isWorkLink = link.to === '/our-work';
+              const isWorkActive = location.pathname.startsWith('/our-work') || location.pathname.startsWith('/portfolio');
+              return (
+                <NavLink
+                  key={link.name}
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) => {
+                    const active = isWorkLink ? isWorkActive : isActive;
+                    return `px-3.5 py-2 rounded-lg transition-colors text-sm font-semibold ${
+                      active
+                        ? 'text-copper bg-steel/90 shadow-xs ring-1 ring-copper/30'
+                        : 'text-muted-text hover:text-white hover:bg-steel/60'
+                    }`;
+                  }}
+                >
+                  {link.name}
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* Mobile menu button */}
@@ -176,23 +182,28 @@ export const Header: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-2 pt-1">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.to}
-                end={link.to === '/'}
-                onClick={handleMobileLinkClick}
-                className={({ isActive }) =>
-                  `block px-3.5 py-2.5 rounded-lg font-medium text-sm transition-colors ${
-                    isActive
-                      ? 'bg-copper text-white font-bold shadow-xs'
-                      : 'text-stone-200 hover:bg-steel'
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              const isWorkLink = link.to === '/our-work';
+              const isWorkActive = location.pathname.startsWith('/our-work') || location.pathname.startsWith('/portfolio');
+              return (
+                <NavLink
+                  key={link.name}
+                  to={link.to}
+                  end={link.to === '/'}
+                  onClick={handleMobileLinkClick}
+                  className={({ isActive }) => {
+                    const active = isWorkLink ? isWorkActive : isActive;
+                    return `block px-3.5 py-2.5 rounded-lg font-medium text-sm transition-colors ${
+                      active
+                        ? 'bg-copper text-white font-bold shadow-xs'
+                        : 'text-stone-200 hover:bg-steel'
+                    }`;
+                  }}
+                >
+                  {link.name}
+                </NavLink>
+              );
+            })}
           </div>
         </nav>
       )}

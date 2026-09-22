@@ -13,14 +13,14 @@ export const SiteLayout: React.FC = () => {
       <Header />
 
       {/* Main Page Route Outlet */}
-      <main className="flex-grow">
+      <main className="flex-grow pb-6 sm:pb-0">
         <Outlet />
       </main>
 
       {/* Shared Global Footer */}
       <Footer />
 
-      {/* Mobile Sticky 1-Tap Action Bar (Call, WhatsApp, Directions) */}
+      {/* Mobile Sticky Action Bar (Call & WhatsApp) */}
       <MobileStickyBar />
     </div>
   );

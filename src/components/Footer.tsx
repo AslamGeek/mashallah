@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/services" className="text-muted-text hover:text-copper transition-colors">
-                  Services (11)
+                  Services
                 </Link>
               </li>
               <li>
@@ -108,17 +108,17 @@ export const Footer: React.FC = () => {
           {/* Col 3: Key Services (SEO Boost) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider">
-              Fabrication Services
+              What We Make & Fix
             </h4>
             <ul className="space-y-1.5 text-xs text-muted-text">
-              <li>• Iron Gates (Sliding & Swing)</li>
-              <li>• Window Safety Grills</li>
-              <li>• Staircase & Balcony Railings</li>
-              <li>• Heavy Sheet Metal Doors</li>
-              <li>• Water Tank & AC Stands</li>
-              <li>• Electric Arc Welding Works</li>
-              <li>• Gate Re-alignment & Repair Works</li>
-              <li>• Small Industrial Shed Fabrication</li>
+              <li>• Gates & Doors</li>
+              <li>• Window Grills</li>
+              <li>• Railings (Stairs & Balcony)</li>
+              <li>• Metal Doors</li>
+              <li>• Steel Racks & Stands</li>
+              <li>• Custom Welding Work</li>
+              <li>• Welding Repairs</li>
+              <li>• Shed & Factory Work</li>
             </ul>
           </div>
 

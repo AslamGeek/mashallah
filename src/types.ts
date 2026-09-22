@@ -29,6 +29,8 @@ export interface GalleryProject {
   category: GalleryCategorySlug;
   categoryLabel: string;
   imageUrl: string;
+  thumbnailUrl?: string;
+  mediumUrl?: string;
   imageAlt?: string;
   srcSetWebp?: string;
   description: string;

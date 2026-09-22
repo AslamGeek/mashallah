@@ -47,13 +47,23 @@ export const WorkshopMap: React.FC = () => {
         aria-label="Open Mashallah Welding Works location in Google Maps (opens in new tab)"
         className="group relative block w-full h-72 sm:h-96 bg-stone-100 overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-copper"
       >
-        <img
-          src="/images/workshop-map-preview-proddatur.jpg"
-          alt="Static Google Maps street map preview showing Mashallah Welding Works workshop in Auto Nagar, Proddatur"
-          referrerPolicy="no-referrer"
-          loading="lazy"
-          className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
-        />
+        <picture className="w-full h-full block">
+          <source
+            type="image/webp"
+            srcSet="/images/workshop-map-preview-proddatur-480.webp 480w, /images/workshop-map-preview-proddatur-768.webp 768w"
+            sizes="(max-width: 768px) 100vw, 768px"
+          />
+          <img
+            src="/images/workshop-map-preview-proddatur-768.webp"
+            alt="Static Google Maps street map preview showing Mashallah Welding Works workshop in Auto Nagar, Proddatur"
+            width={768}
+            height={384}
+            referrerPolicy="no-referrer"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+          />
+        </picture>
 
         {/* Subtle Map Grid Vignette */}
         <div className="absolute inset-0 bg-stone-900/5 group-hover:bg-stone-900/10 transition-colors pointer-events-none" />

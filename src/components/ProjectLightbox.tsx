@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
-import { generateWhatsAppUrl, getFullResolutionImageUrl } from '../data/content';
+import { X, ChevronLeft, ChevronRight, ExternalLink, Phone } from 'lucide-react';
+import { BUSINESS_INFO, generateWhatsAppUrl, getFullResolutionImageUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
 export interface LightboxMediaItem {
@@ -137,7 +137,7 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
   // Resolve original photo source URL
   const fullPhotoUrl = getFullResolutionImageUrl(project.imageUrl);
   const whatsappText = project.whatsappMessage ||
-    `Hello Mashallah Welding Works, I saw "${project.title}" on your website and would like an estimate.`;
+    `Hello, I want this type of work: ${project.title}. I will send a photo.`;
 
   return (
     <div
@@ -247,14 +247,24 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
               <span>Full Photo</span>
             </a>
 
+            {/* Direct Call Button */}
+            <a
+              href={BUSINESS_INFO.phoneTel}
+              className="inline-flex items-center justify-center px-3.5 py-2 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap active:scale-[0.98]"
+            >
+              <Phone className="w-4 h-4 mr-1.5 stroke-[2.2] shrink-0" />
+              <span>Call</span>
+            </a>
+
+            {/* Send Photo on WhatsApp */}
             <a
               href={generateWhatsAppUrl(whatsappText)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-colors min-h-[44px] whitespace-nowrap active:scale-[0.98]"
             >
               <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-              <span>WhatsApp Quote</span>
+              <span>Send Photo on WhatsApp</span>
             </a>
           </div>
         </div>

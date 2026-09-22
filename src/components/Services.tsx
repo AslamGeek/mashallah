@@ -67,11 +67,11 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
   };
 
   const categories = [
-    { id: 'all', label: 'All Services (11)' },
-    { id: 'residential', label: 'Residential' },
-    { id: 'commercial', label: 'Commercial' },
-    { id: 'fabrication', label: 'Fabrication & Welding' },
-    { id: 'repair', label: 'Repairs & Maintenance' },
+    { id: 'all', label: 'All Services' },
+    { id: 'residential', label: 'Home' },
+    { id: 'commercial', label: 'Shop & Office' },
+    { id: 'fabrication', label: 'Custom Work' },
+    { id: 'repair', label: 'Repairs' },
   ];
 
   const filteredServices = SERVICES_LIST.filter((service) => {
@@ -85,10 +85,10 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
         {/* Section Title & Description */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-dark-text">
-            Our Iron Fabrication & Welding Services
+            What We Make & Fix
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-            From precision architectural iron gates and window safety grills to heavy machine stands and emergency welding repairs in Proddatur.
+            From strong main gates and window grills to steel racks and quick welding repairs in Proddatur.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
           {filteredServices.map((service: ServiceItem) => {
             const IconComponent = getIcon(service.iconName);
             const isExpanded = !!expandedServiceIds[service.id];
-            const whatsappText = `Hello Mashallah Welding Works, I would like to enquire about your ${service.title} service.`;
+            const whatsappText = `Hello, I want this type of work: ${service.title}. I will send a photo.`;
             const serviceUrl = generateWhatsAppUrl(whatsappText);
 
             return (
@@ -161,20 +161,20 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                 {isExpanded && (
                   <div className="p-3.5 mb-4 rounded-xl bg-stone-50 border border-light-border space-y-2 text-xs text-stone-700">
                     <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
-                      Fabrication & Service Details
+                      Quality & Service Details
                     </span>
                     <div className="space-y-1.5 leading-relaxed">
                       <div className="flex items-start space-x-2">
                         <span className="text-copper font-bold">•</span>
-                        <span><strong>Material & Gauge:</strong> Prime Tata / Jindal mild steel structured to load requirements.</span>
+                        <span><strong>Quality Metal:</strong> High-grade strong steel chosen for long life and safety.</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <span className="text-copper font-bold">•</span>
-                        <span><strong>Protective Coating:</strong> Anti-rust zinc phosphate / red oxide primer with synthetic enamel finish.</span>
+                        <span><strong>Rust Protection:</strong> Anti-rust primer coating and clean weather-resistant paint.</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <span className="text-copper font-bold">•</span>
-                        <span><strong>On-Site Service:</strong> Free site measurement, delivery, and welded installation across Proddatur.</span>
+                        <span><strong>Doorstep Service:</strong> Free site measurement, delivery, and welded fitting in Proddatur.</span>
                       </div>
                     </div>
                   </div>
@@ -225,7 +225,7 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
                       className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-all min-h-[44px] whitespace-nowrap"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
-                      <span>WhatsApp</span>
+                      <span>Send Photo on WhatsApp</span>
                     </a>
                   </div>
                 </div>
@@ -238,20 +238,20 @@ export const Services: React.FC<ServicesProps> = ({ className = 'py-20' }) => {
         <div className="mt-12 bg-warm-tint rounded-2xl p-6 sm:p-8 text-dark-text shadow-xs border border-light-border flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h4 className="text-xl sm:text-2xl font-extrabold text-dark-text">
-              Have a Custom Metal Blueprint or Unique Measurement?
+              Have a Photo, Sketch, or Custom Size?
             </h4>
             <p className="text-stone-600 text-sm max-w-2xl leading-relaxed">
-              We fabricate bespoke ironwork based on your architect’s drawing, photos from Pinterest, or custom on-site requirements. Free consultation & estimate in Auto Nagar and Proddatur.
+              Show us a photo from WhatsApp, Pinterest, or your own drawing. We will visit, take exact measurements, and give you a clear price.
             </p>
           </div>
           <a
-            href={generateWhatsAppUrl('Hello Mashallah Welding Works, I have a custom design/drawing I would like an estimate for.')}
+            href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-copper hover:bg-copper-hover text-white font-bold text-sm tracking-wide shadow-xs transition-all active:scale-[0.98] whitespace-nowrap min-h-[44px]"
           >
             <WhatsAppIcon className="w-4 h-4 mr-2 shrink-0" />
-            <span>Send Your Design on WhatsApp</span>
+            <span>Send Photo on WhatsApp</span>
           </a>
         </div>
       </div>

@@ -122,6 +122,63 @@ export function getFullResolutionImageUrl(url?: string): string {
   return url.replace(/-\d{3,4}\.(webp|jpg|jpeg|png)$/i, '.$1');
 }
 
+export function getProjectUrl(projectId: string): string {
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  return `${origin}/portfolio/${projectId}`;
+}
+
+export function findProjectBySlug(slug?: string, items?: GalleryProject[]): GalleryProject | undefined {
+  if (!slug) return undefined;
+  const projectList = items && items.length > 0 ? items : loadCmsProjects();
+  const cleanSlug = slug.trim().toLowerCase().replace(/^#/, '');
+
+  // 1. Exact match by id
+  const exact = projectList.find((p) => p.id.toLowerCase() === cleanSlug);
+  if (exact) return exact;
+
+  // 2. Normalized match (remove special characters)
+  const normalizedSlug = cleanSlug.replace(/[^a-z0-9]/g, '');
+  const normalizedMatch = projectList.find(
+    (p) => p.id.toLowerCase().replace(/[^a-z0-9]/g, '') === normalizedSlug
+  );
+  if (normalizedMatch) return normalizedMatch;
+
+  // 3. Substring match
+  const substringMatch = projectList.find(
+    (p) => p.id.toLowerCase().includes(cleanSlug) || cleanSlug.includes(p.id.toLowerCase())
+  );
+  if (substringMatch) return substringMatch;
+
+  // 4. Keyword matching (handles URLs like /portfolio/heavy-duty-steel-rack)
+  const keywords = cleanSlug.split(/[-_ ]+/).filter((w) => w.length > 2);
+  if (keywords.length > 0) {
+    const allKeywordsMatch = projectList.find((p) => {
+      const pId = p.id.toLowerCase();
+      const pTitle = p.title.toLowerCase();
+      return keywords.every((kw) => pId.includes(kw) || pTitle.includes(kw));
+    });
+    if (allKeywordsMatch) return allKeywordsMatch;
+
+    // Best fuzzy keyword score
+    let bestProject: GalleryProject | undefined;
+    let maxMatches = 0;
+    for (const p of projectList) {
+      const pText = `${p.id} ${p.title}`.toLowerCase();
+      let matches = 0;
+      for (const kw of keywords) {
+        if (pText.includes(kw)) matches++;
+      }
+      if (matches > maxMatches) {
+        maxMatches = matches;
+        bestProject = p;
+      }
+    }
+    if (maxMatches >= 2) return bestProject;
+  }
+
+  return undefined;
+}
+
 /**
  * Load all project JSON records from content/projects/*.json using Vite's import.meta.glob
  * with eager loading.
@@ -169,20 +226,33 @@ export function loadCmsProjects(): GalleryProject[] {
     const imageAlt = raw.imageAlt || raw.alt || raw.title || 'Mashallah Welding Works project';
     const specifications = normalizeSpecifications(raw.specifications);
 
+    let thumbnailUrl = imageUrl;
+    let mediumUrl = imageUrl;
+    let srcSetWebp = raw.srcSetWebp;
+
+    // Use responsive webp thumbnails if image is from local public/images
+    if (imageUrl.startsWith('/images/')) {
+      const baseName = imageUrl.replace(/\.(webp|png|jpg|jpeg)$/i, '');
+      thumbnailUrl = `${baseName}-480.webp`;
+      mediumUrl = `${baseName}-768.webp`;
+      if (!srcSetWebp) {
+        srcSetWebp = `${thumbnailUrl} 480w, ${mediumUrl} 768w, ${imageUrl} 1200w`;
+      }
+    }
+
     const project: GalleryProject = {
       id,
       title: raw.title || 'Custom Fabrication Project',
       category: slug,
       categoryLabel: label,
       imageUrl,
+      thumbnailUrl,
+      mediumUrl,
       imageAlt,
       description: raw.description || '',
       specifications,
+      srcSetWebp,
     };
-
-    if (raw.srcSetWebp) {
-      project.srcSetWebp = raw.srcSetWebp;
-    }
 
     return project;
   });

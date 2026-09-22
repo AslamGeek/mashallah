@@ -1,62 +1,74 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { Maximize2, ChevronDown, ChevronUp, MapPin } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useParams, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { Maximize2, FileText } from 'lucide-react';
 import { GALLERY_ITEMS, GALLERY_CATEGORIES, generateWhatsAppUrl } from '../data/content';
 import { GalleryProject } from '../types';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { ProjectLightbox } from './ProjectLightbox';
 import { ProjectShareButton } from './ProjectShareButton';
+import { ProjectDetailsModal } from './ProjectDetailsModal';
+import { findProjectBySlug, getProjectUrl } from '../data/projects';
 
 interface GalleryProps {
   className?: string;
 }
 
 export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
-  const { categorySlug } = useParams<{ categorySlug?: string }>();
+  const { categorySlug, projectSlug } = useParams<{ categorySlug?: string; projectSlug?: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const queryCategory = searchParams.get('category') || categorySlug;
-  const initialCategory =
-    queryCategory &&
-    (queryCategory === 'all' || GALLERY_CATEGORIES.some((c) => c.slug === queryCategory))
-      ? queryCategory
-      : 'all';
+  // Determine active project from URL (e.g. /portfolio/:projectSlug or /our-work/:projectSlug)
+  const directSlug = projectSlug || (categorySlug && !GALLERY_CATEGORIES.some((c) => c.slug === categorySlug) && categorySlug !== 'all' ? categorySlug : undefined);
+
+  // Category determination
+  const queryCategory = searchParams.get('category');
+  const pathCategory = categorySlug && GALLERY_CATEGORIES.some((c) => c.slug === categorySlug) ? categorySlug : undefined;
+  const initialCategory = queryCategory || pathCategory || 'all';
 
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
-  const [activeModalProject, setActiveModalProject] = useState<GalleryProject | null>(null);
+  const [activeLightboxProject, setActiveLightboxProject] = useState<GalleryProject | null>(null);
+  const [activeDetailsProject, setActiveDetailsProject] = useState<GalleryProject | null>(null);
+  const [highlightedProjectId, setHighlightedProjectId] = useState<string | null>(null);
+
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
-  // State for expanded detailed card view
-  const [expandedProjectIds, setExpandedProjectIds] = useState<Record<string, boolean>>({});
-
-  const toggleProjectDetails = (id: string, e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setExpandedProjectIds((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const openLightbox = (project: GalleryProject, e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
-    setActiveModalProject(project);
-  };
-
-  const closeLightbox = () => {
-    setActiveModalProject(null);
-    if (lastTriggerRef.current) {
-      lastTriggerRef.current.focus({ preventScroll: true });
-    }
-  };
-
-  // Synchronize category state when URL route param or query string changes
+  // Sync category state from URL query or path
   useEffect(() => {
     if (queryCategory && (queryCategory === 'all' || GALLERY_CATEGORIES.some((c) => c.slug === queryCategory))) {
       setSelectedCategory(queryCategory);
+    } else if (pathCategory) {
+      setSelectedCategory(pathCategory);
     }
-  }, [queryCategory]);
+  }, [queryCategory, pathCategory]);
+
+  // Handle direct project URL navigation (e.g. /portfolio/:projectSlug or refreshing with stable URL)
+  useEffect(() => {
+    if (directSlug) {
+      const matched = findProjectBySlug(directSlug, GALLERY_ITEMS);
+      if (matched) {
+        setActiveDetailsProject(matched);
+        setHighlightedProjectId(matched.id);
+
+        // Ensure the card is rendered in the grid even if a category was active
+        setSelectedCategory('all');
+
+        // Smooth scroll to card in background after mounting
+        const cardTimer = setTimeout(() => {
+          const cardEl = document.getElementById(`project-card-${matched.id}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 150);
+
+        return () => clearTimeout(cardTimer);
+      }
+    } else {
+      // If user navigated away via browser back button, close the details modal
+      setActiveDetailsProject(null);
+    }
+  }, [directSlug]);
 
   const activeCategoryConfig = GALLERY_CATEGORIES.find((c) => c.slug === selectedCategory);
 
@@ -67,7 +79,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
 
   const handleCategorySelect = (slug: string) => {
     setSelectedCategory(slug);
-    if (categorySlug) {
+    if (categorySlug && GALLERY_CATEGORIES.some((c) => c.slug === categorySlug)) {
       if (slug === 'all') {
         navigate('/our-work', { replace: true });
       } else {
@@ -86,6 +98,68 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
     if (selectedCategory === 'all') return true;
     return item.category === selectedCategory;
   });
+
+  // Action: Open Lightbox
+  const openLightbox = useCallback((project: GalleryProject, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveLightboxProject(project);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setActiveLightboxProject(null);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  }, []);
+
+  // Action: Open Project Details Modal (with stable URL synchronization)
+  const openProjectDetails = useCallback((project: GalleryProject, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    lastTriggerRef.current = (e?.currentTarget as HTMLElement) || (document.activeElement as HTMLElement) || null;
+    setActiveDetailsProject(project);
+    setHighlightedProjectId(project.id);
+
+    // Update URL to stable project slug without full page reload
+    if (!location.pathname.startsWith(`/portfolio/${project.id}`)) {
+      navigate(`/portfolio/${project.id}`, { state: { fromGallery: true } });
+    }
+  }, [location.pathname, navigate]);
+
+  // Action: Close Project Details Modal
+  const closeProjectDetails = useCallback(() => {
+    setActiveDetailsProject(null);
+
+    // Return URL cleanly back to portfolio or our-work
+    if (location.pathname.startsWith('/portfolio/')) {
+      navigate('/portfolio', { replace: false });
+    } else if (location.pathname.startsWith('/our-work/')) {
+      navigate('/our-work', { replace: false });
+    }
+
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus({ preventScroll: true });
+    }
+  }, [location.pathname, navigate]);
+
+  // Navigate between projects in details modal
+  const handleNavigateDetails = useCallback((direction: 'prev' | 'next') => {
+    if (!activeDetailsProject) return;
+    const currentIndex = filteredItems.findIndex((p) => p.id === activeDetailsProject.id);
+    if (currentIndex === -1) return;
+
+    const nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+    if (nextIndex >= 0 && nextIndex < filteredItems.length) {
+      const nextProject = filteredItems[nextIndex];
+      setActiveDetailsProject(nextProject);
+      setHighlightedProjectId(nextProject.id);
+      navigate(`/portfolio/${nextProject.id}`, { replace: true });
+    }
+  }, [activeDetailsProject, filteredItems, navigate]);
+
+  const activeIndex = activeDetailsProject ? filteredItems.findIndex((p) => p.id === activeDetailsProject.id) : -1;
+  const hasPrev = activeIndex > 0;
+  const hasNext = activeIndex >= 0 && activeIndex < filteredItems.length - 1;
 
   return (
     <section id="gallery" className={`${className} bg-light-bg text-dark-text border-b border-light-border`}>
@@ -126,7 +200,7 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
           })}
         </div>
 
-        {/* Category Description Banner (if present and specific category selected) */}
+        {/* Category Description Banner */}
         {activeCategoryConfig?.description && selectedCategory !== 'all' && (
           <div className="max-w-2xl mx-auto text-center -mt-3 mb-8 px-4">
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed italic bg-white/70 py-2 px-4 rounded-xl border border-light-border/80 shadow-2xs">
@@ -158,192 +232,128 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
                 Show All Projects
               </button>
               <a
-                href={generateWhatsAppUrl(`Hello Mashallah Welding Works, I would like to enquire about custom ${activeCategoryConfig?.label || 'fabrication'}.`)}
+                href={generateWhatsAppUrl('Hello, I want this type of work. I will send a photo.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-500 transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 mr-1.5" />
-                <span>WhatsApp Us</span>
+                <span>Send Photo on WhatsApp</span>
               </a>
             </div>
           </div>
         ) : (
-          /* Projects Grid */
+          /* Consistent Project Cards Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((project: GalleryProject) => {
-              const isExpanded = !!expandedProjectIds[project.id];
+            {filteredItems.map((project: GalleryProject, index: number) => {
+              const isHighlighted = highlightedProjectId === project.id;
+              const whatsappEnquiryUrl = generateWhatsAppUrl(
+                `Hello, I want this type of work: ${project.title}. I will send a photo.`
+              );
+
               return (
                 <article
                   key={project.id}
-                  id={`gallery-card-${project.id}`}
-                  className="bg-white rounded-2xl overflow-hidden border border-light-border shadow-xs hover:shadow-md transition-all duration-200 flex flex-col group"
+                  id={`project-card-${project.id}`}
+                  className={`bg-white rounded-2xl overflow-hidden border transition-all duration-200 flex flex-col h-full ${
+                    isHighlighted
+                      ? 'border-copper shadow-md ring-2 ring-copper/40'
+                      : 'border-light-border shadow-xs hover:shadow-md'
+                  }`}
                 >
-                  {/* Image Container: Opens photo viewer only */}
+                  {/* 1. PHOTO: Consistent 4/3 ratio, tap opens lightbox, no random badges */}
                   <button
                     type="button"
-                    id={`gallery-item-${project.id}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openLightbox(project, e);
-                    }}
-                    className="relative aspect-[4/3] bg-black overflow-hidden w-full block cursor-pointer group/img focus:outline-none focus-visible:ring-2 focus-visible:ring-copper text-left"
+                    onClick={(e) => openLightbox(project, e)}
+                    className="relative aspect-[4/3] bg-stone-900 overflow-hidden w-full block cursor-pointer group/photo text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
                     aria-haspopup="dialog"
                     aria-label={`View photo of ${project.title}`}
                   >
-                    {project.srcSetWebp ? (
-                      <picture className="w-full h-full block">
-                        <source
-                          type="image/webp"
-                          srcSet={project.srcSetWebp}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                        <img
-                          src={project.imageUrl}
-                          alt={project.imageAlt || project.title}
-                          width={1200}
-                          height={896}
-                          referrerPolicy="no-referrer"
-                          loading="lazy"
-                          decoding="async"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
-                              target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
-                            }
-                          }}
-                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
-                        />
-                      </picture>
-                    ) : (
-                      <img
-                        src={project.imageUrl}
-                        alt={project.imageAlt || project.title}
-                        width={1200}
-                        height={900}
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+                    <picture className="w-full h-full block">
+                      <source
+                        type="image/webp"
+                        srcSet={project.srcSetWebp || `${project.thumbnailUrl || project.imageUrl} 480w, ${project.mediumUrl || project.imageUrl} 768w`}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                    )}
+                      <img
+                        src={project.thumbnailUrl || project.imageUrl}
+                        alt={project.imageAlt || project.title}
+                        width={480}
+                        height={360}
+                        referrerPolicy="no-referrer"
+                        loading={index < 3 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        fetchPriority={index === 0 ? 'high' : 'auto'}
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (project.imageUrl.includes('window-safety-grill') && !target.src.endsWith('.jpg')) {
+                            target.src = '/images/window-safety-grill-s-curve-design-proddatur-1.jpg';
+                          }
+                        }}
+                        className="w-full h-full object-cover group-hover/photo:scale-105 transition-transform duration-300"
+                      />
+                    </picture>
                   </button>
 
-                  {/* Card Meta Content */}
-                  <div className="p-5 pb-2 flex flex-col flex-grow w-full">
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <div className="text-xs font-semibold text-copper uppercase tracking-wider">
-                        {project.categoryLabel}
-                      </div>
-                      <ProjectShareButton project={project} />
-                    </div>
-
-                    {/* Card Title: Clickable to expand/open detailed card view, comfortable 44px+ touch area */}
-                    <button
-                      type="button"
-                      onClick={(e) => toggleProjectDetails(project.id, e)}
-                      aria-expanded={isExpanded}
-                      className="w-full text-left py-1 min-h-[44px] flex items-center justify-between group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg mb-1"
-                      aria-label={`${project.title} - ${isExpanded ? 'Hide details' : 'View full details'}`}
-                    >
-                      <span className="font-bold text-dark-text text-lg group-hover/title:text-copper transition-colors leading-snug">
-                        {project.title}
-                      </span>
-                      <span className="ml-2 p-1 text-stone-400 group-hover/title:text-copper transition-colors shrink-0">
-                        {isExpanded ? (
-                          <ChevronUp className="w-4 h-4 text-copper" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4" />
-                        )}
-                      </span>
-                    </button>
-
-                    {/* Detailed or Summary View */}
-                    {isExpanded ? (
-                      <div className="space-y-3 mb-3 flex-grow text-left pt-1">
-                        <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                          {project.description}
-                        </p>
-                        {project.specifications && (
-                          <div className="p-3 rounded-xl bg-stone-50 border border-light-border space-y-1 text-xs">
-                            <span className="font-bold text-copper block uppercase tracking-wider text-[10px]">
-                              Detailed Specifications
-                            </span>
-                            <p className="text-stone-800 font-medium leading-relaxed">
-                              {project.specifications}
-                            </p>
-                          </div>
-                        )}
-                        <div className="text-[11px] text-stone-500 flex items-center space-x-1.5 pt-0.5">
-                          <MapPin className="w-3.5 h-3.5 text-copper shrink-0" />
-                          <span>Fabricated at Auto Nagar, Proddatur workshop</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="mb-2 flex-grow">
-                        <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 mb-2">
-                          {project.description}
-                        </p>
-                        {project.specifications && (
-                          <p className="text-stone-500 font-medium text-xs truncate">
-                            <span className="font-semibold text-stone-700">Spec:</span> {project.specifications}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Card Actions: View Photo, View Details, WhatsApp Quote */}
-                  <div className="px-5 pb-5 pt-2 flex flex-col justify-end space-y-2.5">
-                    <div className="pt-2.5 border-t border-light-border/60 grid grid-cols-2 gap-2">
-                      {/* View Photo button: opens photo viewer only */}
+                  {/* Card Content: Title -> Short description -> Actions */}
+                  <div className="p-5 flex flex-col flex-1 justify-between gap-4">
+                    <div className="space-y-2">
+                      {/* 2. TITLE: Tapping opens project details */}
                       <button
                         type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openLightbox(project, e);
-                        }}
-                        className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap cursor-pointer"
+                        onClick={(e) => openProjectDetails(project, e)}
+                        className="w-full text-left group/title cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-md block"
+                        aria-label={`View details for ${project.title}`}
                       >
-                        <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
-                        <span>View Photo</span>
+                        <h3 className="font-bold text-dark-text text-base sm:text-lg group-hover/title:text-copper transition-colors line-clamp-2 min-h-[3rem] leading-snug">
+                          {project.title}
+                        </h3>
                       </button>
 
-                      {/* View Details button: expands/collapses detailed card view */}
-                      <button
-                        type="button"
-                        onClick={(e) => toggleProjectDetails(project.id, e)}
-                        className={`inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs border transition-colors min-h-[44px] whitespace-nowrap cursor-pointer ${
-                          isExpanded
-                            ? 'bg-copper text-white border-copper'
-                            : 'bg-white hover:bg-stone-50 text-dark-text border-stone-300'
-                        }`}
-                      >
-                        {isExpanded ? (
-                          <>
-                            <ChevronUp className="w-3.5 h-3.5 mr-1 text-white shrink-0" />
-                            <span>Hide Details</span>
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-3.5 h-3.5 mr-1 text-copper shrink-0" />
-                            <span>View Details</span>
-                          </>
-                        )}
-                      </button>
+                      {/* 3. SHORT DESCRIPTION: Consistent 2-line clamp, concise preview */}
+                      <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 min-h-[2.5rem] leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
 
-                    {/* WhatsApp Quote: Performs only WhatsApp action */}
-                    <a
-                      href={generateWhatsAppUrl(`Hello, I saw "${project.title}" in your gallery. Can you provide an estimate for a similar requirement?`)}
-                      onClick={(e) => e.stopPropagation()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors min-h-[44px] whitespace-nowrap"
-                    >
-                      <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
-                      <span>WhatsApp Quote</span>
-                    </a>
+                    {/* 4. ACTIONS: View Photo, View Details, Share, WhatsApp */}
+                    <div className="space-y-2 pt-2 border-t border-light-border/80">
+                      {/* Action Row 1: View Photo & View Details */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => openLightbox(project, e)}
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-dark-text font-semibold text-xs border border-stone-300 transition-colors min-h-[44px] whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                          <span>View Photo</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => openProjectDetails(project, e)}
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs transition-colors min-h-[44px] whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-copper"
+                        >
+                          <FileText className="w-3.5 h-3.5 mr-1.5 text-copper shrink-0" />
+                          <span>View Details</span>
+                        </button>
+                      </div>
+
+                      {/* Action Row 2: Share & WhatsApp */}
+                      <div className="grid grid-cols-[auto_1fr] sm:grid-cols-[100px_1fr] gap-2">
+                        <ProjectShareButton project={project} />
+
+                        <a
+                          href={whatsappEnquiryUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-2xs transition-colors min-h-[44px] whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                        >
+                          <WhatsAppIcon className="w-4 h-4 mr-1.5 shrink-0" />
+                          <span>Send Photo on WhatsApp</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </article>
               );
@@ -351,12 +361,25 @@ export const Gallery: React.FC<GalleryProps> = ({ className = 'py-20' }) => {
           </div>
         )}
 
-        {/* Portfolio Project Lightbox Viewer with Full Resolution Option and Scroll Protection */}
+        {/* Project Details Modal (opens on title click, View Details, or direct /portfolio/:slug link) */}
+        <ProjectDetailsModal
+          project={activeDetailsProject}
+          isOpen={!!activeDetailsProject}
+          onClose={closeProjectDetails}
+          onOpenPhoto={(p) => {
+            setActiveLightboxProject(p);
+          }}
+          onNavigate={handleNavigateDetails}
+          hasPrev={hasPrev}
+          hasNext={hasNext}
+        />
+
+        {/* Portfolio Project Lightbox Viewer with Full Resolution Source and Zoom Controls */}
         <ProjectLightbox
-          project={activeModalProject}
+          project={activeLightboxProject}
           items={filteredItems}
           onClose={closeLightbox}
-          onNavigate={(item) => setActiveModalProject(item as GalleryProject)}
+          onNavigate={(item) => setActiveLightboxProject(item as GalleryProject)}
         />
       </div>
     </section>
