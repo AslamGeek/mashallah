@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { getBusinessHoursStatus } from '../data/content';
 import { BusinessHoursState } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -96,23 +97,14 @@ export const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 sm:h-20">
           {/* Logo / Brand Image */}
-          <Link
-            to="/"
-            onClick={handleMobileLinkClick}
-            className="flex items-center text-left shrink-0 mr-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded-lg"
+          <BrandLogo
+            variant="dark"
             id="brand-logo-link"
-            aria-label="Mashallah Welding Works"
-          >
-            <img
-              src="/images/mashallah-welding-works-logo-horizontal-white.webp"
-              alt="Mashallah Welding Works"
-              width={2172}
-              height={724}
-              className="w-[170px] sm:w-[190px] md:w-[210px] h-auto max-h-[58px] sm:max-h-[68px] object-contain block transition-opacity hover:opacity-90"
-              loading="eager"
-              decoding="async"
-            />
-          </Link>
+            onClick={handleMobileLinkClick}
+            className="flex items-center text-left shrink-0 mr-4"
+            imgClassName="w-[170px] sm:w-[190px] md:w-[210px] h-auto max-h-[58px] sm:max-h-[68px] object-contain block transition-opacity hover:opacity-90"
+            priority={true}
+          />
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium" aria-label="Desktop navigation">

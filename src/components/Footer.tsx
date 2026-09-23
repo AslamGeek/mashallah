@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Hammer, Phone, MapPin, Navigation, ExternalLink, Clock, Instagram } from 'lucide-react';
+import { Phone, MapPin, Navigation, ExternalLink, Clock, Instagram } from 'lucide-react';
 import { BUSINESS_INFO, generateWhatsAppUrl } from '../data/content';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -13,14 +14,12 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-dark-border">
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-4 space-y-4">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-9 h-9 rounded-lg bg-copper text-white flex items-center justify-center font-bold group-hover:bg-copper-hover transition-colors">
-                <Hammer className="w-5 h-5 stroke-[2.2]" />
-              </div>
-              <span className="font-extrabold text-lg tracking-tight text-white group-hover:text-copper transition-colors">
-                Mashallah Welding Works
-              </span>
-            </Link>
+            <BrandLogo
+              variant="dark"
+              id="footer-brand-logo-link"
+              className="inline-block"
+              imgClassName="w-[175px] sm:w-[190px] md:w-[210px] h-auto object-contain block transition-opacity hover:opacity-90"
+            />
 
             <p className="text-muted-text text-xs leading-relaxed">
               Custom iron fabrication, electric arc welding, and metal repair works in Auto Nagar, Proddatur, Andhra Pradesh. Dedicated to durable made-to-requirement steel fittings for homes, shops, and institutions.
